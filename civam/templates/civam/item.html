@@ -1,0 +1,16 @@
+
+<h1>{{item.name}}</h1>
+<h2>{{item.description}}</h2>
+
+
+<h3>Stories</h3>
+{% if stories %}
+    <ul>
+        {% for story in stories %}
+            <li>{{story.content}}</li>
+            By {{story.created_by}}
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>no stories yet for this item</p>
+{% endif %}
