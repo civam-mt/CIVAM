@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from constrainedfilefield.fields import ConstrainedFileField
 
 # Create your models here.
@@ -26,14 +26,20 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
-class Media(models.Model):
-
+class Image(models.Model):
     VALID_CONTENT = ["image/png", "image/jpeg",]
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="media")
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="images")
     content = ConstrainedFileField(upload_to="uploaded/", content_types=VALID_CONTENT)
 
     def __str__(self):
-        return self.item.name
+        return "Image: {}".format(self.item.name)
+
+class Video(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="videos")
+    link = models.URLField();
+
+    def __str__(self):
+        return "Video: {}".format(self.item.name)
 
 class Story(models.Model):
     content = models.TextField()
@@ -47,7 +53,7 @@ class Story(models.Model):
         verbose_name_plural = "stories"
 
     def __str__(self):
-        return self.item.name
+        return "Story: {}".format(self.item.name)
     
 
 

@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Collection, Item, Media, Story
+from .models import Collection, Item, Image, Video, Story
+from guardian.admin import GuardedModelAdmin
 
 # Register your models here
-class DefaultAdmin(admin.ModelAdmin):
+class DefaultAdmin(GuardedModelAdmin):
     readonly_fields = ('created_by', 'created_on', 'modified_by', 'modified_on')
 
     
@@ -27,8 +28,11 @@ class ItemInline(admin.TabularInline):
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
     #can_delete = False
 
-class MediaInline(admin.TabularInline):
-    model = Media
+class ImageInline(admin.TabularInline):
+    model = Image
+
+class VideoInline(admin.TabularInline):
+    model = Video
 
 class CollectionAdmin(DefaultAdmin):
     list_display = ('title', 'created_by')
@@ -36,7 +40,7 @@ class CollectionAdmin(DefaultAdmin):
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection')
-    inlines = [MediaInline,]
+    inlines = [ImageInline, VideoInline]
 
 class StoryAdmin(DefaultAdmin):
     list_display = ('item', 'created_by')
