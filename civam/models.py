@@ -11,6 +11,11 @@ class Collection(models.Model):
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_modified")
     modified_on = models.DateTimeField(auto_now=True)
     
+    class Meta:
+        permissions = [
+            ("can_view", "Can view an item")
+        ]
+
     def __str__(self):
         return self.title
     
@@ -22,6 +27,11 @@ class Item(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_modified")
     modified_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view an item")
+        ]
 
     def __str__(self):
         return self.name
@@ -36,7 +46,7 @@ class Image(models.Model):
 
 class Video(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="videos")
-    link = models.URLField();
+    link = models.URLField()
 
     def __str__(self):
         return "Video: {}".format(self.item.name)
