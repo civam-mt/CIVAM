@@ -10,11 +10,6 @@ class Collection(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_modified")
     modified_on = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        permissions = [
-            ("can_view", "Can view an item")
-        ]
 
     def __str__(self):
         return self.title
@@ -27,11 +22,6 @@ class Item(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_modified")
     modified_on = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        permissions = [
-            ("can_view", "Can view an item")
-        ]
 
     def __str__(self):
         return self.name

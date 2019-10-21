@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from guardian.shortcuts import assign_perm, get_perms, remove_perm
+from guardian.shortcuts import assign_perm, get_perms, remove_perm, get_perms_for_model
 from civam.models import Item, Collection
 
 
@@ -10,14 +10,16 @@ def index(request):
 
 def item(request, obj):
     item = Item.objects.get(name__iexact=obj)
-    if request.user.has_perm("civam.can_view",item):
+    if request.user.has_perm("civam.view_item",item):
+        #add edit and delete options in template
         return HttpResponse("Item Page")
     else:
         return HttpResponse(str(request.user)+" cannot view this item")
 
 def collection(request, obj):
     collection = Collection.objects.get(title__iexact=obj)
-    if request.user.has_perm("civam.can_view",collection):
+    if request.user.has_perm("civam.view_collection",collection):
+        #add edit and delete options in template
         return HttpResponse("Collection Page")
     else:
         return HttpResponse(str(request.user)+" cannot view this collection")
