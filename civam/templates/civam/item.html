@@ -14,3 +14,9 @@
 {% else %}
     <p>no stories yet for this item</p>
 {% endif %}
+<form method="post">
+{% csrf_token %}
+{{form}}
+<br>
+<button type="submit" class="btn btn-default">Add Story</button>
+</form>

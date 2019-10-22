@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import HttpResponse
 from .models import *
 from guardian.shortcuts import assign_perm, get_perms, remove_perm, get_perms_for_model
-
+from .forms import *
 
 
 # Create your views here.
@@ -17,10 +17,21 @@ def collection_list(request):
 
 def item(request, collection_id, item_id):
     item = get_object_or_404(Item, pk=item_id)
+    if(request.method == 'POST'):
+        form = StoryForm(request.POST)
+        if form.is_valid:
+            story_instance = form.save(commit=False)
+            story_instance.item = item 
+            story_instance.created_by = request.user
+            story_instance.save()
+            return redirect("")
+
+    
     stories = Story.objects.filter(item_id=item_id)
+    form = StoryForm()
     if not request.user.has_perm("civam.view_item",item):
         #add edit and delete options in template
-        context = {'item': item, 'stories': stories}
+        context = {'item': item, 'stories': stories, 'form': form}
         return render(request, 'civam/item.html', context)
     else:
         return HttpResponse(str(request.user)+" cannot view this item")
