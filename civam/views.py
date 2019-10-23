@@ -38,7 +38,11 @@ def item(request, collection_id, item_id):
             return redirect("")
 
     stories = Story.objects.filter(item_id=item_id)
-    image = Image.objects.get(item_id=item_id)
+    try :
+        image = Image.objects.get(item_id=item_id)
+    except Image.DoesNotExist:
+        image = None
+    
     form = StoryForm()
     if not request.user.has_perm("civam.view_item",item):
         #add edit and delete options in template
@@ -59,6 +63,7 @@ def new_item(request, collection_id):
             item_instance.collection = collection
             item_instance.save()
             if image_form.is_valid():
+                print(image_form.cleaned_data)
                 content = image_form.cleaned_data['content']
                 image_instance = Image(item=item_instance,content=content)
                 image_instance.save()
