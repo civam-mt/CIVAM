@@ -2,6 +2,8 @@
 # Created by https://www.gitignore.io/api/django
 # Edit at https://www.gitignore.io/?templates=django
 
+django_project/media
+
 ### Django ###
 *.log
 *.pot
@@ -44,6 +46,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+project-env
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

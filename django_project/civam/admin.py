@@ -34,13 +34,17 @@ class ImageInline(admin.TabularInline):
 class VideoInline(admin.TabularInline):
     model = Video
 
+class StoryInline(admin.TabularInline):
+    model = Story
+    exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
+
 class CollectionAdmin(DefaultAdmin):
     list_display = ('title', 'created_by')
     inlines = [ItemInline,]
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection')
-    inlines = [ImageInline, VideoInline]
+    inlines = [ImageInline, VideoInline, StoryInline,]
 
 class StoryAdmin(DefaultAdmin):
     list_display = ('item', 'created_by')
