@@ -1,5 +1,9 @@
 
 <h1>{{item.name}}</h1>
+{% if image %}
+{{image.content.url}}
+<img src="{{image.url}}"/>
+{% endif %}
 <h2>{{item.description}}</h2>
 
 
@@ -14,7 +18,7 @@
 {% else %}
     <p>no stories yet for this item</p>
 {% endif %}
-<form method="post">
+<form method="POST">
 {% csrf_token %}
 {{form}}
 <br>

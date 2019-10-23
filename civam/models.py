@@ -27,7 +27,7 @@ class Item(models.Model):
         return self.name
 
 class Image(models.Model):
-    VALID_CONTENT = ["image/png", "image/jpeg",]
+    VALID_CONTENT = ["image/png", "image/jpeg","image/jpg"]
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="images")
     content = ConstrainedFileField(upload_to="uploaded/", content_types=VALID_CONTENT)
 

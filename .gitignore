@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-civam/__pychache__/
-venv
-project/__pychache__/
-*.pyc
-.vscode/
-=======
+
 
 # Created by https://www.gitignore.io/api/django
 # Edit at https://www.gitignore.io/?templates=django
