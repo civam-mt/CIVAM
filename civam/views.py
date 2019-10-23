@@ -11,9 +11,20 @@ def index(request):
 
 def collection_list(request):
     collection_list = Collection.objects.all()
-    print(collection_list)
     context = {'collection_list' : collection_list}
     return render(request, 'civam/collection_list.html' ,context)
+
+def new_collection(request):
+    if(request.method == 'POST'):
+        form  = CollectionForm(request.POST)
+        if form.is_valid():
+            col_instance = col.save()
+            return redirect("")
+    
+    collection_form = CollectionForm()
+    print(collection_form)
+    context = {'collection_form': collection_form}
+    return render('civam/new_collection.html', context)
 
 def item(request, collection_id, item_id):
     item = get_object_or_404(Item, pk=item_id)

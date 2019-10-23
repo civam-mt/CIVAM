@@ -6,6 +6,12 @@ class StoryForm(ModelForm):
     class Meta:
         model = Story
         fields = ['content']
+        
+class CollectionForm(ModelForm):
+    class Meta:
+        model = Collection
+        fields = ['title', 'description']
+
 
 class ItemForm(ModelForm):
     class Meta:
