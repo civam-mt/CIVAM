@@ -1,26 +1,88 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import HttpResponse
+from .models import *
 from guardian.shortcuts import assign_perm, get_perms, remove_perm, get_perms_for_model
-from civam.models import Item, Collection
+from .forms import *
 
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, world!")
+    return HttpResponse("index")
 
-def item(request, obj):
-    item = Item.objects.get(name__iexact=obj)
-    if request.user.has_perm("civam.view_item",item):
+def collection_list(request):
+    collection_list = Collection.objects.all()
+    context = {'collection_list' : collection_list}
+    return render(request, 'civam/collection_list.html' ,context)
+
+def new_collection(request):
+    if(request.method == 'POST'):
+        form  = CollectionForm(request.POST)
+        if form.is_valid():
+            col_instance = form.save()
+            return redirect("collections")
+    
+    collection_form = CollectionForm()
+    print(collection_form)
+    context = {'collection_form': collection_form}
+    return render(request, 'civam/new_collection.html', context)
+
+def item(request, collection_id, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    if(request.method == 'POST'):
+        form = StoryForm(request.POST)
+        if form.is_valid():
+            story_instance = form.save(commit=False)
+            story_instance.item = item 
+            story_instance.created_by = request.user
+            story_instance.save()
+            return redirect("")
+
+    stories = Story.objects.filter(item_id=item_id)
+    try :
+        image = Image.objects.filter(item_id=item_id)
+    except Image.DoesNotExist:
+        image = None
+    
+    form = StoryForm()
+    if not request.user.has_perm("civam.view_item",item):
         #add edit and delete options in template
-        return HttpResponse("Item Page")
+        context = {'item': item, 'stories': stories, 'form': form, 'images': image}
+        return render(request, 'civam/item.html', context)
     else:
         return HttpResponse(str(request.user)+" cannot view this item")
 
-def collection(request, obj):
-    collection = Collection.objects.get(title__iexact=obj)
-    if request.user.has_perm("civam.view_collection",collection):
+def new_item(request, collection_id):
+    collection = get_object_or_404(Collection, pk=collection_id)
+    if(request.method== 'POST'):
+        item_form = ItemForm(request.POST, prefix='item')
+        video_form = VideoForm(request.POST, prefix='video')
+        if item_form.is_valid():
+            item_instance = item_form.save(commit=False)
+            item_instance.collection = collection
+            item_instance.save()
+            for image in request.FILES.getlist('images'):
+                image_instance = Image(item=item_instance,content=image)
+                image_instance.save()
+            if video_form.is_valid():
+                link = video_form.cleaned_data['link']
+                video_instance = Video(link=link, item=item_instance)
+                video_instance.save()
+            return redirect("collection", collection_id=collection_id)
+    #regular GET
+    item_form = ItemForm(prefix = 'item')
+    image_form = ImageForm(prefix = 'image')
+    video_form = VideoForm(prefix = 'video')
+    context = {'item_form': item_form, 'image_form': image_form, 'video_form': video_form, 'collection': collection}
+    return render(request, 'civam/new_item.html', context)
+
+    
+def collection(request, collection_id):
+    collection = get_object_or_404(Collection, pk=collection_id)
+    if not request.user.has_perm("civam.view_collection",collection):
+        item_list = Item.objects.filter(collection=collection)
+        context = {'item_list': item_list, 'collection': collection}
         #add edit and delete options in template
-        return HttpResponse("Collection Page")
+        return render(request, 'civam/collection.html', context)
     else:
         return HttpResponse(str(request.user)+" cannot view this collection")
 
@@ -59,3 +121,4 @@ def revoke_perm(request, obj_type, obj, permi):
     else:
         remove_perm(permi, request.user, item)
         return HttpResponse("Permission *"+obj_type.capitalize()+" "+str(permi)+"* revoked")
+
