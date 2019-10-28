@@ -1,11 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
-from constrainedfilefield.fields import ConstrainedFileField
 
 # Create your models here.
+
+# A collection of items
 class Collection(models.Model):
     title = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True)
+    cover_image = models.ImageField(upload_to="cover_images/", null=True)
+    public = models.BooleanField(default=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_created")
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_modified")
@@ -26,10 +29,12 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+def image_upload_path(instance, filename):
+    return '{}/{}/{}'.format(instance.item.collection.id, instance.item.id, filename)
+
 class Image(models.Model):
-    VALID_CONTENT = ["image/png", "image/jpeg","image/jpg"]
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="images")
-    content = ConstrainedFileField(upload_to="uploaded/", content_types=VALID_CONTENT)
+    content = models.ImageField(upload_to=image_upload_path)
 
     def __str__(self):
         return "Image: {}".format(self.item.name)
@@ -54,7 +59,3 @@ class Story(models.Model):
 
     def __str__(self):
         return "Story: {}".format(self.item.name)
-    
-
-
-    
