@@ -1,8 +1,10 @@
 
 <h1>{{item.name}}</h1>
-{% if image %}
-{{image.content.url}}
-<img src="{{image.url}}"/>
+{% if images %}
+    {% for img in images %}
+    <img src="{{img.content.url}}"/>
+    <br>
+    {% endfor %}
 {% endif %}
 <h2>{{item.description}}</h2>
 

@@ -3,11 +3,11 @@
 
 <h3>New Item</h3>
 
-<form method="POST">
+<form enctype="multipart/form-data" method="POST">
 {% csrf_token %}
 {{item_form}}
 <br><br>
-{{image_form}}
+<input name="images" type="file" accept="image/*" multiple>
 <br><br>
 {{video_form}}
 <br><br>

@@ -19,7 +19,7 @@ class ItemForm(ModelForm):
         fields = ['name', 'description']
 
 class ImageForm(forms.Form):
-    content = forms.FileField(required=False)
+    content = forms.ImageField(required=False)
    
 class VideoForm(forms.Form):
     link = forms.URLField(required=False)
