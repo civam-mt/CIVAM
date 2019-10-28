@@ -80,7 +80,6 @@ def new_item(request, collection_id):
     return render(request, 'civam/new_item.html', context)
 
     
-
 def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
     if not request.user.has_perm("civam.view_collection",collection):
