@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, HttpResponseRedirect
 from .models import *
 from guardian.shortcuts import assign_perm, get_perms, remove_perm, get_perms_for_model
 from .forms import *
@@ -10,15 +10,18 @@ def index(request):
     return HttpResponse("index")
 
 def collection_list(request):
-    collection_list = Collection.objects.all()
+    collection_list = Collection.objects.filter(public=True)
     context = {'collection_list' : collection_list}
-    return render(request, 'civam/collection_list.html' ,context)
+    return render(request, 'civam/collection_list.html', context)
 
 def new_collection(request):
     if(request.method == 'POST'):
         form  = CollectionForm(request.POST)
         if form.is_valid():
-            col_instance = form.save()
+            col_instance = form.save(commit=False)
+            col_instance.created_by = request.user
+            col_instance.modified_by = request.user
+            col_instance.save()
             return redirect("collections")
     
     collection_form = CollectionForm()
@@ -34,8 +37,9 @@ def item(request, collection_id, item_id):
             story_instance = form.save(commit=False)
             story_instance.item = item 
             story_instance.created_by = request.user
+            story_instance.modified_by = request.user
             story_instance.save()
-            return redirect("")
+            return HttpResponseRedirect("")
 
     stories = Story.objects.filter(item_id=item_id)
     try :
@@ -44,7 +48,7 @@ def item(request, collection_id, item_id):
         image = None
     
     form = StoryForm()
-    if not request.user.has_perm("civam.view_item",item):
+    if request.user.has_perm("civam.view_item",item):
         #add edit and delete options in template
         context = {'item': item, 'stories': stories, 'form': form, 'images': image}
         return render(request, 'civam/item.html', context)
@@ -59,6 +63,8 @@ def new_item(request, collection_id):
         if item_form.is_valid():
             item_instance = item_form.save(commit=False)
             item_instance.collection = collection
+            item_instance.created_by = request.user
+            item_instance.modified_by = request.user
             item_instance.save()
             for image in request.FILES.getlist('images'):
                 image_instance = Image(item=item_instance,content=image)
@@ -78,7 +84,7 @@ def new_item(request, collection_id):
     
 def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
-    if not request.user.has_perm("civam.view_collection",collection):
+    if request.user.has_perm("civam.view_collection",collection):
         item_list = Item.objects.filter(collection=collection)
         context = {'item_list': item_list, 'collection': collection}
         #add edit and delete options in template
