@@ -15,18 +15,16 @@ def collection_list(request):
     return render(request, 'civam/collection_list.html', context)
 
 def new_collection(request):
+    form = CollectionForm(request.POST or None)
     if(request.method == 'POST'):
-        form  = CollectionForm(request.POST)
         if form.is_valid():
             col_instance = form.save(commit=False)
             col_instance.created_by = request.user
             col_instance.modified_by = request.user
             col_instance.save()
             return redirect("collections")
-    
-    collection_form = CollectionForm()
-    print(collection_form)
-    context = {'collection_form': collection_form}
+
+    context = {'collection_form': form}
     return render(request, 'civam/new_collection.html', context)
 
 def item(request, collection_id, item_id):
