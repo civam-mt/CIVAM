@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import HttpResponse, HttpResponseRedirect
 from .models import *
-from guardian.shortcuts import assign_perm, get_perms, remove_perm, get_perms_for_model
+from guardian.shortcuts import assign_perm, get_perms, remove_perm, get_perms_for_model, get_objects_for_user
+from guardian.decorators import permission_required
 from .forms import *
 
 
@@ -27,6 +28,7 @@ def new_collection(request):
     context = {'collection_form': form}
     return render(request, 'civam/new_collection.html', context)
 
+@permission_required('civam.view_item', (Item, 'id', 'item_id'), return_403=True)
 def item(request, collection_id, item_id):
     item = get_object_or_404(Item, pk=item_id)
     if(request.method == 'POST'):
@@ -84,6 +86,7 @@ def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
     if request.user.has_perm("civam.view_collection",collection):
         item_list = Item.objects.filter(collection=collection)
+        item_list = get_objects_for_user(request.user, 'view_item', item_list)
         context = {'item_list': item_list, 'collection': collection}
         #add edit and delete options in template
         return render(request, 'civam/collection.html', context)
