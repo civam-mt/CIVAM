@@ -22,7 +22,7 @@ def new_collection(request):
             col_instance.created_by = request.user
             col_instance.modified_by = request.user
             col_instance.save()
-            return redirect("collections")
+            return redirect("collection", col_instance.id)
 
     context = {'collection_form': form}
     return render(request, 'civam/new_collection.html', context)
