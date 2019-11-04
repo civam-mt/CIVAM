@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.shortcuts import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
+from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user
+from guardian.decorators import permission_required
 from .models import *
-from guardian.shortcuts import assign_perm, get_perms, remove_perm, get_perms_for_model
 from .forms import *
 
 
@@ -10,22 +10,25 @@ def index(request):
     return HttpResponse("index")
 
 def collection_list(request):
-    collection_list = Collection.objects.all()
+    collection_list = Collection.objects.filter(public=True)
+    collection_list = get_objects_for_user(request.user, 'civam.view_collection', collection_list, accept_global_perms=False)
     context = {'collection_list' : collection_list}
-    return render(request, 'civam/collection_list.html' ,context)
+    return render(request, 'civam/collection_list.html', context)
 
 def new_collection(request):
+    form = CollectionForm(request.POST or None)
     if(request.method == 'POST'):
-        form  = CollectionForm(request.POST)
         if form.is_valid():
-            col_instance = form.save()
-            return redirect("collections")
-    
-    collection_form = CollectionForm()
-    print(collection_form)
-    context = {'collection_form': collection_form}
+            col_instance = form.save(commit=False)
+            col_instance.created_by = request.user
+            col_instance.modified_by = request.user
+            col_instance.save()
+            return redirect("collection", collection_id = col_instance.id)
+
+    context = {'collection_form': form}
     return render(request, 'civam/new_collection.html', context)
 
+@permission_required('civam.view_item', (Item, 'id', 'item_id'), return_403=True)
 def item(request, collection_id, item_id):
     item = get_object_or_404(Item, pk=item_id)
     if(request.method == 'POST'):
@@ -34,8 +37,9 @@ def item(request, collection_id, item_id):
             story_instance = form.save(commit=False)
             story_instance.item = item 
             story_instance.created_by = request.user
+            story_instance.modified_by = request.user
             story_instance.save()
-            return redirect("")
+            return HttpResponseRedirect("")
 
     stories = Story.objects.filter(item_id=item_id)
     try :
@@ -44,7 +48,7 @@ def item(request, collection_id, item_id):
         image = None
     
     form = StoryForm()
-    if not request.user.has_perm("civam.view_item",item):
+    if request.user.has_perm("civam.view_item",item):
         #add edit and delete options in template
         context = {'item': item, 'stories': stories, 'form': form, 'images': image}
         return render(request, 'civam/item.html', context)
@@ -59,6 +63,8 @@ def new_item(request, collection_id):
         if item_form.is_valid():
             item_instance = item_form.save(commit=False)
             item_instance.collection = collection
+            item_instance.created_by = request.user
+            item_instance.modified_by = request.user
             item_instance.save()
             for image in request.FILES.getlist('images'):
                 image_instance = Image(item=item_instance,content=image)
@@ -75,16 +81,15 @@ def new_item(request, collection_id):
     context = {'item_form': item_form, 'image_form': image_form, 'video_form': video_form, 'collection': collection}
     return render(request, 'civam/new_item.html', context)
 
-    
+
+@permission_required('civam.view_collection', (Collection, 'id', 'collection_id'), return_403=True)
 def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
-    if not request.user.has_perm("civam.view_collection",collection):
-        item_list = Item.objects.filter(collection=collection)
-        context = {'item_list': item_list, 'collection': collection}
-        #add edit and delete options in template
-        return render(request, 'civam/collection.html', context)
-    else:
-        return HttpResponse(str(request.user)+" cannot view this collection")
+    item_list = Item.objects.filter(collection=collection)
+    item_list = get_objects_for_user(request.user, 'civam.view_item', item_list, accept_global_perms=False)
+    context = {'item_list': item_list, 'collection': collection}
+    #add edit and delete options in template
+    return render(request, 'civam/collection.html', context)
 
 def grant_perm(request, obj_type, obj, permi):
     if not obj:

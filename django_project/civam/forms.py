@@ -10,7 +10,7 @@ class StoryForm(ModelForm):
 class CollectionForm(ModelForm):
     class Meta:
         model = Collection
-        fields = ['title', 'description']
+        fields = ['title', 'description', 'public']
 
 
 class ItemForm(ModelForm):
