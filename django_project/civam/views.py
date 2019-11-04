@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.shortcuts import HttpResponse, HttpResponseRedirect
-from .models import *
-from guardian.shortcuts import assign_perm, get_perms, remove_perm, get_perms_for_model, get_objects_for_user
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
+from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user
 from guardian.decorators import permission_required
+from .models import *
 from .forms import *
 
 
@@ -12,6 +11,7 @@ def index(request):
 
 def collection_list(request):
     collection_list = Collection.objects.filter(public=True)
+    collection_list = get_objects_for_user(request.user, 'civam.view_collection', collection_list, accept_global_perms=False)
     context = {'collection_list' : collection_list}
     return render(request, 'civam/collection_list.html', context)
 
@@ -81,17 +81,15 @@ def new_item(request, collection_id):
     context = {'item_form': item_form, 'image_form': image_form, 'video_form': video_form, 'collection': collection}
     return render(request, 'civam/new_item.html', context)
 
-    
+
+@permission_required('civam.view_collection', (Collection, 'id', 'collection_id'), return_403=True)
 def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
-    if request.user.has_perm("civam.view_collection",collection):
-        item_list = Item.objects.filter(collection=collection)
-        item_list = get_objects_for_user(request.user, 'view_item', item_list)
-        context = {'item_list': item_list, 'collection': collection}
-        #add edit and delete options in template
-        return render(request, 'civam/collection.html', context)
-    else:
-        return HttpResponse(str(request.user)+" cannot view this collection")
+    item_list = Item.objects.filter(collection=collection)
+    item_list = get_objects_for_user(request.user, 'civam.view_item', item_list, accept_global_perms=False)
+    context = {'item_list': item_list, 'collection': collection}
+    #add edit and delete options in template
+    return render(request, 'civam/collection.html', context)
 
 def grant_perm(request, obj_type, obj, permi):
     if not obj:
