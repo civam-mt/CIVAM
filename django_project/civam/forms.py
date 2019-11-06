@@ -5,7 +5,7 @@ from civam.models import *
 class StoryForm(ModelForm):
     class Meta:
         model = Story
-        fields = ['content']
+        fields = ['content', 'author']
         
 class CollectionForm(ModelForm):
     class Meta:

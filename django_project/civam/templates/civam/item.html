@@ -14,7 +14,7 @@
     <ul>
         {% for story in stories %}
             <li>{{story.content}}</li>
-            By {{story.created_by}}
+            By {{story.author}}
         {% endfor %}
     </ul>
 {% else %}

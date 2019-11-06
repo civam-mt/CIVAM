@@ -47,13 +47,11 @@ def item(request, collection_id, item_id):
     except Image.DoesNotExist:
         image = None
     
-    form = StoryForm()
-    if request.user.has_perm("civam.view_item",item):
-        #add edit and delete options in template
-        context = {'item': item, 'stories': stories, 'form': form, 'images': image}
-        return render(request, 'civam/item.html', context)
-    else:
-        return HttpResponse(str(request.user)+" cannot view this item")
+    form = StoryForm(initial={'author':request.user.get_full_name})
+    #add edit and delete options in template
+    context = {'item': item, 'stories': stories, 'form': form, 'images': image}
+    return render(request, 'civam/item.html', context)
+
 
 def new_item(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
