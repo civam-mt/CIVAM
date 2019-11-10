@@ -9,7 +9,11 @@ urlpatterns = [
     path('collections/<int:collection_id>/', views.collection, name='collection'),
     path('collections/<int:collection_id>/new/', views.new_item, name='new_item'),
     path('collections/<int:collection_id>/<int:item_id>/', views.item, name='item'),
+    path('collections/<int:collection_id>/groups/', views.group_list, name='groups'),
+    path('collections/<int:collection_id>/groups/new/', views.new_group, name='new_group'),
+    path('collections/<int:collection_id>/groups/<int:group_id>/', views.group, name='group'),
     path('grant_perm/<obj_type>/<obj>/<slug:permi>/',views.grant_perm, name='grant_perm'),
-    path('revoke_perm/<obj_type>/<obj>/<slug:permi>/', views.revoke_perm, name='revoke_perm')
+    path('revoke_perm/<obj_type>/<obj>/<slug:permi>/', views.revoke_perm, name='revoke_perm'),
+    path('perms/', views.test_view, name='test_view')
 
 ]

@@ -4,8 +4,18 @@ from guardian.decorators import permission_required
 from .models import *
 from .forms import *
 
+from guardian.models import Group
 
 # Create your views here.
+def test_view(request):
+    form = GroupPermissionForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        items = form.cleaned_data['items']
+
+    context = {'perm_form': form}
+    return render(request, 'civam/perm.html', context)
+
+
 def index(request):
     return HttpResponse("index")
 
@@ -89,6 +99,40 @@ def collection(request, collection_id):
     #add edit and delete options in template
     return render(request, 'civam/collection.html', context)
 
+
+def new_group(request, collection_id):
+    collection = get_object_or_404(Collection, pk=collection_id)
+    group_form = CollectionGroupForm(request.POST or None, initial={'collection':collection}, prefix="group")
+    perm_form = GroupPermissionsForm(request.POST or None, prefix="perms", collection_id=collection_id)
+    if(request.method == 'POST'):
+        group_valid = group_form.is_valid()
+        perm_valid = perm_form.is_valid()
+        if group_valid and perm_valid:
+            col_group = group_form.save(commit=False)
+            group = Group(name="c{}_{}".format(collection_id, col_group.name))
+            group.save()
+            col_group.group = group
+            col_group.save()
+            items = perm_form.cleaned_data['items']
+            print(items)
+            return redirect("groups", collection_id=collection_id)
+
+    context = {'group_form': group_form, 'perm_form': perm_form}
+    return render(request, 'civam/new_group.html', context)
+
+    
+
+def group_list(request, collection_id):
+    return HttpResponse("Collection {}'s Groups".format(collection_id))
+
+def group(request, collection_id, group_id):
+    return HttpResponse("Collection {}; Group {}".format(collection_id, group_id))
+    
+    
+
+
+
+
 def grant_perm(request, obj_type, obj, permi):
     if not obj:
         return HttpResponse("Select an object to give permissions to")
@@ -124,4 +168,6 @@ def revoke_perm(request, obj_type, obj, permi):
     else:
         remove_perm(permi, request.user, item)
         return HttpResponse("Permission *"+obj_type.capitalize()+" "+str(permi)+"* revoked")
+
+
 

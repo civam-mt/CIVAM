@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Story
+from .models import Collection, Item, Image, Video, Story, CollectionGroup
 from guardian.admin import GuardedModelAdmin
 
 # Register your models here
@@ -38,9 +38,12 @@ class StoryInline(admin.TabularInline):
     model = Story
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
 
+class CollectionGroupInline(admin.TabularInline):
+    model = CollectionGroup
+
 class CollectionAdmin(DefaultAdmin):
     list_display = ('title', 'created_by')
-    inlines = [ItemInline,]
+    inlines = [CollectionGroupInline,]
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection')
@@ -49,11 +52,15 @@ class ItemAdmin(DefaultAdmin):
 class StoryAdmin(DefaultAdmin):
     list_display = ('item', 'created_by')
 
+class CollectionGroupAdmin(admin.ModelAdmin):
+    pass
+
 
     
     
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Story, StoryAdmin)
+admin.site.register(CollectionGroup, CollectionGroupAdmin)
 
     
