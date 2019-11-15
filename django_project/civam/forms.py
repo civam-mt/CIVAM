@@ -44,4 +44,4 @@ class GroupPermissionsForm(forms.Form):
         super(GroupPermissionsForm,self).__init__(*args,**kwargs)
         self.fields['items'].queryset = Item.objects.filter(collection_id=collection_id)
     
-    items = forms.ModelMultipleChoiceField(queryset = Item.objects.none(), widget = forms.CheckboxSelectMultiple)
+    items = forms.ModelMultipleChoiceField(queryset = Item.objects.none(), widget = forms.CheckboxSelectMultiple, required=False)

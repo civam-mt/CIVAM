@@ -61,6 +61,7 @@ class Story(models.Model):
     def __str__(self):
         return "Story: {}".format(self.item.name)
 
+# On delete, should delete group
 class CollectionGroup(models.Model):
     name = models.CharField(max_length=125)
     default = models.BooleanField(default=False)
