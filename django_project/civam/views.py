@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
-from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, get_perms, get_objects_for_group
+from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, get_objects_for_group
 from guardian.decorators import permission_required
 from .models import *
 from .forms import *
@@ -17,6 +17,7 @@ def collection_list(request):
     context = {'collection_list' : collection_list}
     return render(request, 'civam/collection_list.html', context)
 
+@permission_required('civam.add_collection', return_403=True)
 def new_collection(request):
     form = CollectionForm(request.POST or None)
     if(request.method == 'POST'):
@@ -54,7 +55,7 @@ def item(request, collection_id, item_id):
     context = {'item': item, 'stories': stories, 'form': form, 'images': image}
     return render(request, 'civam/item.html', context)
 
-
+@permission_required('civam.add_item', return_403=True)
 def new_item(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
     if(request.method== 'POST'):
@@ -91,7 +92,7 @@ def collection(request, collection_id):
     #add edit and delete options in template
     return render(request, 'civam/collection.html', context)
 
-
+@permission_required('civam.add_collectiongroup', return_403=True)
 def new_group(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
     group_form = CollectionGroupForm(request.POST or None, initial={'collection':collection}, prefix="group")
@@ -112,6 +113,7 @@ def new_group(request, collection_id):
     context = {'group_form': group_form, 'perm_form': perm_form}
     return render(request, 'civam/new_group.html', context)
 
+@permission_required('civam.change_collectiongroup', return_403=True)
 def group(request, collection_id, group_id):
     collection = get_object_or_404(Collection, pk=collection_id)
     col_group = get_object_or_404(CollectionGroup, pk=group_id)
@@ -139,7 +141,7 @@ def group(request, collection_id, group_id):
     context = {'collection': collection, 'group': col_group, 'group_form': group_form, 'perm_form': perm_form}
     return render(request, 'civam/group.html', context)
     
-
+@permission_required('civam.view_collectiongroup', return_403=True)
 def group_list(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
     group_list = CollectionGroup.objects.filter(collection=collection)
