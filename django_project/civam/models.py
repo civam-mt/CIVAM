@@ -60,3 +60,16 @@ class Story(models.Model):
 
     def __str__(self):
         return "Story: {}".format(self.item.name)
+
+# On delete, should delete group
+class CollectionGroup(models.Model):
+    name = models.CharField(max_length=125)
+    default = models.BooleanField(default=False)
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="groups")
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name="collections")
+
+    class Meta:
+        unique_together = ('name', 'collection')
+    
+    def __str__(self):
+        return "CollectionGroup: {} {}".format(self.collection.title, self.group.name)
