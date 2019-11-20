@@ -11,7 +11,5 @@ urlpatterns = [
     path('collections/<int:collection_id>/<int:item_id>/', views.item, name='item'),
     path('collections/<int:collection_id>/groups/', views.group_list, name='groups'),
     path('collections/<int:collection_id>/groups/new/', views.new_group, name='new_group'),
-    path('collections/<int:collection_id>/groups/<int:group_id>/', views.group, name='group'),
-    path('perms/', views.test_view, name='test_view')
-
+    path('collections/<int:collection_id>/groups/<int:group_id>/', views.group, name='group')
 ]

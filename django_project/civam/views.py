@@ -7,14 +7,6 @@ from .forms import *
 from guardian.models import Group
 
 # Create your views here.
-def test_view(request):
-    form = GroupPermissionForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        items = form.cleaned_data['items']
-
-    context = {'perm_form': form}
-    return render(request, 'civam/perm.html', context)
-
 
 def index(request):
     return HttpResponse("index")
@@ -144,11 +136,15 @@ def group(request, collection_id, group_id):
             print(get_objects_for_group(group, "civam.view_item"))
             return redirect("groups", collection_id=collection_id)
 
-    context = {'group_form': group_form, 'perm_form': perm_form}
-    return render(request, 'civam/new_group.html', context)
+    context = {'collection': collection, 'group': col_group, 'group_form': group_form, 'perm_form': perm_form}
+    return render(request, 'civam/group.html', context)
     
 
 def group_list(request, collection_id):
-    return HttpResponse("Collection {}'s Groups".format(collection_id))
+    collection = get_object_or_404(Collection, pk=collection_id)
+    group_list = CollectionGroup.objects.filter(collection=collection)
+    context = {'group_list': group_list, 'collection': collection}
+    #add edit and delete options in template
+    return render(request, 'civam/groups.html', context)
 
 
