@@ -26,7 +26,7 @@ Run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-
 ### Create Superuser for Admin Portal
 * `python manage.py createsuperuser`;
 
-## Reset Civam Migrations
+## Reset Civam Migrations (THIS WILL DELETE ALL CIVAM OBJECTS IN THE DATABASE)
 ### Delete all files in civam/migrations/ execpt for __init__.py
 * `rm !(__init__.py)`
 
@@ -34,7 +34,7 @@ Run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-
 * `sudo -i -u postgres`
 * `psql`
 * `\c django_db`
-* `DROP TABLE civam_collection, civam_image, civam_item, civam_story, civam_video;`
+* `DROP TABLE civam_collection, civam_image, civam_item, civam_story, civam_video, civam_collectiongroup;`
 * `delete from django_migrations where app='civam';`
 
 ### Migrate
