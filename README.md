@@ -2,7 +2,7 @@
 ## Description
 Python Version: 3.6.8
 
-A Django website serving as virtual archive and museum showcasing Crow Indian cultural items.
+A Django website serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
 ## Project Setup
 ### Install Required Programs for Django: Python and Postgresql
