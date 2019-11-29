@@ -20,6 +20,17 @@ class ItemForm(ModelForm):
         model = Item
         fields = ['name', 'description']
 
+class RegistrationForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','first_name','last_name','email','password']
+
+    username = forms.CharField(label='Username', max_length=25)
+    first_name = forms.CharField(label='First Name', max_length=35)
+    last_name = forms.CharField(label='Last Name', max_length=35)
+    email = forms.EmailField(label='Email')
+    password = forms.CharField(label='Password', max_length=100, widget=forms.PasswordInput)
+
 class ImageForm(forms.Form):
     content = forms.ImageField(required=False)
    

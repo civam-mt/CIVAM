@@ -17,6 +17,19 @@ def collection_list(request):
     context = {'collection_list' : collection_list}
     return render(request, 'civam/collection_list.html', context)
 
+def register(request):
+    form = RegistrationForm(request.POST or None)
+    if(request.method == 'POST'):
+        if form.is_valid():
+            col_instance = form.save(commit=False)
+            col_instance.created_by = request.user
+            col_instance.modified_by = request.user
+            col_instance.save()
+            return redirect("/")
+
+    context = {'registration_form': form}
+    return render(request, 'civam/register.html', context)
+
 @permission_required('civam.add_collection', return_403=True)
 def new_collection(request):
     form = CollectionForm(request.POST or None)
