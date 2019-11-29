@@ -1,9 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('user/', include('django.contrib.auth.urls')),
+    path('register', views.register, name='registration'),
     path('collections/', views.collection_list, name='collections'),#/collection/
     path('collections/new/', views.new_collection, name='new_collection'),
     path('collections/<int:collection_id>/', views.collection, name='collection'),
