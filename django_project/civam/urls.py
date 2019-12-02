@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
@@ -6,6 +6,10 @@ urlpatterns = [
     # Display collections
     path('', views.collection_list, name='index'),
     path('collections/', views.collection_list, name='collections'),#/collection/
+  
+    # Login and register
+    path('user/', include('django.contrib.auth.urls')),
+    path('register/', views.register, name='registration'),
 
     # Make a new collection
     path('collections/new/', views.new_collection, name='new_collection'),
