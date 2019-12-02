@@ -4,7 +4,7 @@ Python Version: 3.6.8
 
 A Django website serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
-The Django project is located in the django_project folder. This is the folder that all python commands below should be run in.
+The Django project is located in the *django_project* folder. This is the folder that all python commands below should be run in.
 
 ## Project Setup
 ### Install Required Programs for Django: Python and Postgresql
