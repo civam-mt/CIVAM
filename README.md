@@ -4,6 +4,8 @@ Python Version: 3.6.8
 
 A Django website serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
+The Django project is located in the django_project folder. This is the folder that all python commands below should be run in.
+
 ## Project Setup
 ### Install Required Programs for Django: Python and Postgresql
 Run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib`
@@ -32,6 +34,7 @@ Run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-
 
 ### Run Project
 * `python manage.py runserver`
+* Navigate to http://127.0.0.1:8000/ to view the site
 
 ## Development Instructions
 ### Reset Civam Migrations: Recreates Postgresql Tables (THIS WILL DELETE ALL CIVAM OBJECTS IN THE DATABASE)
@@ -44,6 +47,8 @@ Run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-
 * `\c django_db`
 * `DROP TABLE civam_collection, civam_image, civam_item, civam_story, civam_video, civam_collectiongroup;`
 * `delete from django_migrations where app='civam';`
+* `\q`
+* `exit`
 
 #### Migrate
 * `python manage.py makemigrations civam`
