@@ -125,6 +125,7 @@ def collection(request, collection_id):
 @permission_required('civam.add_collectiongroup', return_403=True)
 def new_group(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
+    print(collection_id)
     group_form = CollectionGroupForm(request.POST or None, initial={'collection':collection}, prefix="group")
     perm_form = GroupPermissionsForm(request.POST or None, prefix="perms", collection_id=collection_id)
     if(request.method == 'POST'):
@@ -140,7 +141,7 @@ def new_group(request, collection_id):
             assign_perm("civam.view_item", group, items) # assign viewing permission for the Group on selected Items
             return redirect("groups", collection_id=collection_id)
 
-    context = {'group_form': group_form, 'perm_form': perm_form}
+    context = {'group_form': group_form, 'perm_form': perm_form, 'collection': collection}
     return render(request, 'civam/new_group.html', context)
 
 # Edit a CollectionGroup, specifying viewing permissions the group has on Items in a Collection
