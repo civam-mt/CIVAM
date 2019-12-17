@@ -1,0 +1,22 @@
+{% if collection %}
+<h1>{{collection.title}}</h1>
+<h2>Group List</h2>
+
+<form action="/collections/{{collection.id}}/groups/new">
+  <button type="submit">New Group</button>
+</form>
+
+{% if group_list %}
+    <ul>
+        {% for group in group_list %}
+	<li><a href="{% url 'group' collection.id group.id %}">{{ group.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No groups yet!</p>
+{% endif %}
+
+{% else %}
+    <p>Collection not found!</p>
+{% endif %}
+

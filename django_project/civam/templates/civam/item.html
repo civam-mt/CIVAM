@@ -1,0 +1,28 @@
+
+<h1>{{item.name}}</h1>
+{% if images %}
+    {% for img in images %}
+    <img src="{{img.content.url}}"/>
+    <br>
+    {% endfor %}
+{% endif %}
+<h2>{{item.description}}</h2>
+
+
+<h3>Stories</h3>
+{% if stories %}
+    <ul>
+        {% for story in stories %}
+            <li>{{story.content}}</li>
+            By {{story.author}}
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>no stories yet for this item</p>
+{% endif %}
+<form method="POST">
+{% csrf_token %}
+{{form}}
+<br>
+<button type="submit" class="btn btn-default">Add Story</button>
+</form>

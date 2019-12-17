@@ -1,0 +1,10 @@
+{% if collection_list %}
+    <ul>
+        {% for col in collection_list %}
+	<li><a href="{% url 'collection' col.id %}">{{ col.title }}</a></li>
+            {{col.description}}
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No Collections</p>
+{% endif %}
