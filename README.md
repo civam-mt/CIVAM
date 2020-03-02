@@ -8,6 +8,7 @@ The Django project is located in the *django_project* folder. This is the folder
 
 ## Project Setup
 ### Install Required Programs for Django: Python and Postgresql
+If needed, run `sudo apt update`
 Run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib`
 
 ### Postgresql Setup
@@ -23,7 +24,8 @@ Run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-
 * `exit`
 
 ### Python Requirements
-* `pip install -r requirements.txt`
+Go into *projects* folder within *django_project*
+Run `pip3 install -r requirements.txt`
 
 ### Migrate Models
 * `python manage.py makemigrations`
