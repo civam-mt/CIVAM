@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+$font-stack:    'Montserrat', sans-serif;
+$primary-color: #000000;
+
+ body {
+    font-family: $font-stack;
+    color: $primary-color;
+    font-weight: normal;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+h6 {
+    font-weight: bold;
+}
+
+p {
+    text-indent: 50px
+}
