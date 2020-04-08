@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,6 +8,8 @@ import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
+
+  @Input() activeClass = 'active';
 
   constructor(config: NgbNavConfig) {
 

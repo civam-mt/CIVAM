@@ -1,10 +1,10 @@
-<ul ngbNav #nav="ngbNav" [activeId]="2" class="nav-tabs justify-content-center">
+<ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs justify-content-center">
     <li [ngbNavItem]="1">
-      <a ngbNavLink><b>Home</b></a>
+      <a ngbNavLink [routerLinkActive]='activeClass' routerLink='home'><b>Home</b></a>
       <ng-template ngbNavContent></ng-template>
     </li>
     <li [ngbNavItem]="2">
-      <a ngbNavLink><b>About</b></a>
+      <a ngbNavLink [routerLinkActive]='activeClass' routerLink='about'><b>About</b></a>
       <ng-template ngbNavContent></ng-template>
     </li>
     <li ngbDropdown class="nav-item">
