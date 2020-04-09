@@ -1,5 +1,10 @@
 # Civam Project Folder
 
+## To-Dos:
+* **models.py, Line 83** - If a CollectionGroup is deleted, the corresponding Group should be deleted
+* **views.py, Line 11** - Add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
+* **views.py, Line 78** - Display videos
+
 ## Folders:
 * **\_\_pycache\_\_** - Cache of the folder's files
 * **migrations** - Record of all the migrations that have been made
