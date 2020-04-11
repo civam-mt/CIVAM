@@ -27,11 +27,21 @@
         </script>
 
         <!-- Body of the Page -->
-        <div class = "container-fluid jumbotron my-3 text-center display-4 ">
+        <div style="background:transparent !important"
+            class="container-fluid jumbotron my-3 text-center display-4 ">
             Crow Indian Virtual Archive and Museum
         </div>
         
         <div class="card-columns">
+            <div *ngFor="let component of featuredCollections" class="card">
+                <img class="card-img-top" src={{component.image}}>
+                <div class="card-body">
+                    <h4 class="card-title">{{component.name}}</h4>
+                    <p class="card-text">{{component.description}}</p>
+                </div>
+            </div>
+
+            <!--
             <div class="card">
                 <img class="card-img-top" src="https://www.thephoblographer.com/wp-content/uploads/2018/07/P1000_02_01_10_A4.jpg">
                 <div class="card-body">
@@ -53,27 +63,7 @@
                     <p class="card-text">Collection 1 is ...</p>
                 </div>
             </div>
-            <div class="card">
-                <img class="card-img-top" src="https://www.thephoblographer.com/wp-content/uploads/2018/07/P1000_02_01_10_A4.jpg">
-                <div class="card-body">
-                    <h4 class="card-title">Collection 1</h4>
-                    <p class="card-text">Collection 1 is ...</p>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="https://www.thephoblographer.com/wp-content/uploads/2018/07/P1000_02_01_10_A4.jpg">
-                <div class="card-body">
-                    <h4 class="card-title">Collection 1</h4>
-                    <p class="card-text">Collection 1 is ...</p>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="https://www.thephoblographer.com/wp-content/uploads/2018/07/P1000_02_01_10_A4.jpg">
-                <div class="card-body">
-                    <h4 class="card-title">Collection 1</h4>
-                    <p class="card-text">Collection 1 is ...</p>
-                </div>
-            </div>
+            -->
         </div>
     </body>
 </html>
