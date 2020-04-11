@@ -4,6 +4,8 @@ export const DISTRICTS: Collection[] = [
     { 
         name: 'Big Horn',
         description: 'Pictures from the Big Horn District', 
+        // The images are just placeholders from the first page of google image results
+        // for each of the district names, so they can be a little random
         image: 'https://tse1.mm.bing.net/th?id=OIP.nWZRFJ3J0yU83QK1BFnmtwHaFj&pid=Api' 
     },{ 
         name: 'Black Lodge',
