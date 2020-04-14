@@ -1,11 +1,13 @@
 from django.urls import path, include
 
 from . import views
+from . import api_views
 
 urlpatterns = [
     # Display collections
     path('', views.collection_list, name='index'),
     path('collections/', views.collection_list, name='collections'),#/collection/
+    path('api/collections/', api_views.collection_list, name="api_collections"),
   
     # Login and register
     path('user/', include('django.contrib.auth.urls')),
@@ -31,4 +33,5 @@ urlpatterns = [
 
     # View/Edit a CollectionGroup
     path('collections/<int:collection_id>/groups/<int:group_id>/', views.group, name='group')
+
 ]
