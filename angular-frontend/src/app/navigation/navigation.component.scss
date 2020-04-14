@@ -1,3 +1,8 @@
-.welcome{ 
-    color: green; 
+/* Modify the backgorund color */ 
+.navbar-custom { 
+    background-color: #00ced1; 
+}
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: #ad0c0c;
 }

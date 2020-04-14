@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$font-stack:    'Montserrat', sans-serif;
+$primary-color: #000000;
+
+.section-title {
+    font: 'Montserrat', sans-serif;
+    color: #00ced1; 
+}
