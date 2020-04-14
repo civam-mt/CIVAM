@@ -7,8 +7,16 @@
       <a ngbNavLink [routerLinkActive]='activeClass' routerLink='about'><b>About</b></a>
       <ng-template ngbNavContent></ng-template>
     </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink><b>Collections</b></a>
+      <ng-template ngbNavContent></ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+      <a ngbNavLink><b>Districts</b></a>
+      <ng-template ngbNavContent></ng-template>
+    </li>
     <li ngbDropdown class="nav-item">
-      <a href (click)="false" class="nav-link" ngbDropdownToggle><b>Catalogue</b></a>
+      <a href (click)="false" class="nav-link" ngbDropdownToggle><b>Browse</b></a>
       <div ngbDropdownMenu>
         <button ngbDropdownItem>Oral Histories</button>
         <button ngbDropdownItem>Picture Collections</button>
