@@ -15,7 +15,7 @@ export interface Collection {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  featuredCollections: Collection[] = DISTRICTS.slice(0, 3);
+  featuredCollections: Collection[] = DISTRICTS.slice(0, 6);
 
   constructor() { }
 
