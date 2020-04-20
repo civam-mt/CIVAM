@@ -9,7 +9,14 @@ export class AboutComponent implements OnInit {
 
   constructor() { }
 
+  public missionCollapsed = true;
+  public originCollapsed = true;
+  public peopleCollapsed = true;
   ngOnInit(): void {
   }
 
 }
+
+
+
+
