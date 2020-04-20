@@ -1,8 +1,10 @@
 /* Modify the backgorund color */ 
 .navbar-custom { 
-    background-color: #17a2b8; 
+    background-color: #02aff1;
+    border-bottom-color: transparent;
 }
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-    color: #ad0c0c;
+    color: #af010c;
+    // color: #f8010b;
 }

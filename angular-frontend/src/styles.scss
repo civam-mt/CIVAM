@@ -12,15 +12,24 @@ $font-weight-bold: 800;
 div {
     font-family: $font-stack;
     color: $primary-color;
-    // font-weight: bold;
+}
+
+body {
+    background-color: black;
+}
+
+// .jumbotron {}
+
+.container {
+    background-color: grey;
+    padding-top: 16px;
+}
+
+.container-fluid {
+    background-color: grey;
 }
 
 .h1, h1 {
     text-align: center;
     font-weight: $font-weight-bold;
 }
-
-// .section-title {
-//     font: 'Montserrat', sans-serif;
-//     color: #00ced1; 
-// }
