@@ -25,3 +25,60 @@ def collection_list(request):
 
     return JsonResponse(context, safe=False)
     #return render(request, 'civam/collection_list.html', context)
+def register(request):
+	if (request.method == 'POST'):
+		uname = request.user
+		fname = request.first_name
+		lname = request.last_name
+		email = request.email
+		created_by = request.user
+		modified_by = request.user
+		u = user(username=uname, fist_name=fname, last_name=lname, email=email, created_by=created_by, modified_by=modified_by)
+		u.save()
+		return u.id
+	else:
+		return 0
+'''
+def new_collection(request):
+	form = CollectionForm(request.POST or None)
+	if (request.method == 'POST'):
+		if form.is_valid():
+			col_instance = form.save(commit=False)
+			col_instance.created_by = request.user
+			col_instance.modified_by = request.user
+			col_instance.save
+			#return idk man
+			return
+	context = {'collection_form': form}
+	return JsonResponse(context, safe=False)
+'''
+
+def item(request, collection_id, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+
+    # Submitting a story
+	if(request.method == 'POST'):
+		name = request.name
+		description = request.description
+		collection = request.collection
+		created_by = request.user
+		modified_by = request.user
+		i = item(name=name, description=description, collection=collection, created_by=created_by, modified_by=modified_by)
+		i.save()  
+    		return i.id
+
+    # Display stories
+    stories = Story.objects.filter(item_id=item_id)
+
+    # Display images
+    try :
+        image = Image.objects.filter(item_id=item_id)
+    except Image.DoesNotExist:
+        image = None
+
+    # TODO: Display videos
+
+    # StoryForm with author auto filled to User's name
+    context = {'item': list(item.values()), 'stories': list(stories.values()), 'images': list(image.values())}
+    return JsonResponse(context, safe=False)
+
