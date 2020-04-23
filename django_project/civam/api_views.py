@@ -19,12 +19,12 @@ def index(request):
 def collection_list(request):
     collection_list = Collection.objects.filter(public=True)
     # Uncomment line below filter out Colletions a user doesn't have permissions to view
-    # collection_list = get_objects_for_user(request.user, 'civam.view_collection', collection_list, accept_global_perms=False)
-    #print(collections_sear)
+    #collection_list = get_objects_for_user(request.user, 'civam.view_collection', collection_list, accept_global_perms=False)
     context = {'collection_list' : list(collection_list.values())}
 
     return JsonResponse(context, safe=False)
     #return render(request, 'civam/collection_list.html', context)
+
 def register(request):
 	if (request.method == 'POST'):
 		uname = request.user
@@ -80,5 +80,21 @@ def item(request, collection_id, item_id):
 
     # StoryForm with author auto filled to User's name
     context = {'item': list(item.values()), 'stories': list(stories.values()), 'images': list(image.values())}
+    return JsonResponse(context, safe=False)
+
+
+
+
+# Display list of Items in a Collection
+# Uncomment line below to only show Collection if the User has permission to
+# @permission_required('civam.view_collection', (Collection, 'id', 'collection_id'), return_403=True)
+def collection(request, collection_id):
+    collection = get_object_or_404(Collection, pk=collection_id)
+    
+    item_list = Item.objects.filter(collection=collection)
+    item_list = get_objects_for_user(request.user, 'civam.view_item', item_list, accept_global_perms=False)
+    context = {'item_list': list(item_list.values()), 
+    'title': collection.title,
+    'description': collection.description}
     return JsonResponse(context, safe=False)
 

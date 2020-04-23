@@ -20,6 +20,8 @@ urlpatterns = [
     
     # View a collection by collection_id
     path('collections/<int:collection_id>/', views.collection, name='collection'),
+    path('api/collections/<int:collection_id>/', api_views.collection, name="api_collection"),
+
 
     # Create a new item within collection
     path('collections/<int:collection_id>/new/', views.new_item, name='new_item'),
