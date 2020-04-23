@@ -3,15 +3,15 @@
 </div>
 
 
-<div class = "container">
+<div class = "container-sm gradient-sm">
   <p>The Crow Indian Virtual Archive & Museum (CIVAM) is a virtual repository of Crow Indian cultural items, images, and human remains housed in public and private collections around the world.</p>
 </div>
 
 
 <p>
-  <button type="button" class="btn btn-outline-primary btn-block" (click)="missionCollapsed = !missionCollapsed"
+  <button type="button" class="btn btn-block container-sm btn-warning" (click)="missionCollapsed = !missionCollapsed"
           [attr.aria-expanded]="!missionCollapsed" aria-controls="mission">
-          Our Mission
+          <h3>Our Mission</h3>
   </button>
 </p>
 <div id="mission" [ngbCollapse]="missionCollapsed">
@@ -28,11 +28,12 @@
 </div>
 
 <p>
-  <button type="button" class="btn btn-outline-primary btn-block" (click)="originCollapsed = !originCollapsed"
+  <button type="button" class="btn btn-block container-sm btn-warning" (click)="originCollapsed = !originCollapsed"
           [attr.aria-expanded]="!originCollapsed" aria-controls="origin">
-          Origins
+          <h3>Origins</h3>
   </button>
 </p>
+
 <div id="origin" [ngbCollapse]="originCollapsed">
   <div class="card">
     <div class="card-body">
@@ -46,9 +47,9 @@
 </div>
 
 <p>
-  <button type="button" class="btn btn-outline-primary btn-block" (click)="peopleCollapsed = !peopleCollapsed"
+  <button type="button" class="btn btn-block container-sm btn-warning" (click)="peopleCollapsed = !peopleCollapsed"
           [attr.aria-expanded]="!peopleCollapsed" aria-controls="people">
-          People
+        <h3>People</h3>
   </button>
 </p>
 <div id="people" [ngbCollapse]="peopleCollapsed">
