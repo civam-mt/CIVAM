@@ -1,3 +1,35 @@
+### /api/collection/
+
+GET 
+
+Gets the list of collection
+
+
+```
+Return Structure:
+
+"collection_list": (List of Collection): [
+    ...
+]
+
+```
+
+Collection
+
+```
+{
+    "id" (Int): Collection ID,
+    "title" (String): Collection Title,
+    "description" (String): Collection Description,
+    "cover_image" (String): File path of cover image,
+    "public" (Bool): Collection is viewable to the public,
+    "modified_on" (Date):,
+    "created_on" (Date):
+}
+
+```
+
+
 ___
 ### /api/collections/\<int:collection_id>/
 
