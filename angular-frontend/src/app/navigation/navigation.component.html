@@ -20,7 +20,7 @@
     <li [ngbNavItem]="3">
         <a ngbNavLink
             [routerLinkActive]='activeClass'
-            class="navbar-text" class="navbar-text"
+            class="navbar-text"
             routerLink='collections'>
             <b>Collections</b>
         </a>
@@ -28,7 +28,9 @@
     </li>
     <li [ngbNavItem]="4">
         <a ngbNavLink
-            class="navbar-text">
+            [routerLinkActive]='activeClass'
+            class="navbar-text"
+            routerLink='districts'>
             <b>Districts</b>
         </a>
         <ng-template ngbNavContent></ng-template>
@@ -36,9 +38,18 @@
     <li ngbDropdown class="nav-item">
         <a href (click)="false" class="nav-link navbar-text" ngbDropdownToggle><b>Browse</b></a>
         <div ngbDropdownMenu>
-            <button ngbDropdownItem class="navbar-text">Oral Histories</button>
-            <button ngbDropdownItem class="navbar-text">Picture Collections</button>
-            <button ngbDropdownItem class="navbar-text">Artifacts</button>
+            <button ngbDropdownItem
+                [routerLinkActive]='activeClass'
+                routerLink='oral-histories'
+                class="navbar-text">Oral Histories</button>
+            <button ngbDropdownItem
+                [routerLinkActive]='activeClass'
+                routerLink='picture-collections'
+                class="navbar-text">Picture Collections</button>
+            <button ngbDropdownItem
+                [routerLinkActive]='activeClass'
+                routerLink='artifacts'
+                class="navbar-text">Artifacts</button>
             <div class="dropdown-divider"></div>
             <button ngbDropdownItem class="navbar-text">Contribute</button>
         </div>
