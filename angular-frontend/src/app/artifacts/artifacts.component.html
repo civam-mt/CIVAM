@@ -1,1 +1,14 @@
-<p>artifacts works!</p>
+<!-- Body of the Page -->
+<div class="container-fluid jumbotron text-center display-4 ">
+    Artifacts
+</div>
+
+<div class="card-columns container gradient-lg">
+    <div *ngFor="let component of collections" class="card">
+        <img class="card-img-top" src={{component.image}}>
+        <div class="card-body">
+            <h4 class="card-title">{{component.name}}</h4>
+            <p class="card-text">{{component.description}}</p>
+        </div>
+    </div>
+</div>

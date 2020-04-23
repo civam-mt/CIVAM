@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Collection } from '../collection'
+import { DISTRICTS } from '../mock-collections';
 
 @Component({
   selector: 'app-districts',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./districts.component.scss']
 })
 export class DistrictsComponent implements OnInit {
+  collections: Collection[] = DISTRICTS;
 
   constructor() { }
 
