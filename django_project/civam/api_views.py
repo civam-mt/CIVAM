@@ -38,3 +38,47 @@ def collection(request, collection_id):
     'title': collection.title,
     'description': collection.description}
     return JsonResponse(context, safe=False)
+
+
+def item(request, collection_id, item_id):
+	item = get_object_or_404(Item, pk=item_id)
+
+    # Submitting a story
+	if(request.method == 'POST'):
+		name = request.name
+		description = request.description
+		collection = request.collection
+		created_by = request.user
+		modified_by = request.user
+		i = item(name=name, description=description, collection=collection, created_by=created_by, modified_by=modified_by)
+		i.save()
+		return i.id
+
+    # Display stories
+	stories = Story.objects.filter(item_id=item_id)
+
+    # Display images
+	try :
+		image = Image.objects.filter(item_id=item_id)
+	except Image.DoesNotExist:
+		image = None
+
+    # TODO: Display videos
+#	print(item.value())
+    # StoryForm with author auto filled to User's name
+	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values())}
+	return JsonResponse(context, safe=False)
+
+def register(request):
+	if (request.method == 'POST'):
+		uname = request.user
+		fname = request.first_name
+		lname = request.last_name
+		email = request.email
+		created_by = request.user
+		modified_by = request.user
+		u = user(username=uname, fist_name=fname, last_name=lname, email=email, created_by=created_by, modified_by=modified_by)
+		u.save()
+		return u.id
+	else:
+		return 0
