@@ -10,6 +10,10 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CollectionsComponent } from './collections/collections.component';
+import { DistrictsComponent } from './districts/districts.component';
+import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
+import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
+import { ArtifactsComponent } from './artifacts/artifacts.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { CollectionsComponent } from './collections/collections.component';
     HomeComponent,
     AboutComponent,
     NavigationComponent,
-    CollectionsComponent
+    CollectionsComponent,
+    DistrictsComponent,
+    OralHistoriesComponent,
+    PictureCollectionsComponent,
+    ArtifactsComponent
   ],
   imports: [
     BrowserModule,

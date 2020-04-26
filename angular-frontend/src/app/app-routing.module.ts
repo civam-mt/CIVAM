@@ -3,13 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { CollectionsComponent } from './collections/collections.component';
+import { DistrictsComponent } from './districts/districts.component';
+import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
+import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
+import { ArtifactsComponent } from './artifacts/artifacts.component';
 
 
 const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
 {path:'home',component: HomeComponent},
 {path:'about',component: AboutComponent},
-{path:'collections',component: CollectionsComponent}
+{path:'collections',component: CollectionsComponent},
+{path:'districts',component: DistrictsComponent},
+{path:'oral-histories',component: OralHistoriesComponent},
+{path:'picture-collections',component: PictureCollectionsComponent},
+{path:'artifacts',component: ArtifactsComponent}
 ];
 
 @NgModule({
