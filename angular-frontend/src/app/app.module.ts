@@ -14,6 +14,12 @@ import { DistrictsComponent } from './districts/districts.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
 import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
+import { AuthComponent } from './auth/auth.component';
+import { UsernameService } from './auth/username.service';
+
+// TODO: Fix this so it's functional
+// import { ModalServiceModule } from 'modal-service';
+// import {ModalModule} from './_modal'; 
 
 @NgModule({
   declarations: [
@@ -25,18 +31,24 @@ import { ArtifactsComponent } from './artifacts/artifacts.component';
     DistrictsComponent,
     OralHistoriesComponent,
     PictureCollectionsComponent,
-    ArtifactsComponent
+    ArtifactsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     NgxPopper
+    //TODO: fix these so they work (for auth)
+    // ModalModule,
+    // ModalServiceModule.forRoot()
   ],
   exports: [
     AboutComponent
   ],
-  providers: [],
+  providers: [
+    UsernameService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
