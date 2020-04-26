@@ -1,23 +1,21 @@
-// h1 {
-//     text-align: center;
-//     font-weight: bold;
-// }
-.jumbotron {
-    background-color: #ffd900;
-}
 h1 {
     text-align: center;
     font-weight: bold;
 }
 h3 {
     text-align: center;
-    font-weight: bold;
 }
-
+.tab-gradient {
+    background-image: linear-gradient(#ffcc4d, #c99700);
+    background-color: red;
+}
+.jumbotron {
+    background-color: transparent;
+}
 h6 {
     font-weight: bold;
 }
 
 p {
-    text-indent: 50px
+    text-indent: 50px;
 }
