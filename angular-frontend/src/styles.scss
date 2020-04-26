@@ -1,0 +1,45 @@
+@import "~bootstrap/scss/bootstrap";
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+/* Sets global font styling */
+$font-stack:    'Montserrat', sans-serif;
+$primary-color: #000000;
+$font-weight-bold: 800;
+
+// Global font styling
+div {
+    font-family: $font-stack;
+    color: $primary-color;
+}
+
+body {
+    background-image: url('./assets/images/background-field.jpg');
+    background-color: white;
+}
+
+.jumbotron {
+    background-color: #ffd900;
+}
+
+.container {
+    padding-top: 16px;
+    padding-bottom: 32px;
+}
+
+// For large block backgrounds
+.gradient-lg {
+    background-image: linear-gradient(#d3d3d3, grey, #d3d3d3);
+    background-color: #D3D3D3;
+}
+
+// For smaller block backgrounds (titles, etc.)
+.gradient-sm {
+    background-image: linear-gradient(#d3d3d3, #a3a3a3);
+    background-color: #D3D3D3;
+}
+
+// For page title text
+.display-4 {
+    font-weight: bold;
+}
