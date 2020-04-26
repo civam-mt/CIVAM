@@ -1,0 +1,59 @@
+<ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs navbar-custom justify-content-center">
+    <li [ngbNavItem]="1">
+        <a ngbNavLink 
+            [routerLinkActive]='activeClass'
+            class="navbar-text"
+            routerLink='home'>
+            <b>Home</b>
+        </a>
+        <ng-template ngbNavContent></ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+        <a ngbNavLink
+            [routerLinkActive]='activeClass'
+            class="navbar-text" 
+            routerLink='about'>
+            <b>About</b>
+        </a>
+        <ng-template ngbNavContent></ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+        <a ngbNavLink
+            [routerLinkActive]='activeClass'
+            class="navbar-text"
+            routerLink='collections'>
+            <b>Collections</b>
+        </a>
+        <ng-template ngbNavContent></ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+        <a ngbNavLink
+            [routerLinkActive]='activeClass'
+            class="navbar-text"
+            routerLink='districts'>
+            <b>History & Culture</b>
+        </a>
+        <ng-template ngbNavContent></ng-template>
+    </li>
+    <li ngbDropdown class="nav-item">
+        <a href (click)="false" class="nav-link navbar-text" ngbDropdownToggle><b>Browse</b></a>
+        <div ngbDropdownMenu>
+            <button ngbDropdownItem
+                [routerLinkActive]='activeClass'
+                routerLink='oral-histories'
+                class="navbar-text">Oral Histories</button>
+            <button ngbDropdownItem
+                [routerLinkActive]='activeClass'
+                routerLink='picture-collections'
+                class="navbar-text">Picture Collections</button>
+            <button ngbDropdownItem
+                [routerLinkActive]='activeClass'
+                routerLink='artifacts'
+                class="navbar-text">Artifacts</button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem class="navbar-text">Contribute</button>
+        </div>
+    </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

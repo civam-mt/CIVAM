@@ -26,9 +26,11 @@
 
 
 	var parallax = function() {
-		if ( !isMobile.any()) {
+		/*
+    if ( !isMobile.any()) {
 			$(window).stellar();
 		}
+    */
 	};
 
 	var mobileMenuOutsideClick = function() {
