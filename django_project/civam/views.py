@@ -38,8 +38,10 @@ def register(request):
 # Create a new collection
 @permission_required('civam.add_collection', return_403=True)
 def new_collection(request):
+    #print(request.POST)
     form = CollectionForm(request.POST or None)
     if(request.method == 'POST'):
+        print(request.POST)
         if form.is_valid():
             col_instance = form.save(commit=False)
             col_instance.created_by = request.user
