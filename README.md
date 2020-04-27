@@ -3,18 +3,20 @@
 Python Version: 3.6.8
 
 A Django website serving as a virtual archive and museum showcasing Crow Indian cultural items.
-
 The Django project is located in the *django_project* folder. This is the folder that all python commands below should be run in.
 
 ## Project Setup
 ### Install Required Programs for Django: Python and Postgresql
+
+Make sure you are in the *django_project* folder
 If needed, run `sudo apt update`
 
 Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib`
 
 ### Postgresql Setup
-* `sudo su - postgres`
-* `psql`
+* `sudo service postgresql start` 
+* `sudo su - postgres` Opens a postgres terminal
+* `psql` Opens a postgres database terminal
 * `CREATE DATABASE django_db;`
 * `CREATE USER django_user WITH PASSWORD 'password';`
 * `ALTER ROLE django_user SET client_encoding TO 'utf8';`
@@ -25,7 +27,7 @@ Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgr
 * `exit`
 
 ### Python Requirements
-* `cd projects`
+* `cd project`
 * Run `pip3 install -r requirements.txt`
 
 ### Migrate Models
