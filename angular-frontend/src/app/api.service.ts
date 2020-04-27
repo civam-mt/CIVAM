@@ -10,10 +10,13 @@ import { environment } from '../environments/environment';
 export class ApiService {
   API_URL = environment.apiUrl;
   constructor(private httpClient: HttpClient) { }
-
-  public getPosts() {
-    return this.httpClient.get(`${this.API_URL}/api/posts`);
+  
+  public getCollections() {
+    return this.httpClient.get(`${this.API_URL}/api/collections`);
   }
+  // public getPosts() {
+  //   return this.httpClient.get(`${this.API_URL}/api/posts`);
+  // }
   // public getPostsBySongID(songID: string) {
   //   return this.httpClient.get(`${this.API_URL}/api/songs/${songID}/posts`);
   // }
