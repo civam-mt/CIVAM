@@ -13,7 +13,7 @@ Make sure you are in the *django_project* folder.
 
 If needed, run `sudo apt update`
 
-Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib`
+Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postgresql-contrib`
 
 ### Postgresql Setup
 * `sudo service postgresql start` 
@@ -38,7 +38,7 @@ Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgr
 * `python3 manage.py migrate`
 
 ### Create Superuser for Admin Portal
-* `python3 manage.py createsuperuser`;
+* `python3 manage.py createsuperuser`
 
 ### Run Project
 * `python3 manage.py runserver`
