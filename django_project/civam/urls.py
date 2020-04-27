@@ -1,11 +1,13 @@
 from django.urls import path, include
 
 from . import views
+from . import api_views
 
 urlpatterns = [
     # Display collections
     path('', views.collection_list, name='index'),
     path('collections/', views.collection_list, name='collections'),#/collection/
+    path('api/collections/', api_views.collection_list, name="api_collections"),
   
     # Login and register
     path('user/', include('django.contrib.auth.urls')),
@@ -16,10 +18,12 @@ urlpatterns = [
 
     # View a collection by collection_id
     path('collections/<int:collection_id>/', views.collection, name='collection'),
+    path('api/collections/<int:collection_id>/', api_views.collection, name="api_collection"),
+
 
     # Create a new item within collection
     path('collections/<int:collection_id>/new/', views.new_item, name='new_item'),
-
+    path('api/collections/<int:collection_id>/<int:item_id>/', api_views.item, name='api_item'),
     # View an item within a collection
     path('collections/<int:collection_id>/<int:item_id>/', views.item, name='item'),
 
@@ -31,4 +35,5 @@ urlpatterns = [
 
     # View/Edit a CollectionGroup
     path('collections/<int:collection_id>/groups/<int:group_id>/', views.group, name='group')
+
 ]
