@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Collection } from '../collection';
+import { DISTRICTS } from '../mock-collections';
 
 @Component({
   selector: 'app-collection',
@@ -6,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./collection.component.scss']
 })
 export class CollectionComponent implements OnInit {
+  collection: Collection;
 
-  constructor() { }
+  constructor() { 
+    // TODO: Find collection by id from url
+    this.collection = DISTRICTS[0];
+  }
 
   ngOnInit(): void {
   }
