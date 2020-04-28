@@ -15,6 +15,7 @@ import { OralHistoriesComponent } from './oral-histories/oral-histories.componen
 import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { ItemComponent } from './item/item.component';
+import { CollectionComponent } from './collection/collection.component';
 
 @NgModule({
   declarations: [

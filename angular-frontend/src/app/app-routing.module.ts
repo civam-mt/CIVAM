@@ -8,6 +8,7 @@ import { PictureCollectionsComponent } from './picture-collections/picture-colle
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { ItemComponent } from './item/item.component';
+import { CollectionComponent } from './collection/collection.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
 {path:'oral-histories',component: OralHistoriesComponent},
 {path:'picture-collections',component: PictureCollectionsComponent},
 {path:'artifacts',component: ArtifactsComponent},
-{path:'item',component: ItemComponent}
+{path:'item',component: ItemComponent},
+{path:'collection',component: CollectionComponent}
 ];
 
 @NgModule({
