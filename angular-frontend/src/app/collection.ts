@@ -1,9 +1,10 @@
 export interface Collection {
-    id: int;
+    id: number;
     title: string;
     description: string;
     cover_image: string;
     public: boolean;
-    modified_on: date;
-    created_on: date;
+    // Not sure how the API represnts dates
+    modified_on: any;
+    created_on: any;
 }
