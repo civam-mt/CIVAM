@@ -14,6 +14,7 @@ import { DistrictsComponent } from './districts/districts.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
 import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ArtifactsComponent } from './artifacts/artifacts.component';
     DistrictsComponent,
     OralHistoriesComponent,
     PictureCollectionsComponent,
-    ArtifactsComponent
+    ArtifactsComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
