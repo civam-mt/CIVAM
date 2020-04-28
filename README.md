@@ -7,7 +7,8 @@
 A Django website with an Angular frontend serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
 The Django side is located in the *django_project* folder. This is the folder that all python commands below should be run in.
-The Angular side is located in the *angular-frontend* folder.
+
+The Angular side is located in the *angular-frontend* folder. Individual site components are within */src/app/*
 
 ## Backend Project Setup
 ### Install Required Programs for Django: Python and Postgresql
