@@ -1,5 +1,9 @@
 export interface Collection {
-    name: string;
+    id: int;
+    title: string;
     description: string;
-    image: string;
+    cover_image: string;
+    public: boolean;
+    modified_on: date;
+    created_on: date;
 }
