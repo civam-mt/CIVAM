@@ -9,7 +9,8 @@ const BIG_HORN_ITEM: Item = {
     created_by_id: 0,
     modified_by_id: 0,
     created_on: null,
-    modified_on: null
+    modified_on: null,
+    image: "https://tse4.mm.bing.net/th?id=OIP.SLTiLjgtGHBZZhXJ8KFvGwHaEL&pid=Api"
 };
 
 // Make a list with a bunch of copies of BIG_HORN_ITEM so we have a nice list of items to display
