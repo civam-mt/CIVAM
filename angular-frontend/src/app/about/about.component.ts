@@ -12,6 +12,7 @@ export class AboutComponent implements OnInit {
   public missionCollapsed = true;
   public originCollapsed = true;
   public peopleCollapsed = true;
+  public historyCollapsed = true;
   ngOnInit(): void {
   }
 
