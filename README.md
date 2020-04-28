@@ -45,7 +45,7 @@ Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgr
 
 
 ## Frontend Project Setup
-### Install NodeJS (npm) and ng
+### Install NodeJS (npm) and Angular (ng) dependencies
 * Install NodeJS
    * For Ubuntu or WSL https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/ 
 * Put npm PATH in manually: `usr/bin/npm`
