@@ -1,12 +1,15 @@
 # CIVAM
 ## Description
 Python Version: 3.6.8
+Django Version: ???
+Angular Version: 9.1.3
 
-A Django website serving as a virtual archive and museum showcasing Crow Indian cultural items.
+A Django website with an Angular frontend serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
-The Django project is located in the *django_project* folder. This is the folder that all python commands below should be run in.
+The Django side is located in the *django_project* folder. This is the folder that all python commands below should be run in.
+The Angular side is located in the *angular-frontend* folder.
 
-## Project Setup
+## Backend Project Setup
 ### Install Required Programs for Django: Python and Postgresql
 If needed, run `sudo apt update`
 
@@ -34,11 +37,31 @@ Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgr
 * `python3 manage.py migrate`
 
 ### Create Superuser for Admin Portal
-* `python3 manage.py createsuperuser`;
+* `python3 manage.py createsuperuser`
 
 ### Run Project
 * `python3 manage.py runserver`
-* Navigate to http://127.0.0.1:8000/ to view the site
+* Navigate to http://127.0.0.1:8000/ to view the admin portal
+
+
+## Frontend Project Setup
+### Install NodeJS (npm) and ng
+* Install NodeJS
+*** For Ubuntu or WSL https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/ 
+* Put npm PATH in manually: `usr/bin/npm`
+** Option 1: Add the alias to your .bash_profile
+** Option 2: Put it in your Environment Variables under System Properties
+* Run the npm install commands from here: https://angular.io/cli 
+* `cd angular-frontend`
+* `npm install`
+* `npm install jwt-decode --save`
+
+### Angular config
+* If you get this warning: “Your global Angular CLI version (#.#.#) is greater than your local version (#.#.#). The local Angular CLI version is used” then run: `npm install --save-dev @angular/cli@latest`
+
+###
+* `ng serve`
+* Navigate to http://127.0.0.1:4200/ to view the frontend site
 
 ## Development Instructions
 ### Reset Civam Migrations: Recreates Postgresql Tables (THIS WILL DELETE ALL CIVAM OBJECTS IN THE DATABASE)
