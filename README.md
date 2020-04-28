@@ -1,8 +1,8 @@
 # CIVAM
 ## Description
-Python Version: 3.6.8
-Django Version: ???
-Angular Version: 9.1.3
+* Python Version: 3.6.8
+* Django Version: ???
+* Angular Version: 9.1.3
 
 A Django website with an Angular frontend serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
@@ -47,10 +47,10 @@ Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgr
 ## Frontend Project Setup
 ### Install NodeJS (npm) and ng
 * Install NodeJS
-*** For Ubuntu or WSL https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/ 
+   * For Ubuntu or WSL https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/ 
 * Put npm PATH in manually: `usr/bin/npm`
-** Option 1: Add the alias to your .bash_profile
-** Option 2: Put it in your Environment Variables under System Properties
+   * Option 1: Add the alias to your .bash_profile
+   * Option 2: Put it in your Environment Variables under System Properties
 * Run the npm install commands from here: https://angular.io/cli 
 * `cd angular-frontend`
 * `npm install`
