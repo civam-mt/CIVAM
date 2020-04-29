@@ -29,7 +29,7 @@ Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgr
 * `exit`
 
 ### Python Requirements
-* `cd projects`
+* `cd project`
 * Run `pip3 install -r requirements.txt`
 
 ### Migrate Models
