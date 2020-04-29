@@ -17,6 +17,7 @@ If needed, run `sudo apt update`
 Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib`
 
 ### Postgresql Setup
+* `sudo service postgresql start`
 * `sudo su - postgres`
 * `psql`
 * `CREATE DATABASE django_db;`
