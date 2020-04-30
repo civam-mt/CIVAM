@@ -8,6 +8,16 @@
 </div>
 
 <div class="card-columns container">
+    <div *ngFor="let collection of collections" class="card">
+        <img class="card-img-top" src="https://tse1.mm.bing.net/th?id=OIP.nWZRFJ3J0yU83QK1BFnmtwHaFj&pid=Api">
+        <div class="card-body">
+            <h4 class="card-title">{{collection.title}}</h4>
+            <p class="card-text">{{collection.description}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="card-columns container">
     <div *ngFor="let component of featuredCollections" class="card">
         <img class="card-img-top" src={{component.image}}>
         <div class="card-body">
@@ -15,4 +25,4 @@
             <p class="card-text">{{component.description}}</p>
         </div>
     </div>
-</div>
+</div> -->
