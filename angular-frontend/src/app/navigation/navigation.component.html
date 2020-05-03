@@ -4,9 +4,9 @@
 
 <nav ngbNav #nav="ngbNav" [activeId]="0" 
     class="navbar navbar-dark bg-primary navbar-expand-lg">
-    <a class="navbar-brand">CIVAM</a>
 
     <!-- Hamburger menu -->
+    <!-- TODO: get hamburger menu to actually work
     <button class="navbar-toggler" 
         type="button" 
         data-toggle="collapse"
@@ -16,10 +16,12 @@
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    -->
 
     <!-- Regular navbar -->
-    <div class="collapse navbar-collapse" id="navbar">
+    <!-- <div class="collapse navbar-collapse" id="navbar"> -->
         <ul class="navbar-nav mr-auto">
+            <a class="navbar-brand">CIVAM</a>
             <li [ngbNavItem]="1" class="nav-item active">
                 <a ngbNavLink 
                     [routerLinkActive]='activeClass'
@@ -73,7 +75,7 @@
                 </div>
             </li>
         </ul>
-    </div>
+    <!-- </div> -->
 </nav>
 
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
