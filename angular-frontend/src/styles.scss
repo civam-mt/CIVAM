@@ -1,6 +1,6 @@
-@import "~bootswatch/dist/yeti/variables";
+@import "themes/yeti/variables";
 @import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/yeti/bootswatch";
+@import "themes/yeti/bootswatch";
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
@@ -27,7 +27,7 @@ body {
 
 .container {
     padding-top: 16px;
-    padding-bottom: 32px;
+    padding-bottom: 16px;
 }
 
 /*

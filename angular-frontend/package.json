@@ -23,7 +23,6 @@
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "angular-popper": "^2.0.1",
     "bootstrap": "^4.4.1",
-    "bootswatch": "^4.4.1",
     "jquery": "^3.5.0",
     "jwt-decode": "^2.2.0",
     "popper": "^1.0.1",
