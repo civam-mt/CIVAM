@@ -53,7 +53,7 @@
   </button>
 </p>
 <div id="people" [ngbCollapse]="peopleCollapsed">
-  <div class="card container">
+  <div class="card container block-margin">
     <div class="card-body">
       <div class = "container bg-light text-dark">
         <div class = "row">
@@ -111,7 +111,22 @@
             <div class = "col-lg-2"></div>
           </div>
         </div>
-    
+
+
+    </div>
+  </div>
+</div>
+
+<p>
+  <button type="button" class="btn btn-block container-sm btn-primary" (click)="historyCollapsed = !historyCollapsed"
+          [attr.aria-expanded]="!historyCollapsed" aria-controls="history">
+        <h3>History</h3>
+  </button>
+</p>
+<div id="history" [ngbCollapse]="historyCollapsed">
+  <div class="card container block-margin">
+    <div class="card-body">
+      <p>Placeholder text: this space is for desired historical information about the Crow Tribe.</p>
     </div>
   </div>
 </div>
