@@ -1,16 +1,16 @@
-@import "~bootswatch/dist/litera/variables";
+@import "~bootswatch/dist/yeti/variables";
 @import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/litera/bootswatch";
+@import "~bootswatch/dist/yeti/bootswatch";
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 /* Sets global font styling */
+/*
 $font-stack:    'Montserrat', sans-serif;
 $primary-color: #000000;
 $font-weight-bold: 800;
 
 // Global font styling
-/*
 div {
     font-family: $font-stack;
     color: $primary-color;
@@ -20,9 +20,9 @@ body {
     background-image: url('./assets/images/background-bill-yellowtail-cropped.jpg');
 }
 
-/*
+
 .jumbotron {
-    background-color: #ffd900;
+    background-color: transparent;
 }
 
 .container {
@@ -30,6 +30,7 @@ body {
     padding-bottom: 32px;
 }
 
+/*
 // For large block backgrounds
 .gradient-lg {
     background-color: #D3D3D3;
