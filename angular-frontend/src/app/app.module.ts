@@ -20,6 +20,7 @@ import { ItemComponent } from './item/item.component';
 import { AuthComponent } from './auth/auth.component';
 import { UsernameService } from './auth/username.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -38,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     ArtifactsComponent,
     AuthComponent,
     CollectionComponent,
-    ItemComponent
+    ItemComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
