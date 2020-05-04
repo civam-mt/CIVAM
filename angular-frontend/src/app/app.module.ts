@@ -14,6 +14,8 @@ import { DistrictsComponent } from './districts/districts.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
 import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
+import { CollectionComponent } from './collection/collection.component';
+import { ItemComponent } from './item/item.component';
 
 import { AuthComponent } from './auth/auth.component';
 import { UsernameService } from './auth/username.service';
@@ -34,7 +36,9 @@ import { HttpClientModule } from '@angular/common/http';
     OralHistoriesComponent,
     PictureCollectionsComponent,
     ArtifactsComponent,
-    AuthComponent
+    AuthComponent,
+    CollectionComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,

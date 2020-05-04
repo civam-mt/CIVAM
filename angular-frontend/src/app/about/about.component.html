@@ -3,19 +3,19 @@
 </div>
 
 
-<div class = "container-sm gradient-sm">
+<div class = "container container-lg bg-light block-margin">
   <p>The Crow Indian Virtual Archive & Museum (CIVAM) is a virtual repository of Crow Indian cultural items, images, and human remains housed in public and private collections around the world.</p>
 </div>
 
 
 <p>
-  <button type="button" class="btn btn-block container-sm tab-gradient" (click)="missionCollapsed = !missionCollapsed"
+  <button type="button" class="btn btn-block btn-primary container-sm" (click)="missionCollapsed = !missionCollapsed"
           [attr.aria-expanded]="!missionCollapsed" aria-controls="mission">
           <h3>Our Mission</h3>
   </button>
 </p>
 <div id="mission" [ngbCollapse]="missionCollapsed">
-  <div class="card container">
+  <div class="card container block-margin">
     <div class="card-body">
       <ul>
         <li>To collect, curate, and interpret digital representations of Crow materials for Crow Indians and all others interested in Crow history and culture</li>
@@ -28,14 +28,14 @@
 </div>
 
 <p>
-  <button type="button" class="btn btn-block container-sm tab-gradient" (click)="originCollapsed = !originCollapsed"
+  <button type="button" class="btn btn-block container-sm btn-primary" (click)="originCollapsed = !originCollapsed"
           [attr.aria-expanded]="!originCollapsed" aria-controls="origin">
           <h3>Origins</h3>
   </button>
 </p>
 
 <div id="origin" [ngbCollapse]="originCollapsed">
-  <div class="card container">
+  <div class="card container block-margin">
     <div class="card-body">
       <p> Peggy White Wellknown Buffalo had a vision to help, as she said, “the generations in front us to have an understanding and knowledge of their roots.” She went to her clam father and brother Leroy White and to the Crow Nation Chairperson Clara Nomee who both gave Wellknown Buffalo permission to fulfill her vision to re-acquaint the Crow Indian community with items that had long-ago been removed from the reservation. Chairman Nomee specifically gave Wellknown Buffalo written permission to access Crow Indian collections at the Smithsonian Institution’s National Museum of American Indian (NMAI) in 2001.</p>
       <p>Suzy Kelly helped Wellknown Buffalo recruit and arrange for Crow elders to visit the NMAI in Washington, DC. “The mission was for those people to come forward with knowledge to activate the medicine bundles. Our bundles are dying, because almost no one is left with instructions about how to activate them,” Wellknown Buffalo stated. </p>
@@ -47,13 +47,13 @@
 </div>
 
 <p>
-  <button type="button" class="btn btn-block container-sm tab-gradient" (click)="peopleCollapsed = !peopleCollapsed"
+  <button type="button" class="btn btn-block container-sm btn-primary" (click)="peopleCollapsed = !peopleCollapsed"
           [attr.aria-expanded]="!peopleCollapsed" aria-controls="people">
         <h3>People</h3>
   </button>
 </p>
 <div id="people" [ngbCollapse]="peopleCollapsed">
-  <div class="card container">
+  <div class="card container block-margin">
     <div class="card-body">
       <div class = "container bg-light text-dark">
         <div class = "row">
@@ -111,7 +111,22 @@
             <div class = "col-lg-2"></div>
           </div>
         </div>
-    
+
+
+    </div>
+  </div>
+</div>
+
+<p>
+  <button type="button" class="btn btn-block container-sm btn-primary" (click)="historyCollapsed = !historyCollapsed"
+          [attr.aria-expanded]="!historyCollapsed" aria-controls="history">
+        <h3>History</h3>
+  </button>
+</p>
+<div id="history" [ngbCollapse]="historyCollapsed">
+  <div class="card container block-margin">
+    <div class="card-body">
+      <p>Placeholder text: this space is for desired historical information about the Crow Tribe.</p>
     </div>
   </div>
 </div>
