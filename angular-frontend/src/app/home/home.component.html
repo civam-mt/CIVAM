@@ -9,7 +9,7 @@
 
 <div class="card-columns container">
     <div *ngFor="let component of collections" class="card">
-        <img class="card-img-top" src={{component.cover_image}}>
+        <img class="card-img-top" src="{{API_URL}}/media/{{component.cover_image}}">
         <div class="card-body">
             <h4 class="card-title">{{component.title}}</h4>
             <p class="card-text">{{component.description}}</p>
