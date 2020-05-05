@@ -14,12 +14,18 @@ export class ApiService {
   public getCollections() {
     return this.httpClient.get(`${this.API_URL}/api/collections`);
   }
-  // public getPosts() {
-  //   return this.httpClient.get(`${this.API_URL}/api/posts`);
-  // }
-  // public getPostsBySongID(songID: string) {
-  //   return this.httpClient.get(`${this.API_URL}/api/songs/${songID}/posts`);
-  // }
+  public getItemByCollectionIDItemID(collectionID: string, itemID: string) {
+    return this.httpClient.get(`${this.API_URL}/collections/${collectionID}/${itemID}`);
+  }
+  public getCollectionByCollectionID(collectionID: string) {
+    return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/`);
+  }
+  public getAllGroupsByCollectionID(collectionID: string) {
+    return this.httpClient.get(`${this.API_URL}/collections/${collectionID}/groups/`);
+  }
+  public getGroupByCollectionIDGroupID(collectionID: string, groupID: string) {
+    return this.httpClient.get(`${this.API_URL}/collections/${collectionID}/groups/${groupID}/`);
+  }
   // public postSong(song: object) {
   //   return this.httpClient.post(`${this.API_URL}/api/songs`, song);
   // }
