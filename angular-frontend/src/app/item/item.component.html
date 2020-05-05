@@ -1,14 +1,15 @@
-<div class = "container jumbotron">
+<div class = "container jumbotron bg-primary text-light">
     <div class = row>
         <div class = "col-lg-5">
-            <h1>ITEM NAME</h1>
+            <h1>{{item.name}}</h1>
             <h3>CREATOR/CONTRIBUTOR NAME</h3>
-            <p>Description/write-up of item pulled from api:</p>
+            <p>{{item.description}}</p>
+            
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisque egestas
                  diam in arcu cursus euismod quis. Ultrices gravida dictum fusce ut placerat orci nulla. Eu sem integer vitae justo eget. Luctus accumsan 
                  tortor posuere ac ut consequat semper. In hac habitasse platea dictumst vestibulum rhoncus est. In hac habitasse platea dictumst quisque 
                  sagittis purus sit amet. Egestas erat imperdiet sed euismod nisi. Hendrerit dolor magna eget est lorem ipsum dolor sit. Ac turpis egestas maecenas 
-                 pharetra convallis. Velit egestas dui id ornare arcu odio. In dictum non consectetur a erat. Aliquam ut porttitor leo a diam. Ut tristique et .</p>
+                 pharetra convallis. Velit egestas dui id ornare arcu odio. In dictum non consectetur a erat. Aliquam ut porttitor leo a diam. Ut tristique et.</p>
             
              <p style="font-size:14px">Geographic location data pulled from api (if relevant)</p>
         
@@ -19,7 +20,9 @@
               </div>
         </div>
     </div>
-    <br><br>
+</div>
+<br>
+<div class = "container jumbotron bg-primary text-light">
     <div class = "row">
         <div class = "col-lg-12">
             <div class = "container text-center">
@@ -30,24 +33,24 @@
     <div class ="row">
         <div class = "col-lg-3"></div>
         <div class = "col-lg-3">
-            <p><strong>Title:</strong></p>
-            <p><strong>Creator/Contributor: </strong></p>
-            <p><strong>Date Created:</strong></p>
-            <p><strong>Physical Details:</strong></p>
-            <p><strong>Digital Format: </strong></p>
-            <p><strong>Owner:</strong></p>
-            <p><strong>Access and Use:</strong></p>
-            <p><strong>Reproduction Rights: </strong></p>
+            <p><strong>Title:</strong></p> <hr>
+            <p><strong>Creator/Contributor: </strong></p><hr>
+            <p><strong>Date Created:</strong></p><hr>
+            <p><strong>Physical Details:</strong></p><hr>
+            <p><strong>Digital Format: </strong></p><hr>
+            <p><strong>Owner:</strong></p><hr>
+            <p><strong>Access and Use:</strong></p><hr>
+            <p><strong>Reproduction Rights: </strong></p><hr>
         </div>
         <div class = "col-lg-5">
-            <p>Title from api</p>
-            <p>Creator/Contributor from api</p>
-            <p>Date from api</p>
-            <p>Physical Details ^ ^/p>
-            <p>Digital format</p>
-            <p>owner</p>
-            <p>access and use</p>
-            <p> reproduction rights</p>
+            <p>{{item.name}}</p><hr>
+            <p>Creator/Contributor from api</p><hr>
+            <p>Date from api</p><hr>
+            <p>Physical Details ^ ^/p><hr>
+            <p>Digital format</p><hr>
+            <p>owner</p><hr>
+            <p>access and use</p><hr>
+            <p> reproduction rights</p><hr>
         </div>
     </div>
 </div>
