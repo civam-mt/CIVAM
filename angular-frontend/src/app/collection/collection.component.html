@@ -10,8 +10,9 @@
                 <div *ngFor="let item of collection.item_list" class="card">
                     <div class="card-body">
                         <h4 class="card-title">{{item.name}}</h4>
-                        <img class="card-img" src={{item.image}}>
+                        <img class="card-img" src={{API_URL}}/media/{{item.image}}>
                         <p class="card-text" style="font-size:14px">{{item.description}}</p>
+                        <a [routerLink]="['/items', item.id]" class="btn btn-outline-success my-2 my-sm-0">Checkout Item</a>
                     </div>
                 </div>
             </div>

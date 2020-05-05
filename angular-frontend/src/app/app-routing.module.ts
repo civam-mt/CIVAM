@@ -20,8 +20,8 @@ const routes: Routes = [
 {path:'oral-histories',component: OralHistoriesComponent},
 {path:'picture-collections',component: PictureCollectionsComponent},
 {path:'artifacts',component: ArtifactsComponent},
-{path:'item',component: ItemComponent},
-{path:'collection',component: CollectionComponent}
+{path: 'items/:itemID', component: ItemComponent},
+{path:'collections/:collectionID', component: CollectionComponent}
 ];
 
 @NgModule({
