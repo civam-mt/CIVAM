@@ -7,13 +7,15 @@
     <h2>Featured</h2>
 </div>
 
-<div class="card-columns container">
-    <div *ngFor="let collection of collections" class="card">
-        <img class="card-img-top" src="{{API_URL}}/media/{{collection.cover_image}}">
-        <div class="card-body">
-            <h4 class="card-title">{{collection.title}}</h4>
-            <p class="card-text">{{collection.description}}</p>
-            <a [routerLink]="['/collections', collection.id]" class="btn btn-outline-success my-2 my-sm-0">Checkout Collection</a>
+<div class="row mb-3 container">
+    <div *ngFor="let collection of collections" class="col-xl-3 col-sm-6 py-2">
+        <div class="card h-100">
+            <img class="card-img-top" src="{{API_URL}}/media/{{collection.cover_image}}">
+            <div class="card-body">
+                <h4 class="card-title">{{collection.title}}</h4>
+                <p class="card-text">{{collection.description}}</p>
+                <a [routerLink]="['/collections', collection.id]" class="btn btn-outline-success my-2 my-sm-0">Checkout Collection</a>
+            </div>
         </div>
     </div>
 </div>
