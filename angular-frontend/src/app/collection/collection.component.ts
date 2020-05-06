@@ -14,13 +14,15 @@ export class CollectionComponent implements OnInit {
   tempCollection: Collection;
   API_URL = environment.apiUrl;
   collection;
-  items;
+  collectionItems; //Item list from collection (doesn't include images)
+  items = [];
 
   constructor(private route: ActivatedRoute, private api: ApiService) {
     // TODO: Find collection by id from url
     this.tempCollection = DISTRICTS[0];
   }
 
+    // TODO: change getting items to ng in HTML
   ngOnInit() {
     console.log('what about here?');
     this.route.paramMap.subscribe(params => {
@@ -28,11 +30,38 @@ export class CollectionComponent implements OnInit {
     });
   }
   getCollectionByCollectionID(collectionID: string) {
-      this.api.getCollectionByCollectionID(collectionID).subscribe((data) => {
-        console.log(data);
-        this.collection = data;
-        this.items = this.collection["item_list"];
-        console.log(this.items);
+    this.api.getCollectionByCollectionID(collectionID).subscribe(async (data) => {
+      console.log(data);
+      this.collection = data;
+      this.collectionItems = this.collection["item_list"];
+      for (let colItem of this.collectionItems) {
+        let tempItem = this.getItemByCollectionIDItemID(colItem.collection_id, colItem.id);
+        this.items.push(tempItem);
+      }
+  });
+}
+// getCollectionByCollectionID(collectionID: string) {
+//       this.api.getCollectionByCollectionID(collectionID).subscribe(async (data) => {
+//         console.log(data);
+//         this.collection = data;
+//         this.collectionItems = this.collection["item_list"];
+//         console.log(this.collectionItems);
+//         for (let colItem of this.collectionItems) {
+//           console.log("beginning of FOR loop");
+//           let tempItem = await new Promise(() => this.getItemByCollectionIDItemID(colItem.collection_id, colItem.id));
+//           console.log(tempItem);
+//           this.items.push(tempItem);
+//           console.log(this.items);
+//           console.log("end of FOR loop");
+//         }
+//         console.log(this.items);
+//         console.log('after this.items console log');
+//     });
+//   }
+getItemByCollectionIDItemID(collectionID : string, itemID : string) {
+    this.api.getItemByCollectionIDItemID(collectionID, itemID).subscribe((data) => {
+      console.log(data);
+      return data;
     });
   }
 }
