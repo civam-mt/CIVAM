@@ -10,8 +10,10 @@
             <div class="card-body">
                 <h4 class="card-title">{{collection.title}}</h4>
                 <p class="card-text">{{collection.description}}</p>
+            </div>
+            <div class="card-footer">
                 <a [routerLink]="['/collections', collection.id]"
-                    class="btn btn-outline-success my-2 my-sm-0">Checkout Collection</a>
+                    class="btn btn-outline-primary my-2 my-sm-0">Checkout Collection</a>
             </div>
         </div>
     </div>
