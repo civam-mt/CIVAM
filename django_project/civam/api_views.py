@@ -33,12 +33,11 @@ def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
     
     item_list = Item.objects.filter(collection=collection)
-    item_list = get_objects_for_user(request.user, 'civam.view_item', item_list, accept_global_perms=False)
+    #item_list = get_objects_for_user(request.user, 'civam.view_item', item_list, accept_global_perms=False)
     context = {'item_list': list(item_list.values()), 
     'title': collection.title,
     'description': collection.description}
     return JsonResponse(context, safe=False)
-
 
 def item(request, collection_id, item_id):
 	item = get_object_or_404(Item, pk=item_id)
