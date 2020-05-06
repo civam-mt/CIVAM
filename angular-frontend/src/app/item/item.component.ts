@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-item',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemComponent implements OnInit {
 
-  constructor() { }
+  API_URL = environment.apiUrl;
+  item;
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute, private api: ApiService) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.getItemByCollectionIDItemID(params.get('collectionID'), params.get('itemID'));
+    });
+  }
+  getItemByCollectionIDItemID(collectionID : string, itemID : string) {
+      this.api.getItemByCollectionIDItemID(collectionID, itemID).subscribe((data) => {
+        console.log(data);
+        this.item = data;
+    });
   }
 
 }
