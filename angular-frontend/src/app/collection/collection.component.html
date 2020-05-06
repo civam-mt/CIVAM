@@ -1,17 +1,19 @@
 
 <!-- Body of the Page -->
-<div class="container-fluid jumbotron text-center display-4 ">
-        {{collection.title}}
-        <p style="font-size:28px">{{collection.description}}</p>
-</div>
-            
-<div class="row mb-3">
-    <div *ngFor="let item of collection.item_list" class="col-xl-3 col-sm-6 py-2">
-        <div class="card h-100">
-            <div class="card-body">
-                <h4 class="card-title">{{item.name}}</h4>
-                <img class="card-img" src={{item.image}}>
-                <p class="card-text" style="font-size:14px">{{item.description}}</p>
+<div *ngIf="collection">
+    <div class="container-fluid jumbotron text-center display-4 ">{{collection.title}}</div>
+    <p style="font-size:14px">{{collection.description}}</p>
+    <div class=row>
+        <div class="col-lg-5">
+            <div *ngIf="items" class="card-columns container">
+                <div *ngFor="let item of items" class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{item.name}}</h4>
+                        <img class="card-img" src={{API_URL}}/media/{{item.image}}>
+                        <p class="card-text" style="font-size:14px">{{item.description}}</p>
+                        <!-- <a [routerLink]="['/items', item.id]" class="btn btn-outline-success my-2 my-sm-0">Checkout Item</a> -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>

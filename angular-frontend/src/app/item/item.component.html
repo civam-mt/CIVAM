@@ -1,9 +1,9 @@
 <div class = "container jumbotron">
-    <div class = row>
+    <div *ngIf="item" class = row>
         <div class = "col-lg-5">
-            <h1>ITEM NAME</h1>
+            <h1>{{item.name}}</h1>
             <h3>CREATOR/CONTRIBUTOR NAME</h3>
-            <p>Description/write-up of item pulled from api:</p>
+            <p>{{item.description}}</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisque egestas
                  diam in arcu cursus euismod quis. Ultrices gravida dictum fusce ut placerat orci nulla. Eu sem integer vitae justo eget. Luctus accumsan 
                  tortor posuere ac ut consequat semper. In hac habitasse platea dictumst vestibulum rhoncus est. In hac habitasse platea dictumst quisque 
@@ -43,7 +43,7 @@
             <p>Title from api</p>
             <p>Creator/Contributor from api</p>
             <p>Date from api</p>
-            <p>Physical Details ^ ^/p>
+            <p>Physical Details</p>
             <p>Digital format</p>
             <p>owner</p>
             <p>access and use</p>
