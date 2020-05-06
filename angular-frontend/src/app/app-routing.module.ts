@@ -20,7 +20,7 @@ const routes: Routes = [
 {path:'oral-histories',component: OralHistoriesComponent},
 {path:'picture-collections',component: PictureCollectionsComponent},
 {path:'artifacts',component: ArtifactsComponent},
-{path: 'items/:itemID', component: ItemComponent},
+{path:'collections/:collectionID/:itemID', component: ItemComponent},
 {path:'collections/:collectionID', component: CollectionComponent}
 ];
 

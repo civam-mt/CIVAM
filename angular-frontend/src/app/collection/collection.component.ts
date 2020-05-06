@@ -25,9 +25,7 @@ export class CollectionComponent implements OnInit {
     console.log('what about here?');
     this.route.paramMap.subscribe(params => {
       this.getCollectionByCollectionID(params.get('collectionID'));
-      // this.getItemList();
     });
-    // this.getItemList();
   }
   getCollectionByCollectionID(collectionID: string) {
       this.api.getCollectionByCollectionID(collectionID).subscribe((data) => {
@@ -37,10 +35,4 @@ export class CollectionComponent implements OnInit {
         console.log(this.items);
     });
   }
-  // getItemList() {
-  //   console.log(this.collection);
-  //   this.items = this.collection["item_list"];
-  //   console.log(this.items);
-  // }
-
 }
