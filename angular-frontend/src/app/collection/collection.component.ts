@@ -14,6 +14,7 @@ export class CollectionComponent implements OnInit {
   tempCollection: Collection;
   API_URL = environment.apiUrl;
   collection;
+  items;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {
     // TODO: Find collection by id from url
@@ -21,15 +22,25 @@ export class CollectionComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('what about here?');
     this.route.paramMap.subscribe(params => {
       this.getCollectionByCollectionID(params.get('collectionID'));
+      // this.getItemList();
     });
+    // this.getItemList();
   }
   getCollectionByCollectionID(collectionID: string) {
       this.api.getCollectionByCollectionID(collectionID).subscribe((data) => {
         console.log(data);
         this.collection = data;
+        this.items = this.collection["item_list"];
+        console.log(this.items);
     });
   }
+  // getItemList() {
+  //   console.log(this.collection);
+  //   this.items = this.collection["item_list"];
+  //   console.log(this.items);
+  // }
 
 }

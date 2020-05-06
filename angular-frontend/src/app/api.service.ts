@@ -12,10 +12,10 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
   
   public getCollections() {
-    return this.httpClient.get(`${this.API_URL}/api/collections`);
+    return this.httpClient.get(`${this.API_URL}/api/collections/`);
   }
   public getItemByCollectionIDItemID(collectionID: string, itemID: string) {
-    return this.httpClient.get(`${this.API_URL}/collections/${collectionID}/${itemID}`);
+    return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/${itemID}/`);
   }
   public getCollectionByCollectionID(collectionID: string) {
     return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/`);
@@ -26,8 +26,8 @@ export class ApiService {
   public getGroupByCollectionIDGroupID(collectionID: string, groupID: string) {
     return this.httpClient.get(`${this.API_URL}/collections/${collectionID}/groups/${groupID}/`);
   }
-  // public postSong(song: object) {
-  //   return this.httpClient.post(`${this.API_URL}/api/songs`, song);
+  // public postCollection(collection: object) {
+  //   return this.httpClient.post(`${this.API_URL}/api/collections`, collection);
   // }
   // public postPost(songId: string, post: any) {
   //   if (localStorage.getItem('token') !== null){
