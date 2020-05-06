@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
 import { HttpClient } from '@angular/common/http';
  
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -16,7 +17,8 @@ export class ItemComponent implements OnInit {
   API_URL = environment.apiUrl;
   collections;
   items;
-  item
+  item;
+  
 
   constructor(private api: ApiService, private httpClient: HttpClient) { }
 
@@ -42,12 +44,27 @@ export class ItemComponent implements OnInit {
       });
     });
   }
+}
 
+  /*
   //Doesn't recognize this.collections, so we are not using this currently
   getItems() {
     this.collections.forEach((el) => {
       console.log(el);
+  item;
+  constructor(private route: ActivatedRoute, private api: ApiService) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.getItemByCollectionIDItemID(params.get('collectionID'), params.get('itemID'));
+    });
+  }
+  getItemByCollectionIDItemID(collectionID : string, itemID : string) {
+      this.api.getItemByCollectionIDItemID(collectionID, itemID).subscribe((data) => {
+        console.log(data);
+        this.item = data;
     });
   }
 
 }
+*/
