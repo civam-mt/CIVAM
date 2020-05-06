@@ -20,10 +20,11 @@ const routes: Routes = [
 {path:'oral-histories',component: OralHistoriesComponent},
 {path:'picture-collections',component: PictureCollectionsComponent},
 {path:'artifacts',component: ArtifactsComponent},
-{path:'item',component: ItemComponent},
-{path:'collection',component: CollectionComponent},
+{path:'collections/:collectionID/:itemID', component: ItemComponent},
+{path:'collections/:collectionID', component: CollectionComponent},
+  
 // Keep this one last, so it catches everything else
-{path:'**',component: PageNotFoundComponent} 
+{path:'**',component: PageNotFoundComponent}
 ];
 
 @NgModule({
