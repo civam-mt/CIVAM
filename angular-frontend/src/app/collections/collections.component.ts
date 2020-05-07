@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Collection } from '../collection'
 import { DISTRICTS } from '../mock-collections';
+import { environment } from '../../environments/environment';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-collections',
@@ -8,11 +10,21 @@ import { DISTRICTS } from '../mock-collections';
   styleUrls: ['./collections.component.scss']
 })
 export class CollectionsComponent implements OnInit {
-  collections: Collection[] = DISTRICTS;
+  tempCollections: Collection[] = DISTRICTS;
 
-  constructor() { }
+  API_URL = environment.apiUrl;
+  collections;
 
-  ngOnInit(): void {
+  constructor(private api: ApiService) { }
+
+  ngOnInit() {
+    this.getCollections();
+  }
+  getCollections() {
+      this.api.getCollections().subscribe((data) => {
+        console.log(data);
+        this.collections = data["collection_list"];
+    });
   }
 
 }
