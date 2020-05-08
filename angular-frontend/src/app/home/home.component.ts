@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Collection } from '../collection'
+import { Collection } from '../collection';
 import { DISTRICTS } from '../mock-collections';
+import { environment } from '../../environments/environment';
+import { ApiService } from '../api.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,11 +12,20 @@ import { DISTRICTS } from '../mock-collections';
 })
 export class HomeComponent implements OnInit {
   featuredCollections: Collection[] = DISTRICTS.slice(0, 3);
+  /* TODO : Uncomment API Stuff*/
+  API_URL = environment.apiUrl;
+  collections;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
-  ngOnInit(): void {
-    
+  ngOnInit() {
+    this.getCollections();
+  }
+  getCollections() {
+      this.api.getCollections().subscribe((data) => {
+        console.log(data);
+        this.collections = data["collection_list"];
+    });
   }
 
 }

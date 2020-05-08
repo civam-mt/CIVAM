@@ -12,14 +12,17 @@ The Angular side is located in the *angular-frontend* folder. Individual site co
 
 ## Backend Project Setup
 ### Install Required Programs for Django: Python and Postgresql
+
+Make sure you are in the *django_project* folder.
+
 If needed, run `sudo apt update`
 
-Then run `sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib`
+Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postgresql-contrib`
 
 ### Postgresql Setup
-* `sudo service postgresql start`
-* `sudo su - postgres`
-* `psql`
+* `sudo service postgresql start` 
+* `sudo su - postgres` Opens a postgres terminal
+* `psql` Opens a postgres database terminal
 * `CREATE DATABASE django_db;`
 * `CREATE USER django_user WITH PASSWORD 'password';`
 * `ALTER ROLE django_user SET client_encoding TO 'utf8';`

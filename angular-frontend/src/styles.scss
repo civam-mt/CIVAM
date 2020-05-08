@@ -1,8 +1,11 @@
+@import "themes/yeti/variables";
 @import "~bootstrap/scss/bootstrap";
+@import "themes/yeti/bootswatch";
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 /* Sets global font styling */
+/*
 $font-stack:    'Montserrat', sans-serif;
 $primary-color: #000000;
 $font-weight-bold: 800;
@@ -12,30 +15,42 @@ div {
     font-family: $font-stack;
     color: $primary-color;
 }
+*/
 
 body {
-    background-image: url('./assets/images/background-bill-yellowtail-cropped.jpg');
-    background-color: white;
+    background: url('./assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;
 }
 
+
 .jumbotron {
-    background-color: #ffd900;
+    background-color: transparent;
 }
 
 .container {
-    padding-top: 16px;
-    padding-bottom: 32px;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
+.row {
+    row-gap: 2em;
+}
+
+/*
+.container-collections {
+    @extend .container-fluid;
+    width: 100%;
+    margin-right: -$grid-gutter-width;
+    margin-left: $grid-gutter-width/2;
+}*/
+
+/*
 // For large block backgrounds
 .gradient-lg {
-    background-image: linear-gradient(#d3d3d3, grey, #d3d3d3);
     background-color: #D3D3D3;
 }
 
 // For smaller block backgrounds (titles, etc.)
 .gradient-sm {
-    background-image: linear-gradient(#d3d3d3, #a3a3a3);
     background-color: #D3D3D3;
 }
 
@@ -43,3 +58,4 @@ body {
 .display-4 {
     font-weight: bold;
 }
+*/

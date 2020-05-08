@@ -14,6 +14,17 @@ import { DistrictsComponent } from './districts/districts.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
 import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
 import { ArtifactsComponent } from './artifacts/artifacts.component';
+import { CollectionComponent } from './collection/collection.component';
+import { ItemComponent } from './item/item.component';
+
+import { AuthComponent } from './auth/auth.component';
+import { UsernameService } from './auth/username.service';
+import { HttpClientModule } from '@angular/common/http';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+// TODO: Fix this so it's functional
+// import { ModalServiceModule } from 'modal-service';
+// import {ModalModule} from './_modal'; 
 
 @NgModule({
   declarations: [
@@ -25,18 +36,28 @@ import { ArtifactsComponent } from './artifacts/artifacts.component';
     DistrictsComponent,
     OralHistoriesComponent,
     PictureCollectionsComponent,
-    ArtifactsComponent
+    ArtifactsComponent,
+    AuthComponent,
+    CollectionComponent,
+    ItemComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    NgxPopper
+    NgxPopper,
+    HttpClientModule
+    //TODO: fix these so they work (for auth)
+    // ModalModule,
+    // ModalServiceModule.forRoot()
   ],
   exports: [
     AboutComponent
   ],
-  providers: [],
+  providers: [
+    UsernameService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
