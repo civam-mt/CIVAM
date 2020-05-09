@@ -21,7 +21,6 @@ export class CollectionComponent implements OnInit {
     // TODO: Find collection by id from url
     this.tempCollection = DISTRICTS[0];
   }
-
     // TODO: change getting items to ng in HTML
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -55,4 +54,3 @@ export class CollectionComponent implements OnInit {
   //     return data;
   //   });
   // }
-}
