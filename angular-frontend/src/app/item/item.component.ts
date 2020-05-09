@@ -26,5 +26,4 @@ export class ItemComponent implements OnInit {
         this.item = data;
     });
   }
-
 }
