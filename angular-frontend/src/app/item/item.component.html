@@ -16,7 +16,10 @@
         <div class = "col-lg-7">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QTnX_u3w8yU" allowfullscreen></iframe>
-              </div>
+            </div>
+            <div *ngFor="let image of images">
+                <img class="card-img-top" src="{{API_URL}}/media/{{image.content}}">
+            </div>
         </div>
     </div>
 </div>
@@ -41,7 +44,7 @@
             <p><strong>Access and Use:</strong></p><hr>
             <p><strong>Reproduction Rights: </strong></p><hr>
         </div>
-        <div class = "col-lg-5">
+        <div *ngIf="item" class = "col-lg-5">
             <p>{{item.name}}</p><hr>
             <p>Creator/Contributor from api</p><hr>
             <p>Date from api</p><hr>
