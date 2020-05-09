@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
-
+ 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss']
-
 })
 
 export class ItemComponent implements OnInit {
 
   API_URL = environment.apiUrl;
   item;
-
+  images;
+  stories;
+  
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
@@ -22,11 +23,13 @@ export class ItemComponent implements OnInit {
       this.getItemByCollectionIDItemID(params.get('collectionID'), params.get('itemID'));
     });
   }
-  getItemByCollectionIDItemID(collectionID : string, itemID : string) {
-      this.api.getItemByCollectionIDItemID(collectionID, itemID).subscribe((data) => {
-        console.log(data);
-        this.item = data;
+  getItemByCollectionIDItemID(collectionID: string, itemID: string) {
+    this.api.getItemByCollectionIDItemID(collectionID, itemID).subscribe((data) => {
+      console.log(data)
+      this.item = data;
+      this.images = this.item["images"];
+      this.stories = this.item["stories"];
+      // let a = this.items[this.items.length - 1]["images"]
     });
   }
-
 }

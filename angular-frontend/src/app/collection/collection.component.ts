@@ -14,25 +14,28 @@ export class CollectionComponent implements OnInit {
   tempCollection: Collection;
   API_URL = environment.apiUrl;
   collection;
-  items;
+  collectionItems; //Item list from collection (doesn't include all item atributes)
+  items = [];
 
-  constructor(private route: ActivatedRoute, private api: ApiService) {
-    // TODO: Find collection by id from url
-    this.tempCollection = DISTRICTS[0];
-  }
+  constructor(private route: ActivatedRoute, private api: ApiService) {}
 
   ngOnInit() {
-    console.log('what about here?');
     this.route.paramMap.subscribe(params => {
       this.getCollectionByCollectionID(params.get('collectionID'));
     });
   }
+
   getCollectionByCollectionID(collectionID: string) {
       this.api.getCollectionByCollectionID(collectionID).subscribe((data) => {
-        console.log(data);
         this.collection = data;
-        this.items = this.collection["item_list"];
-        console.log(this.items);
+        this.collectionItems = this.collection["item_list"];
+
+        for (let colItem of this.collectionItems) {
+          this.api.getItemByCollectionIDItemID(colItem.collection_id, colItem.id).subscribe((data) => {
+            this.items.push(data);
+            // let a = this.items[this.items.length - 1]["images"]
+          });
+        }
     });
   }
 }
