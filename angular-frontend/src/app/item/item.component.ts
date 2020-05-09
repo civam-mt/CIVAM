@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { HttpClient } from '@angular/common/http';
  
-import { ActivatedRoute } from '@angular/router';
-
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -20,7 +19,7 @@ export class ItemComponent implements OnInit {
   item;
   
 
-  constructor(private api: ApiService, private httpClient: HttpClient) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.getCollections();
@@ -66,5 +65,16 @@ export class ItemComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.getItemByCollectionIDItemID(params.get('collectionID'), params.get('itemID'));
+    });
+  }
+  getItemByCollectionIDItemID(collectionID : string, itemID : string) {
+      this.api.getItemByCollectionIDItemID(collectionID, itemID).subscribe((data) => {
+        console.log(data);
+        this.item = data;
+    });
+  }
 }
 */
