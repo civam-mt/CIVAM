@@ -24,44 +24,35 @@ export class CollectionComponent implements OnInit {
 
     // TODO: change getting items to ng in HTML
   ngOnInit() {
-    console.log('what about here?');
     this.route.paramMap.subscribe(params => {
       this.getCollectionByCollectionID(params.get('collectionID'));
     });
   }
+
   getCollectionByCollectionID(collectionID: string) {
-    this.api.getCollectionByCollectionID(collectionID).subscribe(async (data) => {
-      console.log(data);
-      this.collection = data;
-      this.collectionItems = this.collection["item_list"];
-      for (let colItem of this.collectionItems) {
-        let tempItem = this.getItemByCollectionIDItemID(colItem.collection_id, colItem.id);
-        this.items.push(tempItem);
-      }
-  });
-}
-// getCollectionByCollectionID(collectionID: string) {
-//       this.api.getCollectionByCollectionID(collectionID).subscribe(async (data) => {
-//         console.log(data);
-//         this.collection = data;
-//         this.collectionItems = this.collection["item_list"];
-//         console.log(this.collectionItems);
-//         for (let colItem of this.collectionItems) {
-//           console.log("beginning of FOR loop");
-//           let tempItem = await new Promise(() => this.getItemByCollectionIDItemID(colItem.collection_id, colItem.id));
-//           console.log(tempItem);
-//           this.items.push(tempItem);
-//           console.log(this.items);
-//           console.log("end of FOR loop");
-//         }
-//         console.log(this.items);
-//         console.log('after this.items console log');
-//     });
-//   }
-getItemByCollectionIDItemID(collectionID : string, itemID : string) {
-    this.api.getItemByCollectionIDItemID(collectionID, itemID).subscribe((data) => {
-      console.log(data);
-      return data;
+      this.api.getCollectionByCollectionID(collectionID).subscribe((data) => {
+        this.collection = data;
+        this.collectionItems = this.collection["item_list"];
+        console.log(this.collectionItems);
+
+        for (let colItem of this.collectionItems) {
+          console.log("Beginning of FOR loop");
+          this.api.getItemByCollectionIDItemID(colItem.collection_id, colItem.id).subscribe((data) => {
+            this.items.push(data);
+          });
+          console.log("End of FOR loop");
+        }
+
+        console.log(this.items);
+        console.log('After this.items console log');
     });
   }
+
+  // getItemByCollectionIDItemID(collectionID : string, itemID : string) {
+  //   this.api.getItemByCollectionIDItemID(collectionID, itemID).subscribe((data) => {
+  //     console.log("Item API data return below")
+  //     console.log(data);
+  //     return data;
+  //   });
+  // }
 }
