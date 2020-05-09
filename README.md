@@ -10,6 +10,22 @@ The Django side is located in the *django_project* folder. This is the folder th
 
 The Angular side is located in the *angular-frontend* folder. Individual site components are within */src/app/*
 
+Setup instructions are below. You must install all required packages and modules before you can run the site
+
+## Running site locally
+* `sudo service postgresql start` 
+* In *django_project* folder: `python3 manage.py runserver`
+* In *angular-frontend*: `ng build` then `ng serve`
+* Backend: http://127.0.0.1:8000/admin
+* Frontend: http://127.0.0.1:4200/
+
+## Deployment Instructions
+* Might need to run `npm rebuild` if deploying on a different OS than currently compiled node_modules
+* `ng build --prod`
+* `ng add @jefiozie/ngx-aws-deploy`
+* TODO: Karl fill in whatever you need to
+
+
 ## Backend Project Setup
 ### Install Required Programs for Django: Python and Postgresql
 
