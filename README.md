@@ -64,7 +64,8 @@ Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postg
 ### Angular config
 * If you get this warning: “Your global Angular CLI version (#.#.#) is greater than your local version (#.#.#). The local Angular CLI version is used” then run: `npm install --save-dev @angular/cli@latest`
 
-###
+### Build project
+* `ng build`
 * `ng serve`
 * Navigate to http://127.0.0.1:4200/ to view the frontend site
 
