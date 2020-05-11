@@ -52,6 +52,12 @@ Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postg
 * `cd project`
 * Run `pip3 install -r requirements.txt`
 
+## Allow Outside Hosts
+* `vim settings.py`
+* Find ALLOWED_HOSTS and fill it in with all the urls that the site will be referenced as (IP address, url, etc.)
+* Put this line at the bottom: `STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')`
+* Click esc and :wq to exit
+
 ### Migrate Models
 * `cd ..`
 * `python3 manage.py makemigrations`
@@ -84,7 +90,7 @@ Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postg
 
 ### Build project
 * `ng build`
-* `ng serve`
+* `ng serve --host 0.0.0.0`
 * Navigate to http://127.0.0.1:4200/ to view the frontend site
 
 ## Development Instructions
