@@ -67,12 +67,14 @@ Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postg
 
 ## Frontend Project Setup
 ### Install NodeJS (npm) and Angular (ng) dependencies
+* Run these commands in the main directory (one level above django_project)
 * Install NodeJS
    * For Ubuntu or WSL https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/ 
 * Put npm PATH in manually: `usr/bin/npm`
    * Option 1: Add the alias to your .bash_profile
    * Option 2: Put it in your Environment Variables under System Properties
-* Run the npm install commands from here: https://angular.io/cli 
+* Run `sudo npm install -g @angular/cli`
+* (Run the npm install commands from here: https://angular.io/cli)
 * `cd angular-frontend`
 * `npm install`
 * `npm install jwt-decode --save`
