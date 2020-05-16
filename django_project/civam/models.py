@@ -21,11 +21,24 @@ class Collection(models.Model):
         return self.title
 
 # An Item belongs to a Collection
-# Each Item has a name and description (and the collection it belongs to)
+# Each Item has a name and description (and the collection it belongs to) and alot more now
 class Item(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="items")
+    creator = models.ForeignKey(PorI, on_delete=models.SET_NULL, null=True, "creators")
+    culture_or_community = models.CharField(max_length=127)
+    heritage_type = models.CharField(max_length=127)
+    date_of_creation = models.DateTimeField(auto_now=False)
+    physical_details = models.CharField(max_length=255)
+    reproduction_rights = models.CharField(max_length=127)
+    #keywords = models.ForeignKey(keyword, on_delete=models.SET_NULL, null=True, related_name="item")
+    place_created = models.CharField(max_length=127)
+    source = models.CharField(max_length=127)
+    accession_number = models.CharField(max_length=31)
+    accession_date = models.DateTimeField(auto_now=False)
+    external_link = models.URLField(max_length=200)
+    provenance = models.CharField(max_length=127)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_created")
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_modified")
@@ -93,3 +106,33 @@ class CollectionGroup(models.Model):
     
     def __str__(self):
         return "CollectionGroup: {} {}".format(self.collection.title, self.group.name)
+
+#PorI = Person or Institute
+class PorI(models.Model):
+    name = models.CharField(max_length=125)
+    date_start = models.DateTimeField(auto_now=False)
+    date_end = models.DateTimeField(auto_now=False)
+    notes = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.name
+
+#Keyword Table
+class Keyword(models.Model):
+    keyword = models.CharField(max_length=31)
+
+    def __str__(self):
+        self.keyword
+
+#Table for many to many relation between items and keywords
+class ItemKeyword(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.NULL, related_name="keywords")
+    keyword = models.ForeignKey(Keyword, on_delete=models.NULL, related_name="items")
+
+#Table for many to many relation between items and PorI.
+#Used for the subject requirement for an item.
+class ItemPorI(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.NULL, related_name="subject")
+    pori = models.ForeignKey(PorI, on_delete=models.NULL, related_name="item")
+    
+        

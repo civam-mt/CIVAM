@@ -61,11 +61,16 @@ def item(request, collection_id, item_id):
 		image = Image.objects.filter(item_id=item_id)
 	except Image.DoesNotExist:
 		image = None
+    # Display videos
+	try :
+		videos = Video.objects.filter(item_id=item_id)
+	except Video.DoesNotExist:
+		video = None
 
     # TODO: Display videos
 #	print(item.value())
     # StoryForm with author auto filled to User's name
-	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values())}
+	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values()), 'videos' : list(videos.values())}
 	return JsonResponse(context, safe=False)
 
 def register(request):
