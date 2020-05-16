@@ -1,0 +1,19 @@
+
+<!-- Body of the Page -->
+<div *ngIf="collection">
+    <div class="container-fluid jumbotron text-center display-4 ">{{collection.title}}</div>
+    <p style="font-size:14px">{{collection.description}}</p>
+    <div class=row>
+        <div class="col-lg-5">
+            <div *ngIf="items" class="card-columns container">
+                <div *ngFor="let item of items" class="card">
+                    <div *ngIf="item" class="card-body">
+                        <h4 class="card-title">{{item.name}}</h4>
+                        <p class="card-text" style="font-size:14px">{{item.description}}</p>
+                        <a [routerLink]="['/collections', item.collection_id, item.item]" class="btn btn-outline-success my-2 my-sm-0">Checkout Item</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

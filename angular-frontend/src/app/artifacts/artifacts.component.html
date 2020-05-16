@@ -1,0 +1,16 @@
+<!-- Body of the Page -->
+<div class="container-fluid jumbotron text-center display-4 ">
+    Artifacts
+</div>
+
+<div class="row justify-content-center container-fluid">
+    <div *ngFor="let component of collections" class="col-xl-3 col-sm-6 py-2">
+        <div class="card h-100">
+            <img class="card-img-top" src={{component.cover_image}}>
+            <div class="card-body">
+                <h4 class="card-title">{{component.title}}</h4>
+                <p class="card-text">{{component.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>
