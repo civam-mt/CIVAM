@@ -7,8 +7,7 @@ from .forms import *
 from guardian.models import Group
 from django.http import JsonResponse
 from django.core import serializers
-
-
+import json
 # Civam views defined here
 
 # TODO, add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
@@ -51,22 +50,11 @@ def new_collection(request):
 			return
 	context = {'collection_form': form}
 	return JsonResponse(context, safe=False)
-'''
 
 def item(request, collection_id, item_id):
     item = get_object_or_404(Item, pk=item_id)
 
     # Submitting a story
-	if(request.method == 'POST'):
-		name = request.name
-		description = request.description
-		collection = request.collection
-		created_by = request.user
-		modified_by = request.user
-		i = item(name=name, description=description, collection=collection, created_by=created_by, modified_by=modified_by)
-		i.save()  
-    		return i.id
-
     # Display stories
     stories = Story.objects.filter(item_id=item_id)
 
@@ -77,11 +65,15 @@ def item(request, collection_id, item_id):
         image = None
 
     # TODO: Display videos
+    try :
+        video = Video.objects.filter(item_id=item_id)
+    except Video.DoesNotExist:
+        video = None
 
-    # StoryForm with author auto filled to User's name
-    context = {'item': list(item.values()), 'stories': list(stories.values()), 'images': list(image.values())}
+    context = {'item': list(item.values()), 'stories': list(stories.values()), 'images': list(image.values()), 'videos': list(video.values)}
     return JsonResponse(context, safe=False)
 
+'''
 
 
 
@@ -122,9 +114,17 @@ def item(request, collection_id, item_id):
 		image = None
 
     # TODO: Display videos
-#	print(item.value())
+	try :
+		video = Video.objects.filter(item_id=item_id)
+	except Video.DoesNotExist:
+		video = None
+	
+	vids = list()
+	for v in list(video.values()):
+		vids.append(v['link'])
+	#	print(item.value())
     # StoryForm with author auto filled to User's name
-	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values())}
+	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values()), 'videos' : vids}
 	return JsonResponse(context, safe=False)
 
 def register(request):
