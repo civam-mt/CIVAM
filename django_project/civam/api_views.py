@@ -33,8 +33,15 @@ def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
     
     item_list = Item.objects.filter(collection=collection)
+    item_list = list(item_list.values())
+
+    for item in item_list:
+        del item["created_by_id"]
+        del item["created_on"]
+        del item["modified_by_id"]
+        del item["collection_id"]
     #item_list = get_objects_for_user(request.user, 'civam.view_item', item_list, accept_global_perms=False)
-    context = {'item_list': list(item_list.values()), 
+    context = {'item_list': item_list, 
     'title': collection.title,
     'description': collection.description}
     return JsonResponse(context, safe=False)
