@@ -12,6 +12,10 @@
             <div *ngFor="let image of images">
                 <img class="card-img-top" src="{{API_URL}}/media/{{image.content}}">
             </div>
+            <div *ngFor="let story of stories">
+                <h3>{{story.author}}</h3>
+                <p>{{story.content}}</p>
+            </div>
         </div>
     </div>
 </div>
