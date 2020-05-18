@@ -15,21 +15,22 @@ export class ItemComponent implements OnInit {
   item;
   images;
   stories;
+  videos;
   
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.getItemByCollectionIDItemID(params.get('collectionID'), params.get('itemID'));
+      this.getItemByItemID(params.get('itemID'));
     });
   }
-  getItemByCollectionIDItemID(collectionID: string, itemID: string) {
-    this.api.getItemByCollectionIDItemID(collectionID, itemID).subscribe((data) => {
+  getItemByItemID(itemID: string) {
+    this.api.getItemByItemID(itemID).subscribe((data) => {
       console.log(data)
       this.item = data;
       this.images = this.item["images"];
       this.stories = this.item["stories"];
-      // let a = this.items[this.items.length - 1]["images"]
+      this.videos = this.item["videos"];
     });
   }
 }

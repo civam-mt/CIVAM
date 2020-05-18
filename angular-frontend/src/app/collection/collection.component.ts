@@ -15,7 +15,8 @@ export class CollectionComponent implements OnInit {
   API_URL = environment.apiUrl;
   collection;
   collectionItems; //Item list from collection (doesn't include all item atributes)
-  items = [];
+  // items = [];
+  items;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 
@@ -28,14 +29,7 @@ export class CollectionComponent implements OnInit {
   getCollectionByCollectionID(collectionID: string) {
       this.api.getCollectionByCollectionID(collectionID).subscribe((data) => {
         this.collection = data;
-        this.collectionItems = this.collection["item_list"];
-
-        for (let colItem of this.collectionItems) {
-          this.api.getItemByCollectionIDItemID(colItem.collection_id, colItem.id).subscribe((data) => {
-            this.items.push(data);
-            // let a = this.items[this.items.length - 1]["images"]
-          });
-        }
+        this.items = this.collection["item_list"];
     });
   }
 }
