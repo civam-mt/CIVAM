@@ -120,8 +120,16 @@ def item_solo(request, item_id):
 	except Image.DoesNotExist:
 		image = None
 
-    # TODO: Display videos
-#	print(item.value())
+	# TODO: Display videos
+	try :
+		video = Video.objects.filter(item_id=item_id)
+	except Video.DoesNotExist:
+		video = None
+	
+	vids = list()
+	for v in list(video.values()):
+		vids.append(v['link'])
+
     # StoryForm with author auto filled to User's name
 	context = {'item': item.id, 
 	'name': item.name, 
@@ -129,6 +137,7 @@ def item_solo(request, item_id):
 	'collection_id': item.collection.id, 
 	'stories': list(stories.values()), 
 	'images': list(image.values()),
+	'videos' : vids,
 	'cover_image': None}
 	return JsonResponse(context, safe=False)
 
