@@ -1,8 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext, Pipe, PipeTransform } from '@angular/core';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
  
+
+@Pipe({ name: 'safeUrl' })
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
+
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -11,13 +21,14 @@ import { ApiService } from '../api.service';
 
 export class ItemComponent implements OnInit {
 
+  SafePipe;
   API_URL = environment.apiUrl;
   item;
   images;
   stories;
   videos;
-  
-  constructor(private route: ActivatedRoute, private api: ApiService) { }
+  public storiesCollapsed = true;  
+  constructor(private route: ActivatedRoute, private api: ApiService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
