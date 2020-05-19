@@ -21,7 +21,7 @@ import { AuthComponent } from './auth/auth.component';
 import { UsernameService } from './auth/username.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { SafePipe } from './item/item.component';
+import { SafePipe } from './Safepipe.pipe';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
