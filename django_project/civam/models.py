@@ -34,6 +34,7 @@ class PorI(models.Model):
 # Each Item has a name and description (and the collection it belongs to) and alot more now
 class Item(models.Model):
     name = models.CharField(max_length=255)
+    cover_image = models.ImageField(upload_to="cover_images/items/", blank=True)
     description = models.TextField(blank=True)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="items")
     creator = models.ForeignKey(PorI, on_delete=models.SET_NULL, null=True, related_name="creators")
@@ -77,6 +78,8 @@ class Image(models.Model):
 class Video(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="videos")
     link = models.URLField()
+    thumbnail = models.ImageField(upload_to="thumbnails/", blank=True)
+
 
     def __str__(self):
         return "Video: {}".format(self.item.name)
@@ -87,9 +90,9 @@ class Story(models.Model):
     content = models.TextField()
     author = models.CharField(max_length=255)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="stories")
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories_created")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories_created", default=1)
     created_on = models.DateTimeField(auto_now_add=True)
-    modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories_modified")
+    modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories_modified", default=1)
     modified_on = models.DateTimeField(auto_now=True)
 
     class Meta:

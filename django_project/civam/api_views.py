@@ -84,11 +84,62 @@ def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
     
     item_list = Item.objects.filter(collection=collection)
+    item_list = list(item_list.values())
+
+    for item in item_list:
+        del item["created_by_id"]
+        del item["created_on"]
+        del item["modified_by_id"]
+        del item["collection_id"]
     #item_list = get_objects_for_user(request.user, 'civam.view_item', item_list, accept_global_perms=False)
-    context = {'item_list': list(item_list.values()), 
+    context = {'item_list': item_list, 
     'title': collection.title,
     'description': collection.description}
     return JsonResponse(context, safe=False)
+
+def item_solo(request, item_id):
+	item = get_object_or_404(Item, pk=item_id)
+
+    # Submitting a story
+	if(request.method == 'POST'):
+		name = request.name
+		description = request.description
+		collection = request.collection
+		created_by = request.user
+		modified_by = request.user
+		i = item(name=name, description=description, collection=collection, created_by=created_by, modified_by=modified_by)
+		i.save()
+		return i.id
+
+    # Display stories
+	stories = Story.objects.filter(item_id=item_id)
+
+    # Display images
+	try :
+		image = Image.objects.filter(item_id=item_id)
+	except Image.DoesNotExist:
+		image = None
+
+	# TODO: Display videos
+	try :
+		video = Video.objects.filter(item_id=item_id)
+	except Video.DoesNotExist:
+		video = None
+	
+	vids = list()
+	for v in list(video.values()):
+		vids.append(v['link'])
+
+    # StoryForm with author auto filled to User's name
+	context = {'item': item.id, 
+	'name': item.name, 
+	'description': item.description, 
+	'collection_id': item.collection.id, 
+	'stories': list(stories.values()), 
+	'images': list(image.values()),
+	'videos' : vids,
+	'cover_image': None}
+	return JsonResponse(context, safe=False)
 
 def item(request, collection_id, item_id):
 	item = get_object_or_404(Item, pk=item_id)
