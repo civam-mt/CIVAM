@@ -2,16 +2,17 @@
 <div class="container-fluid jumbotron text-center display-4 ">
     Collections
 </div>
-
-<div class="row mb-3">
+<div class="row container-fluid">
     <div *ngFor="let collection of collections" class="col-xl-3 col-sm-6 py-2">
         <div class="card h-100">
             <img class="card-img-top" src="{{API_URL}}/media/{{collection.cover_image}}">
             <div class="card-body">
                 <h4 class="card-title">{{collection.title}}</h4>
                 <p class="card-text">{{collection.description}}</p>
+            </div>
+            <div class="card-footer">
                 <a [routerLink]="['/collections', collection.id]"
-                    class="btn btn-outline-success my-2 my-sm-0">Checkout Collection</a>
+                    class="btn btn-outline-primary my-2 my-sm-0">Checkout Collection</a>
             </div>
         </div>
     </div>

@@ -119,15 +119,12 @@ class PorI(models.Model):
 
 #Keyword Table
 class Keyword(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="keywords")
     keyword = models.CharField(max_length=31)
 
     def __str__(self):
         self.keyword
 
-#Table for many to many relation between items and keywords
-class ItemKeyword(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.NULL, related_name="keywords")
-    keyword = models.ForeignKey(Keyword, on_delete=models.NULL, related_name="items")
 
 #Table for many to many relation between items and PorI.
 #Used for the subject requirement for an item.

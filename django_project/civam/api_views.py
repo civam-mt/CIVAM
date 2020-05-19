@@ -7,8 +7,7 @@ from .forms import *
 from guardian.models import Group
 from django.http import JsonResponse
 from django.core import serializers
-
-
+import json
 # Civam views defined here
 
 # TODO, add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
@@ -24,6 +23,58 @@ def collection_list(request):
 
     return JsonResponse(context, safe=False)
     #return render(request, 'civam/collection_list.html', context)
+
+def register(request):
+	if (request.method == 'POST'):
+		uname = request.user
+		fname = request.first_name
+		lname = request.last_name
+		email = request.email
+		created_by = request.user
+		modified_by = request.user
+		u = user(username=uname, fist_name=fname, last_name=lname, email=email, created_by=created_by, modified_by=modified_by)
+		u.save()
+		return u.id
+	else:
+		return 0
+'''
+def new_collection(request):
+	form = CollectionForm(request.POST or None)
+	if (request.method == 'POST'):
+		if form.is_valid():
+			col_instance = form.save(commit=False)
+			col_instance.created_by = request.user
+			col_instance.modified_by = request.user
+			col_instance.save
+			#return idk man
+			return
+	context = {'collection_form': form}
+	return JsonResponse(context, safe=False)
+
+def item(request, collection_id, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+
+    # Submitting a story
+    # Display stories
+    stories = Story.objects.filter(item_id=item_id)
+
+    # Display images
+    try :
+        image = Image.objects.filter(item_id=item_id)
+    except Image.DoesNotExist:
+        image = None
+
+    # TODO: Display videos
+    try :
+        video = Video.objects.filter(item_id=item_id)
+    except Video.DoesNotExist:
+        video = None
+
+    context = {'item': list(item.values()), 'stories': list(stories.values()), 'images': list(image.values()), 'videos': list(video.values)}
+    return JsonResponse(context, safe=False)
+
+'''
+
 
 
 # Display list of Items in a Collection
@@ -68,9 +119,17 @@ def item(request, collection_id, item_id):
 		video = None
 
     # TODO: Display videos
-#	print(item.value())
+	try :
+		video = Video.objects.filter(item_id=item_id)
+	except Video.DoesNotExist:
+		video = None
+	
+	vids = list()
+	for v in list(video.values()):
+		vids.append(v['link'])
+	#	print(item.value())
     # StoryForm with author auto filled to User's name
-	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values()), 'videos' : list(videos.values())}
+	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values()), 'videos' : vids}
 	return JsonResponse(context, safe=False)
 
 def register(request):
