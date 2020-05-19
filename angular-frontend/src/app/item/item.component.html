@@ -5,17 +5,30 @@
             <h3>{{item.description}}</h3>
         </div>
         <div class = "col-lg-7">
+
+
             <div *ngFor="let video of videos">
-                <p>video</p>
-                <iframe [src]="video | safeUrl" allowfullscreen></iframe>
+                <div style="padding:56.25% 0 0 0;position:relative;">
+                    <iframe [src]="video | safeUrl" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                </div>
+                <script src="https://player.vimeo.com/api/player.js">
+                </script>
+                <br>
             </div>
-            <div *ngFor="let image of images">
-                <img class="card-img-top" src="{{API_URL}}/media/{{image.content}}">
-            </div>
+
+            <ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+                <ng-template ngbSlide *ngFor="let image of images">
+                  <div class="picsum-img-wrapper">
+                    <img src="{{API_URL}}/media/{{image.content}}"  style="width: 100%; height: 100%" alt="Random slide">
+                  </div>
+                </ng-template>
+              </ngb-carousel>
+              <hr>
 
         </div>
     </div>
 </div>
+
 
 <button type="button" class="btn btn-block btn-primary container-sm" (click)="storiesCollapsed = !storiesCollapsed"
 [attr.aria-expanded]="!storiesCollapsed" aria-controls="stories">

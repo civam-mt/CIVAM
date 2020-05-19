@@ -15,13 +15,16 @@ import { ApiService } from '../api.service';
 export class ItemComponent implements OnInit {
 
   SafePipe;
+
+
   API_URL = environment.apiUrl;
   item;
   images;
   stories;
   videos;
-  public storiesCollapsed = true;
-
+  storiesCollapsed = true;
+  showNavigationArrows = true;
+  showNavigationIndicators = true;
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
