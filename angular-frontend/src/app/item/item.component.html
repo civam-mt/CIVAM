@@ -7,7 +7,7 @@
         <div class = "col-lg-7">
             <div *ngFor="let video of videos">
                 <p>video</p>
-                <iframe src="{{video}} | safeUrl" allowfullscreen></iframe>
+                <iframe [src]="video | safeUrl" allowfullscreen></iframe>
             </div>
             <div *ngFor="let image of images">
                 <img class="card-img-top" src="{{API_URL}}/media/{{image.content}}">

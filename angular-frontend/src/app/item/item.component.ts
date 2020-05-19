@@ -8,7 +8,7 @@ import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-item',
-  templateUrl: './item.component.html',
+  templateUrl: './item.component.html', 
   styleUrls: ['./item.component.scss']
 })
 
@@ -20,7 +20,8 @@ export class ItemComponent implements OnInit {
   images;
   stories;
   videos;
-  public storiesCollapsed = true;  
+  public storiesCollapsed = true;
+
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
@@ -35,6 +36,7 @@ export class ItemComponent implements OnInit {
       this.images = this.item["images"];
       this.stories = this.item["stories"];
       this.videos = this.item["videos"];
+
     });
   }
 }
