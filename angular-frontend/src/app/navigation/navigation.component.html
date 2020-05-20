@@ -21,13 +21,13 @@
     <!-- Regular navbar -->
     <!-- <div class="collapse navbar-collapse" id="navbarDiv"> -->
         <ul class="navbar-nav mr-auto">
-            <a class="navbar-brand"><strong>CIVAM</strong></a>
+            <a class="navbar-brand" style="font-size:2vw;"><strong>CIVAM</strong></a>
             <li [ngbNavItem]="1" class="nav-item">
                 <a ngbNavLink 
                     [routerLinkActive]='activeClass'
                     class="navbar-text"
                     routerLink='home'>
-                    <h6><strong>Home</strong></h6>
+                    <h6 style="font-size:2vw;"><strong>Home</strong></h6>
                 </a>
                 <ng-template ngbNavContent></ng-template>
             </li>
@@ -36,7 +36,7 @@
                     [routerLinkActive]='activeClass'
                     class="navbar-text" 
                     routerLink='about'>
-                    <h6><strong>About</strong></h6>
+                    <h6 style="font-size:2vw;"><strong>About</strong></h6>
                 </a>
                 <ng-template ngbNavContent></ng-template>
             </li>
@@ -45,7 +45,7 @@
                     [routerLinkActive]='activeClass'
                     class="navbar-text"
                     routerLink='collections'>
-                    <h6><strong>Collections</strong></h6>
+                    <h6 style="font-size:2vw;"><strong>Collections</strong></h6>
                 </a>
                 <ng-template ngbNavContent></ng-template>
             </li>
@@ -54,24 +54,24 @@
                     [routerLinkActive]='activeClass'
                     class="navbar-text"
                     routerLink='districts'>
-                    <h6><strong>History & Culture</strong></h6>
+                    <h6 style="font-size:2vw;"><strong>History & Culture</strong></h6>
                 </a>
                 <ng-template ngbNavContent></ng-template>
             </li>
             <li ngbDropdown class="nav-item">
-                <a href (click)="false" class="nav-link navbar-text" ngbDropdownToggle><b>Browse</b></a>
+                <a href (click)="false" class="nav-link navbar-text" ngbDropdownToggle><b style="font-size:2vw;">Browse</b></a>
                 <div ngbDropdownMenu>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='oral-histories'>Oral Histories</button>
+                        routerLink='oral-histories' style="font-size:2vw;">Oral Histories</button>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='picture-collections'>Picture Collections</button>
+                        routerLink='picture-collections' style="font-size:2vw;">Picture Collections</button>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='artifacts'>Artifacts</button>
+                        routerLink='artifacts' style="font-size:2vw;">Artifacts</button>
                     <div class="dropdown-divider"></div>
-                    <button ngbDropdownItem>Contribute</button>
+                    <button ngbDropdownItem style="font-size:2vw;">Contribute</button>
                 </div>
             </li>
         </ul>
