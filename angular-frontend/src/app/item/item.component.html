@@ -1,58 +1,94 @@
-<div class = "container jumbotron bg-primary text-light">
-    <div *ngIf="item" class = row>
-        <div class = "col-lg-5">
-            <h1>{{item.name}}</h1>
-            <h3>CREATOR/CONTRIBUTOR NAME</h3>
-            <p>{{item.description}}</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisque egestas
-                 diam in arcu cursus euismod quis. Ultrices gravida dictum fusce ut placerat orci nulla. Eu sem integer vitae justo eget. Luctus accumsan 
-                 tortor posuere ac ut consequat semper. In hac habitasse platea dictumst vestibulum rhoncus est. In hac habitasse platea dictumst quisque 
-                 sagittis purus sit amet. Egestas erat imperdiet sed euismod nisi. Hendrerit dolor magna eget est lorem ipsum dolor sit. Ac turpis egestas maecenas 
-                 pharetra convallis. Velit egestas dui id ornare arcu odio. In dictum non consectetur a erat. Aliquam ut porttitor leo a diam. Ut tristique et.</p>
-            
-             <p style="font-size:14px">Geographic location data pulled from api (if relevant)</p>
-        
-        </div>
-        <div class = "col-lg-7">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QTnX_u3w8yU" allowfullscreen></iframe>
+<div *ngIf="item">
+    <div class = "container jumbotron theme-color text-light">
+        <div class = row>
+            <div class = "col-lg-5">
+                <h1>{{item.name}}</h1>
+                <!-- TODO: Get creator name from api -->
+                <h3>Creator Name</h3>
+                <p style="font-size:1vw;">{{item.description}}</p>
+    <!--             <h3>{{item.description}}</h3> -->
             </div>
-            <div *ngFor="let image of images">
-                <img class="card-img-top" src="{{API_URL}}/media/{{image.content}}">
+            <div class = "col-lg-7">
+
+
+                <div *ngFor="let video of videos">
+                    <div style="padding:56.25% 0 0 0;position:relative;">
+                        <iframe [src]="video | safeUrl" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    </div>
+                    <script src="https://player.vimeo.com/api/player.js">
+                    </script>
+                    <br>
+                </div>
+
+                <ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+                    <ng-template ngbSlide *ngFor="let image of images">
+                    <div class="picsum-img-wrapper">
+                        <img src="{{API_URL}}/media/{{image.content}}"  style="width: 100%; height: 100%" alt="Random slide">
+                    </div>
+                    </ng-template>
+                </ngb-carousel>
+                <hr>
+
             </div>
         </div>
     </div>
-</div>
-<br>
-<div class = "container jumbotron bg-primary text-light">
-    <div class = "row">
-        <div class = "col-lg-12">
-            <div class = "container text-center">
-            <h3> Item Information</h3>
+
+
+    <button type="button" class="btn btn-block theme-color container-sm" (click)="storiesCollapsed = !storiesCollapsed"
+    [attr.aria-expanded]="!storiesCollapsed" aria-controls="stories">
+    <h3>Stories</h3>
+    </button>
+
+    <div id="stories" [ngbCollapse]="storiesCollapsed">
+        <div class="card container block-margin">
+        <div class="card-body">
+            <div *ngFor="let story of stories">
+                <h3>{{story.author}}</h3>
+                <p>{{story.content}}</p>
             </div>
         </div>
-    </div>
-    <div class ="row">
-        <div class = "col-lg-3"></div>
-        <div class = "col-lg-3">
-            <p><strong>Title:</strong></p> <hr>
-            <p><strong>Creator/Contributor: </strong></p><hr>
-            <p><strong>Date Created:</strong></p><hr>
-            <p><strong>Physical Details:</strong></p><hr>
-            <p><strong>Digital Format: </strong></p><hr>
-            <p><strong>Owner:</strong></p><hr>
-            <p><strong>Access and Use:</strong></p><hr>
-            <p><strong>Reproduction Rights: </strong></p><hr>
         </div>
-        <div *ngIf="item" class = "col-lg-5">
-            <p>{{item.name}}</p><hr>
-            <p>Creator/Contributor from api</p><hr>
-            <p>Date from api</p><hr>
-            <p>Physical Details</p><hr>
-            <p>Digital format</p><hr>
-            <p>owner</p><hr>
-            <p>access and use</p><hr>
-            <p>reproduction rights</p><hr>
+    </div>
+    <br>
+
+    <div class = "container jumbotron theme-color text-light">
+        <div class = "row">
+            <div class = "col-lg-12">
+                <div class = "container text-center">
+                <h3 style="font-size:2vw;"> Item Information</h3>
+                </div>
+            </div>
+        </div>
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.culture_or_community"><p><strong>Culture or Community:</strong></p> <hr></div>
+                <div *ngIf="item.heritage_type"><p><strong>Heritage Type:</strong></p> <hr></div>
+                <div *ngIf="item"><p><strong>Creator/Contributor: </strong></p><hr></div>
+                <div *ngIf="item.date_of_creation"><p><strong>Date Created:</strong></p><hr></div>
+                <div *ngIf="item.physical_details"><p><strong>Physical Details:</strong></p><hr></div>
+                <div *ngIf="item.reproduction_rights"><p><strong>Reproduction Rights:</strong></p><hr></div>
+                <div *ngIf="item.place_created"><p><strong>Place Created:</strong></p><hr></div>
+                <div *ngIf="item.source"><p><strong>Source:</strong></p><hr></div>
+                <div *ngIf="item.accession_number"><p><strong>Accession Number:</strong></p> <hr></div>
+                <div *ngIf="item.accession_date"><p><strong>Accession Date:</strong></p> <hr></div>
+                <div *ngIf="item.external_link"><p><strong>External Link:</strong></p><hr></div>
+                <div *ngIf="item.provenance"><p><strong>Provenance:</strong></p><hr></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.culture_or_community"><p>{{item.culture_or_community}}</p><hr></div>
+                <div *ngIf="item.heritage_type"><p>{{item.heritage_type}}</p> <hr></div>
+                <div *ngIf="item"><p>Creator Name</p><hr></div>
+                <div *ngIf="item.date_of_creation"><p>{{item.date_of_creation}}</p><hr></div>
+                <div *ngIf="item.physical_details"><p>{{item.physical_details}}</p><hr></div>
+                <div *ngIf="item.reproduction_rights"><p>{{item.reproduction_rights}}</p><hr></div>
+                <div *ngIf="item.place_created"><p>{{item.place_created}}</p><hr></div>
+                <div *ngIf="item.source"><p>{{item.source}}</p><hr></div>
+                <div *ngIf="item.accession_number"><p>{{item.accession_number}}</p> <hr></div>
+                <div *ngIf="item.accession_date"><p>{{item.accession_date}}</p> <hr></div>
+                <div *ngIf="item.external_link"><p>{{item.external_link}}</p><hr></div>
+                <div *ngIf="item.provenance"><p>{{item.provenance}}</p><hr></div>
+            </div>
         </div>
     </div>
 </div>

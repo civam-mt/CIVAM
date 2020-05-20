@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Story
+from .models import Collection, Item, Image, Video, Story, Keyword, PorI
 from guardian.admin import GuardedModelAdmin
 
 # Civam admin models are defined here
@@ -47,17 +47,21 @@ class StoryInline(admin.TabularInline):
     model = Story
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
 
+class KeywordInline(admin.TabularInline):
+    model = Keyword
 
-# Can create Collections and Items directly
+# Can create Collections and Items and Poris directly
 class CollectionAdmin(DefaultAdmin):
     list_display = ('title', 'created_by')
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection')
-    inlines = [ImageInline, VideoInline, StoryInline,]
+    inlines = [ImageInline, VideoInline, StoryInline, KeywordInline]
 
+class PorIAdmin(DefaultAdmin):
+    pass    
 # Register admin models    
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Item, ItemAdmin)
-
+admin.site.register(PorI, PorIAdmin)
     

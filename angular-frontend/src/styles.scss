@@ -26,9 +26,10 @@ body {
     background: url('./assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;
 }
 
-
 .jumbotron {
     background-color: transparent;
+    padding-top: .3em;
+    padding-bottom: 0em;
 }
 
 .container {
@@ -38,6 +39,10 @@ body {
 
 .row {
     row-gap: 2em;
+}
+
+.theme-color {
+    background-color: #27c5bd !important;
 }
 
 /*
