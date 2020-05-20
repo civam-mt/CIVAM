@@ -21,6 +21,8 @@ import { AuthComponent } from './auth/auth.component';
 import { UsernameService } from './auth/username.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SafePipe } from './Safepipe.pipe';
+import { MapComponent } from './map/map.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -40,7 +42,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AuthComponent,
     CollectionComponent,
     ItemComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SafePipe,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     // ModalServiceModule.forRoot()
   ],
   exports: [
-    AboutComponent
+    AboutComponent,
+    SafePipe
   ],
   providers: [
     UsernameService

@@ -14,6 +14,9 @@ export class ApiService {
   public getCollections() {
     return this.httpClient.get(`${this.API_URL}/api/collections/`);
   }
+  public getItemByItemID(itemID: string) {
+    return this.httpClient.get(`${this.API_URL}/api/items/${itemID}/`);
+  }
   public getItemByCollectionIDItemID(collectionID: string, itemID: string) {
     return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/${itemID}/`);
   }
