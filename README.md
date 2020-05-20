@@ -1,21 +1,23 @@
 # CIVAM
 ## Description
+* Django Version: 2.2.6
 * Python Version: 3.6.8
-* Django Version: ???
 * Angular Version: 9.1.3
 
 A Django website with an Angular frontend serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
-The Django side is located in the *django_project* folder. This is the folder that all python commands below should be run in.
+### General Instructions
+* All python commands should be run in in the *django_project* folder.
+* All ng commands should be run in the *angular-frontend* folder. Individual site components are within */src/app/*
+* You must install all required packages and modules before you can run the site locally.
 
-The Angular side is located in the *angular-frontend* folder. Individual site components are within */src/app/*
-
-Setup instructions are below. You must install all required packages and modules before you can run the site
-
-## Running site locally
+# To Run Site Locally
+* `cd django_project`
 * `sudo service postgresql start` 
-* In *django_project* folder: `python3 manage.py runserver`
-* In *angular-frontend*: `ng build` then `ng serve`
+* `python3 manage.py runserver`
+* `cd ../angular-frontend`
+* `ng build`
+* `ng serve`
 * Backend: http://127.0.0.1:8000/admin
 * Frontend: http://127.0.0.1:4200/
 
@@ -28,12 +30,9 @@ Setup instructions are below. You must install all required packages and modules
 
 ## Backend Project Setup
 ### Install Required Programs for Django: Python and Postgresql
-
-Make sure you are in the *django_project* folder.
-
-If needed, run `sudo apt update`
-
-Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postgresql-contrib`
+* `cd django_project`
+* `sudo apt update`
+* `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postgresql-contrib`
 
 ### Postgresql Setup
 * `sudo service postgresql start` 
@@ -50,7 +49,7 @@ Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postg
 
 ### Python Requirements
 * `cd project`
-* Run `pip3 install -r requirements.txt`
+* `pip3 install -r requirements.txt`
 
 ## Allow Outside Hosts
 * `vim settings.py`
@@ -73,36 +72,35 @@ Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postg
 
 ## Frontend Project Setup
 ### Install NodeJS (npm) and Angular (ng) dependencies
-* Run these commands in the main directory (one level above django_project)
+* `cd angular-frontend`
 * Install NodeJS
    * For Ubuntu or WSL https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/ 
 * Put npm PATH in manually: `usr/bin/npm`
    * Option 1: Add the alias to your .bash_profile
    * Option 2: Put it in your Environment Variables under System Properties
-* Run `sudo npm install -g @angular/cli`
+* `sudo npm install -g @angular/cli`
 * (Run the npm install commands from here: https://angular.io/cli)
 * `cd angular-frontend`
 * `npm install`
 * `npm install jwt-decode --save`
-
-### Angular config
-* If you get this warning: “Your global Angular CLI version (#.#.#) is greater than your local version (#.#.#). The local Angular CLI version is used” then run: `npm install --save-dev @angular/cli@latest`
 
 ### Build project
 * `ng build`
 * `ng serve --host 0.0.0.0`
 * Navigate to http://127.0.0.1:4200/ to view the frontend site
 
-## Development Instructions
+## Backend Development & Cleaning Instructions
 ### Reset Civam Migrations: Recreates Postgresql Tables (THIS WILL DELETE ALL CIVAM OBJECTS IN THE DATABASE)
 #### Delete all files in civam/migrations/ execpt for __init__.py
+* `cd django_project/civam/migrations`
 * `rm !(__init__.py)`
 
 #### Clean up postgresql database
+* `sudo service postgresql start`
 * `sudo -i -u postgres`
 * `psql`
 * `\c django_db`
-* `DROP TABLE civam_collection, civam_image, civam_item, civam_story, civam_video, civam_collectiongroup;`
+* `DROP TABLE civam_collection, civam_image, civam_item, civam_story, civam_video, civam_collectiongroup, civam_PorI, civam_ItemPorI, civam_keyword;
 * `delete from django_migrations where app='civam';`
 * `\q`
 * `exit`
@@ -110,5 +108,10 @@ Then run `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postg
 #### Migrate
 * `python3 manage.py makemigrations civam`
 * `python3 manage.py migrate civam`
+
+## General Advice
+* Always run postgresql service before migrating or running django
+* Any errors that mention port5432 or errors in python installation directories are likely caused by postgresql service not being run
+* If you get this warning: “Your global Angular CLI version (#.#.#) is greater than your local version (#.#.#). The local Angular CLI version is used” then run: `npm install --save-dev @angular/cli@latest`
 
 
