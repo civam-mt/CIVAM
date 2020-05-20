@@ -24,6 +24,10 @@ class ItemForm(ModelForm):
                   'date_of_creation', 'physical_details', 'reproduction_rights', 'place_created',
                   'source', 'accession_number', 'accession_date', 'external_link', 'provenance']
 
+class PorIForm(ModelForm):
+   class Meta:
+       model = PorI
+       fields = ['name', 'date_start', 'date_end', 'notes']
 
 class RegistrationForm(ModelForm):
     class Meta:
