@@ -42,7 +42,7 @@ class Item(models.Model):
     cover_image = models.ImageField(upload_to="cover_images/items/", blank=True)
     description = models.TextField(blank=True)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="items", blank=True)
-    creator = models.ForeignKey(PorI, on_delete=models.SET_NULL, null=True, related_name="creators", blank=True)
+    # creator = models.ForeignKey(PorI, on_delete=models.SET_NULL, null=True, related_name="creators", blank=True)
     culture_or_community = models.CharField(max_length=127, null=True, blank=True)
     heritage_type = models.CharField(max_length=127, null=True, blank=True)
     date_of_creation = models.DateTimeField(auto_now=False, null=True, blank=True)

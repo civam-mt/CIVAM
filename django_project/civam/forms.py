@@ -25,6 +25,7 @@ class ItemForm(ModelForm):
             'source', 'accession_number', 'accession_date', 'external_link', 'provenance']
 
         # TODO: commented out 'creator' field
+        # FIXED
         # fields = ['name', 'description', 'creator', 'culture_or_community', 'heritage_type',
         #           'date_of_creation', 'physical_details', 'reproduction_rights', 'place_created',
         #           'source', 'accession_number', 'accession_date', 'external_link', 'provenance']
