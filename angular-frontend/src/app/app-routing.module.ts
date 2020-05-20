@@ -9,6 +9,7 @@ import { OralHistoriesComponent } from './oral-histories/oral-histories.componen
 import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { ItemComponent } from './item/item.component';
 import { CollectionComponent } from './collection/collection.component';
+import { MapComponent } from './map/map.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
 {path:'artifacts',component: ArtifactsComponent},
 {path:'items/:itemID', component: ItemComponent},
 {path:'collections/:collectionID', component: CollectionComponent},
+{path:'map', component: MapComponent},
   
 // Keep this one last, so it catches everything else
 {path:'**',component: PageNotFoundComponent}

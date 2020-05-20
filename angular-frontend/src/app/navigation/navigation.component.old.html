@@ -3,30 +3,29 @@
 -->
 
 <nav ngbNav #nav="ngbNav" [activeId]="0" 
-    class="navbar navbar-dark theme-color navbar-expand-lg">
+    class="navbar navbar-dark bg-primary navbar-expand-lg">
 
     <!-- Hamburger menu -->
-    <!-- TODO: get hamburger menu to actually work
     <button class="navbar-toggler" 
         type="button" 
         data-toggle="collapse"
-        data-target="#navbarDiv"
+        data-target="navbar"
         aria-controls="navbar"
         aria-expanded="false"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    -->
 
     <!-- Regular navbar -->
-    <!-- <div class="collapse navbar-collapse" id="navbarDiv"> -->
+    <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
+            <a class="navbar-brand">CIVAM</a>
             <li [ngbNavItem]="1" class="nav-item">
                 <a ngbNavLink 
                     [routerLinkActive]='activeClass'
                     class="navbar-text"
                     routerLink='home'>
-                    <strong>Home</strong>
+                    <b>Home</b>
                 </a>
                 <ng-template ngbNavContent></ng-template>
             </li>
@@ -35,7 +34,7 @@
                     [routerLinkActive]='activeClass'
                     class="navbar-text" 
                     routerLink='about'>
-                    <strong>About</strong>
+                    <b>About</b>
                 </a>
                 <ng-template ngbNavContent></ng-template>
             </li>
@@ -44,7 +43,7 @@
                     [routerLinkActive]='activeClass'
                     class="navbar-text"
                     routerLink='collections'>
-                    <strong>Collections</strong>
+                    <b>Collections</b>
                 </a>
                 <ng-template ngbNavContent></ng-template>
             </li>
@@ -53,39 +52,28 @@
                     [routerLinkActive]='activeClass'
                     class="navbar-text"
                     routerLink='districts'>
-                    <strong>History & Culture</strong>
-                </a>
-                <ng-template ngbNavContent></ng-template>
-            </li>
-            <li [ngbNavItem]="5" class="nav-item">
-                <a ngbNavLink
-                    [routerLinkActive]='activeClass'
-                    class="navbar-text"
-                    routerLink='map'>
-                    <strong>Crow Collections Around the World</strong>
+                    <b>History & Culture</b>
                 </a>
                 <ng-template ngbNavContent></ng-template>
             </li>
             <li ngbDropdown class="nav-item">
-                <a href (click)="false" class="nav-link navbar-text" ngbDropdownToggle><strong>Browse</strong></a>
-
+                <a href (click)="false" class="nav-link navbar-text" ngbDropdownToggle><b>Browse</b></a>
                 <div ngbDropdownMenu>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='oral-histories' style="font-size:1.3vw;">Oral Histories</button>
+                        routerLink='oral-histories'>Oral Histories</button>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='picture-collections' style="font-size:1.3vw;">Picture Collections</button>
+                        routerLink='picture-collections'>Picture Collections</button>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='artifacts' style="font-size:1.3vw;">Artifacts</button>
+                        routerLink='artifacts'>Artifacts</button>
                     <div class="dropdown-divider"></div>
-                    <button ngbDropdownItem style="font-size:1.3vw;">Contribute</button>
+                    <button ngbDropdownItem>Contribute</button>
                 </div>
             </li>
         </ul>
-    <!-- </div> -->
-    <a class="navbar-brand navbar-text brand-custom"><strong>CIVAM</strong></a>
+    </div>
 </nav>
 
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
