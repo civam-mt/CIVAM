@@ -1,4 +1,4 @@
-<div class = "container jumbotron bg-primary text-light">
+<div class = "container jumbotron theme-color text-light">
     <div *ngIf="item" class = row>
         <div class = "col-lg-5">
             <h1>{{item.name}}</h1>
@@ -33,7 +33,7 @@
 </div>
 
 
-<button type="button" class="btn btn-block btn-primary container-sm" (click)="storiesCollapsed = !storiesCollapsed"
+<button type="button" class="btn btn-block theme-color container-sm" (click)="storiesCollapsed = !storiesCollapsed"
 [attr.aria-expanded]="!storiesCollapsed" aria-controls="stories">
 <h3>Stories</h3>
 </button>
@@ -50,7 +50,7 @@
   </div>
 <br>
 
-<div class = "container jumbotron bg-primary text-light">
+<div class = "container jumbotron theme-color text-light">
     <div class = "row">
         <div class = "col-lg-12">
             <div class = "container text-center">

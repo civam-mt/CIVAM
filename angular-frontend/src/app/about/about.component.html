@@ -1,4 +1,4 @@
-<div class = "container-fluid jumbotron text-center display-4" style="font-size:6vw;"> 
+<div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
   About
 </div>
 
@@ -9,9 +9,9 @@
 
 
 <p>
-  <button type="button" class="btn btn-block btn-primary container-sm" (click)="missionCollapsed = !missionCollapsed"
+  <button type="button" class="btn btn-block theme-color container-sm" (click)="missionCollapsed = !missionCollapsed"
           [attr.aria-expanded]="!missionCollapsed" aria-controls="mission">
-          <h3 style="font-size:3vw;">Our Mission</h3>
+          <h3 style="font-size:2.5vw;">Our Mission</h3>
   </button>
 </p>
 <div id="mission" [ngbCollapse]="missionCollapsed">
@@ -28,9 +28,9 @@
 </div>
 
 <p>
-  <button type="button" class="btn btn-block container-sm btn-primary" (click)="originCollapsed = !originCollapsed"
+  <button type="button" class="btn btn-block container-sm theme-color" (click)="originCollapsed = !originCollapsed"
           [attr.aria-expanded]="!originCollapsed" aria-controls="origin">
-          <h3 style="font-size:3vw;">Origins</h3>
+          <h3 style="font-size:2.5vw;">Origins</h3>
   </button>
 </p>
 
@@ -47,9 +47,9 @@
 </div>
 
 <p>
-  <button type="button" class="btn btn-block container-sm btn-primary" (click)="peopleCollapsed = !peopleCollapsed"
+  <button type="button" class="btn btn-block container-sm theme-color" (click)="peopleCollapsed = !peopleCollapsed"
           [attr.aria-expanded]="!peopleCollapsed" aria-controls="people">
-        <h3 style="font-size:3vw;">People</h3>
+        <h3 style="font-size:2.5vw;">People</h3>
   </button>
 </p>
 <div id="people" [ngbCollapse]="peopleCollapsed">
@@ -118,9 +118,9 @@
 </div>
 
 <p>
-  <button type="button" class="btn btn-block btn-primary container-sm" (click)="resourcesCollapsed = !resourcesCollapsed"
+  <button type="button" class="btn btn-block theme-color container-sm" (click)="resourcesCollapsed = !resourcesCollapsed"
           [attr.aria-expanded]="!resourcesCollapsed" aria-controls="resources">
-          <h3 style="font-size:3vw;">Resources</h3>
+          <h3 style="font-size:2.5vw;">Resources</h3>
   </button>
 </p>
 <div id="resources" [ngbCollapse]="resourcesCollapsed">
@@ -136,7 +136,7 @@
 
 <!--
 <p>
-  <button type="button" class="btn btn-block container-sm btn-primary" (click)="historyCollapsed = !historyCollapsed"
+  <button type="button" class="btn btn-block container-sm theme-color" (click)="historyCollapsed = !historyCollapsed"
           [attr.aria-expanded]="!historyCollapsed" aria-controls="history">
         <h3>History</h3>
   </button>
