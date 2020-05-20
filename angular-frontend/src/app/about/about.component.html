@@ -106,13 +106,30 @@
             <div class = "col-lg-8">
               <br><br><br>
               <h6 style="font-size:2vw;">University of Delaware Graduate Students</h6>
-              <p style="font-size:1vw;">During the spring 2019 semester, graduate students in the “Introduction to Material Culture Studies Theory and Practice” reached out to cultural institutions around the world looking for Crow materials and the Crow Indian Collections Around the World Map is based on their findings. They also designed and built the CIVAM website. A special thanks for their great efforts and dedication to: Ellie Gorman, Adam Grimes, Danielle Haugk, Matthew Monk, Megan O’Donell, and Fabian Martin Rempfer.</p>    
+              <p style="font-size:1vw;">During the spring 2019 semester, graduate students in the “Introduction to Material Culture Studies Theory and Practice” reached out to cultural institutions around the world looking for Crow materials and the Crow Indian Collections Around the World Map is based on their findings. They also designed and built the first CIVAM website. A special thanks for their great efforts and dedication to: Ellie Gorman, Adam Grimes, Danielle Haugk, Matthew Monk, Megan O’Donell, and Fabian Martin Rempfer.</p>    
             </div>
             <div class = "col-lg-2"></div>
           </div>
         </div>
 
 
+    </div>
+  </div>
+</div>
+
+<p>
+  <button type="button" class="btn btn-block btn-primary container-sm" (click)="resourcesCollapsed = !resourcesCollapsed"
+          [attr.aria-expanded]="!resourcesCollapsed" aria-controls="resources">
+          <h3 style="font-size:3vw;">Resources</h3>
+  </button>
+</p>
+<div id="resources" [ngbCollapse]="resourcesCollapsed">
+  <div class="card container block-margin">
+    <div class="card-body">
+      <ul style="font-size:1vw;">
+        <li><a href="https://www.thecenterpole.org">The Center Pole</a></li>
+        <li><a href="http://lib.lbhc.edu ">Little Big Horn College Library</a></li>
+    </ul>
     </div>
   </div>
 </div>
