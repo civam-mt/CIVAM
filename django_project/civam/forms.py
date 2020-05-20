@@ -20,7 +20,9 @@ class CollectionForm(ModelForm):
 class ItemForm(ModelForm):
     class Meta:
         model = Item
-        fields = ['name', 'description']
+        fields = ['name', 'description', 'creator', 'culture_or_community', 'heritage_type',
+                  'date_of_creation', 'physical_details', 'reproduction_rights', 'place_created',
+                  'source', 'accession_number', 'accession_date', 'external_link', 'provenance']
 
 
 class RegistrationForm(ModelForm):
