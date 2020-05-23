@@ -29,9 +29,10 @@ $teal:        #20c997 !default;
 $cyan:        #5bc0de !default;
 $dark-red:    #af010c !default; 
 $dark-yellow: #ffd900 !default;
-$turquoise:   #78b3df !default;
+$turquoise-crow:    #78b3df !default;
+$turquoise-generic: #27c5bd !default;
 
-$primary:       $turquoise !default;
+$primary:       $turquoise-crow !default;
 $secondary:     $gray-200 !default;
 $success:       $green !default;
 $info:          $cyan !default;
