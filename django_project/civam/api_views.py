@@ -199,8 +199,8 @@ def item(request, collection_id, item_id):
 		keyword = None
 
 	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values()), 
-	'videos' : vids, 'culture_or_community' : item.culture_or_community, 'heritage_type' : item.heritage_type, 'date_of_creation' : item.date_of_creation, 
-	'physical_details' : item.physical_details, 'reproduction_rights' : item.reproduction_rights, 'place_created' : item.place_created, 'source' : item.source, 
+	'videos' : vids, 'culture_or_community' : item.culture_or_community, 'heritage_type' : item.heritage_type, 'date_of_creation' : item.date_of_creation, 'creator_id' : item.creator.id,  
+	'creator_description' : item.creator.name, 'physical_details' : item.physical_details, 'reproduction_rights' : item.reproduction_rights, 'place_created' : item.place_created, 'source' : item.source, 
 	'accession_number' : item.accession_number, 'accession_date' : item.accession_date, 'external_link' : item.external_link, 'provenance' : item.provenance, 'keyword' : list(keyword.values())}
 	return JsonResponse(context, safe=False)
 
