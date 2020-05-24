@@ -53,10 +53,12 @@ class KeywordInline(admin.TabularInline):
 # Can create Collections and Items and Poris directly
 class CollectionAdmin(DefaultAdmin):
     list_display = ('title', 'created_by')
+    search_fields = ['title','description']
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection')
     inlines = [ImageInline, VideoInline, StoryInline, KeywordInline]
+    search_fields = ['name','description','collection__title']
 
 class PorIAdmin(DefaultAdmin):
     pass    
