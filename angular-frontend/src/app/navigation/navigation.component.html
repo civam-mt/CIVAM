@@ -3,7 +3,7 @@
 -->
 
 <nav ngbNav #nav="ngbNav" [activeId]="0" 
-    class="navbar navbar-dark bg-primary navbar-expand-lg">
+    class="navbar navbar-light bg-primary navbar-expand-lg">
 
     <!-- Hamburger menu -->
     <!-- TODO: get hamburger menu to actually work
@@ -67,12 +67,15 @@
                 <ng-template ngbNavContent></ng-template>
             </li>
             <li ngbDropdown class="nav-item">
-                <a href (click)="false" class="nav-link navbar-text" ngbDropdownToggle><strong>Browse</strong></a>
+                <a href (click)="false"
+                    class="nav-link nav-item navbar-text"
+                    ngbDropdownToggle><strong>Browse</strong></a>
 
                 <div ngbDropdownMenu>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='oral-histories' style="font-size:1.3vw;">Oral Histories</button>
+                        routerLink='oral-histories' 
+                        style="font-size:1.3vw;">Oral Histories</button>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
                         routerLink='picture-collections' style="font-size:1.3vw;">Picture Collections</button>
@@ -85,7 +88,7 @@
             </li>
         </ul>
     <!-- </div> -->
-    <a class="navbar-brand navbar-text brand-custom"><strong>CIVAM</strong></a>
+    <a class="navbar-brand"><strong>CIVAM</strong></a>
 </nav>
 
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
