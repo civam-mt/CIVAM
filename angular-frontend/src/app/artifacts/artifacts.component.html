@@ -2,14 +2,17 @@
 <div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
     Artifacts
 </div>
-
-<div class="row justify-content-center container-fluid">
-    <div *ngFor="let component of collections" class="col-xl-3 col-sm-6 py-2">
-        <div class="card h-100">
-            <img class="card-img-top" src={{component.cover_image}}>
+<div class="row container-fluid">
+    <div *ngFor="let item of items" class="col-xl-3 col-sm-6 py-2">
+        <div *ngIf="item" class="card h-100">
+            <img class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
             <div class="card-body">
-                <h4 class="card-title">{{component.title}}</h4>
-                <p class="card-text">{{component.description}}</p>
+                <h4 class="card-title">{{item.name}}</h4>
+                <p class="card-text">{{item.description}}</p>
+            </div>
+            <div class="card-footer">
+                <a [routerLink]="['/items', item.id]"
+                    class="btn btn-outline-primary my-2 my-sm-0">Checkout Item</a>
             </div>
         </div>
     </div>
