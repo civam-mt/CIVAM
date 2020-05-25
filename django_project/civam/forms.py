@@ -5,6 +5,11 @@ from guardian.models import Group
 from django.core.exceptions import NON_FIELD_ERRORS
 
 # Civam forms are defined here
+class NarrativeForm(ModelForm):
+    class Meta:
+        model = Narrative
+        fields = ['content', 'author']
+        
 
 class StoryForm(ModelForm):
     class Meta:
@@ -31,9 +36,14 @@ class ItemForm(ModelForm):
         #           'source', 'accession_number', 'accession_date', 'external_link', 'provenance']
 
 class PersonOrInstituteForm(ModelForm):
-   class Meta:
-       model = PersonOrInstitute
-       fields = ['name'] 
+    class Meta:
+        model = PersonOrInstitute
+        fields = ['name'] 
+
+class KeywordForm(ModelForm):
+    class Meta:
+        model = Keyword
+        fields = ['word']
 
 class RegistrationForm(ModelForm):
     class Meta:
