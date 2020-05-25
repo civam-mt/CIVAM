@@ -12,6 +12,16 @@ class Collection(models.Model):
     description = models.TextField(blank=True)
     cover_image = models.ImageField(upload_to="cover_images/", blank=True)
     public = models.BooleanField(default=True)
+    summary = models.TextField(blank=True, null=True)
+    provenance = models.CharField(max_length=255, blank=True, null=True)
+    citation = models.CharField(max_length=255, blank=True, null=True)
+    historical_note = models.TextField(blank=True, null=True)
+    access_notes_or_rights_and_reproduction = models.CharField(max_length=127, null=True, blank=True)
+    
+    notes = models.TextField(blank=True, null=True)
+    cataloger = models.CharField(max_length=511, null=True, blank=True)
+    cataloge_date = models.CharField(max_length=511, null=True, blank=True)    
+
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_created")
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_modified")
@@ -21,12 +31,15 @@ class Collection(models.Model):
         return self.title
 
 #PorI = Person or Institute
-class PorI(models.Model):
+class PersonOrInstitute(models.Model):
     name = models.CharField(max_length=125, blank=True)
-    date_start = models.DateTimeField(auto_now=False, null=True, blank=True)
-    date_end = models.DateTimeField(auto_now=False, null=True, blank=True)
-    notes = models.CharField(max_length=255, null=True, blank=True)
-    
+    culture = models.CharField(max_length=255, blank=True, null=True)
+    dates = models.TextField(blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    historical_note = models.CharField(max_length=255, blank=True, null=True)
+    collection = models.ForeignKey(Collection, on_delete=models.SET_NULL, related_name="PorIs", blank=True, null=True)
+
+    notes = models.CharField(max_length=255, null=True, blank=True)    
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="PorI_created")
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="Pori_modified")
@@ -42,19 +55,22 @@ class Item(models.Model):
     cover_image = models.ImageField(upload_to="cover_images/items/", blank=True)
     description = models.TextField(blank=True)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="items", blank=True)
-    # creator = models.ForeignKey(PorI, on_delete=models.SET_NULL, null=True, related_name="creators", blank=True)
     culture_or_community = models.CharField(max_length=127, null=True, blank=True)
-    heritage_type = models.CharField(max_length=127, null=True, blank=True)
-    date_of_creation = models.DateTimeField(auto_now=False, null=True, blank=True)
+    other_forms = models.CharField(max_length=127, null=True, blank=True)
+    digital_heritage_item = models.CharField(max_length=127, null=True, blank=True)
+    date_of_creation = models.CharField(max_length=127, null=True, blank=True)
     physical_details = models.CharField(max_length=255, null=True, blank=True)
-    reproduction_rights = models.CharField(max_length=127, null=True, blank=True)
-    #keywords = models.ForeignKey(keyword, on_delete=models.SET_NULL, null=True, related_name="item")
+    access_notes_or_rights_and_reproduction = models.CharField(max_length=127, null=True, blank=True)
     place_created = models.CharField(max_length=127, null=True, blank=True)
-    source = models.CharField(max_length=127, null=True, blank=True)
-    accession_number = models.CharField(max_length=31, null=True, blank=True)
-    accession_date = models.DateTimeField(auto_now=False, null=True, blank=True)
+    location_of_original = models.CharField(max_length=127, null=True, blank=True)
+    catalog_number = models.CharField(max_length=31, null=True, blank=True)
     external_link = models.URLField(max_length=200, null=True, blank=True)
     provenance = models.CharField(max_length=127, null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
+    citation = models.TextField(max_length=255, null=True, blank=True)    
+    historical_note = models.TextField(max_length=255, null=True, blank=True)
+    cataloger = models.CharField(max_length=511, null=True, blank=True)
+    cataloge_date = models.CharField(max_length=511, null=True, blank=True)    
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_created")
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_modified")
@@ -133,11 +149,3 @@ class Keyword(models.Model):
     def __str__(self):
         self.keyword
 
-
-#Table for many to many relation between items and PorI.
-#Used for the subject requirement for an item.
-class ItemPorI(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="subject")
-    pori = models.ForeignKey(PorI, on_delete=models.CASCADE, related_name="item")
-    
-        

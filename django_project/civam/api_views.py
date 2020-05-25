@@ -149,9 +149,10 @@ def item_solo(request, item_id):
 		keyword = None
 
 	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values()), 
-	'videos' : vids, 'culture_or_community' : item.culture_or_community, 'heritage_type' : item.heritage_type, 'date_of_creation' : item.date_of_creation, 
-	'physical_details' : item.physical_details, 'reproduction_rights' : item.reproduction_rights, 'place_created' : item.place_created, 'source' : item.source, 
-	'accession_number' : item.accession_number, 'accession_date' : item.accession_date, 'external_link' : item.external_link, 'provenance' : item.provenance, 'keyword' : list(keyword.values()), 'cover_image': None}
+	'videos' : vids, 'culture_or_community' : item.culture_or_community, 'heritage_type' : item.heritage_type, 'date_of_creation' : item.date_of_creation, 'creator_id' : item.creator.id,  
+	'physical_details' : item.physical_details, 'access_notes_or_rights_and_reproduction' : item.access_notes_or_rights_and_reproduction, 
+        'place_created' : item.place_created, 'location_of_original' : item.location_of_original, 'historical_note' : item.historical_note,  'catalog_number' : item.catalog_number, 
+        'external_link' : item.external_link, 'provenance' : item.provenance, 'keyword' : list(keyword.values()), 'cover_image' : item.cover_image}
 	return JsonResponse(context, safe=False)
 
 def item(request, collection_id, item_id):
@@ -182,26 +183,18 @@ def item(request, collection_id, item_id):
 	except Video.DoesNotExist:
 		video = None
 
-    # TODO: Display videos
-	try :
-		video = Video.objects.filter(item_id=item_id)
-	except Video.DoesNotExist:
-		video = None
 	
 	vids = list()
 	for v in list(video.values()):
 		vids.append(v['link'])
 	#	print(item.value())
 	
-	try :
-		keyword = Keyword.objects.filter(item_id=item_id)
-	except Video.DoesNotExist:
-		keyword = None
 
 	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values()), 
 	'videos' : vids, 'culture_or_community' : item.culture_or_community, 'heritage_type' : item.heritage_type, 'date_of_creation' : item.date_of_creation, 'creator_id' : item.creator.id,  
-	'creator_description' : item.creator.name, 'physical_details' : item.physical_details, 'reproduction_rights' : item.reproduction_rights, 'place_created' : item.place_created, 'source' : item.source, 
-	'accession_number' : item.accession_number, 'accession_date' : item.accession_date, 'external_link' : item.external_link, 'provenance' : item.provenance, 'keyword' : list(keyword.values())}
+	'creator_description' : item.creator.name, 'physical_details' : item.physical_details, 'access_notes_or_rights_and_reproduction' : item.access_notes_or_rights_and_reproduction, 
+        'place_created' : item.place_created, 'location_of_original' : item.location_of_original, 'historical_note' : item.historical_note,  'catalog_number' : item.catalog_number, 
+        'external_link' : item.external_link, 'provenance' : item.provenance, 'keyword' : list(keyword.values()), 'cover_image' : item.cover_image}
 	return JsonResponse(context, safe=False)
 
 	# TODO: Temporarily commented out 'creator' field

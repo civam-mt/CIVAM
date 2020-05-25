@@ -20,9 +20,9 @@ class CollectionForm(ModelForm):
 class ItemForm(ModelForm):
     class Meta:
         model = Item
-        fields = ['name', 'description', 'culture_or_community', 'heritage_type',
-            'date_of_creation', 'physical_details', 'reproduction_rights', 'place_created',
-            'source', 'accession_number', 'accession_date', 'external_link', 'provenance']
+        fields = ['name', 'description', 'culture_or_community',
+            'date_of_creation', 'physical_details', 'place_created',
+            'location_of_original', 'catalog_number', 'external_link', 'provenance']
 
         # TODO: commented out 'creator' field
         # FIXED
@@ -30,10 +30,10 @@ class ItemForm(ModelForm):
         #           'date_of_creation', 'physical_details', 'reproduction_rights', 'place_created',
         #           'source', 'accession_number', 'accession_date', 'external_link', 'provenance']
 
-class PorIForm(ModelForm):
+class PersonOrInstituteForm(ModelForm):
    class Meta:
-       model = PorI
-       fields = ['name', 'date_start', 'date_end', 'notes']
+       model = PersonOrInstitute
+       fields = ['name'] 
 
 class RegistrationForm(ModelForm):
     class Meta:

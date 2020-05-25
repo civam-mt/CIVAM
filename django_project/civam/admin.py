@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Story, Keyword, PorI
+from .models import Collection, Item, Image, Video, Story, Keyword, PersonOrInstitute
 from guardian.admin import GuardedModelAdmin
 
 # Civam admin models are defined here
@@ -65,5 +65,5 @@ class PorIAdmin(DefaultAdmin):
 # Register admin models    
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Item, ItemAdmin)
-admin.site.register(PorI, PorIAdmin)
+admin.site.register(PersonOrInstitute, PorIAdmin)
     
