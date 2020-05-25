@@ -19,32 +19,44 @@
                     </script>
                     <br>
                 </div>
-
-                <ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+                
+                <div *ngIf="images.length < 2; else elseBlock">
+                    <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
+                    <ng-template ngbSlide *ngFor="let image of images">
+                    <div class="picsum-img-wrapper">
+                        <img src="{{API_URL}}/media/{{image.content}}"  style="width: 100%; height: 100%" alt="Random slide">
+                    </div>
+                    </ng-template>
+                    </ngb-carousel>
+                </div>
+                <ng-template #elseBlock>
+                <ngb-carousel  [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
                     <ng-template ngbSlide *ngFor="let image of images">
                     <div class="picsum-img-wrapper">
                         <img src="{{API_URL}}/media/{{image.content}}"  style="width: 100%; height: 100%" alt="Random slide">
                     </div>
                     </ng-template>
                 </ngb-carousel>
+                </ng-template>
                 <hr>
-
             </div>
         </div>
     </div>
 
-
+    <div *ngIf="stories.length > 0">
     <button type="button" class="btn btn-block btn-primary container-sm" (click)="storiesCollapsed = !storiesCollapsed"
     [attr.aria-expanded]="!storiesCollapsed" aria-controls="stories">
-    <h3>Stories</h3>
+    <h3>Stories and Comments</h3>
     </button>
 
     <div id="stories" [ngbCollapse]="storiesCollapsed">
         <div class="card container block-margin">
         <div class="card-body">
-            <div *ngFor="let story of stories">
-                <h3>{{story.author}}</h3>
-                <p>{{story.content}}</p>
+            
+                <div *ngFor="let story of stories">
+                    <h3>{{story.author}}</h3>
+                    <p>{{story.content}}</p>
+                </div>
             </div>
         </div>
         </div>
@@ -59,10 +71,167 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class ="row">
             <div class = "col-lg-3"></div>
             <div class = "col-lg-3">
-                <div *ngIf="item.culture_or_community"><p><strong>Culture or Community:</strong></p> <hr></div>
+                <div *ngIf="item.culture_or_community"><p><strong>Culture or Community:</strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.culture_or_community"><p>{{item.culture_or_community}}</p></div>
+            </div>
+        </div>
+
+
+    <div *ngIf="item.culture_or_community" class="row">
+        <div class="col-lg-12"><hr><br></div>
+    </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.heritage_type"><p><strong>Heritage Type:</strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.heritage_type"><p>{{item.heritage_type}}</p> </div>
+            </div>
+        </div>
+
+
+    <div div *ngIf="item.heritage_type" class="row">
+        <div class="col-lg-12"><hr><br></div>
+    </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item"><p><strong>Creator/Contributor: </strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item"><p>Creator Name</p></div>
+            </div>
+        </div>
+
+    <div *ngIf="item" class="row">
+        <div class="col-lg-12"><hr><br></div>
+    </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.date_of_creation"><p><strong>Date Created:</strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.date_of_creation"><p>{{item.date_of_creation}}</p></div>
+            </div>
+        </div>
+
+    <div *ngIf="item.date_of_creation" class="row">
+        <div class="col-lg-12"><hr><br></div>
+    </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.physical_details"><p><strong>Physical Details:</strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.physical_details"><p>{{item.physical_details}}</p></div>
+            </div>
+        </div>
+
+        <div *ngIf="item.physical_details" class="row">
+            <div class="col-lg-12"><hr><br></div>
+        </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.reproduction_rights"><p><strong>Reproduction Rights:</strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.reproduction_rights"><p>{{item.reproduction_rights}}</p></div>
+            </div>
+        </div>
+
+
+    <div *ngIf="item.reproduction_rights" class="row">
+        <div class="col-lg-12"><hr><br></div>
+    </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.place_created"><p><strong>Place Created:</strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.place_created"><p>{{item.place_created}}</p></div>
+            </div>
+        </div>
+
+
+    <div *ngIf="item.place_created" class="row">
+        <div class="col-lg-12"><hr><br></div>
+    </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.source"><p><strong>Source:</strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.source"><p>{{item.source}}</p></div>
+            </div>
+        </div>
+
+    <div *ngIf="item.source" class="row">
+        <div class="col-lg-12"><hr><br></div>
+    </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.accession_number"><p><strong>Accession Number:</strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.accession_number"><p>{{item.accession_number}}</p></div>
+            </div>
+        </div>
+
+    <div *ngIf="item.accession_number" class="row">
+        <div class="col-lg-12"><hr><br></div>
+    </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.accession_date"><p><strong>Accession Date:</strong></p></div>
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.accession_date"><p>{{item.accession_date}}</p></div>
+            </div>
+        </div>
+
+
+    <div *ngIf="item.accession_date" class="row">
+        <div class="col-lg-12"><hr><br></div>
+    </div>
+
+        <div class ="row">
+            <div class = "col-lg-3"></div>
+            <div class = "col-lg-3">
+                <div *ngIf="item.external_link"><p><strong>External Link:</strong></p></div>            
+            </div>
+            <div class = "col-lg-5">
+                <div *ngIf="item.external_link"><p>{{item.external_link}}</p></div>
+            </div>
+        </div>
+    </div>
+
+
+        
+<!--
+
                 <div *ngIf="item.heritage_type"><p><strong>Heritage Type:</strong></p> <hr></div>
                 <div *ngIf="item"><p><strong>Creator/Contributor: </strong></p><hr></div>
                 <div *ngIf="item.date_of_creation"><p><strong>Date Created:</strong></p><hr></div>
@@ -94,3 +263,4 @@
 </div>
 
 
+-->
