@@ -21,6 +21,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400
 
     .dropdown-item,
     .dropdown-item:focus {
+      // Change to $navbar-dark-color if we switch back to a darker primary color
       color: $navbar-light-color;
     }
 
@@ -28,6 +29,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400
     .dropdown-item:hover,
     .dropdown-item:focus {
       background-color: darken($primary, 5%);
+      // Change to $navbar-light-color if we switch back to a darker primary color
       color: $navbar-light-hover-color;
     }
   }
