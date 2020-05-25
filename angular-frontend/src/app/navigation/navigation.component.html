@@ -66,24 +66,26 @@
                 </a>
                 <ng-template ngbNavContent></ng-template>
             </li>
-            <li ngbDropdown class="nav-item">
+            <li ngbDropdown class="nav-item dropdown">
                 <a href (click)="false"
-                    class="nav-link nav-item navbar-text"
+                    class="nav-link nav-item navbar-text dropdown-toggle"
                     ngbDropdownToggle><strong>Browse</strong></a>
 
-                <div ngbDropdownMenu>
+                <div ngbDropdownMenu class="dropdown-menu">
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='oral-histories' 
-                        style="font-size:1.3vw;">Oral Histories</button>
+                        routerLink='oral-histories'
+                        class="dropdown-item">Oral Histories</button>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='picture-collections' style="font-size:1.3vw;">Picture Collections</button>
+                        routerLink='picture-collections'
+                        class="dropdown-item">Picture Collections</button>
                     <button ngbDropdownItem
                         [routerLinkActive]='activeClass'
-                        routerLink='artifacts' style="font-size:1.3vw;">Artifacts</button>
+                        routerLink='artifacts'
+                        class="dropdown-item">Artifacts</button>
                     <div class="dropdown-divider"></div>
-                    <button ngbDropdownItem style="font-size:1.3vw;">Contribute</button>
+                    <button ngbDropdownItem>Contribute</button>
                 </div>
             </li>
         </ul>
