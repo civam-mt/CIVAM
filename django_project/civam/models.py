@@ -12,6 +12,7 @@ class PersonOrInstitute(models.Model):
     dates = models.TextField(blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     historical_note = models.CharField(max_length=255, blank=True, null=True)
+    isPerson = models.BooleanField()
 
     notes = models.CharField(max_length=255, null=True, blank=True)    
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="PorI_created")
