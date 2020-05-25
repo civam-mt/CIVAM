@@ -97,6 +97,19 @@ def collection(request, collection_id):
     'description': collection.description}
     return JsonResponse(context, safe=False)
 
+def all_items(request):
+	item_list = Item.objects.all()
+	item_list = list(item_list.values())
+
+	for item in item_list:
+		del item['created_on']
+		del item['created_by_id']
+		del item['modified_on']
+		del item['modified_by_id']
+
+	context = {"items":item_list}
+	return JsonResponse(context, safe=False)
+
 def item_solo(request, item_id):
 	item = get_object_or_404(Item, pk=item_id)
 

@@ -14,8 +14,6 @@ export class CollectionComponent implements OnInit {
   tempCollection: Collection;
   API_URL = environment.apiUrl;
   collection;
-  collectionItems; //Item list from collection (doesn't include all item atributes)
-  // items = [];
   items;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
