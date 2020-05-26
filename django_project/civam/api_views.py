@@ -105,21 +105,127 @@ def collection(request, collection_id):
 	'access_notes_or_rights_and_reproduction': collection.access_notes_or_rights_and_reproduction,
 	'geographical_location':collection.geographical_location,
 
-	"keywords": [str(x) for x in list(collection.keywords.all())],
-	"creator": [str(x) for x in list(collection.creator.all())],
-	"location_of_originals": [str(x) for x in list(collection.location_of_originals.all())]
+	"keywords": [{"id":x.id,"name":str(x)} for x in list(collection.keywords.all())],
+	"creator": [{"id":x.id,"name":str(x)} for x in list(collection.creator.all())],
+	"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(collection.location_of_originals.all())]
 	}
     return JsonResponse(context, safe=False)
 
 def all_items(request):
-	item_list = Item.objects.all()
-	item_list = list(item_list.values())
+	items = Item.objects.all()
+	#item_list = list(item_list.values())
+	item_list = []
+	for item in items:
+		new_item = {
+			'item': item.id,
+			'name': item.name,
+			'description': item.description,
+			'collection': item.collection.id,
+			'culture_or_community': item.culture_or_community,
+			'other_forms': item.other_forms,
+			'digital_heritage_item':item.digital_heritage_item,
+			'date_of_creation':item.date_of_creation,
+			'physical_details':item.physical_details,
+			'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
+			'catalog_number':item.catalog_number,
+			'external_link':item.external_link,
+			'provenance':item.provenance,
+			'notes':item.notes,
+			'citation':item.citation,
+			'historical_note':item.historical_note,
 
-	for item in item_list:
-		del item['created_on']
-		del item['created_by_id']
-		del item['modified_on']
-		del item['modified_by_id']
+			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
+			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
+			"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
+			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
+		}
+		item_list.append(new_item)
+
+
+	context = {"items":item_list}
+	return JsonResponse(context, safe=False)
+
+def all_pori(request):
+	poris = PersonOrInstitute.objects.all()
+	#item_list = list(item_list.values())
+	pori_list = []
+	for pori in poris:
+		new_pori = {
+			"id": pori.id,
+			"name": pori.name,
+			"culture": pori.culture,
+			"dates": pori.dates,
+			"description":pori.description,
+			"historical_note":pori.historical_note,
+			"isPerson":pori.isPerson
+		}
+		pori_list.append(new_pori)
+
+
+	context = {"poris":pori_list}
+	return JsonResponse(context, safe=False)
+
+def all_keywords(request):
+	keywords = Keyword.objects.all()
+	#item_list = list(item_list.values())
+	keyword_list = []
+	for kw in keywords:
+		new_kw = {
+			"id": kw.id,
+			"word": kw.word
+		}
+		keyword_list.append(new_kw)
+
+
+	context = {"keywords":keyword_list}
+	return JsonResponse(context, safe=False)
+
+def get_pori(request, pori_id):
+	pori = get_object_or_404(PersonOrInstitute, pk=pori_id)
+
+	context = {
+		"id": pori.id,
+		"name": pori.name,
+		"culture": pori.culture,
+		"dates": pori.dates,
+		"description":pori.description,
+		"historical_note":pori.historical_note,
+		"isPerson":pori.isPerson
+	}
+
+	return JsonResponse(context, safe=False)
+
+def get_by_keyword(request, keyword):
+	#print(keyword)
+	items = Item.objects.filter(keywords__word=keyword)
+	#item_list = list(item_list.values())
+	item_list = []
+	for item in items:
+		new_item = {
+			'item': item.id,
+			'name': item.name,
+			'description': item.description,
+			'collection': item.collection.id,
+			'culture_or_community': item.culture_or_community,
+			'other_forms': item.other_forms,
+			'digital_heritage_item':item.digital_heritage_item,
+			'date_of_creation':item.date_of_creation,
+			'physical_details':item.physical_details,
+			'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
+			'catalog_number':item.catalog_number,
+			'external_link':item.external_link,
+			'provenance':item.provenance,
+			'notes':item.notes,
+			'citation':item.citation,
+			'historical_note':item.historical_note,
+
+			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
+			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
+			"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
+			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
+		}
+		item_list.append(new_item)
+
 
 	context = {"items":item_list}
 	return JsonResponse(context, safe=False)
@@ -178,10 +284,10 @@ def item_solo(request, item_id):
 	'citation':item.citation,
 	'historical_note':item.historical_note,
 
-	"keywords": [str(x) for x in list(item.keywords.all())],
-	"creator": [str(x) for x in list(item.creator.all())],
-	"place_created": [str(x) for x in list(item.place_created.all())],
-	"location_of_originals": [str(x) for x in list(item.location_of_originals.all())],
+	"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
+	"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
+	"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
+	"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())],
 
     'stories': list(stories.values()),
     'images': list(image.values()),

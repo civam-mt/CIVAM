@@ -56,7 +56,7 @@ class Collection(models.Model):
 
     notes = models.TextField(blank=True, null=True)
     cataloger = models.CharField(max_length=511, null=True, blank=True)
-    cataloge_date = models.CharField(max_length=511, null=True, blank=True)    
+    catalog_date = models.CharField(max_length=511, null=True, blank=True)    
 
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_created")
     created_on = models.DateTimeField(auto_now_add=True)
