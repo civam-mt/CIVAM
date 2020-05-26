@@ -92,9 +92,23 @@ def collection(request, collection_id):
         del item["modified_by_id"]
         del item["collection_id"]
     #item_list = get_objects_for_user(request.user, 'civam.view_item', item_list, accept_global_perms=False)
-    context = {'item_list': item_list, 
+    context = {
+	'item_list': item_list, 
     'title': collection.title,
-    'description': collection.description}
+    'description': collection.description,
+	#'cover_image':collection.cover_image,
+	'public':collection.public,
+	'summary':collection.summary,
+	'provenance':collection.provenance,
+	'citation':collection.citation,
+	'historical_note':collection.historical_note,
+	'access_notes_or_rights_and_reproduction': collection.access_notes_or_rights_and_reproduction,
+	'geographical_location':collection.geographical_location,
+
+	"keywords": [str(x) for x in list(collection.keywords.all())],
+	"creator": [str(x) for x in list(collection.creator.all())],
+	"location_of_originals": [str(x) for x in list(collection.location_of_originals.all())]
+	}
     return JsonResponse(context, safe=False)
 
 def all_items(request):
