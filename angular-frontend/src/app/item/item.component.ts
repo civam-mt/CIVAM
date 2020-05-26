@@ -41,7 +41,7 @@ export class ItemComponent implements OnInit {
       this.stories = this.item["stories"];
       this.rawVideos = this.item["videos"];
       this.videos = this.rawVideos.map(function(video) {
-        return "https://player.vimeo.com/video/".concat(video.substring(18, 26));
+        return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
         })
 
       console.log(this.videos);
