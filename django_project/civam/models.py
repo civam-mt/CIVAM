@@ -96,7 +96,7 @@ class Item(models.Model):
     
 
     cataloger = models.CharField(max_length=511, null=True, blank=True)
-    cataloge_date = models.CharField(max_length=511, null=True, blank=True)    
+    catalog_date = models.CharField(max_length=511, null=True, blank=True)    
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_created")
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_modified")
