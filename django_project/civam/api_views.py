@@ -92,9 +92,23 @@ def collection(request, collection_id):
         del item["modified_by_id"]
         del item["collection_id"]
     #item_list = get_objects_for_user(request.user, 'civam.view_item', item_list, accept_global_perms=False)
-    context = {'item_list': item_list, 
+    context = {
+	'item_list': item_list, 
     'title': collection.title,
-    'description': collection.description}
+    'description': collection.description,
+	#'cover_image':collection.cover_image,
+	'public':collection.public,
+	'summary':collection.summary,
+	'provenance':collection.provenance,
+	'citation':collection.citation,
+	'historical_note':collection.historical_note,
+	'access_notes_or_rights_and_reproduction': collection.access_notes_or_rights_and_reproduction,
+	'geographical_location':collection.geographical_location,
+
+	"keywords": [str(x) for x in list(collection.keywords.all())],
+	"creator": [str(x) for x in list(collection.creator.all())],
+	"location_of_originals": [str(x) for x in list(collection.location_of_originals.all())]
+	}
     return JsonResponse(context, safe=False)
 
 def all_items(request):
@@ -111,6 +125,7 @@ def all_items(request):
 	return JsonResponse(context, safe=False)
 
 def item_solo(request, item_id):
+	#print(item_id)
 	item = get_object_or_404(Item, pk=item_id)
 
     # Submitting a story
@@ -143,18 +158,43 @@ def item_solo(request, item_id):
 	for v in list(video.values()):
 		vids.append(v['link'])
 
-	try :
-		keyword = Keyword.objects.filter(item_id=item_id)
-	except Video.DoesNotExist:
-		keyword = None
+	#print(  )
 
-	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values()), 
-	'videos' : vids, 'culture_or_community' : item.culture_or_community, 'heritage_type' : item.heritage_type, 'date_of_creation' : item.date_of_creation, 
-	'physical_details' : item.physical_details, 'reproduction_rights' : item.reproduction_rights, 'place_created' : item.place_created, 'source' : item.source, 
-	'accession_number' : item.accession_number, 'accession_date' : item.accession_date, 'external_link' : item.external_link, 'provenance' : item.provenance, 'keyword' : list(keyword.values()), 'cover_image': None}
+	context = {
+    'item': item.id,
+    'name': item.name,
+	'description': item.description,
+	'collection': item.collection.id,
+	'culture_or_community': item.culture_or_community,
+	'other_forms': item.other_forms,
+	'digital_heritage_item':item.digital_heritage_item,
+	'date_of_creation':item.date_of_creation,
+	'physical_details':item.physical_details,
+	'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
+	'catalog_number':item.catalog_number,
+	'external_link':item.external_link,
+	'provenance':item.provenance,
+	'notes':item.notes,
+	'citation':item.citation,
+	'historical_note':item.historical_note,
+
+	"keywords": [str(x) for x in list(item.keywords.all())],
+	"creator": [str(x) for x in list(item.creator.all())],
+	"place_created": [str(x) for x in list(item.place_created.all())],
+	"location_of_originals": [str(x) for x in list(item.location_of_originals.all())],
+
+    'stories': list(stories.values()),
+    'images': list(image.values()),
+    'videos': vids
+    }
+
+	
 	return JsonResponse(context, safe=False)
 
 def item(request, collection_id, item_id):
+	# Just reroute to solo item since this is a duplicate
+	return item_solo(request, item_id)
+	"""
 	item = get_object_or_404(Item, pk=item_id)
 
     # Submitting a story
@@ -182,26 +222,18 @@ def item(request, collection_id, item_id):
 	except Video.DoesNotExist:
 		video = None
 
-    # TODO: Display videos
-	try :
-		video = Video.objects.filter(item_id=item_id)
-	except Video.DoesNotExist:
-		video = None
 	
 	vids = list()
 	for v in list(video.values()):
 		vids.append(v['link'])
 	#	print(item.value())
 	
-	try :
-		keyword = Keyword.objects.filter(item_id=item_id)
-	except Video.DoesNotExist:
-		keyword = None
 
 	context = {'item': item.id, 'name': item.name, 'description': item.description, 'collection_id': item.collection.id, 'stories': list(stories.values()), 'images': list(image.values()), 
-	'videos' : vids, 'culture_or_community' : item.culture_or_community, 'heritage_type' : item.heritage_type, 'date_of_creation' : item.date_of_creation, 
-	'physical_details' : item.physical_details, 'reproduction_rights' : item.reproduction_rights, 'place_created' : item.place_created, 'source' : item.source, 
-	'accession_number' : item.accession_number, 'accession_date' : item.accession_date, 'external_link' : item.external_link, 'provenance' : item.provenance, 'keyword' : list(keyword.values())}
+	'videos' : vids, 'culture_or_community' : item.culture_or_community, 'heritage_type' : item.heritage_type, 'date_of_creation' : item.date_of_creation, 'creator_id' : item.creator.id,  
+	'creator_description' : item.creator.name, 'physical_details' : item.physical_details, 'access_notes_or_rights_and_reproduction' : item.access_notes_or_rights_and_reproduction, 
+        'place_created' : item.place_created, 'location_of_original' : item.location_of_original, 'historical_note' : item.historical_note,  'catalog_number' : item.catalog_number, 
+        'external_link' : item.external_link, 'provenance' : item.provenance, 'keyword' : list(keyword.values()), 'cover_image' : item.cover_image}
 	return JsonResponse(context, safe=False)
 
 	# TODO: Temporarily commented out 'creator' field
@@ -211,6 +243,7 @@ def item(request, collection_id, item_id):
 	# 'physical_details' : item.physical_details, 'reproduction_rights' : item.reproduction_rights, 'place_created' : item.place_created, 'source' : item.source, 
 	# 'accession_number' : item.accession_number, 'accession_date' : item.accession_date, 'external_link' : item.external_link, 'provenance' : item.provenance, 'keyword' : list(keyword.values())}
 	# return JsonResponse(context, safe=False)
+	"""
 
 def register(request):
 	if (request.method == 'POST'):

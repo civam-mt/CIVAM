@@ -110,6 +110,19 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400
   &-dark {
     border-color: darken($dark, 5%);
   }
+
+  &-transparent {
+    color: $primary;
+    border-color: transparent;
+  }
+  
+  &-transparent.active,
+  &-transparent:hover,
+  &-transparent:focus  {
+    background-color: rgba(lighten($primary, 5%), 50%);
+    color: $navbar-light-hover-color;
+    border-color: transparent;
+  }
 }
 
 .btn-group {
@@ -201,6 +214,21 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400
       .dropdown-item:hover,
       .dropdown-item:focus {
         background-color: darken($danger, 8%);
+      }
+    }
+    
+    &.btn-transparent ~ .dropdown-menu {
+      background-color: transparent;
+      border-color: transparent;
+
+      .dropdown-item {
+        color: $primary;
+      }
+
+      .dropdown-item:hover,
+      .dropdown-item:focus {
+        background-color: darken($primary, 8%);
+        color: $black;
       }
     }
   }
