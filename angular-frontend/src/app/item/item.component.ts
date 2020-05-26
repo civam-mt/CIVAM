@@ -1,4 +1,4 @@
-import { Component, OnInit, SecurityContext } from '@angular/core';
+import { Component, OnInit, SecurityContext, ɵConsole } from '@angular/core';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
@@ -21,6 +21,7 @@ export class ItemComponent implements OnInit {
   item;
   images;
   stories;
+  rawVideos;
   videos;
   storiesCollapsed = true;
   showNavigationArrows = true;
@@ -38,8 +39,12 @@ export class ItemComponent implements OnInit {
       this.item = data;
       this.images = this.item["images"];
       this.stories = this.item["stories"];
-      this.videos = this.item["videos"];
+      this.rawVideos = this.item["videos"];
+      this.videos = this.rawVideos.map(function(video) {
+        return "https://player.vimeo.com/video/".concat(video.substring(18, 26));
+        })
 
+      console.log(this.videos);
     });
   }
 }
