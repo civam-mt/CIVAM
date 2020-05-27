@@ -3,13 +3,12 @@
     <div class = "container jumbotron bg-primary">
         <div class = row>
             <div class = "col-lg-6">
-                <h1>{{pori.name}}</h1>
-                <p style="font-size:1vw;">{{pori.description}}</p>
+                <h1 style="font-weight: bold;">{{pori.name}}</h1>
+                <p *ngIf="pori.description" style="font-size:2vw;">{{pori.description}}</p>
             </div>
-<!-- TODO: insert pori image here once it is implemented on backend -->
-            <!-- <div class = "col-lg-6">
-                <img src="../../assets/images/White Wellknown Buffalo Peggy.jpg" class="img-fluid rounded float-left">
-            </div> -->
+            <div class = "col-lg-6">
+                <img *ngIf="pori.cover_image" src="{{API_URL}}/media/{{pori.cover_image}}" class="img-fluid rounded float-left">
+            </div>
         </div>
     </div>
 
