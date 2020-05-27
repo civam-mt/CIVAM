@@ -101,8 +101,8 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 * `sudo -i -u postgres`
 * `psql`
 * `\c django_db`
-* To return list of commands to drop tables: `select 'drop table if exists "' || tablename || '" cascade;' from pg_tables where tablename like 'civam%';`
-* Copy commands, type `q`, then paste commands
+* `select 'drop table if exists "' || tablename || '" cascade;' from pg_tables where tablename like 'civam%';`
+* Copy queries returned by the command above, type `q`, then paste queries
 * `delete from django_migrations where app='civam';`
 * `\q`
 * `exit`
