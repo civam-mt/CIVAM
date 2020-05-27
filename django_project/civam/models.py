@@ -13,6 +13,7 @@ class PersonOrInstitute(models.Model):
     description = models.CharField(max_length=255, blank=True, null=True)
     historical_note = models.CharField(max_length=255, blank=True, null=True)
     isPerson = models.BooleanField()
+    cover_image = models.ImageField(upload_to="cover_images/pori/", blank=True)
 
     private_notes = models.CharField(max_length=255, null=True, blank=True)    
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="PorI_created")
@@ -90,8 +91,7 @@ class Item(models.Model):
 
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="item_keywords")
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_creators")
-    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")
-    
+    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")    
 
     private_cataloger = models.CharField(max_length=511, null=True, blank=True)
     private_catalog_date = models.DateTimeField(blank=True, null=True)

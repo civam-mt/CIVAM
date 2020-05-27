@@ -158,7 +158,8 @@ def all_pori(request):
 			"dates": pori.dates,
 			"description":pori.description,
 			"historical_note":pori.historical_note,
-			"isPerson":pori.isPerson
+			"isPerson":pori.isPerson,
+			"cover_image": pori.cover_image.name
 		}
 		pori_list.append(new_pori)
 
@@ -191,7 +192,8 @@ def get_pori(request, pori_id):
 		"dates": pori.dates,
 		"description":pori.description,
 		"historical_note":pori.historical_note,
-		"isPerson":pori.isPerson
+		"isPerson":pori.isPerson,
+		"cover_image": pori.cover_image.name
 	}
 
 	return JsonResponse(context, safe=False)
