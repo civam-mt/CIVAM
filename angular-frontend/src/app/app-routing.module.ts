@@ -18,7 +18,7 @@ const routes: Routes = [
 {path:'home',component: HomeComponent},
 {path:'about',component: AboutComponent},
 {path:'collections',component: CollectionsComponent},
-{path:'districts',component: DistrictsComponent},
+// {path:'districts',component: DistrictsComponent},
 {path:'oral-histories',component: OralHistoriesComponent},
 {path:'picture-collections',component: PictureCollectionsComponent},
 {path:'artifacts',component: ArtifactsComponent},
