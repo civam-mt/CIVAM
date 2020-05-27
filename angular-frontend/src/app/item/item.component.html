@@ -44,24 +44,42 @@
     </div>
 
     <div *ngIf="stories.length > 0">
-    <button type="button" class="btn btn-block btn-primary container-sm" (click)="storiesCollapsed = !storiesCollapsed"
-    [attr.aria-expanded]="!storiesCollapsed" aria-controls="stories">
-    <h3>Stories and Comments</h3>
-    </button>
+        <button type="button" class="btn btn-block btn-primary container-sm" (click)="storiesCollapsed = !storiesCollapsed"
+        [attr.aria-expanded]="!storiesCollapsed" aria-controls="stories">
+        <h3>Stories and Comments</h3>
+        </button>
 
-    <div id="stories" [ngbCollapse]="storiesCollapsed">
-        <div class="card container block-margin">
-        <div class="card-body">
-            
-                <div *ngFor="let story of stories">
-                    <h3>{{story.author}}</h3>
-                    <p>{{story.content}}</p>
+        <div id="stories" [ngbCollapse]="storiesCollapsed">
+            <div class="card container block-margin">
+                <div class="card-body">  
+                    <div *ngFor="let story of stories">
+                        <h3>{{story.author}}</h3>
+                        <p>{{story.content}}</p>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
+        <br>
     </div>
-    <br>
+
+    <div *ngIf="narratives.length > 0">
+        <button type="button" class="btn btn-block btn-primary container-sm" (click)="narrativesCollapsed = !narrativesCollapsed"
+        [attr.aria-expanded]="!narrativesCollapsed" aria-controls="narratives">
+        <h3>Narratives</h3>
+        </button>
+
+        <div id="narratives" [ngbCollapse]="narrativesCollapsed">
+            <div class="card container block-margin">
+                <div class="card-body">  
+                    <div *ngFor="let narrative of narratives">
+                        <h3>{{narrative.author}}</h3>
+                        <p>{{narrative.content}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
 
     <div class = "container jumbotron bg-primary">
         <div class = "row">

@@ -26,7 +26,9 @@ export class ItemComponent implements OnInit {
   keywords;
   creators;
   originals;
+  narratives;
   storiesCollapsed = true;
+  narrativesCollapsed = true;
   showNavigationArrows = true;
   showNavigationIndicators = true;
   constructor(private route: ActivatedRoute, private api: ApiService) { }
@@ -42,6 +44,7 @@ export class ItemComponent implements OnInit {
       this.item = data;
       this.images = this.item["images"];
       this.stories = this.item["stories"];
+      this.narratives = this.item["narratives"];
       this.rawVideos = this.item["videos"];
       this.keywords = this.item["keywords"];
       this.creators = this.item["creator"];
