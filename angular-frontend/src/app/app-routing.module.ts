@@ -26,6 +26,8 @@ const routes: Routes = [
 {path:'collections/:collectionID', component: CollectionComponent},
 {path:'map', component: MapComponent},
 {path:'pori', component: PoriComponent},
+{path:'pori/:poriID', component: PoriComponent},
+
   
 // Keep this one last, so it catches everything else
 {path:'**',component: PageNotFoundComponent}
