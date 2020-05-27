@@ -93,6 +93,7 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 ### Reset Civam Migrations: Recreates Postgresql Tables (THIS WILL DELETE ALL CIVAM OBJECTS IN THE DATABASE)
 #### Delete all files in civam/migrations/ execpt for __init__.py
 * `cd django_project/civam/migrations`
+* Make SURE you are in the right directory before running the command below
 * `rm !(__init__.py)`
 
 #### Clean up postgresql database
@@ -100,12 +101,13 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 * `sudo -i -u postgres`
 * `psql`
 * `\c django_db`
-* `DROP TABLE civam_collection, civam_image, civam_item, civam_story, civam_video, civam_collectiongroup, civam_PorI, civam_ItemPorI, civam_keyword;
+* `DROP TABLE civam_collection_creator, civam_collection_keywords, civam_collection_location_of_originals, civam_item_creator, civam_item_keywords, civam_item_location_of_originals, civam_collectiongroup, civam_image, civam_story, civam_video, civam_personorinstitute, civam_narrative, civam_keyword,  civam_item, civam_collection, civam_item_keywords CASCADE;`
 * `delete from django_migrations where app='civam';`
 * `\q`
 * `exit`
 
 #### Migrate
+* `cd ../..`
 * `python3 manage.py makemigrations civam`
 * `python3 manage.py migrate civam`
 

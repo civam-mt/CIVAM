@@ -18,7 +18,7 @@ const routes: Routes = [
 {path:'home',component: HomeComponent},
 {path:'about',component: AboutComponent},
 {path:'collections',component: CollectionsComponent},
-{path:'districts',component: DistrictsComponent},
+// {path:'districts',component: DistrictsComponent},
 {path:'oral-histories',component: OralHistoriesComponent},
 {path:'picture-collections',component: PictureCollectionsComponent},
 {path:'artifacts',component: ArtifactsComponent},
@@ -26,6 +26,8 @@ const routes: Routes = [
 {path:'collections/:collectionID', component: CollectionComponent},
 {path:'map', component: MapComponent},
 {path:'pori', component: PoriComponent},
+{path:'pori/:poriID', component: PoriComponent},
+
   
 // Keep this one last, so it catches everything else
 {path:'**',component: PageNotFoundComponent}

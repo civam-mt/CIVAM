@@ -18,13 +18,19 @@ export class HomeComponent implements OnInit {
 
   constructor(private api: ApiService) { }
 
+  private getTime(date?: Date){
+    return date != null ? date.getTime(): 0;
+  }
+
   ngOnInit() {
     this.getCollections();
   }
   getCollections() {
       this.api.getCollections().subscribe((data) => {
         console.log(data);
-        this.collections = data["collection_list"];
+        this.collections = data["collection_list"].sort((a, b) => {
+          return (new Date(a.modified_on).getTime() < new Date(b.modified_on).getTime());
+        });
     });
   }
 

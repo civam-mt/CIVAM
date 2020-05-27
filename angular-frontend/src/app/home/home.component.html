@@ -1,21 +1,28 @@
 <!-- Body of the Page -->
-<div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
+<div class = "container-fluid jumbotron text-center">
+    <div style="font-size:4vw;"> 
     Crow Indian Virtual Archive and Museum
+    </div>
+    <div style="font-size:3vw;"> 
+        Apsáalooke ammaaiiláxiio
+    </div>
+    <br>
+    <br>
+    <div style="font-size:2vw; color:#f7d418; font-weight: bold">"They want to be known," Peggy White Wellknown Buffalo</div>
 </div>
 
 <!-- TODO: get rid of gutter right before row wrapping -->
 <div class="row justify-content-center container-fluid">
-    <div *ngFor="let collection of collections" class="col-xl-3 col-sm-6 col-py-2">
-        <div class="card h-100">
+    <div *ngFor="let collection of collections; let i=index" class="col-xl-3 col-sm-6 col-py-2">
+        <div *ngIf="i<4" class="card h-100">
             <img class="card-img-top" src="{{API_URL}}/media/{{collection.cover_image}}">
             <div class="card-body">
-                <h4 class="card-title">{{collection.title}}</h4>
-                <p class="card-text">{{collection.description}}</p>
+                <a class="card-title" [routerLink]="['/collections', collection.id]" style="color:black; font-size:24px">{{collection.title}}</a>
             </div>
-            <div class="card-footer">
+            <!-- <div class="card-footer">
                 <a [routerLink]="['/collections', collection.id]"
                     class="btn btn-outline-primary my-2 my-sm-0">Explore Collection</a>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

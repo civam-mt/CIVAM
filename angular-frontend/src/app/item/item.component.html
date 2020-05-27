@@ -1,4 +1,5 @@
 <div *ngIf="item">
+    <br>
     <div class = "container jumbotron bg-primary">
         <div class = row>
             <div class = "col-lg-5">
@@ -38,229 +39,296 @@
                     </ng-template>
                 </ngb-carousel>
                 </ng-template>
-                <hr>
             </div>
         </div>
     </div>
 
     <div *ngIf="stories.length > 0">
-    <button type="button" class="btn btn-block btn-primary container-sm" (click)="storiesCollapsed = !storiesCollapsed"
-    [attr.aria-expanded]="!storiesCollapsed" aria-controls="stories">
-    <h3>Stories and Comments</h3>
-    </button>
+        <button type="button" class="btn btn-block btn-primary container-sm" (click)="storiesCollapsed = !storiesCollapsed"
+        [attr.aria-expanded]="!storiesCollapsed" aria-controls="stories">
+        <h3>Stories and Comments</h3>
+        </button>
 
-    <div id="stories" [ngbCollapse]="storiesCollapsed">
-        <div class="card container block-margin">
-        <div class="card-body">
-            
-                <div *ngFor="let story of stories">
-                    <h3>{{story.author}}</h3>
-                    <p>{{story.content}}</p>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    <br>
-
-    <div class = "container jumbotron bg-primary">
-        <div class = "row">
-            <div class = "col-lg-12">
-                <div class = "container text-center">
-                <h3 style="font-size:2vw;"> Item Information</h3>
+        <div id="stories" [ngbCollapse]="storiesCollapsed">
+            <div class="card container block-margin">
+                <div class="card-body">  
+                    <div *ngFor="let story of stories">
+                        <h3>{{story.author}}</h3>
+                        <p>{{story.content}}</p>
+                    </div>
                 </div>
             </div>
         </div>
         <br>
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.culture_or_community"><p><strong>Culture or Community:</strong></p></div>
-            </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.culture_or_community"><p>{{item.culture_or_community}}</p></div>
-            </div>
-        </div>
-
-
-    <div *ngIf="item.culture_or_community" class="row">
-        <div class="col-lg-12"><hr><br></div>
     </div>
 
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.heritage_type"><p><strong>Heritage Type:</strong></p></div>
-            </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.heritage_type"><p>{{item.heritage_type}}</p> </div>
+    <div *ngIf="narratives.length > 0">
+        <button type="button" class="btn btn-block btn-primary container-sm" (click)="narrativesCollapsed = !narrativesCollapsed"
+        [attr.aria-expanded]="!narrativesCollapsed" aria-controls="narratives">
+        <h3>Narratives</h3>
+        </button>
+
+        <div id="narratives" [ngbCollapse]="narrativesCollapsed">
+            <div class="card container block-margin">
+                <div class="card-body">  
+                    <div *ngFor="let narrative of narratives">
+                        <h3>{{narrative.author}}</h3>
+                        <p>{{narrative.content}}</p>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-    <div div *ngIf="item.heritage_type" class="row">
-        <div class="col-lg-12"><hr><br></div>
+        <br>
     </div>
-
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item"><p><strong>Creator/Contributor: </strong></p></div>
-            </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item"><p>Creator Name</p></div>
-            </div>
-        </div>
-
-    <div *ngIf="item" class="row">
-        <div class="col-lg-12"><hr><br></div>
-    </div>
-
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.date_of_creation"><p><strong>Date Created:</strong></p></div>
-            </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.date_of_creation"><p>{{item.date_of_creation}}</p></div>
-            </div>
-        </div>
-
-    <div *ngIf="item.date_of_creation" class="row">
-        <div class="col-lg-12"><hr><br></div>
-    </div>
-
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.physical_details"><p><strong>Physical Details:</strong></p></div>
-            </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.physical_details"><p>{{item.physical_details}}</p></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.physical_details" class="row">
-            <div class="col-lg-12"><hr><br></div>
-        </div>
-
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.reproduction_rights"><p><strong>Reproduction Rights:</strong></p></div>
-            </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.reproduction_rights"><p>{{item.reproduction_rights}}</p></div>
+    <br><br>
+    <div class = "container jumbotron bg-primary">
+        <div class = "row">
+            <div class = "col-lg-12">
+                <div class = "container text-center">
+                    <h3 style="font-size:2vw;"> Item Information</h3>
+                </div>
             </div>
         </div>
 
 
-    <div *ngIf="item.reproduction_rights" class="row">
-        <div class="col-lg-12"><hr><br></div>
-    </div>
-
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.place_created"><p><strong>Place Created:</strong></p></div>
+        <div *ngIf="item.description">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Description</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.description}}</p></div>
+                </div>
             </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.place_created"><p>{{item.place_created}}</p></div>
-            </div>
-        </div>
-
-
-    <div *ngIf="item.place_created" class="row">
-        <div class="col-lg-12"><hr><br></div>
-    </div>
-
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.source"><p><strong>Source:</strong></p></div>
-            </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.source"><p>{{item.source}}</p></div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
             </div>
         </div>
 
-    <div *ngIf="item.source" class="row">
-        <div class="col-lg-12"><hr><br></div>
-    </div>
-
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.accession_number"><p><strong>Accession Number:</strong></p></div>
+        <div *ngIf="item.culture_or_community">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Culture or Community</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.culture_or_community}}</p></div>
+                </div>
             </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.accession_number"><p>{{item.accession_number}}</p></div>
-            </div>
-        </div>
-
-    <div *ngIf="item.accession_number" class="row">
-        <div class="col-lg-12"><hr><br></div>
-    </div>
-
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.accession_date"><p><strong>Accession Date:</strong></p></div>
-            </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.accession_date"><p>{{item.accession_date}}</p></div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
             </div>
         </div>
 
-
-    <div *ngIf="item.accession_date" class="row">
-        <div class="col-lg-12"><hr><br></div>
-    </div>
-
-        <div class ="row">
-            <div class = "col-lg-3"></div>
-            <div class = "col-lg-3">
-                <div *ngIf="item.external_link"><p><strong>External Link:</strong></p></div>            
+        <div *ngIf="item.other_forms">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Other Forms</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.other_forms}}</p></div>
+                </div>
             </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.external_link"><p>{{item.external_link}}</p></div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
             </div>
         </div>
-    </div>
 
-
-        
-<!--
-
-                <div *ngIf="item.heritage_type"><p><strong>Heritage Type:</strong></p> <hr></div>
-                <div *ngIf="item"><p><strong>Creator/Contributor: </strong></p><hr></div>
-                <div *ngIf="item.date_of_creation"><p><strong>Date Created:</strong></p><hr></div>
-                <div *ngIf="item.physical_details"><p><strong>Physical Details:</strong></p><hr></div>
-                <div *ngIf="item.reproduction_rights"><p><strong>Reproduction Rights:</strong></p><hr></div>
-                <div *ngIf="item.place_created"><p><strong>Place Created:</strong></p><hr></div>
-                <div *ngIf="item.source"><p><strong>Source:</strong></p><hr></div>
-                <div *ngIf="item.accession_number"><p><strong>Accession Number:</strong></p> <hr></div>
-                <div *ngIf="item.accession_date"><p><strong>Accession Date:</strong></p> <hr></div>
-                <div *ngIf="item.external_link"><p><strong>External Link:</strong></p><hr></div>
-                <div *ngIf="item.provenance"><p><strong>Provenance:</strong></p><hr></div>
+        <div *ngIf="item.digital_heritage_item">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Digital Heritage Item</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.digital_heritage_item}}</p></div>
+                </div>
             </div>
-            <div class = "col-lg-5">
-                <div *ngIf="item.culture_or_community"><p>{{item.culture_or_community}}</p><hr></div>
-                <div *ngIf="item.heritage_type"><p>{{item.heritage_type}}</p> <hr></div>
-                <div *ngIf="item"><p>Creator Name</p><hr></div>
-                <div *ngIf="item.date_of_creation"><p>{{item.date_of_creation}}</p><hr></div>
-                <div *ngIf="item.physical_details"><p>{{item.physical_details}}</p><hr></div>
-                <div *ngIf="item.reproduction_rights"><p>{{item.reproduction_rights}}</p><hr></div>
-                <div *ngIf="item.place_created"><p>{{item.place_created}}</p><hr></div>
-                <div *ngIf="item.source"><p>{{item.source}}</p><hr></div>
-                <div *ngIf="item.accession_number"><p>{{item.accession_number}}</p> <hr></div>
-                <div *ngIf="item.accession_date"><p>{{item.accession_date}}</p> <hr></div>
-                <div *ngIf="item.external_link"><p>{{item.external_link}}</p><hr></div>
-                <div *ngIf="item.provenance"><p>{{item.provenance}}</p><hr></div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="item.date_of_creation">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Date of Creation</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.date_of_creation}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="item.physical_details">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Physical Details</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.physical_details}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="item.access_notes_or_rights_and_reproduction">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Access Notes or Rights and Reproduction</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.access_notes_or_rights_and_reproduction}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="item.catalog_number">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Catalog Number</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.catalog_number}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="item.external_link">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>External Link</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p><a href={{item.external_link}} style="color:black;">Checkout More Here</a></p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>      
+
+        <div *ngIf="item.provenance">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Provenance</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.provenance}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="item.citation">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Citation</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.citation}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="item.historical_note">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Historical Note</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.historical_note}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="item.place_created">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Place Created</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div><p>{{item.place_created}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="keywords.length > 0">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Keyword(s)</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div *ngFor="let keyword of keywords"><p>{{keyword.name}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="creators.length > 0">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Creator(s)</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div *ngFor="let creator of creators"><p>{{creator.name}}<a [routerLink]="['/pori', creator.id]" style="color:black;">  [Link to Biography]</a></p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
+            </div>
+        </div>
+
+        <div *ngIf="originals.length > 0">
+            <div class ="row">
+                <div class = "col-lg-3"></div>
+                <div class = "col-lg-3">
+                    <div><p><strong>Location of Originals</strong></p></div>
+                </div>
+                <div class = "col-lg-5">
+                    <div *ngFor="let original of originals"><p>{{original.name}}</p></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12"><hr><br></div>
             </div>
         </div>
     </div>
 </div>
-
-
--->
