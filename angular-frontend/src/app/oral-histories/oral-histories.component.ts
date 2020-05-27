@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Collection } from '../collection'
-import { DISTRICTS } from '../mock-collections';
+import { environment } from '../../environments/environment';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-oral-histories',
@@ -8,14 +8,18 @@ import { DISTRICTS } from '../mock-collections';
   styleUrls: ['./oral-histories.component.scss']
 })
 export class OralHistoriesComponent implements OnInit {
-  constructor() { }
+  API_URL = environment.apiUrl;
+  items;
+  
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.getItems();
   }
 
   hasKeyword(item: object) {
     let keyword = "oral-history";
-    
+
     let keywords = [];
     for (var i in item["keywords"]) {
       keywords.push(item["keywords"][i]["name"]);
@@ -26,7 +30,6 @@ export class OralHistoriesComponent implements OnInit {
 
   getItems() {
     this.api.getItems().subscribe((data) => {
-      console.log(data);
       this.items = data["items"];
       this.items = this.items.filter(this.hasKeyword);
     });

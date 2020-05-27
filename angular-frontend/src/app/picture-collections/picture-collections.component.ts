@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Collection } from '../collection'
-import { DISTRICTS } from '../mock-collections';
+import { environment } from '../../environments/environment';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-picture-collections',
@@ -8,9 +8,13 @@ import { DISTRICTS } from '../mock-collections';
   styleUrls: ['./picture-collections.component.scss']
 })
 export class PictureCollectionsComponent implements OnInit {
-  constructor() { }
+  API_URL = environment.apiUrl;
+  items;
+  
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.getItems();
   }
 
   hasKeyword(item: object) {
@@ -26,7 +30,6 @@ export class PictureCollectionsComponent implements OnInit {
 
   getItems() {
     this.api.getItems().subscribe((data) => {
-      console.log(data);
       this.items = data["items"];
       this.items = this.items.filter(this.hasKeyword);
     });
