@@ -27,7 +27,7 @@ class ItemForm(ModelForm):
         model = Item
         fields = ['name', 'description', 'culture_or_community',
             'date_of_creation', 'physical_details', 'place_created',
-            'location_of_original', 'catalog_number', 'external_link', 'provenance']
+            'location_of_originals', 'catalog_number', 'external_link', 'provenance']
 
         # TODO: commented out 'creator' field
         # FIXED

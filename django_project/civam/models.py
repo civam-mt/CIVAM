@@ -90,7 +90,7 @@ class Item(models.Model):
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="item_keywords")
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_creators")
     place_created = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="places_created")
-    location_of_original = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")
+    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")
     
 
     cataloger = models.CharField(max_length=511, null=True, blank=True)
