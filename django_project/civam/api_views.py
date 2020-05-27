@@ -96,7 +96,7 @@ def collection(request, collection_id):
 	'item_list': item_list, 
     'title': collection.title,
     'description': collection.description,
-	#'cover_image':collection.cover_image,
+	'cover_image':collection.cover_image.name,
 	'public':collection.public,
 	'summary':collection.summary,
 	'provenance':collection.provenance,
@@ -118,6 +118,7 @@ def all_items(request):
 	for item in items:
 		new_item = {
 			'item': item.id,
+			'cover_image': item.cover_image.name,
 			'name': item.name,
 			'description': item.description,
 			'collection': item.collection.id,
@@ -203,6 +204,7 @@ def get_by_keyword(request, keyword):
 	for item in items:
 		new_item = {
 			'item': item.id,
+			'cover_image': item.cover_image.name,
 			'name': item.name,
 			'description': item.description,
 			'collection': item.collection.id,
@@ -269,6 +271,7 @@ def item_solo(request, item_id):
 	context = {
     'item': item.id,
     'name': item.name,
+	'cover_image': item.cover_image.name,
 	'description': item.description,
 	'collection': item.collection.id,
 	'culture_or_community': item.culture_or_community,
