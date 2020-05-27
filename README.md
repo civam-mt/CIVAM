@@ -101,7 +101,7 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 * `sudo -i -u postgres`
 * `psql`
 * `\c django_db`
-* `DROP TABLE civam_collection_creator, civam_collection_keywords, civam_collection_location_of_originals, civam_item_creator, civam_collection_keywords, civam_collection_location_of_originals, civam_collectiongroup, civam_image, civam_story, civam_video, civam_personorinstitute, civam_narrative, civam_keyword,  civam_item, civam_collection;`
+* `DROP TABLE civam_collection_creator, civam_collection_keywords, civam_collection_location_of_originals, civam_item_creator, civam_collection_keywords, civam_collection_location_of_originals, civam_collectiongroup, civam_image, civam_story, civam_video, civam_personorinstitute, civam_narrative, civam_keyword,  civam_item, civam_collection, civam_item_keyword CASCADE;`
 * `delete from django_migrations where app='civam';`
 * `\q`
 * `exit`
