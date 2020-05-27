@@ -101,8 +101,7 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 * `sudo -i -u postgres`
 * `psql`
 * `\c django_db`
-* `select 'drop table if exists "' || tablename || '" cascade;' from pg_tables where tablename like 'civam%';`
-* Copy queries returned by the command above, type `q`, then paste queries
+* `DROP TABLE civam_collection, civam_image, civam_item, civam_story, civam_video, civam_collectiongroup, civam_personorinstitute, civam_narrative, civam_keyword;`
 * `delete from django_migrations where app='civam';`
 * `\q`
 * `exit`
