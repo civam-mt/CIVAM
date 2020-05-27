@@ -163,7 +163,7 @@
                     <div><p><strong>Creator(s)</strong></p></div>
                 </div>
                 <div class = "col-lg-5">
-                    <div *ngFor="let creator of creators"><p>{{creator.name}}</p></div>
+                    <div *ngFor="let creator of creators"><p>{{creator.name}}<a [routerLink]="['/pori', creator.id]" style="color:black;">  [Link to Biography]</a></p></div>
                 </div>
             </div>
             <div class="row">
