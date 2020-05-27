@@ -56,7 +56,7 @@ class Collection(models.Model):
 
     notes = models.TextField(blank=True, null=True)
     cataloger = models.CharField(max_length=511, null=True, blank=True)
-    catalog_date = models.CharField(max_length=511, null=True, blank=True)    
+    catalog_date = models.DateTimeField(blank=True, null=True)
 
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_created")
     created_on = models.DateTimeField(auto_now_add=True)
@@ -80,8 +80,6 @@ class Item(models.Model):
     date_of_creation = models.CharField(max_length=127, null=True, blank=True)
     physical_details = models.CharField(max_length=255, null=True, blank=True)
     access_notes_or_rights_and_reproduction = models.CharField(max_length=127, null=True, blank=True)
-    place_created = models.CharField(max_length=127, null=True, blank=True)
-    location_of_original = models.CharField(max_length=127, null=True, blank=True)
     catalog_number = models.CharField(max_length=31, null=True, blank=True)
     external_link = models.URLField(max_length=200, null=True, blank=True)
     provenance = models.CharField(max_length=127, null=True, blank=True)
@@ -92,7 +90,7 @@ class Item(models.Model):
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="item_keywords")
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_creators")
     place_created = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="places_created")
-    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")
+    location_of_original = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")
     
 
     cataloger = models.CharField(max_length=511, null=True, blank=True)
