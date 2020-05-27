@@ -14,9 +14,10 @@ export class CollectionComponent implements OnInit {
   tempCollection: Collection;
   API_URL = environment.apiUrl;
   collection;
-  collectionItems; //Item list from collection (doesn't include all item atributes)
-  // items = [];
   items;
+  keywords;
+  creators;
+  originals;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 
@@ -30,6 +31,9 @@ export class CollectionComponent implements OnInit {
       this.api.getCollectionByCollectionID(collectionID).subscribe((data) => {
         this.collection = data;
         this.items = this.collection["item_list"];
+        this.keywords = this.collection["keywords"];
+        this.creators = this.collection["creator"];
+        this.originals = this.collection["location_of_originals"];
     });
   }
 }

@@ -7,13 +7,13 @@
         <div class="card h-100">
             <img class="card-img-top" src="{{API_URL}}/media/{{collection.cover_image}}">
             <div class="card-body">
-                <h4 class="card-title">{{collection.title}}</h4>
-                <p class="card-text">{{collection.description}}</p>
+                <a class="card-title" [routerLink]="['/collections', collection.id]" style="color:black; font-size:24px">{{collection.title}}</a>
+                <!-- <p class="card-text">{{collection.description}}</p> -->
             </div>
-            <div class="card-footer">
+          <!-- <div class="card-footer">
                 <a [routerLink]="['/collections', collection.id]"
                     class="btn btn-outline-primary my-2 my-sm-0">Checkout Collection</a>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

@@ -1,4 +1,9 @@
+
+// Note: All the colours for the theme are set in this file, so if you want to adjust the theme,
+// it's best to do so there by setting the appropriate variables (ex: set $primary to whatever
+// you wan the primary colour for the theme to be)
 @import "themes/yeti/variables";
+
 @import "~bootstrap/scss/bootstrap";
 @import "themes/yeti/bootswatch";
 /* You can add global styles to this file, and also import other style files */
@@ -19,6 +24,8 @@ div {
 
 body {
     background: url('./assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;
+    background-position: center top;
+    background-size: cover;
 }
 
 .jumbotron {
@@ -36,9 +43,16 @@ body {
     row-gap: 2em;
 }
 
-.theme-color {
-    background-color: #27c5bd !important;
+.dropdown-item {
+    font-size: 1.3vw;
 }
+
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
+
 
 /*
 .container-collections {

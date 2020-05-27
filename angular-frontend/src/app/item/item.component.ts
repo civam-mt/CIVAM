@@ -1,4 +1,4 @@
-import { Component, OnInit, SecurityContext } from '@angular/core';
+import { Component, OnInit, SecurityContext, ɵConsole } from '@angular/core';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
@@ -21,8 +21,14 @@ export class ItemComponent implements OnInit {
   item;
   images;
   stories;
+  rawVideos;
   videos;
+  keywords;
+  creators;
+  originals;
+  narratives;
   storiesCollapsed = true;
+  narrativesCollapsed = true;
   showNavigationArrows = true;
   showNavigationIndicators = true;
   constructor(private route: ActivatedRoute, private api: ApiService) { }
@@ -38,8 +44,16 @@ export class ItemComponent implements OnInit {
       this.item = data;
       this.images = this.item["images"];
       this.stories = this.item["stories"];
-      this.videos = this.item["videos"];
+      this.narratives = this.item["narratives"];
+      this.rawVideos = this.item["videos"];
+      this.keywords = this.item["keywords"];
+      this.creators = this.item["creator"];
+      this.originals = this.item["location_of_originals"];
+      this.videos = this.rawVideos.map(function(video) {
+        return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
+        })
 
+      console.log(this.videos);
     });
   }
 }

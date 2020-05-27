@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SafePipe } from './Safepipe.pipe';
 import { MapComponent } from './map/map.component';
+import { PoriComponent } from './pori/pori.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -44,7 +45,8 @@ import { MapComponent } from './map/map.component';
     ItemComponent,
     PageNotFoundComponent,
     SafePipe,
-    MapComponent
+    MapComponent,
+    PoriComponent
   ],
   imports: [
     BrowserModule,

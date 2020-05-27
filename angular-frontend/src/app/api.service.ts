@@ -14,6 +14,9 @@ export class ApiService {
   public getCollections() {
     return this.httpClient.get(`${this.API_URL}/api/collections/`);
   }
+  public getItems() {
+    return this.httpClient.get(`${this.API_URL}/api/items/all/`);
+  }
   public getItemByItemID(itemID: string) {
     return this.httpClient.get(`${this.API_URL}/api/items/${itemID}/`);
   }
@@ -29,6 +32,10 @@ export class ApiService {
   public getGroupByCollectionIDGroupID(collectionID: string, groupID: string) {
     return this.httpClient.get(`${this.API_URL}/collections/${collectionID}/groups/${groupID}/`);
   }
+  public getPoriByPoriID(poriID: string) {
+    return this.httpClient.get(`${this.API_URL}/api/pori/${poriID}/`);
+  }
+  
   // public postCollection(collection: object) {
   //   return this.httpClient.post(`${this.API_URL}/api/collections`, collection);
   // }

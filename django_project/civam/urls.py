@@ -29,9 +29,17 @@ urlpatterns = [
     path('api/collections/<int:collection_id>/<int:item_id>/', api_views.item, name='api_item'),
 
     path('api/items/<int:item_id>/', api_views.item_solo, name='api_item_solo'),
+    path('api/items/all/', api_views.all_items, name='api_all_items'),
+    path('api/items/all/<str:keyword>', api_views.get_by_keyword, name='api_get_by_keyword'),
     # View an item within a collection
     path('collections/<int:collection_id>/<int:item_id>/', views.item, name='item'),
     path('api/collections/<int:collection_id>/<int:item_id>/', api_views.item, name='api_item'),
+
+    path('api/pori/<int:pori_id>/', api_views.get_pori, name='api_get_pori'),
+    path('api/pori/all/', api_views.all_pori, name='api_all_pori'),
+    path('api/keywords/all/', api_views.all_keywords, name='api_all_keywords'),
+
+
 
     # View CollectionGroups of a Collection
     path('collections/<int:collection_id>/groups/', views.group_list, name='groups'),
