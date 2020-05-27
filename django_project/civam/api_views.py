@@ -131,7 +131,7 @@ def all_items(request):
 			'catalog_number':item.catalog_number,
 			'external_link':item.external_link,
 			'provenance':item.provenance,
-			'notes':item.notes,
+			#'notes':item.notes,
 			'citation':item.citation,
 			'historical_note':item.historical_note,
 
@@ -249,7 +249,8 @@ def item_solo(request, item_id):
 
     # Display stories
 	stories = Story.objects.filter(item_id=item_id)
-
+    #Display narratives
+	narratives = Narrative.objects.filter(item_id=item_id)
     # Display images
 	try :
 		image = Image.objects.filter(item_id=item_id)
@@ -283,16 +284,17 @@ def item_solo(request, item_id):
 	'catalog_number':item.catalog_number,
 	'external_link':item.external_link,
 	'provenance':item.provenance,
-	'notes':item.notes,
+	#'notes':item.notes,
 	'citation':item.citation,
 	'historical_note':item.historical_note,
+	'place_create': item.place_created, 
 
 	"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
 	"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
-	"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
 	"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())],
 
     'stories': list(stories.values()),
+    'narratives': list(narratives.values()),
     'images': list(image.values()),
     'videos': vids
     }
