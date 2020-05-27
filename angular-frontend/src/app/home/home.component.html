@@ -5,8 +5,8 @@
 
 <!-- TODO: get rid of gutter right before row wrapping -->
 <div class="row justify-content-center container-fluid">
-    <div *ngFor="let collection of collections" class="col-xl-3 col-sm-6 col-py-2">
-        <div class="card h-100">
+    <div *ngFor="let collection of collections; let i=index" class="col-xl-3 col-sm-6 col-py-2">
+        <div *ngIf="i<4" class="card h-100">
             <img class="card-img-top" src="{{API_URL}}/media/{{collection.cover_image}}">
             <div class="card-body">
                 <a class="card-title" [routerLink]="['/collections', collection.id]" style="color:black; font-size:24px">{{collection.title}}</a>
