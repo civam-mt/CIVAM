@@ -8,12 +8,9 @@
         <div *ngIf="item" class="card h-100">
             <img class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
             <div class="card-body">
-                <h4 class="card-title">{{item.name}}</h4>
-                <p class="card-text">{{item.description}}</p>
-            </div>
-            <div class="card-footer">
                 <a [routerLink]="['/items', item.item]"
-                    class="btn btn-outline-primary my-2 my-sm-0">Checkout Item</a>
+                    class="card-title"
+                    style="color:black; font-size:24px">{{item.name}}</a>
             </div>
         </div>
     </div>
