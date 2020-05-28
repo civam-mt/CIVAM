@@ -50,17 +50,18 @@ class NarrativeInline(admin.TabularInline):
 # Can create Collections and Items and Poris directly
 class CollectionAdmin(DefaultAdmin):
     list_display = ('title', 'created_by')
-    search_fields = ['title','description']
+    search_fields = ['title','creator__name','keywords__word']
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection')
     inlines = [ImageInline, VideoInline, NarrativeInline]
-    search_fields = ['name','description','collection__title']
+    search_fields = ['name','collection__title','culture_or_community','creator__name','date_of_creation','place_created','catalog_number','keywords__word']
 
 class PorIAdmin(DefaultAdmin):
-    pass    
+    search_fields = ['name']
+
 class KeywordAdmin(DefaultAdmin):
-    pass
+    search_fields = ['word']
 
 # Register admin models    
 admin.site.register(Collection, CollectionAdmin)
