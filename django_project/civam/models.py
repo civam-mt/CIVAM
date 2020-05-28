@@ -9,7 +9,7 @@ from django.contrib.auth.models import User, Group
 class PersonOrInstitute(models.Model):
     name = models.CharField(max_length=125, blank=True)
     culture = models.CharField(max_length=255, blank=True, null=True)
-    dates = models.DateTimeField(blank=True, null=True)
+    dates = models.CharField(max_length=255, blank=True, null=True)
 
     description = models.TextField(blank=True, null=True)
 
