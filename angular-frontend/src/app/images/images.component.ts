@@ -3,23 +3,23 @@ import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-artifacts',
-  templateUrl: './artifacts.component.html',
-  styleUrls: ['./artifacts.component.scss']
+  selector: 'app-images',
+  templateUrl: './images.component.html',
+  styleUrls: ['./images.component.scss']
 })
-export class ArtifactsComponent implements OnInit {
+export class ImagesComponent implements OnInit {
   API_URL = environment.apiUrl;
   items;
-
+  
   constructor(private api: ApiService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getItems();
   }
 
   hasKeyword(item: object) {
-    let keyword = "artifact";
-
+    let keyword = "image";
+    
     let keywords = [];
     for (var i in item["keywords"]) {
       keywords.push(item["keywords"][i]["name"]);

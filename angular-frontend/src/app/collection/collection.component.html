@@ -1,31 +1,24 @@
 
 <!-- Body of the Page -->
 <div *ngIf="collection">
-    <div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
+    <div *ngIf="collection.title" class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
         {{collection.title}}
     </div>
 
-<!--                       <p style="font-size:1vw">{{collection.description}}</p> 
-    <p class="text-center" style="font-size:20px">{{collection.description}}</p> -->
-
-    <div class="row justify-content-center container-fluid">
-<!--               <div class="col-lg-5"> -->
+    <div *ngIf="items" class="row justify-content-center container-fluid">
         <div *ngFor="let item of items" class="col-xl-3 col-sm-6 col-py-2">
-            <div class="card h-100">
+            <div *ngIf="item" class="card h-100">
                 <img *ngIf="item.cover_image" class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
                 <div class="card-body">
-                    <a [routerLink]="['/items', item.id]" class="card-title" style="color:black; font-size:24px">{{item.name}}</a>
-                    <!-- <p class="card-text" style="font-size:14px">{{item.description}}</p> -->
+                    <div class="card-title">
+                        <a [routerLink]="['/items', item.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-size:2vw; font-weight:400;">{{item.name}}</a>
+                    </div>
                 </div>
-                <!-- <div class="card-footer">
-                    <a [routerLink]="['/items', item.id]"
-                        class="btn btn-outline-primary my-2 my-sm-0">Checkout Item</a>
-                </div> -->
             </div>
         </div>
     </div>
     <br>
-    <div class = "container jumbotron bg-primary">
+    <div class = "container jumbotron bg-translucent border-primary">
         <div class = "row">
             <div class = "col-lg-12">
                 <div class = "container text-center">
@@ -141,48 +134,65 @@
             </div>
         </div>
 
-        <div *ngIf="keywords.length > 0">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Keyword(s)</strong></p></div>
+        <div *ngIf="keywords">
+            <div *ngIf="keywords.length > 0">
+                <div class ="row">
+                    <div class = "col-lg-3"></div>
+                    <div class = "col-lg-3">
+                        <div><p><strong>Keyword(s)</strong></p></div>
+                    </div>
+                    <div class = "col-lg-5">
+                        <div *ngFor="let keyword of keywords"><p>{{keyword.name}}</p></div>
+                    </div>
                 </div>
-                <div class = "col-lg-5">
-                    <div *ngFor="let keyword of keywords"><p>{{keyword.name}}</p></div>
+                <div class="row">
+                    <div class="col-lg-12"><hr><br></div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
             </div>
         </div>
 
-        <div *ngIf="creators.length > 0">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Creator(s)</strong></p></div>
+        <div *ngIf="creators">
+            <div *ngIf="creators.length > 0">
+                <div class ="row">
+                    <div class = "col-lg-3"></div>
+                    <div class = "col-lg-3">
+                        <div><p><strong>Creator(s)</strong></p></div>
+                    </div>
+                    <div class = "col-lg-5">
+                        <div *ngFor="let creator of creators">
+                            <p>
+                                <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-weight:500">
+                                    {{creator.name}}
+                                </a>
+                            </p>
+                        </div> 
+                    </div>
+                <div class="row">
+                    <div class="col-lg-12"><hr><br></div>
                 </div>
-                <div class = "col-lg-5">
-                    <div *ngFor="let creator of creators"><p>{{creator.name}}<a [routerLink]="['/pori', creator.id]" style="color:black;">  [Link to Biography]</a></p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
             </div>
         </div>
 
-        <div *ngIf="originals.length > 0">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Location of Originals</strong></p></div>
+        <div *ngIf="originals">
+            <div *ngIf="originals.length > 0">
+                <div class ="row">
+                    <div class = "col-lg-3"></div>
+                    <div class = "col-lg-3">
+                        <div><p><strong>Location of Originals</strong></p></div>
+                    </div>
+                    <div class = "col-lg-5">
+                        <div *ngFor="let original of originals">
+                            <p>
+                                <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-weight:500">
+                                    {{original.name}}
+                                </a>
+                            </p>
+                        </div> 
+                    </div>
                 </div>
-                <div class = "col-lg-5">
-                    <div *ngFor="let original of originals"><p>{{original.name}}</p></div>
+                <div class="row">
+                    <div class="col-lg-12"><hr><br></div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
             </div>
         </div>
     </div>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PictureCollectionsComponent } from './picture-collections.component';
+import { MaterialCultureComponent } from './material-culture.component';
 
-describe('PictureCollectionsComponent', () => {
-  let component: PictureCollectionsComponent;
-  let fixture: ComponentFixture<PictureCollectionsComponent>;
+describe('MaterialCultureComponent', () => {
+  let component: MaterialCultureComponent;
+  let fixture: ComponentFixture<MaterialCultureComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PictureCollectionsComponent ]
+      declarations: [ MaterialCultureComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PictureCollectionsComponent);
+    fixture = TestBed.createComponent(MaterialCultureComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

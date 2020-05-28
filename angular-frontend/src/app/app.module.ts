@@ -12,11 +12,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { DistrictsComponent } from './districts/districts.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
-import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
-import { ArtifactsComponent } from './artifacts/artifacts.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ItemComponent } from './item/item.component';
-
 import { AuthComponent } from './auth/auth.component';
 import { UsernameService } from './auth/username.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +21,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SafePipe } from './Safepipe.pipe';
 import { MapComponent } from './map/map.component';
 import { PoriComponent } from './pori/pori.component';
+import { MaterialCultureComponent } from './material-culture/material-culture.component';
+import { ImagesComponent } from './images/images.component';
+import { PeopleComponent } from './people/people.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -38,15 +38,16 @@ import { PoriComponent } from './pori/pori.component';
     CollectionsComponent,
     DistrictsComponent,
     OralHistoriesComponent,
-    PictureCollectionsComponent,
-    ArtifactsComponent,
     AuthComponent,
     CollectionComponent,
     ItemComponent,
     PageNotFoundComponent,
     SafePipe,
     MapComponent,
-    PoriComponent
+    PoriComponent,
+    MaterialCultureComponent,
+    ImagesComponent,
+    PeopleComponent
   ],
   imports: [
     BrowserModule,

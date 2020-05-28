@@ -14,6 +14,8 @@ class PersonOrInstitute(models.Model):
     historical_note = models.CharField(max_length=255, blank=True, null=True)
     isPerson = models.BooleanField()
     cover_image = models.ImageField(upload_to="cover_images/pori/", blank=True)
+    address = models.CharField(max_length=255, blank=True, null=True)
+    contact = models.CharField(max_length=255, blank=True, null=True)
 
     private_notes = models.CharField(max_length=255, null=True, blank=True)    
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="PorI_created")
@@ -129,22 +131,6 @@ class Video(models.Model):
     def __str__(self):
         return "Video: {}".format(self.item.name)
 
-# A Story of an Item
-# Each story has content (the story text) and an author (and an item it belongs to)
-class Story(models.Model):
-    content = models.TextField()
-    author = models.CharField(max_length=255)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="stories")
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories_created", default=1)
-    created_on = models.DateTimeField(auto_now_add=True)
-    modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories_modified", default=1)
-    modified_on = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name_plural = "stories"
-
-    def __str__(self):
-        return "Story: {}".format(self.item.name)
 
 #Narrative, Used for each item. Kind of like a backend only story for now. 
 class Narrative(models.Model):

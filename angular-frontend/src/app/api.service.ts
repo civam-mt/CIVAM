@@ -35,6 +35,9 @@ export class ApiService {
   public getPoriByPoriID(poriID: string) {
     return this.httpClient.get(`${this.API_URL}/api/pori/${poriID}/`);
   }
+  public getPoris() {
+    return this.httpClient.get(`${this.API_URL}/api/pori/all/`);
+  }
   
   // public postCollection(collection: object) {
   //   return this.httpClient.post(`${this.API_URL}/api/collections`, collection);

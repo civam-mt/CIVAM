@@ -20,13 +20,13 @@ export class ItemComponent implements OnInit {
   API_URL = environment.apiUrl;
   item;
   images;
-  stories;
   rawVideos;
   videos;
   keywords;
   creators;
   originals;
   narratives;
+  creatorName
   storiesCollapsed = true;
   narrativesCollapsed = true;
   showNavigationArrows = true;
@@ -43,7 +43,6 @@ export class ItemComponent implements OnInit {
       console.log(data)
       this.item = data;
       this.images = this.item["images"];
-      this.stories = this.item["stories"];
       this.narratives = this.item["narratives"];
       this.rawVideos = this.item["videos"];
       this.keywords = this.item["keywords"];
@@ -53,7 +52,7 @@ export class ItemComponent implements OnInit {
         return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
         })
 
-      console.log(this.videos);
+      console.log(this.creatorName);
     });
   }
 }
