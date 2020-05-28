@@ -74,6 +74,28 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400
   }
 }
 
+
+.bg-translucent {
+  background-color: rgba($white, 75%) !important;
+
+  .dropdown-menu {
+    background-color: rgba($white, 75%);
+
+    .dropdown-item,
+    .dropdown-item:focus {
+      color: $navbar-light-color;
+    }
+
+    .dropdown-item.active,
+    .dropdown-item:hover,
+    .dropdown-item:focus  {
+      background-color: lighten(rgba($white, 75%), 5%);
+      color: $navbar-light-hover-color;
+    }
+  }
+}
+
+
 // Buttons =====================================================================
 
 .btn {
@@ -119,7 +141,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400
   &-transparent.active,
   &-transparent:hover,
   &-transparent:focus  {
-    background-color: rgba(lighten($primary, 5%), 50%);
+    background-color: rgba($primary, 50%);
     color: $navbar-light-hover-color;
     border-color: transparent;
   }
@@ -570,3 +592,6 @@ label,
 
 // Containers ==================================================================
 
+.border-primary {
+    border: medium solid $primary;
+}

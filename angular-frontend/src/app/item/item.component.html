@@ -1,11 +1,11 @@
 <div *ngIf="item">
     <br>
-    <div class = "container jumbotron bg-primary">
+    <div class = "container jumbotron bg-translucent border-primary">
         <div class = row>
             <div class = "col-lg-5">
                 <h1>{{item.name}}</h1>
                 <!-- TODO: Get creator name from api -->
-                <h3>Creator Name</h3>
+                <div *ngFor="let person of creators"><h3>{{person.name}}</h3></div>
                 <p style="font-size:1vw;">{{item.description}}</p>
     <!--             <h3>{{item.description}}</h3> -->
             </div>
@@ -81,28 +81,12 @@
         <br>
     </div>
     <br><br>
-    <div class = "container jumbotron bg-primary">
+    <div class = "container jumbotron bg-translucent border-primary">
         <div class = "row">
             <div class = "col-lg-12">
                 <div class = "container text-center">
                     <h3 style="font-size:2vw;"> Item Information</h3>
                 </div>
-            </div>
-        </div>
-
-
-        <div *ngIf="item.description">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Description</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.description}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
             </div>
         </div>
 
