@@ -48,14 +48,18 @@
 
     <div *ngIf="narratives">
         <div *ngIf="narratives.length > 0">
-            <button type="button" class="btn btn-block btn-primary container-sm" (click)="narrativesCollapsed = !narrativesCollapsed"
-            [attr.aria-expanded]="!narrativesCollapsed" aria-controls="narratives">
-            <h3>Narratives</h3>
+            <p>
+            <button type="button" 
+                    class="btn btn-block btn-transparent container-sm" 
+                    (click)="narrativesCollapsed = !narrativesCollapsed"
+                    [attr.aria-expanded]="!narrativesCollapsed" 
+                    aria-controls="narratives">
+                <h3 style="font-size:2.5vw;">Narratives</h3>
             </button>
-
+            </p>
             <div id="narratives" [ngbCollapse]="narrativesCollapsed">
-                <div class="card container block-margin">
-                    <div class="card-body">  
+                <div class="card container block-margin bg-translucent border-primary">
+                    <div class="card-body">
                         <div *ngFor="let narrative of narratives">
                             <h3>{{narrative.author}}</h3>
                             <p>{{narrative.content}}</p>
@@ -63,7 +67,6 @@
                     </div>
                 </div>
             </div>
-            <br>
         </div>
     </div>
 
@@ -73,7 +76,7 @@
         <div class = "row">
             <div class = "col-lg-12">
                 <div class = "container text-center">
-                    <h3 style="font-size:2vw;"> Item Information</h3>
+                    <h3 style="font-size:2vw;">Item Information</h3>
                 </div>
             </div>
         </div>
