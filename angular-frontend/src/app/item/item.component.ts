@@ -26,7 +26,6 @@ export class ItemComponent implements OnInit {
   creators;
   originals;
   narratives;
-  creatorName
   storiesCollapsed = true;
   narrativesCollapsed = true;
   showNavigationArrows = true;
@@ -51,8 +50,6 @@ export class ItemComponent implements OnInit {
       this.videos = this.rawVideos.map(function(video) {
         return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
         })
-
-      console.log(this.creatorName);
     });
   }
 }

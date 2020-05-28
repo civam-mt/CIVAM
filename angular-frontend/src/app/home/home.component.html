@@ -22,7 +22,7 @@
             <div *ngIf="i < 4" class="card h-100">
                 <img *ngIf="collection.cover_image" class="card-img-top" src="{{API_URL}}/media/{{collection.cover_image}}">
                 <div class="card-body">
-                    <div class="card-title">
+                    <div class="card-title" style="text-align:center">
                         <a [routerLink]="['/collections', collection.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-size:2vw; font-weight:400;">{{collection.title}}</a>
                     </div>
                 </div>

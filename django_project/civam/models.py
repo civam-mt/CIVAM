@@ -45,6 +45,7 @@ class Keyword(models.Model):
 class Collection(models.Model):
     title = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True)
+    dates = models.CharField(max_length=255, blank=True, null=True)
     cover_image = models.ImageField(upload_to="cover_images/", blank=True)
     public = models.BooleanField(default=True)
     summary = models.TextField(blank=True, null=True)
