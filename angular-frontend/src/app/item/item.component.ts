@@ -49,7 +49,6 @@ export class ItemComponent implements OnInit {
       this.rawVideos = this.item["videos"];
       this.keywords = this.item["keywords"];
       this.creators = this.item["creator"];
-      this.creatorName = this.item["creator"][0]["name"];
       this.originals = this.item["location_of_originals"];
       this.videos = this.rawVideos.map(function(video) {
         return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
