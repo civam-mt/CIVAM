@@ -12,10 +12,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { DistrictsComponent } from './districts/districts.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
-import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ItemComponent } from './item/item.component';
-
 import { AuthComponent } from './auth/auth.component';
 import { UsernameService } from './auth/username.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +22,7 @@ import { SafePipe } from './Safepipe.pipe';
 import { MapComponent } from './map/map.component';
 import { PoriComponent } from './pori/pori.component';
 import { MaterialCultureComponent } from './material-culture/material-culture.component';
+import { ImagesComponent } from './images/images.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -38,7 +37,6 @@ import { MaterialCultureComponent } from './material-culture/material-culture.co
     CollectionsComponent,
     DistrictsComponent,
     OralHistoriesComponent,
-    PictureCollectionsComponent,
     AuthComponent,
     CollectionComponent,
     ItemComponent,
@@ -46,7 +44,8 @@ import { MaterialCultureComponent } from './material-culture/material-culture.co
     SafePipe,
     MapComponent,
     PoriComponent,
-    MaterialCultureComponent
+    MaterialCultureComponent,
+    ImagesComponent
   ],
   imports: [
     BrowserModule,

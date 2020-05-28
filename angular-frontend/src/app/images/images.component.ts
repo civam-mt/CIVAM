@@ -3,11 +3,11 @@ import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-picture-collections',
-  templateUrl: './picture-collections.component.html',
-  styleUrls: ['./picture-collections.component.scss']
+  selector: 'app-images',
+  templateUrl: './images.component.html',
+  styleUrls: ['./images.component.scss']
 })
-export class PictureCollectionsComponent implements OnInit {
+export class ImagesComponent implements OnInit {
   API_URL = environment.apiUrl;
   items;
   
@@ -18,7 +18,7 @@ export class PictureCollectionsComponent implements OnInit {
   }
 
   hasKeyword(item: object) {
-    let keyword = "picture-collection";
+    let keyword = "image";
     
     let keywords = [];
     for (var i in item["keywords"]) {

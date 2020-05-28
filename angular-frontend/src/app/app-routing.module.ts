@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { DistrictsComponent } from './districts/districts.component';
-import { PictureCollectionsComponent } from './picture-collections/picture-collections.component';
+import { ImagesComponent } from './images/images.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
 import { MaterialCultureComponent } from './material-culture/material-culture.component';
 import { ItemComponent } from './item/item.component';
@@ -20,7 +20,7 @@ const routes: Routes = [
 {path:'collections',component: CollectionsComponent},
 // {path:'districts',component: DistrictsComponent},
 {path:'oral-histories',component: OralHistoriesComponent},
-{path:'picture-collections',component: PictureCollectionsComponent},
+{path:'images',component: ImagesComponent},
 {path:'material-culture',component: MaterialCultureComponent},
 {path:'items/:itemID', component: ItemComponent},
 {path:'collections/:collectionID', component: CollectionComponent},
