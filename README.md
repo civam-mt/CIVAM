@@ -101,19 +101,22 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 * `sudo -i -u postgres`
 * `psql`
 * `\c django_db`
-* `DROP TABLE civam_collection_creator, civam_collection_keywords, civam_collection_location_of_originals, civam_item_creator, civam_item_keywords, civam_item_location_of_originals, civam_collectiongroup, civam_image, civam_story, civam_video, civam_personorinstitute, civam_narrative, civam_keyword,  civam_item, civam_collection, civam_item_keywords CASCADE;`
+* `select 'drop table if exists "' || tablename || '" cascade;' from pg_tables where tablename like 'civam%';`
+* Copy sql statements returned by above command
+* Paste and run these statements to drop all civam tables
 * `delete from django_migrations where app='civam';`
 * `\q`
 * `exit`
 
 #### Migrate
 * `cd ../..`
-* `python3 manage.py makemigrations civam`
-* `python3 manage.py migrate civam`
+* `python3 manage.py makemigrations`
+* `python3 manage.py migrate`
 
 ## General Advice
 * Always run postgresql service before migrating or running django
 * Any errors that mention port5432 or errors in python installation directories are likely caused by postgresql service not being run
 * If you get this warning: “Your global Angular CLI version (#.#.#) is greater than your local version (#.#.#). The local Angular CLI version is used” then run: `npm install --save-dev @angular/cli@latest`
+* If you have problems with migrations locally, follow the Backend Dev & Cleaning Instructions
 
 
