@@ -89,7 +89,7 @@ class Item(models.Model):
     external_link = models.URLField(max_length=200, null=True, blank=True)
     provenance = models.TextField(blank=True, null=True)
     private_notes = models.TextField(null=True, blank=True)
-    citation = models.TextField(max_length=255, null=True, blank=True)    
+    citation = models.TextField(blank=True, null=True)   
     historical_note = models.TextField(max_length=255, null=True, blank=True)
     place_created = models.CharField(max_length=511, null=True, blank=True)
 
