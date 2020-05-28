@@ -76,7 +76,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400
 
 
 .bg-translucent {
-  background-color: rgba($white, 75%);
+  background-color: rgba($white, 75%) !important;
 
   .dropdown-menu {
     background-color: rgba($white, 75%);
@@ -593,6 +593,5 @@ label,
 // Containers ==================================================================
 
 .border-primary {
-    border-color: $primary;
-    border-width: thick;
+    border: medium solid $primary;
 }
