@@ -9,7 +9,7 @@ from django.contrib.auth.models import User, Group
 class PersonOrInstitute(models.Model):
     name = models.CharField(max_length=125, blank=True)
     culture = models.CharField(max_length=255, blank=True, null=True)
-    dates = models.DateTimeField(blank=True, null=True)
+    dates = models.CharField(max_length=255, blank=True, null=True)
 
     description = models.TextField(blank=True, null=True)
 
@@ -48,10 +48,10 @@ class Collection(models.Model):
     cover_image = models.ImageField(upload_to="cover_images/", blank=True)
     public = models.BooleanField(default=True)
     summary = models.TextField(blank=True, null=True)
-    provenance = models.CharField(max_length=255, blank=True, null=True)
-    citation = models.CharField(max_length=255, blank=True, null=True)
+    provenance = models.TextField(blank=True, null=True)
+    citation = models.TextField(blank=True, null=True)
     historical_note = models.TextField(blank=True, null=True)
-    access_notes_or_rights_and_reproduction = models.CharField(max_length=127, null=True, blank=True)
+    access_notes_or_rights_and_reproduction = models.TextField(blank=True, null=True)
     geographical_location = models.CharField(max_length=511, null=True, blank=True)
     
     
@@ -80,16 +80,16 @@ class Item(models.Model):
     description = models.TextField(blank=True)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="items", blank=True)
     culture_or_community = models.CharField(max_length=127, null=True, blank=True)
-    other_forms = models.CharField(max_length=127, null=True, blank=True)
+    other_forms = models.TextField(blank=True, null=True)
     digital_heritage_item = models.CharField(max_length=127, null=True, blank=True)
     date_of_creation = models.CharField(max_length=127, null=True, blank=True)
-    physical_details = models.CharField(max_length=255, null=True, blank=True)
-    access_notes_or_rights_and_reproduction = models.CharField(max_length=127, null=True, blank=True)
+    physical_details = models.TextField(blank=True, null=True)
+    access_notes_or_rights_and_reproduction = models.TextField(blank=True, null=True)
     catalog_number = models.CharField(max_length=31, null=True, blank=True)
     external_link = models.URLField(max_length=200, null=True, blank=True)
-    provenance = models.CharField(max_length=127, null=True, blank=True)
+    provenance = models.TextField(blank=True, null=True)
     private_notes = models.TextField(null=True, blank=True)
-    citation = models.TextField(max_length=255, null=True, blank=True)    
+    citation = models.TextField(blank=True, null=True)   
     historical_note = models.TextField(max_length=255, null=True, blank=True)
     place_created = models.CharField(max_length=511, null=True, blank=True)
 
