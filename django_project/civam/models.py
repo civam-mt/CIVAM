@@ -9,15 +9,17 @@ from django.contrib.auth.models import User, Group
 class PersonOrInstitute(models.Model):
     name = models.CharField(max_length=125, blank=True)
     culture = models.CharField(max_length=255, blank=True, null=True)
-    dates = models.TextField(blank=True, null=True)
-    description = models.CharField(max_length=255, blank=True, null=True)
-    historical_note = models.CharField(max_length=255, blank=True, null=True)
+    dates = models.DateTimeField(blank=True, null=True)
+
+    description = models.TextField(blank=True, null=True)
+
+    historical_note = models.TextField(blank=True, null=True)
     isPerson = models.BooleanField()
     cover_image = models.ImageField(upload_to="cover_images/pori/", blank=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     contact = models.CharField(max_length=255, blank=True, null=True)
 
-    private_notes = models.CharField(max_length=255, null=True, blank=True)    
+    private_notes = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="PorI_created")
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="Pori_modified")
