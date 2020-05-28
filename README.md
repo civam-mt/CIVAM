@@ -124,13 +124,10 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 * Run `git pull` to make sure that all the new changes are stored
 * Go into the angular folder with `cd angular-frontend`
 * Run `ng build --prod` to get the updated angular files
-* Run `sudo cp -r /home/ubuntu/CISC475_D5/angular-frontend/dist/angular-frontend/* /var/www/html/ to move the updated angular files into the frontend html folder`
+* Run `sudo cp -r /home/ubuntu/CISC475_D5/angular-frontend/dist/angular-frontend/* /var/www/html/` to move the updated angular files into the frontend html folder
 * Run `ps auxw | grep runserver` to see any instances of the django server running
 * If there are any threads running the process `/home/ubuntu/CISC475_D5/civam-env/bin/python3 /home/ubuntu/CISC475_D5/django_project/manage.py runserver 0.0.0.0:8000` then take their thread number and `run sudo kill 1234` (replace 1234 with the thread number)
 * Go back to the CISC475_D5 folder and run `source civam-env/bin/activate` so that you’ll be able to run the django commands correctly
-* Go into the django settings with `cd django_project/project` and `vim settings.py`
-* In the settings file, press i to insert, and fill in `ALLOWED_HOSTS` with `‘civam-mt.org’`
-* Below that, put the line `STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')`
 * Once you have done this, press esc and `:wq` to save your changes, `cd ../` to go back to the main django folder
 * Run `python3 manage.py makemigrations` and `python3 manage.py migrate`. If these don’t work you make have to follow the steps to reset the postgres tables (THIS WILL DELETE ALL ITEMS SO ONLY DO IT IF YOU’VE CHECKED EVERYTHING ELSE)
 * Run `python3 manage.py runserver 0.0.0.0:8000` to make sure the server runs
