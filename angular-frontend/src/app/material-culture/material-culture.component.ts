@@ -3,11 +3,11 @@ import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-artifacts',
-  templateUrl: './artifacts.component.html',
-  styleUrls: ['./artifacts.component.scss']
+  selector: 'app-material-culture',
+  templateUrl: './material-culture.component.html',
+  styleUrls: ['./material-culture.component.scss']
 })
-export class ArtifactsComponent implements OnInit {
+export class MaterialCultureComponent implements OnInit {
   API_URL = environment.apiUrl;
   items;
 
@@ -18,7 +18,7 @@ export class ArtifactsComponent implements OnInit {
   }
 
   hasKeyword(item: object) {
-    let keyword = "artifact";
+    let keyword = "material-culture";
 
     let keywords = [];
     for (var i in item["keywords"]) {

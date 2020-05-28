@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArtifactsComponent } from './artifacts.component';
+import { MaterialCultureComponent } from './material-culture.component';
 
-describe('ArtifactsComponent', () => {
-  let component: ArtifactsComponent;
-  let fixture: ComponentFixture<ArtifactsComponent>;
+describe('MaterialCultureComponent', () => {
+  let component: MaterialCultureComponent;
+  let fixture: ComponentFixture<MaterialCultureComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArtifactsComponent ]
+      declarations: [ MaterialCultureComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArtifactsComponent);
+    fixture = TestBed.createComponent(MaterialCultureComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
