@@ -1,0 +1,16 @@
+<!-- Body of the Page -->
+<div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
+    People
+</div>
+<div class="row container-fluid">
+    <div *ngFor="let person of people" class="col-xl-3 col-sm-6 py-2">
+        <div class="card h-100">
+            <img *ngIf="person.cover_image" class="card-img-top" src="{{API_URL}}/media/{{person.cover_image}}">
+            <div class="card-body">
+                <div class="card-title">
+                    <a [routerLink]="['/pori', person.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-size:2vw; font-weight:400;">{{person.name}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

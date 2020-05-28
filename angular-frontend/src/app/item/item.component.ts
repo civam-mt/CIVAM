@@ -20,7 +20,6 @@ export class ItemComponent implements OnInit {
   API_URL = environment.apiUrl;
   item;
   images;
-  stories;
   rawVideos;
   videos;
   keywords;
@@ -44,7 +43,6 @@ export class ItemComponent implements OnInit {
       console.log(data)
       this.item = data;
       this.images = this.item["images"];
-      this.stories = this.item["stories"];
       this.narratives = this.item["narratives"];
       this.rawVideos = this.item["videos"];
       this.keywords = this.item["keywords"];

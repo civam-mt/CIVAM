@@ -4,11 +4,8 @@
         <div class = row>
 
             <div class = "col-lg-5">
-                <h1 *ngIf="item.name">{{item.name}}</h1>
-
-                <div *ngIf="creators">
-                    <div *ngFor="let person of creators"><h3>{{person.name}}</h3></div>
-                </div>
+                <h1 *ngIf="item.name"><strong>{{item.name}}</strong></h1>
+                <br>
                 <p *ngIf="item.description" style="font-size:1vw;">{{item.description}}</p>
             </div>
 
@@ -46,27 +43,6 @@
                 </div>
 
             </div>
-        </div>
-    </div>
-
-    <div *ngIf="stories">
-        <div *ngIf="stories.length > 0">
-            <button type="button" class="btn btn-block btn-primary container-sm" (click)="storiesCollapsed = !storiesCollapsed"
-            [attr.aria-expanded]="!storiesCollapsed" aria-controls="stories">
-            <h3>Stories and Comments</h3>
-            </button>
-
-            <div id="stories" [ngbCollapse]="storiesCollapsed">
-                <div class="card container block-margin">
-                    <div class="card-body">  
-                        <div *ngFor="let story of stories">
-                            <h3>{{story.author}}</h3>
-                            <p>{{story.content}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
         </div>
     </div>
 
@@ -307,7 +283,13 @@
                         <div><p><strong>Creator(s)</strong></p></div>
                     </div>
                     <div class = "col-lg-5">
-                        <div *ngFor="let creator of creators"><p>{{creator.name}}<a [routerLink]="['/pori', creator.id]" style="color:black;">  [Link to Biography]</a></p></div>
+                        <div *ngFor="let creator of creators">
+                            <p>
+                                <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-weight:500">
+                                    {{creator.name}}
+                                </a>
+                            </p>
+                        </div>      
                     </div>
                 </div>
                 <div class="row">
@@ -324,7 +306,13 @@
                         <div><p><strong>Location of Originals</strong></p></div>
                     </div>
                     <div class = "col-lg-5">
-                        <div *ngFor="let original of originals"><p>{{original.name}}</p></div>
+                        <div *ngFor="let original of originals">
+                            <p>
+                                <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black;">
+                                    {{original.name}}
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
