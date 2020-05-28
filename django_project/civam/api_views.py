@@ -160,7 +160,9 @@ def all_pori(request):
 			"description":pori.description,
 			"historical_note":pori.historical_note,
 			"isPerson":pori.isPerson,
-			"cover_image": pori.cover_image.name
+			"cover_image": pori.cover_image.name,
+			"address": pori.address,
+			"contact": pori.contact
 		}
 		pori_list.append(new_pori)
 
@@ -194,7 +196,9 @@ def get_pori(request, pori_id):
 		"description":pori.description,
 		"historical_note":pori.historical_note,
 		"isPerson":pori.isPerson,
-		"cover_image": pori.cover_image.name
+		"cover_image": pori.cover_image.name,
+		"address": pori.address,
+		"contact": pori.contact
 	}
 
 	return JsonResponse(context, safe=False)
@@ -251,7 +255,7 @@ def item_solo(request, item_id):
 		return i.id
 
     # Display stories
-	stories = Story.objects.filter(item_id=item_id)
+	#stories = Story.objects.filter(item_id=item_id)
     #Display narratives
 	narratives = Narrative.objects.filter(item_id=item_id)
     # Display images
@@ -296,7 +300,7 @@ def item_solo(request, item_id):
 	"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
 	"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())],
 
-    'stories': list(stories.values()),
+    #'stories': list(stories.values()),
     'narratives': list(narratives.values()),
     'images': list(image.values()),
     'videos': vids

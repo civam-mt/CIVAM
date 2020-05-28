@@ -10,12 +10,6 @@ class NarrativeForm(ModelForm):
         model = Narrative
         fields = ['content', 'author']
         
-
-class StoryForm(ModelForm):
-    class Meta:
-        model = Story
-        fields = ['content', 'author']
-        
 class CollectionForm(ModelForm):
     class Meta:
         model = Collection

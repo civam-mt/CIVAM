@@ -108,12 +108,13 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 
 #### Migrate
 * `cd ../..`
-* `python3 manage.py makemigrations civam`
-* `python3 manage.py migrate civam`
+* `python3 manage.py makemigrations`
+* `python3 manage.py migrate`
 
 ## General Advice
 * Always run postgresql service before migrating or running django
 * Any errors that mention port5432 or errors in python installation directories are likely caused by postgresql service not being run
 * If you get this warning: “Your global Angular CLI version (#.#.#) is greater than your local version (#.#.#). The local Angular CLI version is used” then run: `npm install --save-dev @angular/cli@latest`
+* If you have problems with migrations locally, follow the Backend Dev & Cleaning Instructions
 
 
