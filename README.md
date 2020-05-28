@@ -102,7 +102,7 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 * `psql`
 * `\c django_db`
 * `select 'drop table if exists "' || tablename || '" cascade;' from pg_tables where tablename like 'civam%';`
-* Copy above queries, paste, and run
+* Copy queries resturned from above command, paste, and run
 * `delete from django_migrations where app='civam';`
 * `\q`
 * `exit`
