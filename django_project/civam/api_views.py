@@ -132,12 +132,13 @@ def all_items(request):
 			'external_link':item.external_link,
 			'provenance':item.provenance,
 			#'notes':item.notes,
+			"place_created":item.place_created,
 			'citation':item.citation,
 			'historical_note':item.historical_note,
 
 			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
 			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
-			"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
+			#"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
 			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
 		}
 		item_list.append(new_item)
