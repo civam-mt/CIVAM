@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Story, Keyword, PersonOrInstitute, Narrative
+from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative
 from guardian.admin import GuardedModelAdmin
 
 # Civam admin models are defined here
@@ -43,10 +43,6 @@ class ImageInline(admin.TabularInline):
 class VideoInline(admin.TabularInline):
     model = Video
 
-class StoryInline(admin.TabularInline):
-    model = Story
-    exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
-
 class NarrativeInline(admin.TabularInline):
     model = Narrative
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
@@ -58,7 +54,7 @@ class CollectionAdmin(DefaultAdmin):
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection')
-    inlines = [ImageInline, VideoInline, StoryInline, NarrativeInline]
+    inlines = [ImageInline, VideoInline, NarrativeInline]
     search_fields = ['name','description','collection__title']
 
 class PorIAdmin(DefaultAdmin):

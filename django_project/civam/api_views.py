@@ -251,7 +251,7 @@ def item_solo(request, item_id):
 		return i.id
 
     # Display stories
-	stories = Story.objects.filter(item_id=item_id)
+	#stories = Story.objects.filter(item_id=item_id)
     #Display narratives
 	narratives = Narrative.objects.filter(item_id=item_id)
     # Display images
@@ -296,7 +296,7 @@ def item_solo(request, item_id):
 	"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
 	"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())],
 
-    'stories': list(stories.values()),
+    #'stories': list(stories.values()),
     'narratives': list(narratives.values()),
     'images': list(image.values()),
     'videos': vids
