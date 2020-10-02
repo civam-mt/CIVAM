@@ -32,7 +32,7 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 ### Install Required Programs for Django: Python and Postgresql
 * `cd django_project`
 * `sudo apt update`
-* `sudo apt-get install python-pip3 python-dev libpq-dev postgresql postgresql-contrib`
+* `sudo apt-get install python3-pip python-dev libpq-dev postgresql postgresql-contrib`
 
 ### Postgresql Setup
 * `sudo service postgresql start` 
