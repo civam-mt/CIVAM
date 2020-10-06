@@ -1,15 +1,67 @@
+$dark-brown: #553c0f;       // selected element
+$light-brown: #a67c00;      // active element
+$gold: #bf9b30;             // hover element
+$theme-color: #f7d417;      // theme color
+
+a {
+    text-decoration-style: none;
+    background-color: transparent;
+}
+
 .navbar {
-    padding-top: .1em;
-    padding-bottom: .1em;
+    background-color: $theme-color;
+    font-weight: 600;
 }
-.dropdown-toggle::after {
-    display: inline-block;
-    vertical-align: middle;
+
+.dropdown-toggle {
+    padding-top: 0.5rem;
+    color: #9fa8da;
+    white-space: nowrap;
+    border: transparent;
+    background-color: transparent!important; /* makes dropdown have transparent background color on first page load */
 }
-.navbar-text {
-    font-size: 1.4vw;
+
+.dropdown-toggle:hover {
+    color: #e8eaf6;
 }
-.brand-custom {
+
+.dropdown-toggle:active {
     color: white;
-    text-align: right;
 }
+
+.dropdown-menu {
+    background-color: #e8eaf6;
+}
+
+.nav-link {
+    color: $gold;
+}
+
+.nav-link:hover {
+    color: $light-brown;
+}
+
+.btn:active {
+    color: $dark-brown;
+}
+
+.active {
+    color: $dark-brown!important;
+}
+
+// Old CSS from Sophia's group (not sure if I want to use anything, so it's commented out for now)
+// .navbar {
+//     padding-top: .1em;
+//     padding-bottom: .1em;
+// }
+// .dropdown-toggle::after {
+//     display: inline-block;
+//     vertical-align: middle;
+// }
+// .navbar-text {
+//     font-size: 1.4vw;
+// }
+// .brand-custom {
+//     color: white;
+//     text-align: right;
+// }
