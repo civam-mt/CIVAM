@@ -1,11 +1,7 @@
 <!-- Body of the Page -->
-<div class = "container-fluid jumbotron text-center">
-    <div> 
-        Crow Indian Virtual Archive and Museum
-    </div>
-    <div> 
-        Apsáalooke ammaaiiláxiio
-    </div>
+<div class="jumbotron container-fluid text-center text-md-center">
+    <h1 class="title">Crow Indian Virtual Archive and Museum</h1>
+    <h3 class="subtitle">Apsáalooke ammaaiiláxiio</h3>
     <br>
     <br>
     <blockquote class="blockquote text-center bg-translucent border-primary container container-lg">
@@ -14,6 +10,7 @@
     </blockquote>
 </div>
 
+<!-- SAM - TODO: once connected to db, move styles of these elements over to SCSS and modify to see how they look -->
 <!-- TODO: get rid of gutter right before row wrapping -->
 <div class="row justify-content-center container-fluid">
     <div *ngFor="let collection of collections; let i=index" class="col-xl-3 col-sm-6 col-py-2">
