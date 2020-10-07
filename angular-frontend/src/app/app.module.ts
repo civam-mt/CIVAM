@@ -28,12 +28,17 @@ import { PoriComponent } from './pori/pori.component';
 import { MaterialCultureComponent } from './material-culture/material-culture.component';
 import { ImagesComponent } from './images/images.component';
 import { PeopleComponent } from './people/people.component';
+<<<<<<< HEAD
 import { ModalComponent } from './modal/modal.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { FullMapComponent } from './map/full-map/full-map.component';
 import { SmallMapComponent } from './map/small-map/small-map.component';
 import { CardComponent } from './card/card.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
+=======
+import { SearchResultComponent } from './search-result/search-result.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+>>>>>>> here goes nothing
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
