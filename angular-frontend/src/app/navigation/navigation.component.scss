@@ -1,7 +1,9 @@
 $dark-brown: #553c0f;       // selected element
 $light-brown: #a67c00;      // active element
 $gold: #bf9b30;             // hover element
+$lighter-gold: #ffd400;       
 $theme-color: #f7d417;      // theme color
+$dropdown-color: #ffffb7;   // dropdown color (lighter version of theme)
 
 a {
     text-decoration-style: none;
@@ -21,16 +23,32 @@ a {
     background-color: transparent!important; /* makes dropdown have transparent background color on first page load */
 }
 
+// this is a bootstrap class, so any changes need to have the !important tag on the end
+.dropdown-item {
+    color: $gold;
+}
+
+// the current drop-down menu item hovered on from within the browse drop-down
+a.dropdown-item:hover {
+    background-color: $lighter-gold!important;
+    color: $dark-brown!important;
+}
+
+a.dropdown-item.active {
+    font-weight: bold!important;
+    background-color: $dropdown-color;
+}
+
 .dropdown-toggle:hover {
-    color: #e8eaf6;
+    color: $gold;
 }
 
 .dropdown-toggle:active {
-    color: white;
+    color: $light-brown;
 }
 
 .dropdown-menu {
-    background-color: #e8eaf6;
+    background-color: $dropdown-color;
 }
 
 .nav-link {
@@ -48,20 +66,3 @@ a {
 .active {
     color: $dark-brown!important;
 }
-
-// Old CSS from Sophia's group (not sure if I want to use anything, so it's commented out for now)
-// .navbar {
-//     padding-top: .1em;
-//     padding-bottom: .1em;
-// }
-// .dropdown-toggle::after {
-//     display: inline-block;
-//     vertical-align: middle;
-// }
-// .navbar-text {
-//     font-size: 1.4vw;
-// }
-// .brand-custom {
-//     color: white;
-//     text-align: right;
-// }
