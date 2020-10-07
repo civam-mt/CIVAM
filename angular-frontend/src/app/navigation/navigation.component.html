@@ -26,9 +26,21 @@
                 <a [routerLinkActive]='activeClass' class="nav-link" routerLink='about' 
                     data-toggle="collapse" data-target=".navbar-collapse.show">About</a>
             </li>
+<<<<<<< HEAD
             <li class="nav-item">
                 <a [routerLinkActive]='activeClass' class="nav-link" routerLink='collections' 
                     data-toggle="collapse" data-target=".navbar-collapse.show">Collections</a>
+=======
+         
+            <li [ngbNavItem]="3" class="nav-item">
+                <a ngbNavLink
+                    [routerLinkActive]='activeClass'
+                    class="navbar-text"
+                    routerLink='collections'>
+                    <strong>Collections</strong>
+                </a>
+                <ng-template ngbNavContent></ng-template>
+>>>>>>> here goes nothing
             </li>
             <li class="nav-item">
                 <a [routerLinkActive]='activeClass' class="nav-link" routerLink='map' 
@@ -51,6 +63,24 @@
                     </div>
                 </div>
             </li>
+
+            <li [ngbNavItem]="8" class="nav-item">
+                <div class="md-form mt-0">
+           
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button id="search_submit" type="submit" [routerLinkActive]='activeClass'
+                        routerLink='search-result'>
+                        SUBMIT TO ME
+                            
+                        </button>
+                    
+                  
+                  </div>
+                
+                <ng-template ngbNavContent></ng-template>
+            </li>
+         
+
         </ul>
 
         <!-- Search Bar and Search Button -->
