@@ -11,14 +11,21 @@ a {
 }
 
 .navbar {
-    background-color: $theme-color;
+    background-color: $theme-color!important;
     font-weight: 600;
 }
 
-// .navbar-toggler {
-//     color: black!important;
-//     border-color: black!important;
-// }
+.icon-bar {
+    // color: black!important;
+    // border-color: black!important;
+    // display: block;
+    // width: 0.5rem;
+    // height: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #cccccc;
+    border-radius: 1px;
+}
 
 .dropdown-toggle {
     padding-top: 0.5rem;
