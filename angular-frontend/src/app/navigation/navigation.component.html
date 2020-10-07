@@ -10,40 +10,47 @@
 <!-- <nav ngbNav class="navbar navbar-light bg-primary navbar-expand-lg" #nav="ngbNav" [activeId]="0"> -->
 
 
-
-<!-- *************** -->
-
-<nav class="navbar fixed-top navbar-expand">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a [routerLinkActive]='activeClass' class="nav-link" routerLink='home'>Home</a>
-        </li>
-        <li class="nav-item">
-            <a [routerLinkActive]='activeClass' class="nav-link" routerLink='about'>About</a>
-        </li>
-        <li class="nav-item">
-            <a [routerLinkActive]='activeClass' class="nav-link" routerLink='collections'>Collections</a>
-        </li>
-        <li class="nav-item">
-            <a [routerLinkActive]='activeClass' class="nav-link" routerLink='map'>Crow Collections Around The World</a>
-        </li>
-        <li>
-            <div class="dropdown show">
-                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true">Browse</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a [routerLinkActive]='activeClass' routerLink='oral-histories' class="dropdown-item" href="#">Oral
-                        Histories</a>
-                    <a [routerLinkActive]='activeClass' routerLink='images' class="dropdown-item" href="#">Images</a>
-                    <a [routerLinkActive]='activeClass' routerLink='material-culture' class="dropdown-item"
-                        href="#">Material Culture</a>
-                    <a [routerLinkActive]='activeClass' routerLink='people' class="dropdown-item" href="#">People</a>
+<nav class="navbar fixed-top navbar-expand-sm">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='home'>Home</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='about'>About</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='collections'>Collections</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='map'>Crow Collections Around The
+                    World</a>
+            </li>
+            <li>
+                <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Browse</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a [routerLinkActive]='activeClass' routerLink='oral-histories' class="dropdown-item"
+                            href="#">Oral
+                            Histories</a>
+                        <a [routerLinkActive]='activeClass' routerLink='images' class="dropdown-item"
+                            href="#">Images</a>
+                        <a [routerLinkActive]='activeClass' routerLink='material-culture' class="dropdown-item"
+                            href="#">Material Culture</a>
+                        <a [routerLinkActive]='activeClass' routerLink='people' class="dropdown-item"
+                            href="#">People</a>
+                    </div>
                 </div>
-            </div>
-        </li>
-    </ul>
+            </li>
+        </ul>
+    </div>
 
-    <!-- Navbar Brand Image (shown on the right of navbar) -->
+
+    <!-- Navbar Brand Image (shown on the right) -->
     <a class="navbar-brand"><img src="../../assets/images/favicon-32x32.png"></a>
 </nav>
 
