@@ -4,7 +4,7 @@ $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
        
 $theme-color: #f7d417;      // theme color
-$dropdown-color: #ffffb7;   // dropdown color (lighter version of theme)
+$lighter-yellow: #ffffb7;   // dropdown color (lighter version of theme)
 
 a {
     text-decoration-style: none;
@@ -37,7 +37,7 @@ a.dropdown-item:hover {
 
 a.dropdown-item.active {
     font-weight: bold!important;
-    background-color: $dropdown-color;
+    background-color: $theme-color!important;
 }
 
 .dropdown-toggle:hover {
@@ -49,7 +49,7 @@ a.dropdown-item.active {
 }
 
 .dropdown-menu {
-    background-color: $dropdown-color;
+    background-color: $theme-color;
 }
 
 .nav-link {
