@@ -31,7 +31,6 @@ const routes: Routes = [
 {path:'pori', component: PoriComponent},
 {path:'pori/:poriID', component: PoriComponent},
 {path:'people', component: PeopleComponent},
-{path:'people', component: PeopleComponent},
 {path:'search-result', component: SearchResultComponent},
 {path:'keyword-page/:keyword', component: KeywordPageComponent},
 // Keep this one last, so it catches everything else
