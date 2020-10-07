@@ -1,14 +1,14 @@
 <!-- Do NOT modify the classes in the <nav> tag below (navbar-light, and bg-light are essential for the collapsable menu button) -->
-<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 
     <!-- Collapsable Menu Button (3 horizontal lines) -->
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-        data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- this div contains all components that collapse when the collapsable menu button is clicked -->
-    <div class="collapse navbar-collapse" id="navbarToggler">
+    <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
 
             <!-- Navbar links (like this one) are set up using a list item.Fill in the routerLink for the page generated in `app-routing.module.ts`  -->
@@ -42,8 +42,13 @@
                 </div>
             </li>
         </ul>
+        <form class="form-inline my-2 my-sm-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-warning my-2 my-sm-2" type="submit">Search</button>
+          </form>
     </div>
 
-    <!-- Navbar Brand Image (shown on the right) -->
-    <a class="navbar-brand"><img src="../../assets/images/favicon-32x32.png"></a>
+
+        <!-- Navbar Brand Image (shown on the right) -->
+        <span class="navbar-brand"><img src="../../assets/images/favicon-32x32.png"></span>
 </nav>
