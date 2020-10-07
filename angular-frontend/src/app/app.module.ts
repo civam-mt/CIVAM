@@ -29,6 +29,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { FullMapComponent } from './map/full-map/full-map.component';
 import { SmallMapComponent } from './map/small-map/small-map.component';
 import { CardComponent } from './card/card.component';
+import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -57,7 +58,9 @@ import { CardComponent } from './card/card.component';
     SearchResultComponent,
     CardComponent,
     FullMapComponent,
-    SmallMapComponent
+    SmallMapComponent,
+    KeywordPageComponent,
+
   ],
   imports: [
     BrowserModule,
