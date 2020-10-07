@@ -1,15 +1,69 @@
+$dark-brown: #553c0f;       // selected element
+$light-brown: #a67c00;      // active element
+$gold: #bf9b30;             // hover element
+$lighter-gold: #ffd400;
+       
+$theme-color: #f7d417;      // theme color
+$dropdown-color: #ffffb7;   // dropdown color (lighter version of theme)
+
+a {
+    text-decoration-style: none;
+    background-color: transparent;
+}
+
 .navbar {
-    padding-top: .1em;
-    padding-bottom: .1em;
+    background-color: $theme-color!important;
+    font-weight: 600;
 }
-.dropdown-toggle::after {
-    display: inline-block;
-    vertical-align: middle;
+
+.dropdown-toggle {
+    padding-top: 0.5rem;
+    color: #9fa8da;
+    white-space: nowrap;
+    border: transparent;
+    background-color: transparent!important; /* makes dropdown have transparent background color on first page load */
 }
-.navbar-text {
-    font-size: 1.4vw;
+
+// this is a bootstrap class, so any changes need to have the !important tag on the end
+.dropdown-item {
+    color: $gold;
 }
-.brand-custom {
-    color: white;
-    text-align: right;
+
+// the current drop-down menu item hovered on from within the browse drop-down
+a.dropdown-item:hover {
+    background-color: $lighter-gold!important;
+    color: $dark-brown!important;
+}
+
+a.dropdown-item.active {
+    font-weight: bold!important;
+    background-color: $dropdown-color;
+}
+
+.dropdown-toggle:hover {
+    color: $gold;
+}
+
+.dropdown-toggle:active {
+    color: $light-brown;
+}
+
+.dropdown-menu {
+    background-color: $dropdown-color;
+}
+
+.nav-link {
+    color: $gold;
+}
+
+.nav-link:hover {
+    color: $light-brown;
+}
+
+.btn:active {
+    color: $dark-brown;
+}
+
+.active {
+    color: $dark-brown!important;
 }
