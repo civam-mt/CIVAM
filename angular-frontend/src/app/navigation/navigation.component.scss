@@ -72,6 +72,7 @@ a.dropdown-item.active {
     padding-left: 1rem;
 }
 
-// #search-button {
-//     color: 
-// }
+button#search-button {
+    background-color: $light-brown;
+    border-color: $dark-brown;
+}
