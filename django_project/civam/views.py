@@ -11,7 +11,6 @@ from guardian.models import Group
 # TODO, add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
 logger = logging.getLogger(__name__)
 
-
 def index(request):
     return HttpResponse("index")
 
