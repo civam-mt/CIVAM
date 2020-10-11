@@ -6,7 +6,6 @@ import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
-
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',

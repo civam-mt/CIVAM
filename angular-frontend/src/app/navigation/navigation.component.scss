@@ -11,11 +11,17 @@ a {
     background-color: transparent;
 }
 
+<<<<<<< HEAD
 
 .navbar {
     background-color: $theme-color!important;
     font-weight: 600;
     z-index: 999; //Hacky way to make autocomplete appear over the navbar
+=======
+.navbar {
+    background-color: $theme-color!important;
+    font-weight: 600;
+>>>>>>> Search bar works
 }
 
 .dropdown-toggle {
