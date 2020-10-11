@@ -48,6 +48,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.postgres',
     'guardian',
     'civam.apps.CivamConfig',
     'django.contrib.admin',
@@ -149,3 +150,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    
+    'my_app.views': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+
+    },
+}

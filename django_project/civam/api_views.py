@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
 from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, get_objects_for_group
 from guardian.decorators import permission_required
+from django.contrib.postgres.search import TrigramSimilarity
 from .models import *
 from .forms import *
-
+import logging
 from guardian.models import Group
 from django.http import JsonResponse
 from django.core import serializers
@@ -11,6 +12,7 @@ import json
 # Civam views defined here
 
 # TODO, add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
+logger = logging.getLogger('my_app.views')
 
 def index(request):
     return HttpResponse("index")
@@ -37,6 +39,50 @@ def register(request):
 		return u.id
 	else:
 		return 0
+
+def searchResult(request):
+	print("In searchResults")
+	query = request.GET.get('data', None)
+	logger.warn(request.GET.get('data', None))
+	items = Item.objects.all()
+	#item_list = list(item_list.values())
+	item_list = []
+	#keywords = Keyword.objects.annotate(similarity=TrigramSimilarity('word', str(query)) ).filter(similarity__gt=0.3).order_by('-similarity')
+	matched_keywords = Keyword.objects.filter(word__trigram_similar=query)
+	print(list(matched_keywords))
+	items =Item.objects.filter(keywords__in= list(matched_keywords))
+	for item in items:
+		new_item = {
+			'item': item.id,
+			'cover_image': item.cover_image.name,
+			'name': item.name,
+			'description': item.description,
+			'collection': item.collection.id,
+			'culture_or_community': item.culture_or_community,
+			'other_forms': item.other_forms,
+			'digital_heritage_item':item.digital_heritage_item,
+			'date_of_creation':item.date_of_creation,
+			'physical_details':item.physical_details,
+			'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
+			'catalog_number':item.catalog_number,
+			'external_link':item.external_link,
+			'provenance':item.provenance,
+			#'notes':item.notes,
+			"place_created":item.place_created,
+			'citation':item.citation,
+			'historical_note':item.historical_note,
+
+			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
+			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
+			#"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
+			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
+		}
+		item_list.append(new_item)
+
+
+	context = {"items":item_list}
+	return JsonResponse(context, safe=False)
+
 '''
 def new_collection(request):
 	form = CollectionForm(request.POST or None)
@@ -74,8 +120,7 @@ def item(request, collection_id, item_id):
     return JsonResponse(context, safe=False)
 
 '''
-def search_results(request, search_term):
-	pass
+
 
 
 # Display list of Items in a Collection

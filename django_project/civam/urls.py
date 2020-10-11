@@ -8,7 +8,9 @@ urlpatterns = [
     path('', views.collection_list, name='index'),
     path('collections/', views.collection_list, name='collections'),#/collection/
     path('api/collections/', api_views.collection_list, name="api_collections"),
-  
+
+    path('search-result/', views.searchResult, name="searchResult"),
+    path('api/search-result/', api_views.searchResult, name="searchResult"),
     # Login and register
     path('user/', include('django.contrib.auth.urls')),
     path('register/', views.register, name='registration'),

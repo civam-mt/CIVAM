@@ -3,23 +3,35 @@ from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, g
 from guardian.decorators import permission_required
 from .models import *
 from .forms import *
-
+import logging
 from guardian.models import Group
 
 # Civam views defined here
 
 # TODO, add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
+logger = logging.getLogger(__name__)
+logger.warn("HEREF")
 
 def index(request):
     return HttpResponse("index")
 
 # Lists public Collections
 def collection_list(request):
+    print("HERERERERER")
     collection_list = Collection.objects.filter(public=True)
     # Uncomment line below filter out Colletions a user doesn't have permissions to view
     # collection_list = get_objects_for_user(request.user, 'civam.view_collection', collection_list, accept_global_perms=False)
     context = {'collection_list' : collection_list}
     return render(request, 'civam/collection_list.html', context)
+
+
+def searchResult(request):
+    logger.warn(request.GET.get('data', None))
+    
+    print("IN VIEWS")
+    logger.warn("HEREF")
+
+
 
 # Register a new user
 def register(request):

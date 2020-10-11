@@ -2,14 +2,19 @@ import { Component, OnInit, Input } from '@angular/core';
 import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
 import {UsernameService} from '../auth/username.service';
 import * as jwt_decode from 'jwt-decode'; 
+import { NgForm } from '@angular/forms';
+import { Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   providers: [NgbNavConfig],
   styleUrls: ['./navigation.component.scss']
+  
 })
 export class NavigationComponent implements OnInit {
+
 
   @Input() activeClass = 'active';
   // isLoggedIn = false;
@@ -18,11 +23,20 @@ export class NavigationComponent implements OnInit {
   // name;
   // constructor(private usernameService: UsernameService) { }
 
-  constructor(config: NgbNavConfig) {
+  constructor(config: NgbNavConfig, private router: Router) {
 
     // customize default values of navs used by this component tree
     config.destroyOnHide = false;
     config.roles = false;
+  }
+
+  onSubmit(f:NgForm){
+    //this.router.navigate(['/search-result']);
+   
+    this.router.navigate(['/search-result', { 'data': f.value.query } ]);
+    
+
+
   }
 
   ngOnInit() {

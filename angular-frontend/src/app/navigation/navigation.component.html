@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- Do NOT modify the classes in the <nav> tag below (navbar-light, and bg-light are essential for the collapsable menu button) -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 
@@ -93,4 +94,65 @@
 
     <!-- Navbar Brand Image (shown on the right) -->
     <span class="navbar-brand"><img src="../../assets/images/favicon-32x32.png"></span>
+=======
+<!-- Do NOT modify the classes in the <nav> tag below (navbar-light, and bg-light are essential for the collapsable menu button) -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+
+    <!-- Collapsable Menu Button (3 horizontal lines) -->
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- this div contains all components that collapse when the collapsable menu button is clicked -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+
+            <!-- Navbar links (like this one) are set up using a list item.Fill in the routerLink for the page generated in `app-routing.module.ts`  -->
+            <li class="nav-item">
+                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='home'>Home</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='about'>About</a>
+            </li>
+
+            <li class="nav-item">
+                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='collections'>Collections</a>
+
+            </li>
+            <li class="nav-item">
+                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='map'>Crow Collections Around The World</a>
+            </li>
+            <li>
+                <!-- Dropdown Links in the Navbar -->
+                <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Browse</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a [routerLinkActive]='activeClass' routerLink='oral-histories' class="dropdown-item"
+                            href="#">Oral Histories</a>
+                        <a [routerLinkActive]='activeClass' routerLink='images' class="dropdown-item"
+                            href="#">Images</a>
+                        <a [routerLinkActive]='activeClass' routerLink='material-culture' class="dropdown-item"
+                            href="#">Material Culture</a>
+                        <a [routerLinkActive]='activeClass' routerLink='people' class="dropdown-item"
+                            href="#">People</a>
+                    </div>
+                </div>
+            </li>
+
+
+        </ul>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate  class="form-inline my-2 my-sm-0" >
+            <input class="form-control mr-sm-2" name="query" ngModel required #query="ngModel" type="search" placeholder="Search" aria-label="Search" >
+            <button class="btn btn-warning my-2 my-sm-2" id="search-button" type="submit"  >Search
+                
+            </button>
+        </form>
+    </div>
+
+
+        <!-- Navbar Brand Image (shown on the right) -->
+        <span class="navbar-brand"><img src="../../assets/images/favicon-32x32.png"></span>
+>>>>>>> Search bar works
 </nav>
