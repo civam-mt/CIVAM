@@ -129,8 +129,7 @@ def item(request, collection_id, item_id):
     return JsonResponse(context, safe=False)
 
 '''
-def search_results(request, search_term):
-	pass
+
 
 
 # Display list of Items in a Collection

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+<<<<<<< HEAD
 import { NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 import { UsernameService } from '../auth/username.service';
 import * as jwt_decode from 'jwt-decode';
@@ -7,18 +8,28 @@ import { Router } from "@angular/router";
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ApiService } from '../api.service';
+=======
+import {NgbNavConfig} from '@ng-bootstrap/ng-bootstrap';
+import {UsernameService} from '../auth/username.service';
+import * as jwt_decode from 'jwt-decode'; 
+import { NgForm } from '@angular/forms';
+import { Router} from "@angular/router";
+
+>>>>>>> Search bar works
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   providers: [NgbNavConfig],
   styleUrls: ['./navigation.component.scss']
+  
 })
 export class NavigationComponent implements OnInit {
   searched = '';
   keywordOptions: string[] = [];
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
+
 
 
   @Input() activeClass = 'active';
