@@ -3,13 +3,10 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
-<<<<<<< HEAD
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
-=======
 
->>>>>>> here goes nothing
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',

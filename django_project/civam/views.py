@@ -28,6 +28,10 @@ def searchResult(request):
     logger.warn(request.GET.get('data', None))
     
     print("IN VIEWS")
+<<<<<<< HEAD
+=======
+    logger.warn("HEREF")
+>>>>>>> Search bar works
 
 
 
