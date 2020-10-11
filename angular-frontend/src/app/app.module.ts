@@ -80,6 +80,7 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
   ],
 
   exports: [
+   
     AboutComponent,
     SafePipe
   ],

@@ -47,7 +47,6 @@ export class SearchResultComponent implements OnInit {
       this.items = data["items"];
       console.log("FINISED GETTING ITEMS FOR SEARCH");
     });
-
   }
 }
 
