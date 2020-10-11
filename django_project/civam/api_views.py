@@ -95,7 +95,11 @@ def search_keyword(request):
 def searchResult(request):
 	
 	query = request.GET.get('data', None)
+	logger.warn(request.GET.get('data', None))
+	items = Item.objects.all()
+	#item_list = list(item_list.values())
 	item_list = []
+	#keywords = Keyword.objects.annotate(similarity=TrigramSimilarity('word', str(query)) ).filter(similarity__gt=0.3).order_by('-similarity')
 	matched_keywords = Keyword.objects.filter(word__trigram_similar=query)
 	print(list(matched_keywords))
 	items =Item.objects.filter(keywords__in= list(matched_keywords)).distinct()
@@ -168,8 +172,7 @@ def item(request, collection_id, item_id):
     return JsonResponse(context, safe=False)
 
 '''
-def search_results(request, search_term):
-	pass
+
 
 
 # Display list of Items in a Collection
