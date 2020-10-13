@@ -29,9 +29,12 @@ def searchResult(request):
     
     print("IN VIEWS")
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     logger.warn("HEREF")
 >>>>>>> Search bar works
+=======
+>>>>>>> cleaned up stuff
 
 
 
