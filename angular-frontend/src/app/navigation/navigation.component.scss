@@ -76,3 +76,7 @@ button#search-button {
     background-color: $light-brown;
     border-color: $dark-brown;
 }
+
+button#search-button:hover {
+    background-color: $gold;
+}
