@@ -14,7 +14,8 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 # Local Git Setup
 * After cloning the repository, edit .git/info/exclude
 * Add the following 
-```django_project/civam/migrations/ 
+```
+django_project/civam/migrations/ 
 django_project/project/settings.py 
 django_project/dump.json 
 django_project/civam/package-lock.json
