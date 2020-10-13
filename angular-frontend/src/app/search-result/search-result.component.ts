@@ -38,20 +38,14 @@ export class SearchResultComponent implements OnInit {
 
   getItems(query: string) {
 
-    console.log("GETTING ITEMS!!");
+    console.log("GETTING ITEMS FOR SEARCH");
     console.log(query);
     this.api.getSearch(query).subscribe((data) => {
       console.log(data);
       this.items = data["items"];
-      console.log("FINISED GETTING ITEMS!!");
+      console.log("FINISED GETTING ITEMS FOR SEARCH");
     });
-    /*
-     this.api.getItems().subscribe((data) => {
-      this.items = data["items"];
-      this.items = this.items.filter(this.KeywordCheck);
-      console.log("FILTERED ITEMS!!");
-    });
-    */
+
   }
 }
 
