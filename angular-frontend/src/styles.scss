@@ -22,6 +22,18 @@ div {
 }
 */
 
+.page-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 16px;
+    min-height: 100vh;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     background: url('./assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;
     background-position: center top;
