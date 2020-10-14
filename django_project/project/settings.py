@@ -30,7 +30,7 @@ SECRET_KEY = 'au+me7y%0)7t4b@tqh#r7rez)badj=5vxv#ftyhdpd=a1#r-#d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['civam-mt.org']
+ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')
 
