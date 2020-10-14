@@ -30,6 +30,7 @@ export class ItemComponent implements OnInit {
   narrativesCollapsed = true;
   showNavigationArrows = true;
   showNavigationIndicators = true;
+  showModal: boolean = false; 
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit() {
@@ -51,5 +52,19 @@ export class ItemComponent implements OnInit {
         return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
         })
     });
+  }
+  toggleModal() {
+    if (this.showModal) {
+      this.showModal = false; 
+    } else {
+      this.showModal = true; 
+    }
+    console.log(this.showModal); 
+  }
+  showHideModal() {
+    let setClass = {
+      "modalOff": !this.showModal,
+    }
+    return setClass; 
   }
 }
