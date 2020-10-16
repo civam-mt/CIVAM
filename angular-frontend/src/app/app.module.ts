@@ -3,15 +3,11 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPopper } from 'angular-popper'
 import { NgForm } from '@angular/forms';
-<<<<<<< HEAD
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { MatInputModule } from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatFormFieldModule} from '@angular/material/form-field';
-=======
-import { FormsModule }   from '@angular/forms';
->>>>>>> Search bar works
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -65,7 +61,6 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
     PeopleComponent,
     ModalComponent,
     SearchResultComponent,
-<<<<<<< HEAD
     CardComponent,
     FullMapComponent,
     SmallMapComponent,
@@ -75,11 +70,6 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
     MatFormFieldModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-=======
- 
-  ],
-  imports: [
->>>>>>> Search bar works
     FormsModule,
     BrowserModule,
     AppRoutingModule,
