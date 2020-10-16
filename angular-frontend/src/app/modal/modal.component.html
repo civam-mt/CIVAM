@@ -1,9 +1,4 @@
-<div> 
-    <!-- <img src="{{API_URL}}/media/5/111/test3.jpeg"> -->
-
-    <div id="modal">
-        <button (click)="hideModal()" class="close">&times;</button>
-        <!-- <img src="{{API_URL}}/media/5/111/test3.jpeg" class="modal_image"> -->
-        <img src="{{API_URL}}/media/{{image.content}}" class="modal_image">
-    </div>
+<div id="modal">
+    <button (click)="hideModal()" class="close">&times;</button>
+    <img src="{{API_URL}}/media/{{image.content}}" class="modal_image">
 </div>
