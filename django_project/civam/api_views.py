@@ -46,7 +46,8 @@ def searchResult(request):
 	item_list = []
 	matched_keywords = Keyword.objects.filter(word__trigram_similar=query)
 	print(list(matched_keywords))
-	items =Item.objects.filter(keywords__in= list(matched_keywords))
+	items =Item.objects.filter(keywords__in= list(matched_keywords)).distinct()
+	
 	for item in items:
 		new_item = {
 			'item': item.id,
