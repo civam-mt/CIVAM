@@ -130,7 +130,7 @@ django_project/civam/package-lock.json
 * If you get this warning: “Your global Angular CLI version (#.#.#) is greater than your local version (#.#.#). The local Angular CLI version is used” then run: `npm install --save-dev @angular/cli@latest`
 * If you have problems with migrations locally, follow the Backend Dev & Cleaning Instructions
 * To stop the frontend's process, run `ps -ef | grep "ng serve"`, find the PID of the process, and run `kill <PID>`.
-* To stop the backend's process, run `ps -ef | grep "ng serve"`, find the PID of the process, and run `kill <PID>`. 
+* To stop the backend's process, run `ps auxw | grep runserver`, find the PID of the process, and run `kill <PID>`. 
 
 
 ## Running on the AWS Server
