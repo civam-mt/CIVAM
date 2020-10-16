@@ -8,17 +8,12 @@
     height: 100%;
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-<<<<<<< HEAD
     background-color: rgba(0,0,0,0.75); /* Black w/ opacity */
-=======
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
->>>>>>> ad9cc75e819855cd09d4b1f87d092980aa67808a
 }
 
 .modal_image {
     margin: auto;
     display: block;
-<<<<<<< HEAD
     width: 100%;
     max-width: 1200px;
     animation-name: zoom; 
@@ -29,18 +24,3 @@
     from {transform:scale(0)}
     to {transform:scale(1)}
 }
-=======
-    width: 80%;
-    max-width: 700px;
-}
-
-.close {
-    position: absolute;
-    top: 55px;
-    left: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-  }
->>>>>>> ad9cc75e819855cd09d4b1f87d092980aa67808a
