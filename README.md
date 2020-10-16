@@ -129,6 +129,9 @@ django_project/civam/package-lock.json
 * Any errors that mention port5432 or errors in python installation directories are likely caused by postgresql service not being run
 * If you get this warning: “Your global Angular CLI version (#.#.#) is greater than your local version (#.#.#). The local Angular CLI version is used” then run: `npm install --save-dev @angular/cli@latest`
 * If you have problems with migrations locally, follow the Backend Dev & Cleaning Instructions
+* To stop the frontend's process, run `ps -ef | grep "ng serve"`, find the PID of the process, and run `kill <PID>`.
+* To stop the backend's process, run `ps -ef | grep "ng serve"`, find the PID of the process, and run `kill <PID>`. 
+
 
 ## Running on the AWS Server
 * Log in, then `cd CISC475_D5`
