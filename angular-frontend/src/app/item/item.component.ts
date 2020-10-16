@@ -56,6 +56,7 @@ export class ItemComponent implements OnInit {
   toggleModal() {
     if (this.showModal) {
       this.showModal = false; 
+<<<<<<< HEAD
       this.showNavigationArrows = true; 
       this.showNavigationIndicators = true; 
     } else {
@@ -65,6 +66,12 @@ export class ItemComponent implements OnInit {
     }
     console.log(this.showModal); 
     console.log(this.showNavigationIndicators); 
+=======
+    } else {
+      this.showModal = true; 
+    }
+    console.log(this.showModal); 
+>>>>>>> ad9cc75e819855cd09d4b1f87d092980aa67808a
   }
   showHideModal() {
     let setClass = {
