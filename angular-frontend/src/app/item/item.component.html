@@ -36,7 +36,8 @@
                     <ngb-carousel  [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
                         <ng-template ngbSlide *ngFor="let image of images">
                         <div class="picsum-img-wrapper">
-                            <img src="{{API_URL}}/media/{{image.content}}" alt="Random slide" class="image">
+                            <img (click)="toggleModal()" src="{{API_URL}}/media/{{image.content}}" alt="Random slide" class="image">
+                            <app-modal [ngClass]="showHideModal()" [item]="this" [API_URL]="API_URL" [image]="image"></app-modal>
                         </div>
                         </ng-template>
                     </ngb-carousel>

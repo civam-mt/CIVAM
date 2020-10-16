@@ -14,8 +14,10 @@
 .modal_image {
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 700px;
+    // width: 100%;
+    // max-width: 1000px;
+    height: 100%; 
+    max-height: 80vh; 
     animation-name: zoom; 
     animation-duration: 0.6s; 
 }

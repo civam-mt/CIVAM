@@ -18,5 +18,7 @@ export class ModalComponent implements OnInit {
   }
   hideModal() {
     this.item.showModal = false; 
+    this.item.showNavigationArrows = true;
+    this.item.showNavigationIndicators = true;
   }
 }
