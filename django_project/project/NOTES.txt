@@ -1,7 +1,0 @@
--To allow for trigram search I ran:
-CREATE EXTENSION pg_trgm;
-SET pg_trgm.similarity_threshold = .2;
-
-and also added 
-'django.contrib.postgres' in your INSTALLED_APPS in settings.py
-
