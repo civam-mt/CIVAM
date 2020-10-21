@@ -17,6 +17,9 @@ export class ApiService {
   public getSearch(query : string){
     return this.httpClient.get(`${this.API_URL}/api/search-result/?data=${query}`);
   }
+  public getItemByKeyword(keyword: string){
+    return this.httpClient.get(`${this.API_URL}/api/items/all/${keyword}`);
+  }
   public getItems() {
     return this.httpClient.get(`${this.API_URL}/api/items/all/`);
   }

@@ -275,7 +275,13 @@
                         <div><p><strong>Keyword(s)</strong></p></div>
                     </div>
                     <div class = "col-lg-5">
-                        <div *ngFor="let keyword of keywords"><p>{{keyword.name}}</p></div>
+                        <div *ngFor="let keyword of keywords"><p>
+                         <a [routerLink]="['/keyword-page', keyword.name]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-weight:500">
+                                    {{keyword.name}}
+                                </a>
+                        </p>
+                        
+                        </div>
                     </div>
                 </div>
                 <div class="row">

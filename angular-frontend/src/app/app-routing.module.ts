@@ -14,6 +14,7 @@ import { PoriComponent } from './pori/pori.component';
 import { PeopleComponent } from './people/people.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 
 const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
@@ -32,6 +33,7 @@ const routes: Routes = [
 {path:'people', component: PeopleComponent},
 {path:'people', component: PeopleComponent},
 {path:'search-result', component: SearchResultComponent},
+{path:'keyword-page/:keyword', component: KeywordPageComponent},
 // Keep this one last, so it catches everything else
 {path:'**',component: PageNotFoundComponent}
 ];

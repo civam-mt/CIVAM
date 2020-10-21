@@ -1,9 +1,9 @@
-import { Component, OnInit, SecurityContext, ɵConsole } from '@angular/core';
+import { Component, OnInit,Input, SecurityContext, ɵConsole } from '@angular/core';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
- 
+import { Router} from "@angular/router";
 
 
 @Component({
@@ -13,7 +13,7 @@ import { ApiService } from '../api.service';
 })
 
 export class ItemComponent implements OnInit {
-
+  @Input() activeClass = 'active';
   SafePipe;
 
 
