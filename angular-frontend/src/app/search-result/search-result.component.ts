@@ -42,7 +42,7 @@ export class SearchResultComponent implements OnInit {
 
     console.log("GETTING ITEMS FOR SEARCH");
     console.log(query);
-    this.api.getSearch(query).subscribe((data) => {
+    this.api.getItemByKeyword(query).subscribe((data) => {
       console.log(data);
       this.items = data["items"];
       console.log("FINISED GETTING ITEMS FOR SEARCH");
