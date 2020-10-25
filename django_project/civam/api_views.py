@@ -47,7 +47,7 @@ def searchResult(request):
 	matched_keywords = Keyword.objects.filter(word__trigram_similar=query)
 	print(list(matched_keywords))
 	items =Item.objects.filter(keywords__in= list(matched_keywords)).distinct()
-	
+
 	for item in items:
 		new_item = {
 			'item': item.id,
@@ -267,13 +267,14 @@ def get_by_keyword(request, keyword):
 			'catalog_number':item.catalog_number,
 			'external_link':item.external_link,
 			'provenance':item.provenance,
-			'notes':item.notes,
+			#'notes':item.notes,
+			"place_created":item.place_created,
 			'citation':item.citation,
 			'historical_note':item.historical_note,
 
 			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
 			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
-			"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
+			#"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
 			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
 		}
 		item_list.append(new_item)
@@ -281,6 +282,7 @@ def get_by_keyword(request, keyword):
 
 	context = {"items":item_list}
 	return JsonResponse(context, safe=False)
+
 
 def item_solo(request, item_id):
 	#print(item_id)

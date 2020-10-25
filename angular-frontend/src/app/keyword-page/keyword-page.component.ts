@@ -23,7 +23,7 @@ export class KeywordPageComponent implements OnInit {
   getItems() {
 
     console.log("GETTING ITEMS FOR KEYWORD");
-    this.api.getSearch(this.keyword).subscribe((data) => {
+    this.api.getItemByKeyword(this.keyword).subscribe((data) => {
       this.items = data["items"];
       console.log("FINISED GETTING ITEMS FOR KEYWORD");
     });
