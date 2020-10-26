@@ -25,6 +25,8 @@ import { MaterialCultureComponent } from './material-culture/material-culture.co
 import { ImagesComponent } from './images/images.component';
 import { PeopleComponent } from './people/people.component';
 import { ModalComponent } from './modal/modal.component';
+import { FullMapComponent } from './map/full-map/full-map.component';
+import { SmallMapComponent } from './map/small-map/small-map.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -49,7 +51,9 @@ import { ModalComponent } from './modal/modal.component';
     MaterialCultureComponent,
     ImagesComponent,
     PeopleComponent,
-    ModalComponent
+    ModalComponent,
+    FullMapComponent,
+    SmallMapComponent
   ],
   imports: [
     BrowserModule,

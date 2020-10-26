@@ -2,8 +2,19 @@
     <h1 class="title">Crow Collections Around the World</h1>
 </div>
 
-<div class="container" section="map">
-    <iframe src="https://www.google.com/maps/d/u/2/embed?mid=1OBlX-pi1Vj44QxvYNVPXzb3cpMtqG-Bf" width="640" height="480"
-        frameBorder="0" class="container-fluid">
-    </iframe>
-</div>
+<div class="map-container" *ngIf="!toggleButton">
+    <app-small-map></app-small-map>
+ </div>
+
+ <div class="map-container" *ngIf="toggleButton">
+    <app-full-map></app-full-map>
+ </div>
+
+ <div class="ButtonContainer">
+    <button class="FullScreenButton" (click)="makeFullScreen()">{{buttonMessage}}</button>
+
+ </div>
+
+
+
+
