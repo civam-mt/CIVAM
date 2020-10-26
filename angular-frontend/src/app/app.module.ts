@@ -40,6 +40,7 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 
 @NgModule({
   declarations: [
+ 
     AppComponent,
     HomeComponent,
     AboutComponent,
