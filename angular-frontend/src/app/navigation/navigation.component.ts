@@ -13,7 +13,7 @@ import { ApiService } from '../api.service';
   templateUrl: './navigation.component.html',
   providers: [NgbNavConfig],
   styleUrls: ['./navigation.component.scss']
-  
+
 })
 export class NavigationComponent implements OnInit {
   searched = '';
