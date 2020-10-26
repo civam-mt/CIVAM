@@ -40,7 +40,7 @@ urlpatterns = [
     path('api/pori/<int:pori_id>/', api_views.get_pori, name='api_get_pori'),
     path('api/pori/all/', api_views.all_pori, name='api_all_pori'),
     path('api/keywords/all/', api_views.all_keywords, name='api_all_keywords'),
-
+    path('api/keywords/', api_views.search_keyword, name='search_keyword'),
 
 
     # View CollectionGroups of a Collection

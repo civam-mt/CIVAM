@@ -40,8 +40,20 @@ def register(request):
 	else:
 		return 0
 
+def search_keyword(request):
+	keyword_list = []
+	print("In search_keyword")
+	query = request.GET.get('data', None)
+	print(query)
+
+	keywords = Keyword.objects.filter(word__istartswith=query)
+	for keyword in keywords:
+		keyword_list.append(keyword.word)
+	return JsonResponse({'keywords': keyword_list}, safe=False)
+
+
 def searchResult(request):
-	print("In searchResults")
+	
 	query = request.GET.get('data', None)
 	item_list = []
 	matched_keywords = Keyword.objects.filter(word__trigram_similar=query)

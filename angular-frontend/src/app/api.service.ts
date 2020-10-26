@@ -14,6 +14,9 @@ export class ApiService {
   public getCollections() {
     return this.httpClient.get(`${this.API_URL}/api/collections/`);
   }
+  public getKeywordSearch(query: string){
+    return this.httpClient.get(`${this.API_URL}/api/keywords/?data=${query}`);
+  }
   public getSearch(query : string){
     return this.httpClient.get(`${this.API_URL}/api/search-result/?data=${query}`);
   }
