@@ -1,11 +1,22 @@
 <!-- Body of the Page -->
-<div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
+
+<div class="container-fluid jumbotron text-center" style="font-size:4vw;" *ngIf="!toggleButton">
     Crow Collections Around the World
 </div>
 
-<iframe src= "https://www.google.com/maps/d/u/2/embed?mid=1OBlX-pi1Vj44QxvYNVPXzb3cpMtqG-Bf"
-        width="640" 
-        height="480"
-        frameBorder="0"
-        class="container-fluid">
-</iframe>
+<div class="map-container" *ngIf="!toggleButton">
+    <app-small-map></app-small-map>
+ </div>
+
+ <div class="map-container" *ngIf="toggleButton">
+    <app-full-map></app-full-map>
+ </div>
+
+ <div class="ButtonContainer">
+    <button class="FullScreenButton" (click)="makeFullScreen()">{{buttonMessage}}</button>
+
+ </div>
+
+
+
+

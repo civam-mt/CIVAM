@@ -24,6 +24,8 @@ import { PoriComponent } from './pori/pori.component';
 import { MaterialCultureComponent } from './material-culture/material-culture.component';
 import { ImagesComponent } from './images/images.component';
 import { PeopleComponent } from './people/people.component';
+import { FullMapComponent } from './map/full-map/full-map.component';
+import { SmallMapComponent } from './map/small-map/small-map.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -47,7 +49,9 @@ import { PeopleComponent } from './people/people.component';
     PoriComponent,
     MaterialCultureComponent,
     ImagesComponent,
-    PeopleComponent
+    PeopleComponent,
+    FullMapComponent,
+    SmallMapComponent
   ],
   imports: [
     BrowserModule,
