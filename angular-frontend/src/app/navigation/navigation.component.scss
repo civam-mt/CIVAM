@@ -11,9 +11,11 @@ a {
     background-color: transparent;
 }
 
+
 .navbar {
     background-color: $theme-color!important;
     font-weight: 600;
+    z-index: 999; //Hacky way to make autocomplete appear over the navbar
 }
 
 .dropdown-toggle {
@@ -79,4 +81,8 @@ button#search-button {
 
 button#search-button:hover {
     background-color: $gold;
+}
+.cdk-overlay-container{
+    position:fixed;
+    z-index:9000 !important;
 }
