@@ -48,6 +48,14 @@ div {
     // Fill in later
 }
 
+.heading {
+
+}
+
+.subheading {
+
+}
+
 body {
     background: url('./assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;
     background-position: center top;
@@ -55,15 +63,23 @@ body {
 }
 
 .jumbotron {
+    //For debugging only (border on)
+    border: solid;
+
     background-color: transparent;
     padding-top: .3em;
-    margin-top: 55px;
     padding-bottom: .3em;
+    margin-bottom: 0;
+    margin-top: 75px;
 }
 
 .container {
+    //For debugging only (border on)
+    border: solid;
+    
     padding-top: 1%;
     padding-bottom: 1%;
+    font-size: 16px;
 }
 
 .row {
