@@ -17,7 +17,7 @@ import { ApiService } from '../api.service';
 })
 export class NavigationComponent implements OnInit {
   searched = '';
-  keywordOptions: string[] = ['Hello', 'World', 'Fuck'];
+  keywordOptions: string[] = [];
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
 
