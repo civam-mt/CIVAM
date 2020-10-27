@@ -19,4 +19,50 @@ $lighter-gold: #ffd400;
 
 .btn-outline-warning:hover {
     background-color: $lighter-gold!important;
+} 
+
+.carousel {
+    width: 80%; 
+    height: 100%; 
+    background-color: rgba(black, 80%); 
+}
+
+.card-body {
+    display: none; 
+}
+
+.card-body-ON {
+    position: absolute; 
+    left: 0%; 
+    top: 0%; 
+    width: 100%; 
+    height: 100%; 
+    opacity: 100%; 
+    transition: opacity 1s; 
+}
+
+.btn {
+    font-size:2vw; 
+    font-weight:400; 
+    position: absolute;
+    width: 100%; 
+    height: 100%; 
+    background-image: linear-gradient(to bottom, rgba(black, 1), rgba(black, 0.0));
+    border: none; 
+    color: goldenrod; 
+}
+
+.btn:hover {
+    background-color: rgba(black, 0); 
+    color: white; 
+}
+
+.row {
+    position: absolute; 
+    height: 60%; 
+}
+
+img {
+    object-fit: contain; 
+    margin: 0 auto; 
 }
