@@ -11,6 +11,11 @@ import { ApiService } from '../api.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  showNavigationArrows = true;
+  showNavigationIndicators = true;
+  showText = false; 
+
   featuredCollections: Collection[] = DISTRICTS.slice(0, 3);
   /* TODO : Uncomment API Stuff*/
   API_URL = environment.apiUrl;
@@ -32,6 +37,13 @@ export class HomeComponent implements OnInit {
           return (new Date(a.modified_on).getTime() < new Date(b.modified_on).getTime());
         });
     });
+  }
+  showCaption() {
+    let setClass = {
+      "card-body-ON": this.showText,
+      "card-body": !this.showText, 
+    }
+    return setClass; 
   }
 
 }
