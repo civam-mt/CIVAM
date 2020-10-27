@@ -1,3 +1,8 @@
+$dark-brown: #553c0f;       // selected element
+$light-brown: #a67c00;      // active element
+$gold: #bf9b30;             // hover element
+$lighter-gold: #ffd400;
+
 .block-margin {
     margin-bottom: 1rem;
 }
@@ -11,5 +16,14 @@
 }
 
 .row {
-    position: !important;
+    position: auto!important;
+}
+
+.collapse-button {
+    font-weight: bold;
+}
+
+button {
+    background-color: lightyellow;
+    color: $dark-brown;
 }

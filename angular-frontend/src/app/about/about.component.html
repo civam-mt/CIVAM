@@ -11,12 +11,12 @@
 
 <div class="container" section="about-page-buttons-collapse">
 
-    <div section="Our-Mission">
+    <div class="container" section="Our-Mission">
         <!-- Mission Button -->
         <button type="button" class="btn btn-block btn-transparent container-sm"
             (click)="missionCollapsed = !missionCollapsed" [attr.aria-expanded]="!missionCollapsed"
             aria-controls="mission">
-            <h3>Our Mission</h3>
+            <h3 class="collapse-button">Our Mission</h3>
         </button>
         <!-- Mission Button Collapse Logic and Information -->
         <div id="mission" [ngbCollapse]="missionCollapsed">
@@ -38,11 +38,11 @@
         </div>
     </div>
 
-    <div section="Origins">
+    <div class="container" section="Origins">
         <!-- Origins Button -->
         <button type="button" class="btn btn-block container-sm btn-transparent"
             (click)="originCollapsed = !originCollapsed" [attr.aria-expanded]="!originCollapsed" aria-controls="origin">
-            <h3>Origins</h3>
+            <h3 class="collapse-button">Origins</h3>
         </button>
         <!-- Origins Button Collapse Logic and Information -->
         <div id="origin" [ngbCollapse]="originCollapsed">
@@ -100,11 +100,11 @@
         </div>
     </div>
 
-    <div section="People">
+    <div class="container" section="People">
         <!-- People Button -->
         <button type="button" class="btn btn-block container-sm btn-transparent"
             (click)="peopleCollapsed = !peopleCollapsed" [attr.aria-expanded]="!peopleCollapsed" aria-controls="people">
-            <h3>People</h3>
+            <h3 class="collapse-button">People</h3>
         </button>
         <!-- People Button Collapse Logic and Information -->
         <div id="people" [ngbCollapse]="peopleCollapsed">
@@ -206,12 +206,12 @@
         </div>
     </div>
 
-    <div section="Resources-And-Contact-Information">
+    <div class="container" section="Resources-And-Contact-Information">
         <!-- Resources And Contact Information Button -->
         <button type="button" class="btn btn-block btn-transparent container-sm"
             (click)="resourcesCollapsed = !resourcesCollapsed" [attr.aria-expanded]="!resourcesCollapsed"
             aria-controls="resources">
-            <h3>Resources & Contact Information</h3>
+            <h3 class="collapse-button">Resources & Contact Information</h3>
         </button>
         <!-- Resources And Contact Information Button Collapse Logic and Information -->
         <div id="resources" [ngbCollapse]="resourcesCollapsed">
