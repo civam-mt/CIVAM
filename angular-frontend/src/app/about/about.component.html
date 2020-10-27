@@ -206,46 +206,26 @@
         </div>
     </div>
 
-
-
-</div>
-
-
-
-<p>
-    <button type="button" class="btn btn-block btn-transparent container-sm"
-        (click)="resourcesCollapsed = !resourcesCollapsed" [attr.aria-expanded]="!resourcesCollapsed"
-        aria-controls="resources">
-        <h3 style="font-size:2.5vw;">Resources & Contact Information</h3>
-    </button>
-</p>
-<div id="resources" [ngbCollapse]="resourcesCollapsed">
-    <div class="card container bg-translucent border-primary block-margin">
-        <div class="card-body">
-            <ul style="font-size:1.5vw;">
-                <li>To find out more about CIVAM and to access collections, please contact Cindy Ott at cott@udel.edu
-                </li>
-                <li><a href="https://www.thecenterpole.org" style="color:blue;">The Center Pole</a></li>
-                <li><a href="http://lib.lbhc.edu " style="color:blue;">Little Big Horn College Library</a></li>
-
-            </ul>
+    <div section="Resources-And-Contact-Information">
+        <!-- Resources And Contact Information Button -->
+        <button type="button" class="btn btn-block btn-transparent container-sm"
+            (click)="resourcesCollapsed = !resourcesCollapsed" [attr.aria-expanded]="!resourcesCollapsed"
+            aria-controls="resources">
+            <h3 style="font-size:2.5vw;">Resources & Contact Information</h3>
+        </button>
+        <!-- Resources And Contact Information Button Collapse Logic and Information -->
+        <div id="resources" [ngbCollapse]="resourcesCollapsed">
+            <div class="card container bg-translucent border-primary block-margin">
+                <div class="card-body">
+                    <ul>
+                        <li>To find out more about CIVAM and to access collections, please contact Cindy Ott at <a href="mailto:cott@udel.edu">cott@udel.edu</a></li>
+                        <li><a href="https://www.thecenterpole.org">The Center Pole</a></li>
+                        <li><a href="http://lib.lbhc.edu">Little Big Horn College Library</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+
+
 </div>
-
-<!--
-    <p>
-    <button type="button" class="btn btn-block container-sm btn-transparent" (click)="historyCollapsed = !historyCollapsed"
-    [attr.aria-expanded]="!historyCollapsed" aria-controls="history">
-    <h3>History</h3>
-    </button>
-    </p>
-    <div id="history" [ngbCollapse]="historyCollapsed">
-    <div class="card container block-margin">
-    <div class="card-body">
-    <p>Placeholder text: this space is for desired historical information about the Crow Tribe.</p>
-    </div>
-    </div>
-    </div>
-
--->
