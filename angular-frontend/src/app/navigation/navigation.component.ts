@@ -32,7 +32,7 @@ export class NavigationComponent implements OnInit {
 })
 export class NavigationComponent implements OnInit {
   searched = '';
-  keywordOptions: string[] = ['Hello', 'World', 'Fuck'];
+  keywordOptions: string[] = [];
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
 >>>>>>> Works, styling sucks
