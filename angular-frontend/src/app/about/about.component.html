@@ -100,103 +100,106 @@
         </div>
     </div>
 
+    <div section="People">
+        <!-- People Button -->
+        <button type="button" class="btn btn-block container-sm btn-transparent" (click)="peopleCollapsed = !peopleCollapsed"
+            [attr.aria-expanded]="!peopleCollapsed" aria-controls="people">
+            <h3>People</h3>
+        </button>
+        <!-- People Button Collapse Logic and Information -->
+        <div id="people" [ngbCollapse]="peopleCollapsed">
+            <div class="card bg-translucent border-primary block-margin">
+                <div class="card-body">
+                    <!-- <div class="container text-dark"> -->
 
+                        <!-- Peggy White Wellknown Buffalo -->
+                        <div class="row container">
+                            <div class="col-lg-4" id="peggy-image">
+                                <img src="../../assets/images/White Wellknown Buffalo Peggy.jpg"
+                                    class="img-fluid rounded float-left">
+                            </div>
+                            <div class="col-lg-7">
+                                <h4 class="people-names">Peggy White Wellknown Buffalo</h4>
+                                <p>
+                                    "Ba La Se She Lesh" (She Who Wears the Money) grew up traditional
+                                    Crow. Sent away to Indian boarding schools at a young age, she has nurtured more than two
+                                    hundred children in her home as an adult. She practices the Crow sweat lodge and has
+                                    sponsored numerous Native American Church prayer meetings. With Susie Kelly, she runs The
+                                    Center Pole, a Native non-profit organization founded in 1999 on the Crow Indian Reservation
+                                    in Montana and spearheads many community development projects, including the CIVAM.
+                                </p>
+                            </div>
+                        </div>
 
-</div>
-
-
-
-
-<p>
-    <button type="button" class="btn btn-block container-sm btn-transparent"
-        (click)="peopleCollapsed = !peopleCollapsed" [attr.aria-expanded]="!peopleCollapsed" aria-controls="people">
-        <h3 style="font-size:2.5vw;">People</h3>
-    </button>
-</p>
-<div id="people" [ngbCollapse]="peopleCollapsed">
-    <div class="card container bg-translucent border-primary block-margin">
-        <div class="card-body">
-            <div class="container text-dark">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <img src="../../assets/images/White Wellknown Buffalo Peggy.jpg"
-                            class="img-fluid rounded float-left">
-                    </div>
-                    <div class="col-lg-7">
-                        <br><br>
-                        <h6 style="font-size:2vw;"><strong>Peggy White Wellknown Buffalo</strong></h6>
-                        <p style="font-size:1.5vw;">Ba La Se She Lesh " (She Who Wears the Money) grew up traditional
-                            Crow. Sent away to Indian boarding schools at a young age, she has nurtured more than two
-                            hundred children in her home as an adult. She practices the Crow sweat lodge and has
-                            sponsored numerous Native American Church prayer meetings. With Susie Kelly, she runs The
-                            Center Pole, a Native non-profit organization founded in 1999 on the Crow Indian Reservation
-                            in Montana and spearheads many community development projects, including the CIVAM. </p>
-                    </div>
-                    <div class="col-lg-1"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-7">
-                        <br><br>
-                        <h6 style="font-size:2vw;"><strong>Susie Kelly</strong></h6>
-                        <p style="font-size:1.5vw;">"Dek Gash Bish" (Woman Eagle) helped Peggy create the Center Pole in
-                            1999, bringing practical skills to blend with traditional ways. Originally a photo editor,
-                            researcher, writer and project manager in the publishing industry, she brought up
-                            multicultural children and worked providing promising youth with opportunities for many
-                            years. Her motto: Start where you are...Use what you have...Do what you can--Arthur Ashe.
-                        </p>
-                    </div>
-                    <div class="col-lg-4">
-                        <img src="../../assets/images/Kelly, Suzy.jpg" class="img-fluid">
-                    </div>
-                </div>
-
-
-
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <img src="../../assets/images/Ott, Cindy_photo.jpg" class="img-fluid">
-                    </div>
-                    <div class="col-lg-7">
-                        <br><br>
-                        <h6 style="font-size:2vw;"><strong>Cindy Ott</strong></h6>
-                        <p style="font-size:1.5vw;">Cindy is an Associate Professor of History and Material Culture
-                            Studies at the University of Delaware. She began her career at the Smithsonian Institution
-                            in the 1980s and she has continued to develop public humanities projects ever since. After
-                            serving as the history curator at the Museum of the Rockies in Bozeman, Montana from 2004 to
-                            2006, she started spending summers on the Crow reservation in Montana. She has been working
-                            on a local ranch, helping out at The Center Pole, and conducting research for her second
-                            book <i>Biscuits and Buffalo: The Reinvention of American Indian Culture in the 20th and
-                                21st Centuries.</i></p>
-                    </div>
-                    <div class="col-lg-1"></div>
-                </div>
-
-
-
-
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div>
-                        <br><br><br>
-                        <h6 style="font-size:2vw; text-align:center"><strong>University of Delaware Students</strong>
-                        </h6>
-                        <p style="font-size:1.5vw; text-align:center">A special thanks for their great efforts and
-                            dedication to the project goes to UD software engineering students, including Sophia
-                            Freaney, Joy Kitson, Christopher Outhwaite, Trevor Seidel, James Skripchuk, and Karl
-                            Stomberg, and to humanities graduate students Ellie Gorman, Adam Grimes, Danielle Haugk,
-                            Matthew Monk, Megan O’Donell, and Fabian Martin Rempfer who helped envision it.</p>
-                    </div>
-                    <div class="col-lg-2"></div>
+                        <!-- Suzie Kelly -->
+                        <div class="row container">
+                            <div class="col-lg-4" id="suzie-image">
+                                <img src="../../assets/images/Kelly, Suzy.jpg" class="img-fluid">
+                            </div>
+                            <div class="col-lg-7">
+                                <h4 class="people-names">Susie Kelly</h4>
+                                <p>
+                                    "Dek Gash Bish" (Woman Eagle) helped Peggy create the Center Pole in
+                                    1999, bringing practical skills to blend with traditional ways. Originally a photo editor,
+                                    researcher, writer and project manager in the publishing industry, she brought up
+                                    multicultural children and worked providing promising youth with opportunities for many
+                                    years. Her motto: Start where you are...Use what you have...Do what you can--Arthur Ashe.
+                                </p>
+                            </div>
+                        </div>
+        
+        
+        
+        
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <img src="../../assets/images/Ott, Cindy_photo.jpg" class="img-fluid">
+                            </div>
+                            <div class="col-lg-7">
+                                <br><br>
+                                <h6 style="font-size:2vw;"><strong>Cindy Ott</strong></h6>
+                                <p style="font-size:1.5vw;">Cindy is an Associate Professor of History and Material Culture
+                                    Studies at the University of Delaware. She began her career at the Smithsonian Institution
+                                    in the 1980s and she has continued to develop public humanities projects ever since. After
+                                    serving as the history curator at the Museum of the Rockies in Bozeman, Montana from 2004 to
+                                    2006, she started spending summers on the Crow reservation in Montana. She has been working
+                                    on a local ranch, helping out at The Center Pole, and conducting research for her second
+                                    book <i>Biscuits and Buffalo: The Reinvention of American Indian Culture in the 20th and
+                                        21st Centuries.</i></p>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </div>
+        
+        
+        
+        
+                        <div class="row">
+                            <div class="col-lg-2"></div>
+                            <div>
+                                <br><br><br>
+                                <h6 style="font-size:2vw; text-align:center"><strong>University of Delaware Students</strong>
+                                </h6>
+                                <p style="font-size:1.5vw; text-align:center">A special thanks for their great efforts and
+                                    dedication to the project goes to UD software engineering students, including Sophia
+                                    Freaney, Joy Kitson, Christopher Outhwaite, Trevor Seidel, James Skripchuk, and Karl
+                                    Stomberg, and to humanities graduate students Ellie Gorman, Adam Grimes, Danielle Haugk,
+                                    Matthew Monk, Megan O’Donell, and Fabian Martin Rempfer who helped envision it.</p>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                    <!-- </div> -->
+        
+        
                 </div>
             </div>
-
-
         </div>
     </div>
+
+
+
 </div>
+
+
 
 <p>
     <button type="button" class="btn btn-block btn-transparent container-sm"
