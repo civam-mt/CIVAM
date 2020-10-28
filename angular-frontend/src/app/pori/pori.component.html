@@ -6,7 +6,7 @@
     <br>
     <div class = "container jumbotron bg-translucent border-primary">
         <div class = row>
-            <p *ngIf="pori.description" style="font-size:1.5vw;">{{pori.description}}</p>
+            <p *ngIf="pori.description">{{pori.description}}</p>
             <div class = "col-lg-6">
                 <img *ngIf="pori.cover_image" src="{{API_URL}}/media/{{pori.cover_image}}" class="img-fluid rounded float-left">
             </div>
