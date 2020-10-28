@@ -1,28 +1,30 @@
-
-<!-- Body of the Page -->
 <div *ngIf="collection">
-    <div *ngIf="collection.title" class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
-        {{collection.title}}
+    <div *ngIf="collection.title" class = "jumbotron container-fluid text-center text-md-center"> 
+        <h1 class="title">{{collection.title}}</h1>
+        <h2 class="subtitle">Collection</h2>
     </div>
 
-    <div *ngIf="items" class="row justify-content-center container-fluid">
-        <div *ngFor="let item of items" class="col-xl-3 col-sm-6 col-py-2">
-            <div *ngIf="item" class="card h-100">
-                <img *ngIf="item.cover_image" class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
-                <div class="card-body">
-                    <div class="card-title" style="text-align:center">
-                        <a [routerLink]="['/items', item.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-size:2vw; font-weight:400;">{{item.name}}</a>
+    <!-- Collection Photo Grid -->
+    <div class="container" section="individual-collection">
+        <div *ngIf="items" class="row justify-content-center container-fluid">
+            <div *ngFor="let item of items" class="col-md-4">
+                <div *ngIf="item" class="card h-100">
+                    <img *ngIf="item.cover_image" class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <a [routerLink]="['/items', item.id]" class="btn btn-outline-warning my-2 my-sm-0">{{item.name}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <br>
+
     <div class = "container jumbotron bg-translucent border-primary">
         <div class = "row">
             <div class = "col-lg-12">
                 <div class = "container text-center">
-                    <h3 style="font-size:2vw;"> Collection Information</h3>
+                    <h1 class="title">Collection Information</h1>
                 </div>
             </div>
         </div>
