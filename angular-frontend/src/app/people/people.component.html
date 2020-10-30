@@ -1,15 +1,17 @@
-<!-- Body of the Page -->
-<div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
-    People
+<div class="jumbotron container-fluid text-center text-md-center">
+    <h1 class="title">People</h1>
 </div>
-<div class="row justify-content-center container-fluid">
-    <div *ngFor="let person of people" class="col-xl-3 col-sm-6 col-py-2">
-        <div *ngIf="person">
-            <div class="card h-100">
-                <img *ngIf="person.cover_image" class="card-img-top" src="{{API_URL}}/media/{{person.cover_image}}">
-                <div class="card-body">
-                    <div class="card-title" style="text-align:center">
-                        <a [routerLink]="['/pori', person.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-size:2vw; font-weight:400;">{{person.name}}</a>
+
+<div class="container" section="people-page">
+    <div class="row justify-content-center container-fluid">
+        <div *ngFor="let person of people" class="col-md-4">
+            <div *ngIf="person">
+                <div class="card h-100">
+                    <img *ngIf="person.cover_image" class="card-img-top" src="{{API_URL}}/media/{{person.cover_image}}">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <a [routerLink]="['/pori', person.id]" class="btn btn-outline-warning my-2 my-sm-0">{{person.name}}</a>
+                        </div>
                     </div>
                 </div>
             </div>

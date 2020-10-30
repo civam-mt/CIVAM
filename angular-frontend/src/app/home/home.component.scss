@@ -1,0 +1,22 @@
+.blockquote {
+    width: 35%;
+    min-width: fit-content;
+}
+
+$dark-brown: #553c0f;       // selected element
+$light-brown: #a67c00;      // active element
+$gold: #bf9b30;             // hover element
+$lighter-gold: #ffd400;
+
+.card-title {
+    text-align: center;
+}
+
+.btn-outline-warning {
+    color: black!important;
+    border-color: $lighter-gold!important;
+}
+
+.btn-outline-warning:hover {
+    background-color: $lighter-gold!important;
+}
