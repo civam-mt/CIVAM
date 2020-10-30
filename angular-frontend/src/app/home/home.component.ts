@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
 
   showNavigationArrows = true;
   showNavigationIndicators = true;
-  // showText = false; 
 
   featuredCollections: Collection[] = DISTRICTS.slice(0, 3);
   /* TODO : Uncomment API Stuff*/
