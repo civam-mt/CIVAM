@@ -22,8 +22,8 @@
                         <img *ngIf="collection.cover_image" class="card-img-top"
                             src="{{API_URL}}/media/{{collection.cover_image}}">
                         <div class="card-body">
-                            <a [routerLink]="['/collections', collection.id]"
-                                class="btn btn-outline-info my-2 my-sm-0">{{collection.title}}
+                            <a [routerLink]="['/collections', collection.id]" class="btn btn-outline-info my-2 my-sm-0">
+                                <h3>{{collection.title}}</h3>
                             </a>
                         </div>
                     </div>
