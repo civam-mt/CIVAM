@@ -3,6 +3,7 @@ import { Collection } from '../collection';
 import { DISTRICTS } from '../mock-collections';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
+import { verifyHostBindings } from '@angular/compiler';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   showNavigationArrows = true;
   showNavigationIndicators = true;
-  showText = false; 
+  // showText = false; 
 
   featuredCollections: Collection[] = DISTRICTS.slice(0, 3);
   /* TODO : Uncomment API Stuff*/
@@ -38,12 +39,16 @@ export class HomeComponent implements OnInit {
         });
     });
   }
-  showCaption() {
-    let setClass = {
-      "card-body-ON": this.showText,
-      "card-body": !this.showText, 
+  mouseOver() {
+    let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
+    for (var i = 0; i < cbs.length; i++) {
+      cbs[i].style.opacity = "1"; 
     }
-    return setClass; 
   }
-
+  mouseOut() {
+    let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
+    for (var i = 0; i < cbs.length; i++) {
+      cbs[i].style.opacity = "0"; 
+    }
+  }
 }
