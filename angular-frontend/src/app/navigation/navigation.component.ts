@@ -1,8 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-<<<<<<< HEAD
-
-=======
->>>>>>> Works, styling sucks
 import { NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 import { UsernameService } from '../auth/username.service';
 import * as jwt_decode from 'jwt-decode';
@@ -17,7 +13,6 @@ import { ApiService } from '../api.service';
   templateUrl: './navigation.component.html',
   providers: [NgbNavConfig],
   styleUrls: ['./navigation.component.scss']
-<<<<<<< HEAD
 })
 export class NavigationComponent implements OnInit {
   searched = '';
@@ -27,15 +22,6 @@ export class NavigationComponent implements OnInit {
 
 
 
-=======
-
-})
-export class NavigationComponent implements OnInit {
-  searched = '';
-  keywordOptions: string[] = [];
-  myControl = new FormControl();
-  filteredOptions: Observable<string[]>;
->>>>>>> Works, styling sucks
 
   @Input() activeClass = 'active';
   // isLoggedIn = false;
