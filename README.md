@@ -23,6 +23,27 @@ django_project/civam/package-lock.json
 * After setting everything else up, if you run `git status` and see any of the above files, run `git update-index --assume-unchanged [<file> ...]` for each file. 
 * These files will be modified for local development, but should not be changed on the server unless absolutely necessary. 
 
+## Some Helpful Git Commands
+### To get a deleted file back
+* First find the last commit that edited that file and note the first few characters in the hash.
+```
+git log -- <filename>
+```
+* Then checkout that file from one commit before the last change (your deletion).
+```
+git checkout <deletion commit hash>~1 -- <filename>
+```
+### To revert changes to a file
+* First find the commit you wish to revert to and note the first few characters in the hash.
+* The following will get commits that edited the file.
+```
+git log -- <filename>
+```
+* Then checkout from the commit with the version of the file you want.
+```
+git checkout <desired version commit hash> <filename>
+```
+
 # To Run Site Locally
 * `cd django_project`
 * `sudo service postgresql start` 
