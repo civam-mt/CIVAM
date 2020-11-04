@@ -25,6 +25,7 @@ import { MaterialCultureComponent } from './material-culture/material-culture.co
 import { ImagesComponent } from './images/images.component';
 import { PeopleComponent } from './people/people.component';
 import { ModalComponent } from './modal/modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -56,7 +57,8 @@ import { ModalComponent } from './modal/modal.component';
     AppRoutingModule,
     NgbModule,
     NgxPopper,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
     //TODO: fix these so they work (for auth)
     // ModalModule,
     // ModalServiceModule.forRoot()
