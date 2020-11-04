@@ -4,7 +4,15 @@
 
 <div class="container" section="collections-page">
     <div class="row justify-content-center container-fluid">
-        <div *ngFor="let collection of collections" class="col-md-4"> <!-- removed these classes: col-xl-3 col-sm-6 col-py-2 -->
+        <app-card>
+            
+        </app-card>
+    </div>
+</div>
+
+<!-- <div class="container" section="collections-page">
+    <div class="row justify-content-center container-fluid">
+        <div *ngFor="let collection of collections" class="col-md-4"> removed these classes: col-xl-3 col-sm-6 col-py-2
             <div *ngIf="collection">
                 <div class="card h-100">
                     <img *ngIf="collection.cover_image" class="card-img-top" src="{{API_URL}}/media/{{collection.cover_image}}">
@@ -17,4 +25,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
