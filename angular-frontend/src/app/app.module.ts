@@ -25,6 +25,7 @@ import { MaterialCultureComponent } from './material-culture/material-culture.co
 import { ImagesComponent } from './images/images.component';
 import { PeopleComponent } from './people/people.component';
 import { ModalComponent } from './modal/modal.component';
+import { CardComponent } from './card/card.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -49,7 +50,8 @@ import { ModalComponent } from './modal/modal.component';
     MaterialCultureComponent,
     ImagesComponent,
     PeopleComponent,
-    ModalComponent
+    ModalComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
