@@ -28,6 +28,7 @@ import { ModalComponent } from './modal/modal.component';
 import { FullMapComponent } from './map/full-map/full-map.component';
 import { SmallMapComponent } from './map/small-map/small-map.component';
 import { CardComponent } from './card/card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -62,7 +63,8 @@ import { CardComponent } from './card/card.component';
     AppRoutingModule,
     NgbModule,
     NgxPopper,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
     //TODO: fix these so they work (for auth)
     // ModalModule,
     // ModalServiceModule.forRoot()
