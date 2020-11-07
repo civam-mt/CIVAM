@@ -42,6 +42,7 @@ urlpatterns = [
     path('api/keywords/all/', api_views.all_keywords, name='api_all_keywords'),
     path('api/keywords/', api_views.search_keyword, name='search_keyword'),
 
+    path('api/narratives/', api_views.add_narrative, name='add_narrative'),
 
     # View CollectionGroups of a Collection
     path('collections/<int:collection_id>/groups/', views.group_list, name='groups'),

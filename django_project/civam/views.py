@@ -20,7 +20,6 @@ def index(request):
 
 # Lists public Collections
 def collection_list(request):
-    print("HERERERERER")
     collection_list = Collection.objects.filter(public=True)
     # Uncomment line below filter out Colletions a user doesn't have permissions to view
     # collection_list = get_objects_for_user(request.user, 'civam.view_collection', collection_list, accept_global_perms=False)

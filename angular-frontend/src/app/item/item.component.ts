@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Router} from "@angular/router";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,9 +17,13 @@ export class ItemComponent implements OnInit {
   @Input() activeClass = 'active';
   SafePipe;
 
+  narrativeForm: FormGroup;
+  submitted = false;
+  error: string;
 
   API_URL = environment.apiUrl;
   item;
+  itemID;
   images;
   rawVideos;
   videos;
@@ -31,13 +36,20 @@ export class ItemComponent implements OnInit {
   showNavigationArrows = true;
   showNavigationIndicators = true;
   showModal: boolean = false; 
-  constructor(private route: ActivatedRoute, private api: ApiService) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder,) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.getItemByItemID(params.get('itemID'));
+      this.itemID = params.get('itemID');
     });
+    this.narrativeForm = this.formBuilder.group({
+      author: ['', Validators.required],
+      narrative: ['', Validators.required]
+    });
+
   }
+
   getItemByItemID(itemID: string) {
     this.api.getItemByItemID(itemID).subscribe((data) => {
       console.log(data)
@@ -72,5 +84,12 @@ export class ItemComponent implements OnInit {
       "modalOff": !this.showModal,
     }
     return setClass; 
+  }
+  submitNarrative(){
+    console.log(this.narrativeForm.value);
+    let message = this.narrativeForm.value
+    message.itemID = this.itemID;
+    console.log(message);
+    this.api.addNarratives(message);
   }
 }

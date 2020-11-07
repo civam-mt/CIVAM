@@ -72,8 +72,33 @@
                         </div>
                     </div>
                 </div>
+                <form [formGroup]="narrativeForm" (ngSubmit)="submitNarrative()">
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" formControlName="author" class="form-control" [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.author.errors }" />
+                        <div *ngIf="submitted && narrativeForm.controls.author.errors" class="invalid-feedback">
+                            <div *ngIf="narrativeForm.controls.author.errors.required"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="narrative">Narrative</label>
+                        <input type="text" formControlName="narrative" class="form-control" [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.narrative.errors }" />
+                        <div *ngIf="submitted && narrativeForm.controls.narrative.errors" class="invalid-feedback">
+                            <div *ngIf="narrativeForm.controls.narrative.errors.required">Narrative is required</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Submit
+                        </button>
+                    </div>
+                    
+                </form>
             </div>
         </div>
+
     </div>
 
     <br><br>

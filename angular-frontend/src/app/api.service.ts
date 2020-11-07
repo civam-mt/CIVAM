@@ -47,6 +47,12 @@ export class ApiService {
   public getPoris() {
     return this.httpClient.get(`${this.API_URL}/api/pori/all/`);
   }
+  public addNarratives(data: any) {
+    console.log(data);
+    return this.httpClient.post<any>(`${this.API_URL}/api/narratives/` ,data).subscribe(res => console.log('success', res));
+    
+
+  }
   
   // public postCollection(collection: object) {
   //   return this.httpClient.post(`${this.API_URL}/api/collections`, collection);

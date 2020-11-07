@@ -3,11 +3,13 @@ from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, g
 from guardian.decorators import permission_required
 from django.contrib.postgres.search import TrigramSimilarity
 from .models import *
+from .models import Narrative
 from .forms import *
 import logging
 from guardian.models import Group
 from django.http import JsonResponse
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 import json
 # Civam views defined here
 
@@ -39,6 +41,22 @@ def register(request):
 		return u.id
 	else:
 		return 0
+
+@csrf_exempt 
+def add_narrative(request):
+	print("here!!")
+	if request.method == "POST":
+		body_unicode = request.body.decode('utf-8')
+		body = json.loads(body_unicode)
+		print(body)
+		item = get_object_or_404(Item, pk=body["itemID"])
+		new_narrative = Narrative.objects.create(author=body["author"], 
+												content=body["narrative"],
+												item=item)
+		return JsonResponse({'added_narrative': "true"}, safe=False)
+	return JsonResponse({'added_narrative': "false"}, safe=False)
+
+	
 
 def search_keyword(request):
 	keyword_list = []
