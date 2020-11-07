@@ -83,7 +83,8 @@ button#search-button {
 }
 
 button#search-button:hover {
-    margin:0px !important;
+    display: inline-block !important;
+    margin-top: 0px !important;
     background-color: $gold;
 }
 .cdk-overlay-container{
