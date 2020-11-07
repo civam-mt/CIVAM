@@ -49,7 +49,7 @@ export class ApiService {
   }
   public addNarratives(data: any) {
     console.log(data);
-    return this.httpClient.post<any>(`${this.API_URL}/api/narratives/` ,data).subscribe(res => console.log('success', res));
+    return this.httpClient.post<any>(`${this.API_URL}/api/narratives/` ,data);
     
 
   }

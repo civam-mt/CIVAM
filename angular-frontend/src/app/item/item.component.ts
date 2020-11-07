@@ -89,7 +89,11 @@ export class ItemComponent implements OnInit {
     console.log(this.narrativeForm.value);
     let message = this.narrativeForm.value
     message.itemID = this.itemID;
-    console.log(message);
-    this.api.addNarratives(message);
+    this.api.addNarratives(message).subscribe(res => 
+      {console.log('success', res);
+      if (res["added_narrative"] == "true"){
+        this.getItemByItemID(this.itemID);
+      }
+    });
   }
 }
