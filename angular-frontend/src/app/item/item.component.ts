@@ -20,6 +20,7 @@ export class ItemComponent implements OnInit {
   narrativeForm: FormGroup;
   submitted = false;
   error: string;
+  loading = false;
 
   API_URL = environment.apiUrl;
   item;
