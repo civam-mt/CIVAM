@@ -28,6 +28,7 @@ import { ModalComponent } from './modal/modal.component';
 import { FullMapComponent } from './map/full-map/full-map.component';
 import { SmallMapComponent } from './map/small-map/small-map.component';
 
+
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
 // import {ModalModule} from './_modal'; 
