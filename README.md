@@ -24,6 +24,26 @@ django_project/civam/package-lock.json
 * These files will be modified for local development, but should not be changed on the server unless absolutely necessary. 
 
 ## Some Helpful Git Commands
+### Rebasing Instructions
+* Be sure to add and commmit all changes to your branch.
+* Do the following where originbranch is the branch you want to rebase onto and featurebranch is the branch with your changes.
+```
+git fetch
+git checkout <originbranch>
+git pull
+git checkout <featurebranch>
+git rebase <originbranch>
+```
+* If there are any merge conficts: fix them, add, and commit changes.
+* Then run the following
+```
+git rebase --continue
+```
+* Repeat this with any other merge conflicts keeping in mind that this is applying each one of your commits to the originbranch one at a time. 
+* When finished with all merge conflicts push your changes (Make sure you are on your feature branch).
+```
+git push
+```
 ### To get a deleted file back
 * First find the last commit that edited that file and note the first few characters in the hash.
 ```
