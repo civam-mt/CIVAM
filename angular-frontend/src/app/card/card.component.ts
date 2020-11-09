@@ -21,5 +21,17 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
   }  
+  mouseOver() {
+    let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
+    for (var i = 0; i < cbs.length; i++) {
+      cbs[i].style.opacity = "1"; 
+    }
+  }
+  mouseOut() {
+    let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
+    for (var i = 0; i < cbs.length; i++) {
+      cbs[i].style.opacity = "0"; 
+    }
+  }
 
 }
