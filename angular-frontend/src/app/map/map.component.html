@@ -1,4 +1,4 @@
-<div class="jumbotron container-fluid text-center text-md-center">
+<div class="jumbotron container-fluid text-center text-md-center" *ngIf="!toggleButton">
     <h1 class="title">Crow Collections Around the World</h1>
 </div>
 
@@ -6,7 +6,7 @@
     <app-small-map></app-small-map>
  </div>
 
- <div class="map-container" *ngIf="toggleButton">
+ <div class="map-container" id="full-map-container" *ngIf="toggleButton">
     <app-full-map></app-full-map>
  </div>
 
