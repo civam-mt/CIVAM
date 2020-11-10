@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Collection } from '../collection'
-import { DISTRICTS } from '../mock-collections';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
 
@@ -10,12 +8,12 @@ import { ApiService } from '../api.service';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  tempCollections: Collection[] = DISTRICTS;
 
   API_URL = environment.apiUrl;
   @Input() cover_image; 
   @Input() title; 
   @Input() id; 
+  @Input() number; 
 
   constructor(private api: ApiService) { }
 
@@ -24,13 +22,13 @@ export class CardComponent implements OnInit {
   mouseOver() {
     let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
     for (var i = 0; i < cbs.length; i++) {
-      cbs[i].style.opacity = "1"; 
+      cbs[this.number].style.opacity = "1"; 
     }
   }
   mouseOut() {
     let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
     for (var i = 0; i < cbs.length; i++) {
-      cbs[i].style.opacity = "0"; 
+      cbs[this.number].style.opacity = "0"; 
     }
   }
 
