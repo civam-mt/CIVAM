@@ -4,7 +4,7 @@
 
 <div class="container" section="oral-histories-page">
     <div class="row justify-content-center container-fluid">
-        <div *ngFor="let item of items" class="col-md-4">
+        <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">
             <div *ngIf="item">
                 <div class="card h-100">
                     <img *ngIf="item.cover_image" class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
