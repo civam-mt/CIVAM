@@ -14,6 +14,7 @@ export class CardComponent implements OnInit {
   @Input() title; 
   @Input() id; 
   @Input() number; 
+  @Input() route; 
 
   constructor(private api: ApiService) { }
 

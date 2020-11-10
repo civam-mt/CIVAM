@@ -1,6 +1,6 @@
 <div class="card h-100" something=this (mouseover)="mouseOver()" (mouseout)="mouseOut()">
     <img *ngIf="cover_image" class="card-img-top" src="{{API_URL}}/media/{{cover_image}}">
     <div class="card-body">
-        <a [routerLink]="['/collections', id]" class="btn btn-outline-warning my-2 my-sm-0">{{title}}</a>
+        <a [routerLink]="[route, id]" class="btn btn-outline-warning my-2 my-sm-0">{{title}}</a>
     </div>
 </div>
