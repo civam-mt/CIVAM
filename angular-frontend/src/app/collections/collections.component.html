@@ -7,7 +7,6 @@
         <div *ngFor="let collection of collections; let indexOfelement=index" class="col-md-4">
             <div *ngIf="collection">
                 <app-card [cover_image]="collection.cover_image" [title]="collection.title" [id]="collection.id" [number]="indexOfelement">
-
                 </app-card>
             </div>
         </div>
