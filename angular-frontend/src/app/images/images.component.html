@@ -1,19 +1,21 @@
-<!-- Body of the Page -->
-<div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
-    Images
+<div class="jumbotron container-fluid text-center text-md-center">
+    <h1 class="title">Images</h1>
 </div>
 
-<div class="row justify-content-center container-fluid">
-    <div *ngFor="let item of items" class="col-xl-3 col-sm-6 col-py-2">
-        <div *ngIf="item">
-            <div class="card h-100">
-                <img *ngIf="item.cover_image" class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
-                <div class="card-body">
-                    <div class="card-title" style="text-align:center">
-                        <a [routerLink]="['/items', item.item]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-size:2vw; font-weight:400;">{{item.name}}</a>
+<div class="container" section="images-page">
+    <div class="row justify-content-center container-fluid">
+        <div *ngFor="let item of items" class="col-md-4">
+            <div *ngIf="item">
+                <div class="card h-100">
+                    <img *ngIf="item.cover_image" class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <a [routerLink]="['/items', item.item]" class="btn btn-outline-warning my-2 my-sm-0">{{item.name}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

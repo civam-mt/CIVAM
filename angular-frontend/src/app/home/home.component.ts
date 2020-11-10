@@ -3,6 +3,7 @@ import { Collection } from '../collection';
 import { DISTRICTS } from '../mock-collections';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
+import { verifyHostBindings } from '@angular/compiler';
 
 
 @Component({
@@ -11,6 +12,10 @@ import { ApiService } from '../api.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  showNavigationArrows = true;
+  showNavigationIndicators = true;
+
   featuredCollections: Collection[] = DISTRICTS.slice(0, 3);
   /* TODO : Uncomment API Stuff*/
   API_URL = environment.apiUrl;
@@ -33,5 +38,16 @@ export class HomeComponent implements OnInit {
         });
     });
   }
-
+  mouseOver() {
+    let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
+    for (var i = 0; i < cbs.length; i++) {
+      cbs[i].style.opacity = "1"; 
+    }
+  }
+  mouseOut() {
+    let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
+    for (var i = 0; i < cbs.length; i++) {
+      cbs[i].style.opacity = "0"; 
+    }
+  }
 }

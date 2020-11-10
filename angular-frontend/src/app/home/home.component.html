@@ -1,33 +1,34 @@
-<!-- Body of the Page -->
-<div class = "container-fluid jumbotron text-center">
-    <div style="font-size:4vw;"> 
-        Crow Indian Virtual Archive and Museum
-    </div>
-    <div style="font-size:3vw;"> 
-        Apsáalooke ammaaiiláxiio
-    </div>
-    <br>
-    <br>
-    <blockquote class="blockquote text-center bg-translucent border-primary container container-lg"
-        style="font-size:2vw; width:35%;">
+<!-- Jumbotron and Heading of the Page -->
+<div class="jumbotron container-fluid text-center text-md-center">
+    <h1 class="title">Crow Indian Virtual Archive and Museum</h1>
+    <h3 class="subtitle">Apsáalooke ammaaiiláxiio</h3>
+    <blockquote class="blockquote text-center bg-translucent border-primary container container-lg">
         <p class="mb-0">They want to be known.</p>
-        <footer class="blockquote-footer">Peggy White Wellknown Buffalo</footer>
+        <footer class="blockquote-footer">
+            <p class="mb-0">Peggy White Wellknown Buffalo</p>
+        </footer>
     </blockquote>
 </div>
 
-<!-- TODO: get rid of gutter right before row wrapping -->
-<div class="row justify-content-center container-fluid">
-    <div *ngFor="let collection of collections; let i=index" class="col-xl-3 col-sm-6 col-py-2">
-        <div *ngIf="collection">
-            <div *ngIf="i < 4" class="card h-100">
-                <img *ngIf="collection.cover_image" class="card-img-top" src="{{API_URL}}/media/{{collection.cover_image}}">
-                <div class="card-body">
-                    <div class="card-title" style="text-align:center">
-                        <a [routerLink]="['/collections', collection.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-size:2vw; font-weight:400;">{{collection.title}}</a>
+<!-- Home Page Main Content Below Here -->
+<div class="container" section="home-page">
+    <div class="row justify-content-center container-fluid">
+        <ngb-carousel [showNavigationArrows]="showNavigationArrows"
+            [showNavigationIndicators]="showNavigationIndicators" class="carousel" (mouseover)="mouseOver()"
+            (mouseout)="mouseOut()">
+            <ng-template ngbSlide *ngFor="let collection of collections; let i=index" class="col-md-4">
+                <div *ngIf="collection">
+                    <div *ngIf="i < 4" class="card h-100">
+                        <img *ngIf="collection.cover_image" class="card-img-top"
+                            src="{{API_URL}}/media/{{collection.cover_image}}">
+                        <div class="card-body">
+                            <a [routerLink]="['/collections', collection.id]" class="btn btn-outline-info my-2 my-sm-0">
+                                <h3>{{collection.title}}</h3>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </ng-template>
+        </ngb-carousel>
     </div>
 </div>
-<br><br>

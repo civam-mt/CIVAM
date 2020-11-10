@@ -22,6 +22,49 @@ div {
 }
 */
 
+.page-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 16px;
+    min-height: 100vh;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+// Use this class for consistent title styles
+.title {
+    font-weight: bold;
+}
+
+// Use this class for consistent subtitle styles
+.subtitle {
+    font-weight: bold;
+}
+
+// Use this class when adding captions for photos
+.caption {
+    // Fill in later
+}
+
+.heading {
+
+}
+
+.subheading {
+
+}
+
+p {
+    padding: none;
+}
+
+a {
+    color: blue;
+}
+
 body {
     background: url('./assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;
     background-position: center top;
@@ -29,22 +72,30 @@ body {
 }
 
 .jumbotron {
+    //For debugging only (border on)
+    // border: solid;
+
     background-color: transparent;
     padding-top: .3em;
-    padding-bottom: 0em;
+    padding-bottom: .3em;
+    margin-bottom: 10px;
+    margin-top: 75px;
 }
 
 .container {
+    //For debugging only (border on)
+    // border: solid;
+
     padding-top: 1%;
     padding-bottom: 1%;
+    margin-bottom: 1rem;
+    font-size: 16px;
+    margin: auto;
+    margin-bottom: 0.5rem;
 }
 
 .row {
     row-gap: 2em;
-}
-
-.dropdown-item {
-    font-size: 1.3vw;
 }
 
 .card-img-top {
@@ -53,27 +104,25 @@ body {
     object-fit: cover;
 }
 
-/*
-.container-collections {
-    @extend .container-fluid;
-    width: 100%;
-    margin-right: -$grid-gutter-width;
-    margin-left: $grid-gutter-width/2;
-}*/
 
-/*
-// For large block backgrounds
-.gradient-lg {
-    background-color: #D3D3D3;
-}
+// .container-collections {
+//     @extend .container-fluid;
+//     width: 100%;
+//     margin-right: -$grid-gutter-width;
+//     margin-left: $grid-gutter-width/2;
+// }
 
-// For smaller block backgrounds (titles, etc.)
-.gradient-sm {
-    background-color: #D3D3D3;
-}
 
-// For page title text
-.display-4 {
-    font-weight: bold;
-}
-*/
+// .gradient-lg {
+//     background-color: #D3D3D3;
+// }
+
+// // For smaller block backgrounds (titles, etc.)
+// .gradient-sm {
+//     background-color: #D3D3D3;
+// }
+
+// // For page title text
+// .display-4 {
+//     font-weight: bold;
+// }
