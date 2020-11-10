@@ -10,6 +10,7 @@ import { ApiService } from '../api.service';
 export class MaterialCultureComponent implements OnInit {
   API_URL = environment.apiUrl;
   items;
+  route = '/items';
 
   constructor(private api: ApiService) { }
 

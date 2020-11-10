@@ -14,6 +14,7 @@ export class CollectionsComponent implements OnInit {
 
   API_URL = environment.apiUrl;
   collections;
+  route = '/collections';
 
   constructor(private api: ApiService) { }
 

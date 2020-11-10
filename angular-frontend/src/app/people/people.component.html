@@ -4,16 +4,10 @@
 
 <div class="container" section="people-page">
     <div class="row justify-content-center container-fluid">
-        <div *ngFor="let person of people" class="col-md-4">
+        <div *ngFor="let person of people; let indexOfelement=index" class="col-md-4">
             <div *ngIf="person">
-                <div class="card h-100">
-                    <img *ngIf="person.cover_image" class="card-img-top" src="{{API_URL}}/media/{{person.cover_image}}">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <a [routerLink]="['/pori', person.id]" class="btn btn-outline-warning my-2 my-sm-0">{{person.name}}</a>
-                        </div>
-                    </div>
-                </div>
+                <app-card [cover_image]="person.cover_image" [title]="person.name" [id]="person.id" [number]="indexOfelement" [route]=router_route>
+                </app-card>
             </div>
         </div>
     </div>
