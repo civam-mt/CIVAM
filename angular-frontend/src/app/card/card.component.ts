@@ -29,7 +29,9 @@ export class CardComponent implements OnInit {
   mouseOut() {
     let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
     for (var i = 0; i < cbs.length; i++) {
-      cbs[this.number].style.opacity = "0"; 
+      if (cbs[this.number].className != "card-body no-image") { // this is pretty hacky, but the idea is that, if there's no image, 
+        cbs[this.number].style.opacity = "0";                   // we don't want to hide the words on the card. this implementation 
+      }                                                         // works, but it could definitely be cleaned up. 
     }
   }
 
