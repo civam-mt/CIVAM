@@ -18,7 +18,7 @@
             (mouseout)="mouseOut()">
             <ng-template ngbSlide *ngFor="let collection of collections; let i=index" class="col-md-4">
                 <div *ngIf="collection">
-                    <div *ngIf="i < 4" class="card h-100">
+                    <div class="card h-100">
                         <img *ngIf="collection.cover_image" class="card-img-top"
                             src="{{API_URL}}/media/{{collection.cover_image}}">
                         <div class="card-body">
