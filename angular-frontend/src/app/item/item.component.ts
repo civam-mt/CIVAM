@@ -46,6 +46,7 @@ export class ItemComponent implements OnInit {
       this.narratives = this.item["narratives"];
       this.rawVideos = this.item["videos"];
       this.keywords = this.item["keywords"];
+      this.keywords.sort((a, b) => (a.name > b.name) ? 1 : -1); // sort keywords alphabetically
       this.creators = this.item["creator"];
       this.originals = this.item["location_of_originals"];
       this.videos = this.rawVideos.map(function(video) {

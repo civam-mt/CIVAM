@@ -25,6 +25,8 @@ import { MaterialCultureComponent } from './material-culture/material-culture.co
 import { ImagesComponent } from './images/images.component';
 import { PeopleComponent } from './people/people.component';
 import { ModalComponent } from './modal/modal.component';
+import { FullMapComponent } from './map/full-map/full-map.component';
+import { SmallMapComponent } from './map/small-map/small-map.component';
 import { CardComponent } from './card/card.component';
 
 // TODO: Fix this so it's functional
@@ -51,7 +53,9 @@ import { CardComponent } from './card/card.component';
     ImagesComponent,
     PeopleComponent,
     ModalComponent,
-    CardComponent
+    CardComponent,
+    FullMapComponent,
+    SmallMapComponent
   ],
   imports: [
     BrowserModule,
