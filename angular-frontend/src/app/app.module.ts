@@ -27,7 +27,7 @@ import { PeopleComponent } from './people/people.component';
 import { ModalComponent } from './modal/modal.component';
 import { FullMapComponent } from './map/full-map/full-map.component';
 import { SmallMapComponent } from './map/small-map/small-map.component';
-
+import { CardComponent } from './card/card.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -53,6 +53,7 @@ import { SmallMapComponent } from './map/small-map/small-map.component';
     ImagesComponent,
     PeopleComponent,
     ModalComponent,
+    CardComponent,
     FullMapComponent,
     SmallMapComponent
   ],

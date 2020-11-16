@@ -18,6 +18,7 @@ export class CollectionComponent implements OnInit {
   keywords;
   creators;
   originals;
+  router_route = '/items';
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 

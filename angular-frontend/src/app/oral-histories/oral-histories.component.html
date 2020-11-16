@@ -4,16 +4,10 @@
 
 <div class="container" section="oral-histories-page">
     <div class="row justify-content-center container-fluid">
-        <div *ngFor="let item of items" class="col-md-4">
+        <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">
             <div *ngIf="item">
-                <div class="card h-100">
-                    <img *ngIf="item.cover_image" class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
-                    <div class="card-body">
-                        <div class="card-title" style="text-align:center">
-                            <a [routerLink]="['/items', item.item]" class="btn btn-outline-warning my-2 my-sm-0">{{item.name}}</a>
-                        </div>
-                    </div>
-                </div>
+                <app-card [cover_image]="item.cover_image" [title]="item.name" [id]="item.item" [number]="indexOfelement" [route]=route>
+                </app-card>
             </div>
         </div>
     </div>
