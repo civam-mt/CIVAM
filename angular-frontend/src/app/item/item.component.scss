@@ -17,9 +17,22 @@ h3 {
 
 .mat-tab-group {
     margin-bottom: 48px;
-    width: 100%;
+}
+
+::ng-deep.mat-tab-label.mat-tab-label-active {
+    background-color: #f7d417;
+    opacity: 1;
+}
+
+::ng-deep.mat-tab-label {
+    background-color: #f7d417;
+    opacity: .7;
 }
 
 #button_group {
-    background-color: yellow;
+    border-radius: 3px !important;
+}
+
+#body {
+    margin-bottom: 0px;
 }
