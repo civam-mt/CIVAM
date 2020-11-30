@@ -11,6 +11,13 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 import json
+from profanityfilter import ProfanityFilter
+from akismet import Akismet
+
+AKISMET_API_KEY = "2be27375a975"
+
+AKISMET_BLOG_URL = "http://localhost:4200/"
+pf = ProfanityFilter()
 # Civam views defined here
 
 # TODO, add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
@@ -44,11 +51,26 @@ def register(request):
 
 @csrf_exempt 
 def add_narrative(request):
-	print("here!!")
 	if request.method == "POST":
+		
 		body_unicode = request.body.decode('utf-8')
 		body = json.loads(body_unicode)
-		print(body)
+		akismet_api = Akismet(key=AKISMET_API_KEY, blog_url=AKISMET_BLOG_URL)
+
+		is_spam = akismet_api.comment_check(
+            user_ip=request.META['REMOTE_ADDR'],
+            user_agent=request.META['HTTP_USER_AGENT'],
+            comment_type='contact-form',
+            comment_author=body['author'],
+            comment_content=body['narrative'],
+        )
+		if is_spam:
+			return JsonResponse({'added_narrative': "false"}, safe=False)
+
+		if pf.is_profane(body["narrative"]) or pf.is_profane(body["author"]):
+			return JsonResponse({'added_narrative': "false"}, safe=False)
+
+
 		item = get_object_or_404(Item, pk=body["itemID"])
 		new_narrative = Narrative.objects.create(author=body["author"], 
 												content=body["narrative"],

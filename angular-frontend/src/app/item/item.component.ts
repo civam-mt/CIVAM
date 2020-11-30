@@ -95,6 +95,9 @@ export class ItemComponent implements OnInit {
       if (res["added_narrative"] == "true"){
         this.getItemByItemID(this.itemID);
       }
+      else{
+        alert("Invalid narrative");
+      }
     });
   }
 }
