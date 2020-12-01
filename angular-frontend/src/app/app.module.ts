@@ -30,6 +30,7 @@ import { SmallMapComponent } from './map/small-map/small-map.component';
 import { CardComponent } from './card/card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -66,7 +67,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     NgxPopper,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    FlexLayoutModule
     //TODO: fix these so they work (for auth)
     // ModalModule,
     // ModalServiceModule.forRoot()

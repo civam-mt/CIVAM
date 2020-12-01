@@ -15,6 +15,11 @@ h3 {
     opacity: 0.7; 
 }
 
+#box {
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
 .mat-tab-group {
     margin-bottom: 48px;
 }
