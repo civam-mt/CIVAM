@@ -64,7 +64,9 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
     CardComponent,
     FullMapComponent,
     SmallMapComponent,
-    KeywordPageComponent,
+    KeywordPageComponent
+  ],
+  imports:[
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
@@ -76,7 +78,10 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
     NgbModule,
     NgxPopper,
     HttpClientModule
+
   ],
+   
+
 
   exports: [
    
