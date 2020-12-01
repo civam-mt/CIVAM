@@ -9,7 +9,7 @@
     <div class = "container jumbotron bg-translucent border-primary">
         <div class = row>
 
-            <div class="collection-item-description">
+            <div class="collection-item-description col">
                 <p *ngIf="item.description">{{item.description}}</p>
             </div>
 
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 
-                <div *ngIf="images">
+                <div *ngIf="images" class="col">
                     <div *ngIf="images.length < 2; else elseBlock">
                         <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
                         <ng-template ngbSlide *ngFor="let image of images">
