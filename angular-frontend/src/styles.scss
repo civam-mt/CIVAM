@@ -10,8 +10,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 /* Sets global font styling */
-/*
+
 $font-stack:    'Montserrat', sans-serif;
+/*
 $primary-color: #000000;
 $font-weight-bold: 800;
 
@@ -32,6 +33,7 @@ div {
 
 * {
     box-sizing: border-box;
+    font-family: $font-stack;
 }
 
 // Use this class for consistent title styles
