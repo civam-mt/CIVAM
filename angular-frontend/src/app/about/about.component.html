@@ -9,18 +9,11 @@
     </p>
 </div>
 
-<div class="container" section="about-page-buttons-collapse">
-
-    <div class="container" section="Our-Mission">
-        <!-- Mission Button -->
-        <button type="button" class="btn btn-block btn-transparent container-sm"
-            (click)="missionCollapsed = !missionCollapsed" [attr.aria-expanded]="!missionCollapsed"
-            aria-controls="mission">
-            <h3 class="collapse-button">Our Mission</h3>
-        </button>
-        <!-- Mission Button Collapse Logic and Information -->
-        <div id="mission" [ngbCollapse]="missionCollapsed">
-            <div class="card container block-margin bg-translucent border-primary">
+<div>
+    <mat-tab-group class="border-primary" animationDuration="0ms" dynamicHeight mat-align-tabs="center" mat-stretch-tabs
+        id="button_group">
+        <mat-tab label="Our Mission">
+            <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
                     <ul>
                         <li>To collect, curate, and interpret digital representations of Crow materials for Crow
@@ -35,17 +28,8 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container" section="Origins">
-        <!-- Origins Button -->
-        <button type="button" class="btn btn-block container-sm btn-transparent"
-            (click)="originCollapsed = !originCollapsed" [attr.aria-expanded]="!originCollapsed" aria-controls="origin">
-            <h3 class="collapse-button">Origins</h3>
-        </button>
-        <!-- Origins Button Collapse Logic and Information -->
-        <div id="origin" [ngbCollapse]="originCollapsed">
+        </mat-tab>
+        <mat-tab label="Origins">
             <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
                     <p>Peggy White Wellknown Buffalo had a vision to help, as she said, “the generations in front us to
@@ -97,20 +81,10 @@
                         <a href="mailto:cott@udel.edu">cott@udel.edu</a> who will direct, or answer, your questions.</p>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container" section="People">
-        <!-- People Button -->
-        <button type="button" class="btn btn-block container-sm btn-transparent"
-            (click)="peopleCollapsed = !peopleCollapsed" [attr.aria-expanded]="!peopleCollapsed" aria-controls="people">
-            <h3 class="collapse-button">People</h3>
-        </button>
-        <!-- People Button Collapse Logic and Information -->
-        <div id="people" [ngbCollapse]="peopleCollapsed">
-            <div class="card bg-translucent border-primary block-margin">
+        </mat-tab>
+        <mat-tab label="People">
+            <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
-
                     <!-- Peggy White Wellknown Buffalo -->
                     <div class="row container">
                         <div class="col-lg-4" id="peggy-image">
@@ -200,32 +174,20 @@
                             </p>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="container" section="Resources-And-Contact-Information">
-        <!-- Resources And Contact Information Button -->
-        <button type="button" class="btn btn-block btn-transparent container-sm"
-            (click)="resourcesCollapsed = !resourcesCollapsed" [attr.aria-expanded]="!resourcesCollapsed"
-            aria-controls="resources">
-            <h3 class="collapse-button">Resources & Contact Information</h3>
-        </button>
-        <!-- Resources And Contact Information Button Collapse Logic and Information -->
-        <div id="resources" [ngbCollapse]="resourcesCollapsed">
+        </mat-tab>
+        <mat-tab label="Resources & Contact Information">
             <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
                     <ul>
-                        <li>To find out more about CIVAM and to access collections, please contact Cindy Ott at <a href="mailto:cott@udel.edu">cott@udel.edu</a></li>
+                        <li>To find out more about CIVAM and to access collections, please contact Cindy Ott at <a
+                                href="mailto:cott@udel.edu">cott@udel.edu</a></li>
                         <li><a href="https://www.thecenterpole.org">The Center Pole</a></li>
                         <li><a href="http://lib.lbhc.edu">Little Big Horn College Library</a></li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-
-
+        </mat-tab>
+    </mat-tab-group>
 </div>
