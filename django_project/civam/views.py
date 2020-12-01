@@ -10,10 +10,6 @@ from guardian.models import Group
 
 # TODO, add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
 logger = logging.getLogger(__name__)
-<<<<<<< HEAD
-=======
-
->>>>>>> cleaned up stuff
 
 def index(request):
     return HttpResponse("index")
@@ -29,22 +25,7 @@ def collection_list(request):
 
 def searchResult(request):
     logger.warn(request.GET.get('data', None))
-    
-    print("IN VIEWS")
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    logger.warn("HEREF")
->>>>>>> Search bar works
-=======
->>>>>>> cleaned up stuff
-=======
-    logger.warn("HEREF")
->>>>>>> Search bar works
-=======
->>>>>>> cleaned up stuff
+
 
 
 
