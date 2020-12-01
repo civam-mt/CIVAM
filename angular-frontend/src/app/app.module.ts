@@ -27,6 +27,7 @@ import { PeopleComponent } from './people/people.component';
 import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -60,7 +61,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     NgxPopper,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    FlexLayoutModule
     //TODO: fix these so they work (for auth)
     // ModalModule,
     // ModalServiceModule.forRoot()

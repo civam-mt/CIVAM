@@ -86,48 +86,48 @@
                         </div>
                     </div>
 
-                    <div class="row">
-
-                        <div class="col-lg-6">
-                            <div *ngIf="item.culture_or_community">
-                                <div class="col-lg-12">
-                                    <div>
-                                        <p><strong>Culture or Community</strong></p>
+                    <!-- <mat-grid-list cols="2">
+                        <div *ngIf="item.culture_or_community">
+                            <mat-grid-tile>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-12">
+                                            <div>
+                                                <p><strong>Culture or Community</strong></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div>
+                                                <p>{{item.culture_or_community}}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div>
-                                        <p>{{item.culture_or_community}}</p>
-                                    </div>
-                                </div>
-                                <!-- <div class="row">
-                                                <div class="col-lg-12">
-                                                    <hr><br></div>
-                                            </div> -->
-                            </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.other_forms">
-                                <div class="col-lg-12">
-                                    <div>
-                                        <p><strong>Other Forms</strong></p>
+                        <div *ngIf="item.other_forms">
+                            <mat-grid-tile>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-12">
+                                            <div>
+                                                <p><strong>Other Forms</strong></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div>
+                                                <p>{{item.other_forms}}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div>
-                                        <p>{{item.other_forms}}</p>
-                                    </div>
-                                </div>
-                                <!-- <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <hr><br></div>
-                                                </div> -->
-                            </div>
+                            </mat-grid-tile>
                         </div>
 
-
-                        <div class="col-lg-6">
-                            <div *ngIf="item.digital_heritage_item">
+                        <div *ngIf="item.digital_heritage_item">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div class="col-lg-12">
                                     <div>
                                         <p><strong>Digital Heritage Item</strong></p>
@@ -139,9 +139,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.date_of_creation">
+                        <div *ngIf="item.date_of_creation">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div class="col-lg-12">
                                     <div>
                                         <p><strong>Date of Creation</strong></p>
@@ -153,9 +157,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.physical_details">
+                        <div *ngIf="item.physical_details">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div class="col-lg-12">
                                     <div>
                                         <p><strong>Physical Details</strong></p>
@@ -167,9 +175,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.access_notes_or_rights_and_reproduction">
+                        <div *ngIf="item.access_notes_or_rights_and_reproduction">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div class="col-lg-12">
                                     <div>
                                         <p><strong>Access Notes or Rights and Reproduction</strong></p>
@@ -181,9 +193,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.catalog_number">
+                        <div *ngIf="item.catalog_number">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div class="col-lg-12">
                                     <div>
                                         <p><strong>Catalog Number</strong></p>
@@ -195,9 +211,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.external_link">
+                        <div *ngIf="item.external_link">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div class="col-lg-12">
                                     <div>
                                         <p><strong>External Link</strong></p>
@@ -210,9 +230,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.provenance">
+                        <div *ngIf="item.provenance">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div class="col-lg-12">
                                     <div>
                                         <p><strong>Provenance</strong></p>
@@ -224,9 +248,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.citation">
+                        <div *ngIf="item.citation">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div class="col-lg-12">
                                     <div>
                                         <p><strong>Citation</strong></p>
@@ -238,9 +266,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.historical_note">
+                        <div *ngIf="item.historical_note">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div class="col-lg-12">
                                     <div>
                                         <p><strong>Historical Note</strong></p>
@@ -252,30 +284,31 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="item.place_created">
+                        <div *ngIf="item.place_created">
+                            <mat-grid-tile>
                                 <div class="row">
-                                    <div class="col-lg-3"></div>
-                                    <div class="col-lg-3">
-                                        <div>
-                                            <p><strong>Place Created</strong></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <div>
-                                            <p>{{item.place_created}}</p>
-                                        </div>
+                            <div class="col-lg-12">
+                                <div class="col-lg-12">
+                                    <div>
+                                        <p><strong>Place Created</strong></p>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <hr><br></div>
+                                <div class="col-lg-12">
+                                    <div>
+                                        <p>{{item.place_created}}</p>
+                                    </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="creators">
+                        <div *ngIf="creators">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div *ngIf="creators.length > 0">
                                     <div class="col-lg-12">
                                         <div>
@@ -295,9 +328,13 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
                         </div>
-                        <div class="col-lg-6">
-                            <div *ngIf="originals">
+                        <div *ngIf="originals">
+                            <mat-grid-tile>
+                                <div class="row">
+                            <div class="col-lg-12">
                                 <div *ngIf="originals.length > 0">
                                     <div class="col-lg-12">
                                         <div>
@@ -316,12 +353,159 @@
                                     </div>
                                 </div>
                             </div>
+                                </div>
+                            </mat-grid-tile>
+                        </div>
+                    </mat-grid-list> -->
+
+                    <div class="container" fxLayout="column">
+                        <div *ngIf="item.culture_or_community">
+                            <div>
+                                <p><strong>Culture or Community</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.culture_or_community}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.other_forms">
+                            <div>
+                                <p><strong>Other Forms</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.other_forms}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.digital_heritage_item">
+                            <div>
+                                <p><strong>Digital Heritage Item</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.digital_heritage_item}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.date_of_creation">
+                            <div>
+                                <p><strong>Date of Creation</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.date_of_creation}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.physical_details">
+                            <div>
+                                <p><strong>Physical Details</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.physical_details}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.access_notes_or_rights_and_reproduction">
+                            <div>
+                                <p><strong>Access Notes or Rights and Reproduction</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.access_notes_or_rights_and_reproduction}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.catalog_number">
+                            <div>
+                                <p><strong>Catalog Number</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.catalog_number}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.external_link">
+                            <div>
+                                <p><strong>External Link</strong></p>
+                            </div>
+                            <div>
+                                <p><a href={{item.external_link}} style="color:black;">Checkout More
+                                        Here</a>
+                                </p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.provenance">
+                            <div>
+                                <p><strong>Provenance</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.provenance}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.citation">
+                            <div>
+                                <p><strong>Citation</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.citation}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.historical_note">
+                            <div>
+                                <p><strong>Historical Note</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.historical_note}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="item.place_created">
+                            <div>
+                                <p><strong>Place Created</strong></p>
+                            </div>
+                            <div>
+                                <p>{{item.place_created}}</p>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="creators">
+                            <div *ngIf="creators.length > 0">
+                                <div>
+                                    <p><strong>Creator(s)</strong></p>
+                                </div>
+                                <div *ngFor="let creator of creators">
+                                    <p>
+                                        <a [routerLink]="['/pori', creator.id]"
+                                            class="btn btn-outline-info my-2 my-sm-0"
+                                            style="color:black; font-weight:500">
+                                            {{creator.name}}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="originals">
+                            <div *ngIf="originals.length > 0">
+                                <div>
+                                    <p><strong>Location of Originals</strong></p>
+                                </div>
+                                <div *ngFor="let original of originals">
+                                    <p>
+                                        <a [routerLink]="['/pori', original.id]"
+                                            class="btn btn-outline-info my-2 my-sm-0" style="color:black;">
+                                            {{original.name}}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <br><br>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div *ngIf="keywords">
+                    <div *ngIf="keywords">
+                        <div class="row">
+                            <div class="col-lg-12">
                                 <div *ngIf="keywords.length > 0">
                                     <div class="col-lg-12">
                                         <div>
