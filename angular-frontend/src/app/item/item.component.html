@@ -163,11 +163,11 @@
                         <div *ngIf="creators">
                             <div *ngIf="creators.length > 0">
                                 <div>
-                                    <p><strong>Creator(s)</strong></p>
+                                    <p class="margin-0"><strong>Creator(s)</strong></p>
                                 </div>
                                 <div *ngFor="let creator of creators">
                                     <a [routerLink]="['/pori', creator.id]"
-                                            class="btn btn-outline-info my-2 my-sm-0"
+                                            class="btn btn-outline-info my-2 my-sm-0 margin-half"
                                             style="color:black; font-weight:500">
                                             {{creator.name}}
                                     </a>
@@ -178,11 +178,11 @@
                         <div *ngIf="originals">
                             <div *ngIf="originals.length > 0">
                                 <div>
-                                    <p><strong>Location of Originals</strong></p>
+                                    <p class="margin-0"><strong>Location of Originals</strong></p>
                                 </div>
                                 <div *ngFor="let original of originals">
                                     <a [routerLink]="['/pori', original.id]"
-                                            class="btn btn-outline-info my-2 my-sm-0" style="color:black;">
+                                            class="btn btn-outline-info my-2 my-sm-0 margin-half" style="color:black;">
                                             {{original.name}}
                                     </a>
                                 </div>
@@ -199,7 +199,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="row">
+                                        <div class="row mb-5">
                                             <div *ngFor="let keyword of keywords" class="col-lg-4">
                                                 {{keyword.name}}
                                             </div>
