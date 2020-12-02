@@ -2,8 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPopper } from 'angular-popper'
- 
-
+import { NgForm } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { MatInputModule } from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatFormFieldModule} from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -25,9 +29,11 @@ import { MaterialCultureComponent } from './material-culture/material-culture.co
 import { ImagesComponent } from './images/images.component';
 import { PeopleComponent } from './people/people.component';
 import { ModalComponent } from './modal/modal.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 import { FullMapComponent } from './map/full-map/full-map.component';
 import { SmallMapComponent } from './map/small-map/small-map.component';
 import { CardComponent } from './card/card.component';
+import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -35,6 +41,7 @@ import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
+ 
     AppComponent,
     HomeComponent,
     AboutComponent,
@@ -53,21 +60,31 @@ import { CardComponent } from './card/card.component';
     ImagesComponent,
     PeopleComponent,
     ModalComponent,
+    SearchResultComponent,
     CardComponent,
     FullMapComponent,
-    SmallMapComponent
+    SmallMapComponent,
+    KeywordPageComponent
   ],
-  imports: [
+  imports:[
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     NgxPopper,
     HttpClientModule
-    //TODO: fix these so they work (for auth)
-    // ModalModule,
-    // ModalServiceModule.forRoot()
+
   ],
+   
+
+
   exports: [
+   
     AboutComponent,
     SafePipe
   ],

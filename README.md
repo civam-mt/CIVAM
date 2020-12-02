@@ -97,6 +97,9 @@ git checkout <desired version commit hash> <filename>
 * `ALTER ROLE django_user SET default_transaction_isolation TO 'read committed';`
 * `ALTER ROLE django_user SET timezone TO 'UTC';`
 * `GRANT ALL PRIVILEGES ON DATABASE django_db TO django_user;`
+* `\c django_db`
+* `CREATE EXTENSION pg_trgm;`
+* `SET pg_trgm.similarity_threshold = .2;`
 * `\q`
 * `exit`
 
