@@ -88,113 +88,77 @@
                     <div class="container" fxLayout="column">
                         <div *ngIf="item.culture_or_community">
                             <div>
-                                <p><strong>Culture or Community</strong></p>
+                                <p><strong>Culture or Community</strong>
+                                    <br>{{item.culture_or_community}}</p>
                             </div>
-                            <div>
-                                <p>{{item.culture_or_community}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.other_forms">
                             <div>
-                                <p><strong>Other Forms</strong></p>
+                                <p><strong>Other Forms</strong>
+                                    <br>{{item.other_forms}}</p>
                             </div>
-                            <div>
-                                <p>{{item.other_forms}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.digital_heritage_item">
                             <div>
-                                <p><strong>Digital Heritage Item</strong></p>
+                                <p><strong>Digital Heritage Item</strong>
+                                    <br>{{item.digital_heritage_item}}</p>
                             </div>
-                            <div>
-                                <p>{{item.digital_heritage_item}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.date_of_creation">
                             <div>
-                                <p><strong>Date of Creation</strong></p>
+                                <p><strong>Date of Creation</strong>
+                                    <br>{{item.date_of_creation}}</p>
                             </div>
-                            <div>
-                                <p>{{item.date_of_creation}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.physical_details">
                             <div>
-                                <p><strong>Physical Details</strong></p>
+                                <p><strong>Physical Details</strong>
+                                    <br>{{item.physical_details}}</p>
                             </div>
-                            <div>
-                                <p>{{item.physical_details}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.access_notes_or_rights_and_reproduction">
                             <div>
-                                <p><strong>Access Notes or Rights and Reproduction</strong></p>
+                                <p><strong>Access Notes or Rights and Reproduction</strong>
+                                    <br>{{item.access_notes_or_rights_and_reproduction}}</p>
                             </div>
-                            <div>
-                                <p>{{item.access_notes_or_rights_and_reproduction}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.catalog_number">
                             <div>
-                                <p><strong>Catalog Number</strong></p>
+                                <p><strong>Catalog Number</strong>
+                                    <br>{{item.catalog_number}}</p>
                             </div>
-                            <div>
-                                <p>{{item.catalog_number}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.external_link">
                             <div>
-                                <p><strong>External Link</strong></p>
-                            </div>
-                            <div>
-                                <p><a href={{item.external_link}} style="color:black;">Checkout More
+                                <p><strong>External Link</strong>
+                                    <br><a href={{item.external_link}} style="color:black;">Checkout More
                                         Here</a>
                                 </p>
                             </div>
-                            <br>
                         </div>
                         <div *ngIf="item.provenance">
                             <div>
-                                <p><strong>Provenance</strong></p>
+                                <p><strong>Provenance</strong>
+                                    <br>{{item.provenance}}</p>
                             </div>
-                            <div>
-                                <p>{{item.provenance}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.citation">
                             <div>
-                                <p><strong>Citation</strong></p>
+                                <p><strong>Citation</strong>
+                                    <br>{{item.citation}}</p>
                             </div>
-                            <div>
-                                <p>{{item.citation}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.historical_note">
                             <div>
-                                <p><strong>Historical Note</strong></p>
+                                <p><strong>Historical Note</strong>
+                                    <br>{{item.historical_note}}</p>
                             </div>
-                            <div>
-                                <p>{{item.historical_note}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="item.place_created">
                             <div>
-                                <p><strong>Place Created</strong></p>
+                                <p><strong>Place Created</strong>
+                                    <br>{{item.place_created}}</p>
                             </div>
-                            <div>
-                                <p>{{item.place_created}}</p>
-                            </div>
-                            <br>
                         </div>
                         <div *ngIf="creators">
                             <div *ngIf="creators.length > 0">
@@ -202,13 +166,11 @@
                                     <p><strong>Creator(s)</strong></p>
                                 </div>
                                 <div *ngFor="let creator of creators">
-                                    <p>
-                                        <a [routerLink]="['/pori', creator.id]"
+                                    <a [routerLink]="['/pori', creator.id]"
                                             class="btn btn-outline-info my-2 my-sm-0"
                                             style="color:black; font-weight:500">
                                             {{creator.name}}
-                                        </a>
-                                    </p>
+                                    </a>
                                 </div>
                             </div>
                             <br>
@@ -219,17 +181,14 @@
                                     <p><strong>Location of Originals</strong></p>
                                 </div>
                                 <div *ngFor="let original of originals">
-                                    <p>
-                                        <a [routerLink]="['/pori', original.id]"
+                                    <a [routerLink]="['/pori', original.id]"
                                             class="btn btn-outline-info my-2 my-sm-0" style="color:black;">
                                             {{original.name}}
-                                        </a>
-                                    </p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br><br>
                     <div *ngIf="keywords">
                         <div class="row">
                             <div class="col-lg-12">
@@ -242,7 +201,7 @@
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div *ngFor="let keyword of keywords" class="col-lg-4">
-                                                <p>{{keyword.name}}</p>
+                                                {{keyword.name}}
                                             </div>
                                         </div>
                                     </div>
