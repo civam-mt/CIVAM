@@ -56,12 +56,10 @@
             </li>
         </ul>
         <div class="searchField">
-
             <form class="form-inline my-2 my-sm-0" (ngSubmit)="onSubmit()">
                 <mat-form-field mat-autocomplete-snap appearance="none">
                     <input type="search" placeholder="Search" aria-label="Search" matInput id="searchBox" name="query"
                         class="form-control mr-sm-2" [formControl]="myControl" [matAutocomplete]="auto">
-
                 </mat-form-field>
                 <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -70,7 +68,6 @@
                 </mat-autocomplete>
                 <button class="btn btn-warning my-2 my-sm-2" id="search-button" type="submit">Search</button>
             </form>
-
         </div>
     </div>
 
