@@ -34,6 +34,8 @@ import { FullMapComponent } from './map/full-map/full-map.component';
 import { SmallMapComponent } from './map/small-map/small-map.component';
 import { CardComponent } from './card/card.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -77,8 +79,9 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
     AppRoutingModule,
     NgbModule,
     NgxPopper,
-    HttpClientModule
-
+    HttpClientModule,
+    MatTabsModule,
+    FlexLayoutModule
   ],
    
 

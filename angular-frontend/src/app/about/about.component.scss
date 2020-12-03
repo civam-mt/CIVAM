@@ -4,7 +4,7 @@ $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
 
 .block-margin {
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
 }
 
 .about-description {
@@ -26,4 +26,22 @@ $lighter-gold: #ffd400;
 button {
     background-color: lightyellow;
     color: $dark-brown;
+}
+
+#button_group {
+    border-radius: 3px !important;
+}
+
+.mat-tab-group {
+    margin-bottom: 48px;
+}
+
+::ng-deep.mat-tab-label.mat-tab-label-active {
+    background-color: #f7d417;
+    opacity: 1;
+}
+
+::ng-deep.mat-tab-label {
+    background-color: #f7d417;
+    opacity: .7;
 }

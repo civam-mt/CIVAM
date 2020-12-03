@@ -14,3 +14,48 @@ h3 {
 .image:hover {
     opacity: 0.7; 
 }
+
+#box {
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.mat-tab-group {
+    margin-bottom: 48px;
+}
+
+::ng-deep.mat-tab-label.mat-tab-label-active {
+    background-color: #f7d417;
+    opacity: 1;
+}
+
+::ng-deep.mat-tab-label {
+    background-color: #f7d417;
+    opacity: .7;
+}
+
+#button_group {
+    border-radius: 3px !important;
+}
+
+#body {
+    margin-bottom: 0px;
+}
+
+strong {
+    font-size: 1.25rem;
+}
+
+.padding-0 {
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
+}
+
+.margin-0 {
+    margin-top: 0% !important; 
+    margin-bottom: 0% !important; 
+}
+
+.margin-half {
+    margin-bottom: 0.5rem !important; 
+}
