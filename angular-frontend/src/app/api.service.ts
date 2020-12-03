@@ -14,6 +14,15 @@ export class ApiService {
   public getCollections() {
     return this.httpClient.get(`${this.API_URL}/api/collections/`);
   }
+  public getKeywordSearch(query: string){
+    return this.httpClient.get(`${this.API_URL}/api/keywords/?data=${query}`);
+  }
+  public getSearch(query : string){
+    return this.httpClient.get(`${this.API_URL}/api/search-result/?data=${query}`);
+  }
+  public getItemByKeyword(keyword: string){
+    return this.httpClient.get(`${this.API_URL}/api/items/all/${keyword}`);
+  }
   public getItems() {
     return this.httpClient.get(`${this.API_URL}/api/items/all/`);
   }
@@ -37,6 +46,12 @@ export class ApiService {
   }
   public getPoris() {
     return this.httpClient.get(`${this.API_URL}/api/pori/all/`);
+  }
+  public addNarratives(data: any) {
+    console.log(data);
+    return this.httpClient.post<any>(`${this.API_URL}/api/narratives/` ,data);
+    
+
   }
   
   // public postCollection(collection: object) {

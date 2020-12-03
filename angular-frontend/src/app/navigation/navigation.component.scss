@@ -11,9 +11,11 @@ a {
     background-color: transparent;
 }
 
+
 .navbar {
     background-color: $theme-color!important;
     font-weight: 600;
+    z-index: 999; //Hacky way to make autocomplete appear over the navbar
 }
 
 .dropdown-toggle {
@@ -73,10 +75,30 @@ a.dropdown-item.active {
 }
 
 button#search-button {
+    margin-top: 0px !important;
+
+    display: inline-block !important;
     background-color: $light-brown;
     border-color: $dark-brown;
 }
 
 button#search-button:hover {
+    display: inline-block !important;
+    margin-top: 0px !important;
     background-color: $gold;
 }
+.cdk-overlay-container{
+    position:fixed;
+    z-index:9000 !important;
+}
+
+#searchBox{
+    background-color: rgb(241, 237, 233) !important;
+}
+
+.searchField{
+    height:60px;
+    display:flex;
+    flex-direction: row;
+}
+
