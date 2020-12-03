@@ -11,6 +11,7 @@ export class KeywordPageComponent implements OnInit {
   API_URL = environment.apiUrl;
   items;
   keyword;
+  router_route = "/items"
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit(): void {

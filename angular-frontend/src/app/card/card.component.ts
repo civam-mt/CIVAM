@@ -19,6 +19,7 @@ export class CardComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    console.log(this.id);
   }  
   mouseOver() {
     let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)

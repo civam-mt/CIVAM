@@ -15,6 +15,7 @@ export class SearchResultComponent implements OnInit {
   API_URL = environment.apiUrl;
   items;
   query;
+  router_route = '/items';
   constructor(private route: ActivatedRoute, private api: ApiService) {
 
   }
