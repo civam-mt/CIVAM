@@ -22,9 +22,15 @@ export class KeywordPageComponent implements OnInit {
     this.getItems();
   }
   getItems() {
-
+    let keyword_temp: string;
+    if (this.keyword.includes("/")){
+      keyword_temp= this.keyword.replace("/", "@");
+    }
+    else{
+      keyword_temp = this.keyword;
+    }
     console.log("GETTING ITEMS FOR KEYWORD");
-    this.api.getItemByKeyword(this.keyword).subscribe((data) => {
+    this.api.getItemByKeyword(keyword_temp).subscribe((data) => {
       this.items = data["items"];
       console.log("FINISED GETTING ITEMS FOR KEYWORD");
     });
