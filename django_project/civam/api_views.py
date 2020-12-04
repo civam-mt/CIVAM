@@ -299,6 +299,9 @@ def get_pori(request, pori_id):
 
 def get_by_keyword(request, keyword):
 	#print(keyword)
+	if "@" in keyword:
+		keyword = keyword.replace("@", "/")
+
 	items = Item.objects.filter(keywords__word=keyword)
 	#item_list = list(item_list.values())
 	item_list = []
