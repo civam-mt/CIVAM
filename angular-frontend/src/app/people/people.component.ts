@@ -12,6 +12,7 @@ export class PeopleComponent implements OnInit {
   API_URL = environment.apiUrl;
   poris;
   people = [];
+  router_route = '/pori';
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 

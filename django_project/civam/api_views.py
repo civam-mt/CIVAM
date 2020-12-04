@@ -1,16 +1,27 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
 from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, get_objects_for_group
 from guardian.decorators import permission_required
+from django.contrib.postgres.search import TrigramSimilarity
 from .models import *
+from .models import Narrative
 from .forms import *
-
+import logging
 from guardian.models import Group
 from django.http import JsonResponse
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 import json
+from profanityfilter import ProfanityFilter
+from akismet import Akismet
+
+AKISMET_API_KEY = "2be27375a975"
+
+AKISMET_BLOG_URL = "http://localhost:4200/"
+pf = ProfanityFilter()
 # Civam views defined here
 
 # TODO, add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
+logger = logging.getLogger('my_app.views')
 
 def index(request):
     return HttpResponse("index")
@@ -37,6 +48,89 @@ def register(request):
 		return u.id
 	else:
 		return 0
+
+@csrf_exempt 
+def add_narrative(request):
+	if request.method == "POST":
+		
+		body_unicode = request.body.decode('utf-8')
+		body = json.loads(body_unicode)
+		akismet_api = Akismet(key=AKISMET_API_KEY, blog_url=AKISMET_BLOG_URL)
+
+		is_spam = akismet_api.comment_check(
+            user_ip=request.META['REMOTE_ADDR'],
+            user_agent=request.META['HTTP_USER_AGENT'],
+            comment_type='contact-form',
+            comment_author=body['author'],
+            comment_content=body['narrative'],
+        )
+		if is_spam:
+			return JsonResponse({'added_narrative': "false"}, safe=False)
+
+		if pf.is_profane(body["narrative"]) or pf.is_profane(body["author"]):
+			return JsonResponse({'added_narrative': "false"}, safe=False)
+
+
+		item = get_object_or_404(Item, pk=body["itemID"])
+		new_narrative = Narrative.objects.create(author=body["author"], 
+												content=body["narrative"],
+												item=item)
+		return JsonResponse({'added_narrative': "true"}, safe=False)
+	return JsonResponse({'added_narrative': "false"}, safe=False)
+
+	
+
+def search_keyword(request):
+	keyword_list = []
+	print("In search_keyword")
+	query = request.GET.get('data', None)
+	print(query)
+
+	keywords = Keyword.objects.filter(word__istartswith=query)
+	for keyword in keywords:
+		keyword_list.append(keyword.word)
+	return JsonResponse({'keywords': keyword_list}, safe=False)
+
+
+def searchResult(request):
+	
+	query = request.GET.get('data', None)
+	item_list = []
+	matched_keywords = Keyword.objects.filter(word__trigram_similar=query)
+	print(list(matched_keywords))
+	items =Item.objects.filter(keywords__in= list(matched_keywords)).distinct()
+	for item in items:
+		new_item = {
+			'item': item.id,
+			'cover_image': item.cover_image.name,
+			'name': item.name,
+			'description': item.description,
+			'collection': item.collection.id,
+			'culture_or_community': item.culture_or_community,
+			'other_forms': item.other_forms,
+			'digital_heritage_item':item.digital_heritage_item,
+			'date_of_creation':item.date_of_creation,
+			'physical_details':item.physical_details,
+			'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
+			'catalog_number':item.catalog_number,
+			'external_link':item.external_link,
+			'provenance':item.provenance,
+			#'notes':item.notes,
+			"place_created":item.place_created,
+			'citation':item.citation,
+			'historical_note':item.historical_note,
+
+			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
+			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
+			#"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
+			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
+		}
+		item_list.append(new_item)
+
+
+	context = {"items":item_list}
+	return JsonResponse(context, safe=False)
+
 '''
 def new_collection(request):
 	form = CollectionForm(request.POST or None)
@@ -205,6 +299,9 @@ def get_pori(request, pori_id):
 
 def get_by_keyword(request, keyword):
 	#print(keyword)
+	if "@" in keyword:
+		keyword = keyword.replace("@", "/")
+
 	items = Item.objects.filter(keywords__word=keyword)
 	#item_list = list(item_list.values())
 	item_list = []
@@ -224,13 +321,14 @@ def get_by_keyword(request, keyword):
 			'catalog_number':item.catalog_number,
 			'external_link':item.external_link,
 			'provenance':item.provenance,
-			'notes':item.notes,
+			#'notes':item.notes,
+			"place_created":item.place_created,
 			'citation':item.citation,
 			'historical_note':item.historical_note,
 
 			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
 			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
-			"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
+			#"place_created": [{"id":x.id,"name":str(x)} for x in list(item.place_created.all())],
 			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
 		}
 		item_list.append(new_item)
@@ -238,6 +336,7 @@ def get_by_keyword(request, keyword):
 
 	context = {"items":item_list}
 	return JsonResponse(context, safe=False)
+
 
 def item_solo(request, item_id):
 	#print(item_id)

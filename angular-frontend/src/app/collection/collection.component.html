@@ -1,5 +1,5 @@
 <div *ngIf="collection">
-    <div *ngIf="collection.title" class = "jumbotron container-fluid text-center text-md-center"> 
+    <div *ngIf="collection.title" class="jumbotron container-fluid text-center text-md-center">
         <h1 class="title">{{collection.title}}</h1>
         <h2 class="subtitle">Collection</h2>
     </div>
@@ -7,23 +7,20 @@
     <!-- Collection Photo Grid -->
     <div class="container" section="individual-collection">
         <div *ngIf="items" class="row justify-content-center container-fluid">
-            <div *ngFor="let item of items" class="col-md-4">
-                <div *ngIf="item" class="card h-100">
-                    <img *ngIf="item.cover_image" class="card-img-top" src="{{API_URL}}/media/{{item.cover_image}}">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <a [routerLink]="['/items', item.id]" class="btn btn-outline-warning my-2 my-sm-0">{{item.name}}</a>
-                        </div>
-                    </div>
+            <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">
+                <div *ngIf="item">
+                    <app-card [cover_image]="item.cover_image" [title]="item.name" [id]="item.id"
+                        [number]="indexOfelement" [route]=router_route>
+                    </app-card>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class = "container jumbotron bg-translucent border-primary">
-        <div class = "row">
-            <div class = "col-lg-12">
-                <div class = "container text-center">
+    <div class="container jumbotron bg-translucent border-primary">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="container text-center">
                     <h1 class="title">Collection Information</h1>
                 </div>
             </div>
@@ -32,170 +29,218 @@
         <br>
 
         <div *ngIf="collection.description">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Description</strong></p></div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <div>
+                        <p><strong>Description</strong></p>
+                    </div>
                 </div>
-                <div class = "col-lg-5">
-                    <div><p>{{collection.description}}</p></div>
+                <div class="col-lg-5">
+                    <div>
+                        <p>{{collection.description}}</p>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12"><hr><br></div>
+                <div class="col-lg-12">
+                    <hr><br></div>
             </div>
         </div>
 
         <div *ngIf="collection.summary">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Summary</strong></p></div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <div>
+                        <p><strong>Summary</strong></p>
+                    </div>
                 </div>
-                <div class = "col-lg-5">
-                    <div><p>{{collection.summary}}</p></div>
+                <div class="col-lg-5">
+                    <div>
+                        <p>{{collection.summary}}</p>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12"><hr><br></div>
+                <div class="col-lg-12">
+                    <hr><br></div>
             </div>
         </div>
 
         <div *ngIf="collection.provenance">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Provenance</strong></p></div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <div>
+                        <p><strong>Provenance</strong></p>
+                    </div>
                 </div>
-                <div class = "col-lg-5">
-                    <div><p>{{collection.provenance}}</p></div>
+                <div class="col-lg-5">
+                    <div>
+                        <p>{{collection.provenance}}</p>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12"><hr><br></div>
+                <div class="col-lg-12">
+                    <hr><br></div>
             </div>
         </div>
 
         <div *ngIf="collection.citation">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Citation</strong></p></div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <div>
+                        <p><strong>Citation</strong></p>
+                    </div>
                 </div>
-                <div class = "col-lg-5">
-                    <div><p>{{collection.citation}}</p></div>
+                <div class="col-lg-5">
+                    <div>
+                        <p>{{collection.citation}}</p>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12"><hr><br></div>
+                <div class="col-lg-12">
+                    <hr><br></div>
             </div>
         </div>
 
         <div *ngIf="collection.historical_note">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Historical Note</strong></p></div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <div>
+                        <p><strong>Historical Note</strong></p>
+                    </div>
                 </div>
-                <div class = "col-lg-5">
-                    <div><p>{{collection.historical_note}}</p></div>
+                <div class="col-lg-5">
+                    <div>
+                        <p>{{collection.historical_note}}</p>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12"><hr><br></div>
+                <div class="col-lg-12">
+                    <hr><br></div>
             </div>
         </div>
 
         <div *ngIf="collection.access_notes_or_rights_and_reproduction">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Access Notes or Rights and Reproduction</strong></p></div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <div>
+                        <p><strong>Access Notes or Rights and Reproduction</strong></p>
+                    </div>
                 </div>
-                <div class = "col-lg-5">
-                    <div><p>{{collection.access_notes_or_rights_and_reproduction}}</p></div>
+                <div class="col-lg-5">
+                    <div>
+                        <p>{{collection.access_notes_or_rights_and_reproduction}}</p>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12"><hr><br></div>
+                <div class="col-lg-12">
+                    <hr><br></div>
             </div>
         </div>
 
         <div *ngIf="collection.geographical_location">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Geographical Location</strong></p></div>
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
+                    <div>
+                        <p><strong>Geographical Location</strong></p>
+                    </div>
                 </div>
-                <div class = "col-lg-5">
-                    <div><p>{{collection.geographical_location}}</p></div>
+                <div class="col-lg-5">
+                    <div>
+                        <p>{{collection.geographical_location}}</p>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12"><hr><br></div>
+                <div class="col-lg-12">
+                    <hr><br></div>
             </div>
         </div>
 
         <div *ngIf="keywords">
             <div *ngIf="keywords.length > 0">
-                <div class ="row">
-                    <div class = "col-lg-3"></div>
-                    <div class = "col-lg-3">
-                        <div><p><strong>Keyword(s)</strong></p></div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <div>
+                            <p><strong>Keyword(s)</strong></p>
+                        </div>
                     </div>
-                    <div class = "col-lg-5">
-                        <div *ngFor="let keyword of keywords"><p>{{keyword.name}}</p></div>
+                    <div class="col-lg-5">
+                        <div *ngFor="let keyword of keywords">
+                            <p>{{keyword.name}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12"><hr><br></div>
+                    <div class="col-lg-12">
+                        <hr><br></div>
                 </div>
             </div>
         </div>
 
         <div *ngIf="creators">
             <div *ngIf="creators.length > 0">
-                <div class ="row">
-                    <div class = "col-lg-3"></div>
-                    <div class = "col-lg-3">
-                        <div><p><strong>Creator(s)</strong></p></div>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <div>
+                            <p><strong>Creator(s)</strong></p>
+                        </div>
                     </div>
-                    <div class = "col-lg-5">
+                    <div class="col-lg-5">
                         <div *ngFor="let creator of creators">
                             <p>
-                                <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-weight:500">
+                                <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0"
+                                    style="color:black; font-weight:500">
                                     {{creator.name}}
                                 </a>
                             </p>
-                        </div> 
+                        </div>
                     </div>
-                <div class="row">
-                    <div class="col-lg-12"><hr><br></div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <hr><br></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div *ngIf="originals">
-            <div *ngIf="originals.length > 0">
-                <div class ="row">
-                    <div class = "col-lg-3"></div>
-                    <div class = "col-lg-3">
-                        <div><p><strong>Location of Originals</strong></p></div>
+            <div *ngIf="originals">
+                <div *ngIf="originals.length > 0">
+                    <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-3">
+                            <div>
+                                <p><strong>Location of Originals</strong></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div *ngFor="let original of originals">
+                                <p>
+                                    <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0"
+                                        style="color:black; font-weight:500">
+                                        {{original.name}}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div class = "col-lg-5">
-                        <div *ngFor="let original of originals">
-                            <p>
-                                <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-weight:500">
-                                    {{original.name}}
-                                </a>
-                            </p>
-                        </div> 
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <hr><br></div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12"><hr><br></div>
                 </div>
             </div>
         </div>
     </div>
-</div>

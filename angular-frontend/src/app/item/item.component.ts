@@ -1,9 +1,10 @@
-import { Component, OnInit, SecurityContext, ɵConsole } from '@angular/core';
+import { Component, OnInit,Input, SecurityContext, ɵConsole } from '@angular/core';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
- 
+import { Router} from "@angular/router";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -13,12 +14,17 @@ import { ApiService } from '../api.service';
 })
 
 export class ItemComponent implements OnInit {
-
+  @Input() activeClass = 'active';
   SafePipe;
 
+  narrativeForm: FormGroup;
+  submitted = false;
+  error: string;
+  loading = false;
 
   API_URL = environment.apiUrl;
   item;
+  itemID;
   images;
   rawVideos;
   videos;
@@ -31,13 +37,20 @@ export class ItemComponent implements OnInit {
   showNavigationArrows = true;
   showNavigationIndicators = true;
   showModal: boolean = false; 
-  constructor(private route: ActivatedRoute, private api: ApiService) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder,) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.getItemByItemID(params.get('itemID'));
+      this.itemID = params.get('itemID');
     });
+    this.narrativeForm = this.formBuilder.group({
+      author: ['', Validators.required],
+      narrative: ['', Validators.required]
+    });
+
   }
+
   getItemByItemID(itemID: string) {
     this.api.getItemByItemID(itemID).subscribe((data) => {
       console.log(data)
@@ -46,6 +59,7 @@ export class ItemComponent implements OnInit {
       this.narratives = this.item["narratives"];
       this.rawVideos = this.item["videos"];
       this.keywords = this.item["keywords"];
+      this.keywords.sort((a, b) => (a.name > b.name) ? 1 : -1); // sort keywords alphabetically
       this.creators = this.item["creator"];
       this.originals = this.item["location_of_originals"];
       this.videos = this.rawVideos.map(function(video) {
@@ -71,5 +85,19 @@ export class ItemComponent implements OnInit {
       "modalOff": !this.showModal,
     }
     return setClass; 
+  }
+  submitNarrative(){
+    console.log(this.narrativeForm.value);
+    let message = this.narrativeForm.value
+    message.itemID = this.itemID;
+    this.api.addNarratives(message).subscribe(res => 
+      {console.log('success', res);
+      if (res["added_narrative"] == "true"){
+        this.getItemByItemID(this.itemID);
+      }
+      else{
+        alert("Invalid narrative");
+      }
+    });
   }
 }

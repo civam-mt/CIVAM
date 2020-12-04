@@ -11,14 +11,14 @@
 </div>
 
 <!-- Home Page Main Content Below Here -->
-<div class="container" section="home-page">
+ <div class="container" section="home-page">
     <div class="row justify-content-center container-fluid">
         <ngb-carousel [showNavigationArrows]="showNavigationArrows"
             [showNavigationIndicators]="showNavigationIndicators" class="carousel" (mouseover)="mouseOver()"
             (mouseout)="mouseOut()">
             <ng-template ngbSlide *ngFor="let collection of collections; let i=index" class="col-md-4">
                 <div *ngIf="collection">
-                    <div *ngIf="i < 4" class="card h-100">
+                    <div class="card h-100">
                         <img *ngIf="collection.cover_image" class="card-img-top"
                             src="{{API_URL}}/media/{{collection.cover_image}}">
                         <div class="card-body">
@@ -31,4 +31,4 @@
             </ng-template>
         </ngb-carousel>
     </div>
-</div>
+</div> 

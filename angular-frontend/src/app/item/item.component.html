@@ -6,45 +6,52 @@
         <h2 class="subtitle">Collection Item</h2>
     </div>
 
-    <div class = "container jumbotron bg-translucent border-primary">
-        <div class = row>
+    <div class="container jumbotron bg-translucent border-primary">
+        <div class=row>
 
-            <div class="collection-item-description">
+            <div class="collection-item-description col">
                 <p *ngIf="item.description">{{item.description}}</p>
             </div>
 
-            <div class = "col-lg-7">
+            <div class="col-lg-7">
                 <div *ngIf="videos">
                     <div *ngFor="let video of videos">
                         <div style="padding:56.25% 0 0 0;position:relative;">
-                            <iframe [src]="video | safeUrl" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                            <iframe [src]="video | safeUrl"
+                                style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
+                                allow="autoplay; fullscreen" allowfullscreen></iframe>
                         </div>
                         <script src="https://player.vimeo.com/api/player.js">
                         </script>
                         <br>
                     </div>
                 </div>
-                
-                <div *ngIf="images">
+
+                <div *ngIf="images" class="col">
                     <div *ngIf="images.length < 2; else elseBlock">
                         <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
-                        <ng-template ngbSlide *ngFor="let image of images">
-                        <div class="picsum-img-wrapper">
-                            <img (click)="toggleModal()" src="{{API_URL}}/media/{{image.content}}" alt="Random slide" class="image">
-                            <app-modal [ngClass]="showHideModal()" [item]="this" [API_URL]="API_URL" [image]="image"></app-modal>
-                        </div>
-                        </ng-template>
+                            <ng-template ngbSlide *ngFor="let image of images">
+                                <div class="picsum-img-wrapper">
+                                    <img (click)="toggleModal()" src="{{API_URL}}/media/{{image.content}}"
+                                        alt="Random slide" class="image">
+                                    <app-modal [ngClass]="showHideModal()" [item]="this" [API_URL]="API_URL"
+                                        [image]="image"></app-modal>
+                                </div>
+                            </ng-template>
                         </ngb-carousel>
                     </div>
                     <ng-template #elseBlock>
-                    <ngb-carousel  [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
-                        <ng-template ngbSlide *ngFor="let image of images">
-                        <div class="picsum-img-wrapper">
-                            <img (click)="toggleModal()" src="{{API_URL}}/media/{{image.content}}" alt="Random slide" class="image">
-                            <app-modal [ngClass]="showHideModal()" [item]="this" [API_URL]="API_URL" [image]="image"></app-modal>
-                        </div>
-                        </ng-template>
-                    </ngb-carousel>
+                        <ngb-carousel [showNavigationArrows]="showNavigationArrows"
+                            [showNavigationIndicators]="showNavigationIndicators">
+                            <ng-template ngbSlide *ngFor="let image of images">
+                                <div class="picsum-img-wrapper">
+                                    <img (click)="toggleModal()" src="{{API_URL}}/media/{{image.content}}"
+                                        alt="Random slide" class="image">
+                                    <app-modal [ngClass]="showHideModal()" [item]="this" [API_URL]="API_URL"
+                                        [image]="image"></app-modal>
+                                </div>
+                            </ng-template>
+                        </ngb-carousel>
                     </ng-template>
                 </div>
 
@@ -52,282 +59,193 @@
         </div>
     </div>
 
-    <div *ngIf="narratives">
-        <div *ngIf="narratives.length > 0">
-            <p>
-            <button type="button" 
-                    class="btn btn-block btn-transparent container-sm" 
-                    (click)="narrativesCollapsed = !narrativesCollapsed"
-                    [attr.aria-expanded]="!narrativesCollapsed" 
-                    aria-controls="narratives">
-                <h3 class="title">Narratives</h3>
-            </button>
-            </p>
-            <div id="narratives" [ngbCollapse]="narrativesCollapsed">
-                <div class="card container block-margin bg-translucent border-primary">
-                    <div class="card-body">
-                        <div *ngFor="let narrative of narratives">
-                            <h3 class="subtitle">{{narrative.author}}</h3>
-                            <p>{{narrative.content}}</p>
+    <div>
+        <mat-tab-group class="border-primary" animationDuration="0ms" dynamicHeight mat-align-tabs="center"
+            mat-stretch-tabs id="button_group">
+            <mat-tab label="Narratives">
+                <div *ngIf="narratives">
+                    <div class="card container block-margin bg-translucent" id="body">
+                        <div class="card-body">
+                            <div *ngFor="let narrative of narratives">
+                                <h3 class="subtitle">{{narrative.author}}</h3>
+                                <p>{{narrative.content}}</p>
+                            </div>
+                            <div class="container jumbotron border-primary" section="add-narrative-section">
+                                <h3 class="title" id="have-something-to-add">Have something to add?</h3>
+                                <form [formGroup]="narrativeForm" (ngSubmit)="submitNarrative()">
+                                    <div class="form-group">
+                                        <label for="author">Name</label>
+                                        <input placeholder="Your name" type="text" formControlName="author"
+                                            class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.author.errors }" />
+                                        <div *ngIf="submitted && narrativeForm.controls.author.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="narrativeForm.controls.author.errors.required"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="narrative">Narrative</label>
+                                        <textarea placeholder="Your narrative" rows="3" type="text"
+                                            formControlName="narrative" class="form-control"
+                                            [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.narrative.errors }"></textarea>
+                                        <div *ngIf="submitted && narrativeForm.controls.narrative.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="narrativeForm.controls.narrative.errors.required">Narrative is
+                                                required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button [disabled]="loading" class="btn btn-primary">
+                                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                            Submit
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-tab>
+            <mat-tab label="Item Information">
+                <div class="container jumbotron bg-translucent border-primary" id="body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="container text-center">
+                                <h3 class="title">Item Information</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" fxLayout="column">
+                        <div *ngIf="item.culture_or_community">
+                            <div>
+                                <p><strong>Culture or Community</strong>
+                                    <br>{{item.culture_or_community}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.other_forms">
+                            <div>
+                                <p><strong>Other Forms</strong>
+                                    <br>{{item.other_forms}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.digital_heritage_item">
+                            <div>
+                                <p><strong>Digital Heritage Item</strong>
+                                    <br>{{item.digital_heritage_item}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.date_of_creation">
+                            <div>
+                                <p><strong>Date of Creation</strong>
+                                    <br>{{item.date_of_creation}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.physical_details">
+                            <div>
+                                <p><strong>Physical Details</strong>
+                                    <br>{{item.physical_details}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.access_notes_or_rights_and_reproduction">
+                            <div>
+                                <p><strong>Access Notes or Rights and Reproduction</strong>
+                                    <br>{{item.access_notes_or_rights_and_reproduction}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.catalog_number">
+                            <div>
+                                <p><strong>Catalog Number</strong>
+                                    <br>{{item.catalog_number}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.external_link">
+                            <div>
+                                <p><strong>External Link</strong>
+                                    <br><a href={{item.external_link}} style="color:black;">Checkout More
+                                        Here</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.provenance">
+                            <div>
+                                <p><strong>Provenance</strong>
+                                    <br>{{item.provenance}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.citation">
+                            <div>
+                                <p><strong>Citation</strong>
+                                    <br>{{item.citation}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.historical_note">
+                            <div>
+                                <p><strong>Historical Note</strong>
+                                    <br>{{item.historical_note}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.place_created">
+                            <div>
+                                <p><strong>Place Created</strong>
+                                    <br>{{item.place_created}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="creators">
+                            <div *ngIf="creators.length > 0">
+                                <div>
+                                    <p class="margin-0"><strong>Creator(s)</strong></p>
+                                </div>
+                                <div *ngFor="let creator of creators">
+                                    <a [routerLink]="['/pori', creator.id]"
+                                        class="btn btn-outline-info my-2 my-sm-0 margin-half"
+                                        style="color:black; font-weight:500">
+                                        {{creator.name}}
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="originals">
+                            <div *ngIf="originals.length > 0">
+                                <div>
+                                    <p class="margin-0"><strong>Location of Originals</strong></p>
+                                </div>
+                                <div *ngFor="let original of originals">
+                                    <a [routerLink]="['/pori', original.id]"
+                                        class="btn btn-outline-info my-2 my-sm-0 margin-half" style="color:black;">
+                                        {{original.name}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="keywords">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div *ngIf="keywords.length > 0">
+                                    <div class="col-lg-12">
+                                        <div>
+                                            <p><strong>Keyword(s)</strong></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="row mb-5">
+                                            <div *ngFor="let keyword of keywords" class="col-lg-4">
+                                                <a [routerLink]="['/keyword-page', keyword.name]"
+                                                    class="btn btn-outline-info my-2 my-sm-0"
+                                                    style="color:black; font-weight:500">
+                                                    {{keyword.name}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <br><br>
-
-    <div class = "container jumbotron bg-translucent border-primary">
-        <div class = "row">
-            <div class = "col-lg-12">
-                <div class = "container text-center">
-                    <h3 class="title">Item Information</h3>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="item.culture_or_community">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Culture or Community</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.culture_or_community}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.other_forms">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Other Forms</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.other_forms}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.digital_heritage_item">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Digital Heritage Item</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.digital_heritage_item}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.date_of_creation">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Date of Creation</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.date_of_creation}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.physical_details">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Physical Details</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.physical_details}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.access_notes_or_rights_and_reproduction">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Access Notes or Rights and Reproduction</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.access_notes_or_rights_and_reproduction}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.catalog_number">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Catalog Number</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.catalog_number}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.external_link">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>External Link</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p><a href={{item.external_link}} style="color:black;">Checkout More Here</a></p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>      
-
-        <div *ngIf="item.provenance">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Provenance</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.provenance}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.citation">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Citation</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.citation}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.historical_note">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Historical Note</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.historical_note}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="item.place_created">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Place Created</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{item.place_created}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="keywords">
-            <div *ngIf="keywords.length > 0">
-                <div class ="row">
-                    <div class = "col-lg-3"></div>
-                    <div class = "col-lg-3">
-                        <div><p><strong>Keyword(s)</strong></p></div>
-                    </div>
-                    <div class = "col-lg-5">
-                        <div *ngFor="let keyword of keywords"><p>{{keyword.name}}</p></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12"><hr><br></div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="creators">
-            <div *ngIf="creators.length > 0">
-                <div class ="row">
-                    <div class = "col-lg-3"></div>
-                    <div class = "col-lg-3">
-                        <div><p><strong>Creator(s)</strong></p></div>
-                    </div>
-                    <div class = "col-lg-5">
-                        <div *ngFor="let creator of creators">
-                            <p>
-                                <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black; font-weight:500">
-                                    {{creator.name}}
-                                </a>
-                            </p>
-                        </div>      
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12"><hr><br></div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="originals">
-            <div *ngIf="originals.length > 0">
-                <div class ="row">
-                    <div class = "col-lg-3"></div>
-                    <div class = "col-lg-3">
-                        <div><p><strong>Location of Originals</strong></p></div>
-                    </div>
-                    <div class = "col-lg-5">
-                        <div *ngFor="let original of originals">
-                            <p>
-                                <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0" style="color:black;">
-                                    {{original.name}}
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12"><hr><br></div>
-                </div>
-            </div>
-        </div>
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </div>

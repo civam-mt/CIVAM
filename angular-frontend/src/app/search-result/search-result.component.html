@@ -1,0 +1,15 @@
+<div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
+   <strong>Search Results for "{{query}}"</strong>
+</div>
+
+ <div class="container" section="individual-collection">
+        <div *ngIf="items" class="row justify-content-center container-fluid">
+            <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">
+                <div *ngIf="item">
+                    <app-card [cover_image]="item.cover_image" [title]="item.name" [id]="item.item"
+                        [number]="indexOfelement" [route]=router_route>
+                    </app-card>
+                </div>
+            </div>
+        </div>
+    </div>

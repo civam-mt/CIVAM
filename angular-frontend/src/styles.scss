@@ -3,15 +3,16 @@
 // it's best to do so there by setting the appropriate variables (ex: set $primary to whatever
 // you wan the primary colour for the theme to be)
 @import "themes/yeti/variables";
-
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; //Important
 @import "~bootstrap/scss/bootstrap";
 @import "themes/yeti/bootswatch";
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 /* Sets global font styling */
-/*
+
 $font-stack:    'Montserrat', sans-serif;
+/*
 $primary-color: #000000;
 $font-weight-bold: 800;
 
@@ -32,6 +33,7 @@ div {
 
 * {
     box-sizing: border-box;
+    font-family: $font-stack;
 }
 
 // Use this class for consistent title styles
@@ -98,6 +100,10 @@ body {
     row-gap: 2em;
 }
 
+.dropdown-item {
+    //font-size: 1.3vw;
+}
+
 .card-img-top {
     width: 100%;
     height: 20vw;
@@ -126,3 +132,6 @@ body {
 // .display-4 {
 //     font-weight: bold;
 // }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

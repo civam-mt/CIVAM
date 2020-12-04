@@ -8,7 +8,9 @@ urlpatterns = [
     path('', views.collection_list, name='index'),
     path('collections/', views.collection_list, name='collections'),#/collection/
     path('api/collections/', api_views.collection_list, name="api_collections"),
-  
+
+    path('search-result/', views.searchResult, name="searchResult"),
+    path('api/search-result/', api_views.searchResult, name="searchResult"),
     # Login and register
     path('user/', include('django.contrib.auth.urls')),
     path('register/', views.register, name='registration'),
@@ -38,8 +40,9 @@ urlpatterns = [
     path('api/pori/<int:pori_id>/', api_views.get_pori, name='api_get_pori'),
     path('api/pori/all/', api_views.all_pori, name='api_all_pori'),
     path('api/keywords/all/', api_views.all_keywords, name='api_all_keywords'),
+    path('api/keywords/', api_views.search_keyword, name='search_keyword'),
 
-
+    path('api/narratives/', api_views.add_narrative, name='add_narrative'),
 
     # View CollectionGroups of a Collection
     path('collections/<int:collection_id>/groups/', views.group_list, name='groups'),
