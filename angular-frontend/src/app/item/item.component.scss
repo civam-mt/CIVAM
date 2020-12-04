@@ -22,6 +22,7 @@ h3 {
 
 .mat-tab-group {
     margin-bottom: 48px;
+    z-index: 0; 
 }
 
 ::ng-deep.mat-tab-label.mat-tab-label-active {
