@@ -93,14 +93,13 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 * Frontend: http://127.0.0.1:4200/
 * If you encounter errors where your locally served website does not update as changes are made in the code (without re-serving), run `ng serve --poll=2000` during the steps above
 * An easier way to load the frontend and backend site locally is to run `./run.sh` in the CISC475_D5 directory. It will take care of everything for you.
+* When running the front and backend of the project locally with a copy of the database, the collection images will show up as black squares. Don't fear though as this is normal. The URL for the images changes since you will be running on localhost. If you want to see how things react with actual images, you can go to the django admin site http://127.0.0.1:8000/admin and create your own user and add some test collection data.
 
 ---
 
 ## Resources
 From the CIVAM Google Drive Folder (get access from Cindy Ott)
 * Website Information Folder: https://drive.google.com/drive/u/1/folders/1kLZumZYjkP4IBg42w1kuQPbsW9XPwnIJ?ths=true
-
-From our team
 
 ---
 
@@ -154,7 +153,7 @@ git checkout <desired version commit hash> <filename>
 * Make SURE you are in the right directory before running the command below
 * `rm !(__init__.py)`
 
-####Clean up postgresql database
+#### Clean up postgresql database
 * `sudo service postgresql start`
 * `sudo -i -u postgres`
 * `psql`
@@ -190,8 +189,17 @@ django_project/civam/migrations/0007_collection_dates.py
 **NOTE: Our group recorded videos of our deployment process on the AWS server. Check out the videos in the CIVAM Google Drive before attempting. Link: https://drive.google.com/drive/u/1/folders/1kLZumZYjkP4IBg42w1kuQPbsW9XPwnIJ?ths=true.**
 
 * During your first deployment, point the project to your copy of the repository and remove ours.
+
 * Log in, then `cd CISC475_D5`
-* Make a copy of the database and store in `db_backups` folder on the server. Follow the instructions in the video linked above.
+* Make a copy of the database and store in `db_backups` folder on the server. See video or text commands listed below:
+
+### Back up the database
+* Create a directory to store the database backups on the server (outside of the CISC475_D5 directory): `mkdir db-backups`
+* `cd CISC475_D5/django_project/`
+* `python3 manage.py dumpdata > database-backup-1.json` (you can name the `.json` file whatever you want)
+* Move `database-backup-1.json` to `db-backups` directory so it doesn't exist in the project
+* `mv database-backup-1.json ../../` and then `mv database-backup-1.json db-backups`
+
 * Run `git stash` to make sure that you can pull any new changes
 * Run `git pull` to make sure that all the new changes are stored
 * Run `git stash pop` to get back uncommited files during normal operations of the website (from `civam-env`)
