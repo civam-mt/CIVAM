@@ -1,0 +1,21 @@
+#!/bin/bash
+
+postgresql_status=$(service postgresql status | grep "Active: inactive")
+if [${#postgresql_status} -gt 0];
+then
+    echo "Postgressql is not running, attempting to start the service..."
+    if [$EUID != 0];
+    then
+	sudo "$0" "$@"
+    fi
+    
+fi
+   
+cd angular-frontend
+ng serve --host 0.0.0.0 &
+cd ../
+source civam-env/bin/activate
+cd django_project
+python3 manage.py runserver 0.0.0.0:8000 &
+cd ..
+ps
