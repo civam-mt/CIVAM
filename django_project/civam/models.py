@@ -30,7 +30,7 @@ class PersonOrInstitute(models.Model):
 
 #Keyword Table
 class Keyword(models.Model):
-    word = models.CharField(max_length=31, unique=True)
+    word = models.CharField(max_length=255, unique=True)
 
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="keyword_created")
     created_on = models.DateTimeField(auto_now_add=True)
