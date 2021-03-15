@@ -2,7 +2,7 @@
 ## Description
 * Django Version: 2.2.6
 * Python Version: 3.6.8
-* Angular Version: 9.1.3
+* Angular Version: 11.2.5
 
 A Django website with an Angular frontend serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
@@ -73,6 +73,10 @@ git checkout <desired version commit hash> <filename>
 * `ng serve`
 * Backend: http://127.0.0.1:8000/admin
 * Frontend: http://127.0.0.1:4200/
+
+### Alternative method for macos and linux
+To start, `./run.sh`
+To Stop, `./stop.sh`
 
 ## Deployment Instructions
 * Might need to run `npm rebuild` if deploying on a different OS than currently compiled node_modules
