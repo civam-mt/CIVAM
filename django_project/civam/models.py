@@ -1,3 +1,8 @@
+##  3/15/2021	-	Mark Wolgin
+##      - Removed summary field from Collections Model
+##
+##
+
 from django.db import models
 from django.contrib.auth.models import User, Group
 

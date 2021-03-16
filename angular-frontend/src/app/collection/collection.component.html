@@ -1,3 +1,11 @@
+<!-- 
+    3/15/2021   -   Mark Wolgin
+        - Removed Summary field
+
+
+ -->
+
+
 <div *ngIf="collection">
     <div *ngIf="collection.title" class="jumbotron container-fluid text-center text-md-center">
         <h1 class="title">{{collection.title}}</h1>
@@ -48,7 +56,8 @@
             </div>
         </div>
 
-        <div *ngIf="collection.summary">
+        <!-- Removed due to ticket S21D10-36 -->
+        <!-- <div *ngIf="collection.summary">
             <div class="row">
                 <div class="col-lg-3"></div>
                 <div class="col-lg-3">
@@ -66,8 +75,7 @@
                 <div class="col-lg-12">
                     <hr><br></div>
             </div>
-        </div>
-
+        </div> --> 
         <div *ngIf="collection.provenance">
             <div class="row">
                 <div class="col-lg-3"></div>

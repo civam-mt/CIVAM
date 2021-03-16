@@ -1,3 +1,8 @@
+##  3/15/2021	-	Mark Wolgin
+##      - Removed summary field from Collections Model
+##
+##
+
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
 from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, get_objects_for_group
 from guardian.decorators import permission_required
