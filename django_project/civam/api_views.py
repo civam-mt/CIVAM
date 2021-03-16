@@ -498,11 +498,15 @@ def get_all_mapdata(request):
 		map_list.append(new_entry)
 
 
-	context = {"mapdata":map_list}
+	context = {	"mapdata": map_list,
+				"length": map_list.count}
 	return JsonResponse(context, safe=False)
 
 def get_mapdata_by_id(request, mapdata_id):
-	return 0
+	mapentry = get_object_or_404(MapData, pk=mapdata_id)
+	map_list = [mapentry]
+	context = {	"mapdata": map_list}
+	return JsonResponse(context, safe=False)
 
 def new_mapdata(request):
 	return 0
