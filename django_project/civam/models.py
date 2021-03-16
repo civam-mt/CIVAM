@@ -175,11 +175,11 @@ class CollectionGroup(models.Model):
 # Previously, this was stored in a google sheets document, but this allows easier access and more fedelity for the maps opperations
 class MapData(models.Model):
 
-    #class ObjOrPhoto(models.TextChoices):
-    #    OBJECT = 'OB', _('Objects')
-    #    PHOTO = 'PH', _('Photos')
-    #    BOTH = 'BO', _('Both')
-    #    NONE = 'NA', _('None')
+    class ObjOrPhoto(models.TextChoices):
+        OBJECT = 'OB', _('Objects')
+        PHOTO = 'PH', _('Photos')
+        BOTH = 'BO', _('Both')
+        NONE = 'NA', _('None')
 
     name = models.CharField(max_length=255)
     lat = models.DecimalField(max_digits=14, decimal_places=10)
@@ -190,10 +190,10 @@ class MapData(models.Model):
     digital_collection = models.BooleanField()
     replied_to_contact = models.BooleanField()
     history = models.TextField()
-    obj_photos = models.TextField(
-    #    max_length=2,
-    #    choices=ObjOrPhoto.choices,
-    #    default=NONE,
+    obj_photos = models.CharField(
+        max_length=2,
+        choices=ObjOrPhoto.choices,
+        default='NONE',
     )
     address = models.TextField()
     notes = models.TextField()
@@ -204,17 +204,8 @@ class MapData(models.Model):
     modified_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return '{},{},{},{},{},{},{},{},{},{},{},{}\n'.format(self.name, 
+        return '{},{},{}\n'.format(self.name, 
             self.lat, 
-            self.lng, 
-            self.url, 
-            self.contact_email, 
-            self.crow_material,
-            self.digital_collection, 
-            self.replied_to_contact,
-            self.history,
-            self.obj_photos,
-            self.address,
-            self.notes)
+            self.lng)
     
     

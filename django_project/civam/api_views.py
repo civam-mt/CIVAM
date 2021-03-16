@@ -477,8 +477,35 @@ def register(request):
 		return 0
 
 
-def mapdata(request):
+def get_all_mapdata(request):
+	rawlist = MapData.objects.filter(crow_material=True)
+	map_list = []
+	for entry in rawlist:
+		new_entry = {
+			"name": entry.name,
+			"lat": entry.lat,
+			"lng": entry.lng,
+			"url": entry.url,
+			"contact_email": entry.contact_email,
+			"crow_material": entry.crow_material,
+			"digital_collection": entry.digital_collection,
+			"replied_to_contact": entry.replied_to_contact,
+			"history": entry.history,
+			"obj_photos": entry.obj_photos,
+			"address": entry.address,
+			"notes": entry.notes
+		}
+		map_list.append(new_entry)
+
+
+	context = {"mapdata":map_list}
+	return JsonResponse(context, safe=False)
+
+def get_mapdata_by_id(request, mapdata_id):
 	return 0
 
 def new_mapdata(request):
+	return 0
+
+def mapdata(request):
 	return 0

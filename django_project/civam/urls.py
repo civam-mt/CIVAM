@@ -56,6 +56,9 @@ urlpatterns = [
     # View/Edit a MapDataEntry
     path('mapdata/<int:mapdata_id>/', views.mapdata, name='mapdata'),
     # Add a new MapData
-    path('mapdata/new/', views.new_mapdata, name='new_mapdata')
+    path('mapdata/new/', views.new_mapdata, name='new_mapdata'),
+    
+    path('api/mapdata/all/', api_views.get_all_mapdata, name='all_mapdata'),
+    path('api/mapdata/<int:mapdata_id>/', api_views.get_mapdata_by_id, name='mapdata_by_id')
 
 ]

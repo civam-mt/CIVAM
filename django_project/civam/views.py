@@ -202,4 +202,4 @@ def new_mapdata(request):
 
 @permission_required('civam.mapdata', return_403=True)
 def mapdata(request, mapdata_id):
-    return render(request, 'civam/new_mapdata', context)
+    return render(request, 'civam/mapdata', context)
