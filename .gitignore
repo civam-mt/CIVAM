@@ -191,4 +191,5 @@ typings/
 # next.js build output
 .next
 
-
+# emacs backup files
+*~

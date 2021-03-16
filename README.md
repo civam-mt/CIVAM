@@ -2,7 +2,7 @@
 ## Description
 * Django Version: 2.2.6
 * Python Version: 3.6.8
-* Angular Version: 10.2.0
+* Angular Version: 11.2.5
 
 A Django website with an Angular frontend serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
@@ -13,7 +13,79 @@ A Django website with an Angular frontend serving as a virtual archive and museu
 * This project is designed to work well with Linux or WSL. If you are running MacOS, consider loading an Ubuntu VM or dual-boot to Linux. Nobody has worked on this project using MacOS to our knowledge becuase the setup is tricky.
 * VSCode is a great editor to use for the project!
 
----
+# Local Git Setup
+* After cloning the repository, edit .git/info/exclude
+* Add the following 
+```
+django_project/civam/migrations/ 
+django_project/project/settings.py 
+django_project/dump.json 
+django_project/civam/package-lock.json
+```
+* After setting everything else up, if you run `git status` and see any of the above files, run `git update-index --assume-unchanged [<file> ...]` for each file. 
+* These files will be modified for local development, but should not be changed on the server unless absolutely necessary. 
+
+## Some Helpful Git Commands
+### Rebasing Instructions
+* Be sure to add and commmit all changes to your branch.
+* Do the following where originbranch is the branch you want to rebase onto and featurebranch is the branch with your changes.
+```
+git fetch
+git checkout <originbranch>
+git pull
+git checkout <featurebranch>
+git rebase <originbranch>
+```
+* If there are any merge conficts: fix them, add, and commit changes.
+* Then run the following
+```
+git rebase --continue
+```
+* Repeat this with any other merge conflicts keeping in mind that this is applying each one of your commits to the originbranch one at a time. 
+* When finished with all merge conflicts push your changes (Make sure you are on your feature branch).
+```
+git push
+```
+### To get a deleted file back
+* First find the last commit that edited that file and note the first few characters in the hash.
+```
+git log -- <filename>
+```
+* Then checkout that file from one commit before the last change (your deletion).
+```
+git checkout <deletion commit hash>~1 -- <filename>
+```
+### To revert changes to a file
+* First find the commit you wish to revert to and note the first few characters in the hash.
+* The following will get commits that edited the file.
+```
+git log -- <filename>
+```
+* Then checkout from the commit with the version of the file you want.
+```
+git checkout <desired version commit hash> <filename>
+```
+
+# To Run Site Locally
+* `cd django_project`
+* `sudo service postgresql start` 
+* `python3 manage.py runserver`
+* `cd ../angular-frontend`
+* `ng build`
+* `ng serve`
+* Backend: http://127.0.0.1:8000/admin
+* Frontend: http://127.0.0.1:4200/
+
+### Alternative method for macos and linux
+To start, `./run.sh`
+To Stop, `./stop.sh`
+
+## Deployment Instructions
+* Might need to run `npm rebuild` if deploying on a different OS than currently compiled node_modules
+* `ng build --prod`
+* `ng add @jefiozie/ngx-aws-deploy`
+* TODO: Karl fill in whatever you need to
+
 
 # Starting Place For Working on the Project - Initial Steps
 ## Backend Project Setup
