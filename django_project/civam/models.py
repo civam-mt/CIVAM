@@ -170,4 +170,32 @@ class CollectionGroup(models.Model):
     def __str__(self):
         return "CollectionGroup: {} {}".format(self.collection.title, self.group.name)
 
+# The MapData class is used to allow easy insertion to the database a list of all map locations.
+# Previously, this was stored in a google sheets document, but this allows easier access and more fedelity for the maps opperations
+class MapData(models.Model):
+    name = models.CharField(max_length=255)
+    lat = models.DecimalField(max_digits=14, decimal_places=10)
+    lng = models.DecimalField(max_digits=14, decimal_places=10)
+    url = models.CharField(max_length=255)
+    contact_email = models.EmailField(max_length=254)
+    crow_material = models.BooleanField()
+    digital_collection = models.BooleanField()
+    replied_to_contact = models.BooleanField()
+    history = models.TextField()
+    obj_photos = models.TextField()
+    address = models.TextField()
+    notes = models.TextField()
 
+    def __str__(self):
+        return '{},{},{},{},{},{},{},{},{},{},{},{}\n'.format(self.name, 
+            self.lat, 
+            self.lng, 
+            self.url, 
+            self.contact_email, 
+            self.crow_material,
+            self.digital_collection, 
+            self.replied_to_contact,
+            self.history,
+            self.obj_photos,
+            self.address,
+            self.notes)

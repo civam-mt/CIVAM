@@ -81,3 +81,22 @@ class GroupPermissionsForm(forms.Form):
 
     # Items in the collection can be checked/unchecked to grant/remove permission on that Item for the CollectionGroup
     items = forms.ModelMultipleChoiceField(queryset = Item.objects.none(), widget = forms.CheckboxSelectMultiple, required=False)
+
+class MapDataForm(ModelForm):
+    class Meta:
+        model = MapData
+        fields = ['name', 'lat', 'lng', 'url', 'contact_email', 'crow_material',
+            'digital_collection', 'replied_to_contact', 'history', 'obj_photos',
+            'address', 'notes']
+        #labels = {'name': _('Institution Name'),
+        #    'lat': _('Latitude'), 
+        #    'lng': _('Longitude'), 
+        #    'url': _('Site URL'), 
+        #    'contact_email': _('Contact Email'),
+        #    'crow_material': _('Does the site have Crow Materials?'), 
+        #    'digital_collection': _('Is there a digital collection?'), 
+        #    'replied_to_contact': _('Have they replied to our contact'),
+        #    'history': _('Related history'), 
+        #    'obj_photos': _("Does it have objects, photos, or both"), 
+        #    'address': _('Address'), 
+        #    'notes': _('Notes')}

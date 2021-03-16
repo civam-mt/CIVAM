@@ -51,6 +51,11 @@ urlpatterns = [
     path('collections/<int:collection_id>/groups/new/', views.new_group, name='new_group'),
 
     # View/Edit a CollectionGroup
-    path('collections/<int:collection_id>/groups/<int:group_id>/', views.group, name='group')
+    path('collections/<int:collection_id>/groups/<int:group_id>/', views.group, name='group'),
+
+    # View/Edit a MapDataEntry
+    path('mapdata/<int:mapdata_id>/', views.mapdata, name='mapdata'),
+    # Add a new MapData
+    path('mapdata/new/', views.new_mapdata, name='new_mapdata')
 
 ]
