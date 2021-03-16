@@ -475,3 +475,10 @@ def register(request):
 		return u.id
 	else:
 		return 0
+
+
+def mapdata(request):
+	return 0
+
+def new_mapdata(request):
+	return 0

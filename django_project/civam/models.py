@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.utils.translation import gettext_lazy as _
 
 # Civam models are defined here
 # Some models have created_by, created_on, modified_by, and modified_on fields
@@ -173,6 +174,13 @@ class CollectionGroup(models.Model):
 # The MapData class is used to allow easy insertion to the database a list of all map locations.
 # Previously, this was stored in a google sheets document, but this allows easier access and more fedelity for the maps opperations
 class MapData(models.Model):
+
+    #class ObjOrPhoto(models.TextChoices):
+    #    OBJECT = 'OB', _('Objects')
+    #    PHOTO = 'PH', _('Photos')
+    #    BOTH = 'BO', _('Both')
+    #    NONE = 'NA', _('None')
+
     name = models.CharField(max_length=255)
     lat = models.DecimalField(max_digits=14, decimal_places=10)
     lng = models.DecimalField(max_digits=14, decimal_places=10)
@@ -182,9 +190,18 @@ class MapData(models.Model):
     digital_collection = models.BooleanField()
     replied_to_contact = models.BooleanField()
     history = models.TextField()
-    obj_photos = models.TextField()
+    obj_photos = models.TextField(
+    #    max_length=2,
+    #    choices=ObjOrPhoto.choices,
+    #    default=NONE,
+    )
     address = models.TextField()
     notes = models.TextField()
+
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="mapdata_created")
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="mapdata_modified")
+    modified_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return '{},{},{},{},{},{},{},{},{},{},{},{}\n'.format(self.name, 
@@ -199,3 +216,5 @@ class MapData(models.Model):
             self.obj_photos,
             self.address,
             self.notes)
+    
+    

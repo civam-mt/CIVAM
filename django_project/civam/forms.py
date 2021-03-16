@@ -3,6 +3,7 @@ from django import forms
 from civam.models import *
 from guardian.models import Group
 from django.core.exceptions import NON_FIELD_ERRORS
+from django.utils.translation import gettext_lazy as _
 
 # Civam forms are defined here
 class NarrativeForm(ModelForm):
@@ -88,15 +89,16 @@ class MapDataForm(ModelForm):
         fields = ['name', 'lat', 'lng', 'url', 'contact_email', 'crow_material',
             'digital_collection', 'replied_to_contact', 'history', 'obj_photos',
             'address', 'notes']
-        #labels = {'name': _('Institution Name'),
-        #    'lat': _('Latitude'), 
-        #    'lng': _('Longitude'), 
-        #    'url': _('Site URL'), 
-        #    'contact_email': _('Contact Email'),
-        #    'crow_material': _('Does the site have Crow Materials?'), 
-        #    'digital_collection': _('Is there a digital collection?'), 
-        #    'replied_to_contact': _('Have they replied to our contact'),
-        #    'history': _('Related history'), 
-        #    'obj_photos': _("Does it have objects, photos, or both"), 
-        #    'address': _('Address'), 
-        #    'notes': _('Notes')}
+
+    name = forms.CharField(label="Institution Name", max_length=255)
+    lat = forms.DecimalField(label="Latitude", max_digits=14, decimal_places=10)
+    lng = forms.DecimalField(max_digits=14, decimal_places=10)
+    url = forms.CharField(max_length=255)
+    contact_email = forms.EmailField(max_length=254)
+    crow_material = forms.BooleanField()
+    digital_collection = forms.BooleanField()
+    replied_to_contact = forms.BooleanField()
+    history = forms.CharField(widget=forms.Textarea)
+    obj_photos = forms.CharField(widget=forms.Textarea)
+    address = forms.CharField(widget=forms.Textarea)
+    notes = forms.CharField(widget=forms.Textarea)
