@@ -192,7 +192,7 @@ def collection(request, collection_id):
     'description': collection.description,
 	'cover_image':collection.cover_image.name,
 	'public':collection.public,
-	'summary':collection.summary,
+	#'summary':collection.summary,			## Removed due to ticket S21D10-36
 	'provenance':collection.provenance,
 	'citation':collection.citation,
 	'historical_note':collection.historical_note,
