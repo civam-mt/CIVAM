@@ -3,7 +3,6 @@ from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, g
 from guardian.decorators import permission_required
 from django.contrib.postgres.search import TrigramSimilarity
 from .models import *
-from .models import Narrative
 from .forms import *
 import logging
 from guardian.models import Group
@@ -478,7 +477,7 @@ def register(request):
 
 
 def get_all_mapdata(request):
-	rawlist = MapData.objects.filter(crow_material=True)
+	rawlist = MapData.objects.filter(publish=True)
 	map_list = []
 	for entry in rawlist:
 		new_entry = {
@@ -492,14 +491,18 @@ def get_all_mapdata(request):
 			"replied_to_contact": entry.replied_to_contact,
 			"history": entry.history,
 			"obj_photos": entry.obj_photos,
-			"address": entry.address,
+			'street': entry.street,
+			'city': entry.city,
+			'province': entry.province,
+			'code': entry.code,
 			"notes": entry.notes
-		}
+			}
 		map_list.append(new_entry)
+	print(map_list)
 
 
-	context = {	"mapdata": map_list,
-				"length": map_list.count}
+	context = { "length": len(map_list) ,
+		"mapdata": map_list}
 	return JsonResponse(context, safe=False)
 
 def get_mapdata_by_id(request, mapdata_id):

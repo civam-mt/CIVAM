@@ -195,8 +195,13 @@ class MapData(models.Model):
         choices=ObjOrPhoto.choices,
         default='NONE',
     )
-    address = models.TextField()
+    street = models.TextField()
+    city = models.TextField()
+    province = models.TextField()
+    code = models.TextField()
     notes = models.TextField()
+
+    publish = models.BooleanField(default=True)
 
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="mapdata_created")
     created_on = models.DateTimeField(auto_now_add=True)

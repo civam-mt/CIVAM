@@ -88,7 +88,7 @@ class MapDataForm(ModelForm):
         model = MapData
         fields = ['name', 'lat', 'lng', 'url', 'contact_email', 'crow_material',
             'digital_collection', 'replied_to_contact', 'history', 'obj_photos',
-            'address', 'notes']
+            'street', 'city', 'province', 'code', 'notes']
 
     name = forms.CharField(label="Institution Name", max_length=255)
     lat = forms.DecimalField(label="Latitude", max_digits=14, decimal_places=10)
@@ -100,5 +100,10 @@ class MapDataForm(ModelForm):
     replied_to_contact = forms.BooleanField()
     history = forms.CharField(widget=forms.Textarea)
     obj_photos = forms.CharField(widget=forms.Textarea)
-    address = forms.CharField(widget=forms.Textarea)
+    street = forms.CharField(widget=forms.Textarea)
+    city = forms.CharField(widget=forms.Textarea)
+    province = forms.CharField(widget=forms.Textarea)
+    code = forms.CharField(widget=forms.Textarea)
     notes = forms.CharField(widget=forms.Textarea)
+
+    publish = forms.BooleanField()

@@ -72,4 +72,3 @@ admin.site.register(Item, ItemAdmin)
 admin.site.register(PersonOrInstitute, PorIAdmin)
 admin.site.register(Keyword, KeywordAdmin)
 admin.site.register(MapData, MapDataAdmin)
-    

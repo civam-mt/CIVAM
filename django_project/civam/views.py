@@ -195,11 +195,16 @@ def group_list(request, collection_id):
     return render(request, 'civam/groups.html', context)
 
 
-##ADD MAPDATA
+#ADD MAPDATA
 @permission_required('civam.add_mapdata', return_403=True)
 def new_mapdata(request):
-    return render(request, 'civam/new_mapdata', context)
+    return render(request, 'civam/new_mapdata')
 
 @permission_required('civam.mapdata', return_403=True)
-def mapdata(request, mapdata_id):
-    return render(request, 'civam/mapdata', context)
+def mapdata(request):
+    mapdata = get_object_or_404(MapData)
+    context = {'map_list': mapdata}
+    return render(request, 'civam/mapdata')
+
+def get_mapdata_by_id(request, mapdata_id):
+    return render(request, 'civam/get_mapdata_by_id')
