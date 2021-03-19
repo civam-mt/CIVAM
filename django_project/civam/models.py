@@ -179,3 +179,13 @@ class CollectionGroup(models.Model):
         return "CollectionGroup: {} {}".format(self.collection.title, self.group.name)
 
 
+class SiteText(models.Model):
+    DATA_LOCATIONS = [
+        ('ABOUT','About Headline'),
+        ('MISSION','About: Our Mission')
+    ]
+    content = models.TextField()
+    location = models.CharField(max_length=8,choices=DATA_LOCATIONS,default='ABOUT')
+
+    def __str__(self):
+        return self.location
