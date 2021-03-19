@@ -1,3 +1,8 @@
+##  3/15/2021	-	Mark Wolgin
+##      - Removed summary field from Collections Model
+##
+##
+
 from django.db import models
 from django.contrib.auth.models import User, Group
 
@@ -48,7 +53,7 @@ class Collection(models.Model):
     dates = models.CharField(max_length=255, blank=True, null=True)
     cover_image = models.ImageField(upload_to="cover_images/", blank=True)
     public = models.BooleanField(default=True)
-    summary = models.TextField(blank=True, null=True)
+    #summary = models.TextField(blank=True, null=True)      ## Removed due to ticket S21D10-36
     provenance = models.TextField(blank=True, null=True)
     citation = models.TextField(blank=True, null=True)
     historical_note = models.TextField(blank=True, null=True)
