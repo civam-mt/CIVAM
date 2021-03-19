@@ -127,7 +127,7 @@ To Stop, `./stop.sh`
 
 ### Run Project
 * `python3 manage.py runserver`
-* Navigate to http://127.0.0.1:8000/ to view the admin portal
+* Navigate to http://127.0.0.1:8000/admin to view the admin portal
 
 
 ## Frontend Project Setup
