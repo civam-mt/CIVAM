@@ -1,3 +1,8 @@
+##  3/15/2021	-	Mark Wolgin
+##      - Removed summary field from Collections Model
+##
+##
+
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
 from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, get_objects_for_group
 from guardian.decorators import permission_required
@@ -192,7 +197,7 @@ def collection(request, collection_id):
     'description': collection.description,
 	'cover_image':collection.cover_image.name,
 	'public':collection.public,
-	'summary':collection.summary,
+	#'summary':collection.summary,			## Removed due to ticket S21D10-36
 	'provenance':collection.provenance,
 	'citation':collection.citation,
 	'historical_note':collection.historical_note,
