@@ -114,7 +114,7 @@ To Stop, `./stop.sh`
 ### Allow Outside Hosts
 * `vim settings.py`
 * Find ALLOWED_HOSTS and fill it in with all the urls that the site will be referenced as (IP address, url, etc.)
-* Put this line at the bottom: `STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')`
+* Put this line at the bottom: `STATIC_ROOT = os.path.join('~/CIVAM/django_project', 'static/')`
 * Click esc and :wq to exit
 
 ### Migrate Models
