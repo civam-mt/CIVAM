@@ -111,7 +111,7 @@ To Stop, `./stop.sh`
 * `cd project`
 * `pip3 install -r requirements.txt`
 
-## Allow Outside Hosts
+### Allow Outside Hosts
 * `vim settings.py`
 * Find ALLOWED_HOSTS and fill it in with all the urls that the site will be referenced as (IP address, url, etc.)
 * Put this line at the bottom: `STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')`
