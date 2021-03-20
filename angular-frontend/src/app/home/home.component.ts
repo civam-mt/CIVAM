@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
   }
   getCollections() {
       this.api.getCollections().subscribe((data) => {
-        console.log(data);
         this.collections = data["collection_list"].sort((a, b) => {
           return (new Date(a.modified_on).getTime() < new Date(b.modified_on).getTime());
         });
