@@ -111,10 +111,10 @@ To Stop, `./stop.sh`
 * `cd project`
 * `pip3 install -r requirements.txt`
 
-## Allow Outside Hosts
+### Allow Outside Hosts
 * `vim settings.py`
 * Find ALLOWED_HOSTS and fill it in with all the urls that the site will be referenced as (IP address, url, etc.)
-* Put this line at the bottom: `STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')`
+* Put this line at the bottom: `STATIC_ROOT = os.path.join('~/CIVAM/django_project', 'static/')`
 * Click esc and :wq to exit
 
 ### Migrate Models
@@ -127,7 +127,7 @@ To Stop, `./stop.sh`
 
 ### Run Project
 * `python3 manage.py runserver`
-* Navigate to http://127.0.0.1:8000/ to view the admin portal
+* Navigate to http://127.0.0.1:8000/admin to view the admin portal
 
 
 ## Frontend Project Setup
