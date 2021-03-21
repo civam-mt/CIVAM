@@ -15,6 +15,7 @@ def main(argv):
     inputFile = ''
     outputFile = ''
     fileEncoding = 'utf-8'
+    indent = 4
     verbose = False
     fileWarn = False
     try:
@@ -51,8 +52,9 @@ def main(argv):
         if fileWarn:
             print( WARN + 'No output file extension provided, defaulting to')
             print( TABS + TABS + TABS + '.json.')
+    make_json(inputFile, outputFile, fileEncoding, indent)
     
-def make_json(csvFilePath, jsonFilePath, encoding):
+def make_json(csvFilePath, jsonFilePath, encoding, indent):
 
     #data dictionary
     data = {}
@@ -60,20 +62,31 @@ def make_json(csvFilePath, jsonFilePath, encoding):
     #open csv reader
     try:
         with open(csvFilePath, encoding=encoding) as csvf:
-            csvReader = csv.DictReader(csvf)
+            csvReader = csv.DictReader(csvf, ['continent', 'country', 'province', 'name', 'city', 'crow_material', 'arcgis', 'lat', 'lng', 'link', 'contact', 'history', 'digital_collection', 'number_objects', 'replied', 'obj_photo_both', 'notes', 'misc'])
 
+            counter = 0
             # Convert each row into a dictionary
             # and add it to data
             for row in csvReader:
-                ###Start HERE
-            
+                data[counter] = row
+                counter = counter + 1            
     except FileNotFoundError:
         print(EROR + "File " + csvFilePath + " could not be opened.  Does this file exist?")
         sys.exit(2)
     except PermissionError:
         print(EROR + "Does not have permissions to access the file.")
         sys.exit(2)
-
+    except csv.Error as e:
+        print('{}File {}, line {}: {}'.format(EROR, csvFilePath, csvReader.line_num, e))
+        sys.exit(e)
+    
+    try:
+        with open(jsonFilePath, 'w', encoding=encoding) as jsonf:
+            jsonf.write(json.dumps(data, indent=indent))
+    except FileExistsError:
+        print(EROR + "Cannot write file " + jsonFilePath + " as a file with that name already exists!")
+        sys.exit(2)
+        
         
 if __name__ == "__main__":
     main(sys.argv[1:])
