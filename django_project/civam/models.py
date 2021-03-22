@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 
 # Civam models are defined here
@@ -195,9 +196,11 @@ class MapData(models.Model):
         choices=ObjOrPhoto.choices,
         default='NONE',
     )
-    street = models.TextField()
-    city = models.TextField()
-    province = models.TextField()
+    street = models.TextField(null=True)
+    city = models.TextField(null=True)
+    province = models.TextField(null=True)
+    country = CountryField(null=True)
+    continent = models.TextField(null=True)
     code = models.TextField()
     notes = models.TextField()
 

@@ -14,6 +14,7 @@ from profanityfilter import ProfanityFilter
 from akismet import Akismet
 
 AKISMET_API_KEY = "2be27375a975"
+MAP_API_KEY = "JiNAk2nq9sk1jHakf0"
 
 AKISMET_BLOG_URL = "http://localhost:4200/"
 pf = ProfanityFilter()
@@ -512,7 +513,43 @@ def get_mapdata_by_id(request, mapdata_id):
 	return JsonResponse(context, safe=False)
 
 def new_mapdata(request):
+	
 	return 0
 
 def mapdata(request):
 	return 0
+
+def insert_bulk_map_data(request, map_api):
+	if (map_api != MAP_API_KEY):
+		return JsonResponse({	"status": 403,
+								"message": "Forbinen - API provided was incorrect"}, safe=False)
+	if request.method == 'POST':
+		try:
+			body = json.loads(request.body)
+			for id in body:
+				#print(body[id])
+				print("")
+				MapData.objects.create(
+					name = body[id]['name'],
+					lat = body[id]['lat'],
+					lng = body[id]['lng'],
+					url = body[id]['link'],
+					contact_email = body[id]['contact'],
+					crow_material = body[id]['crow_material'],
+					digital_collection = body[id]['digital_collection'],
+					replied_to_contact = body[id]['replied'],
+					history = body[id]['history'],
+					obj_photos = body[id]['obj_photo_both'],
+					street = '',
+					city = body[id]['city'],
+					province = body[id]['province'],
+					continent = body[id]['continent'],
+					code = '',
+					notes = body[id]['notes'] + '\n' + body[id]['misc'],
+					publish = True
+					)
+			return JsonResponse({"status": 200})
+		except json.JSONDecodeError:
+			print("JSON Error")
+			return JsonResponse({"status": 400})
+	return JsonResponse({"status": 400})
