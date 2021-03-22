@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { CrowMapMarker } from 'src/model/CrowMapMarker';
+import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -22,9 +22,9 @@ export class MapSupportService {
 
       this.apiHelper.getAllMapdata()
         .subscribe(result => {
-          console.log(result);
+          //console.log(result);
           result['mapdata'].forEach(element => {
-            console.log(element);
+            //console.log(element);
             cmm.push(new CrowMapMarker(element['lat'], element['lng'], element['name'],
               element['crow_material'], element['digital_collection'], element['replied_to_contact'],
               element['obj_photo'], element['street'], element['city'], element['province'],
@@ -34,6 +34,13 @@ export class MapSupportService {
           this.mapElementsLoaded.next(true);
         });
     }
+  }
+
+  // Will return the map marker with the asssociated title
+  getSelectedMarkerFromTitle(title: string): GoogleMapMarker {
+    return this.mapElements.getValue().filter((x: GoogleMapMarker) => {
+      return x.title == title;
+    })[0];
   }
 }
 

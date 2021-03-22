@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { GoogleMapMarker } from 'src/model/CrowMapMarker';
+import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
 import { MapSupportService } from '../map-support.service';
 
 @Component({
@@ -16,17 +16,30 @@ export class MapComponent implements OnInit {
   lng = 0;
   zoom = 2;
   map_loaded:boolean = true;
+  clicked:boolean = false;
+  selectedMarker:GoogleMapMarker;
   mapMarkers:Array<GoogleMapMarker>; 
 
   constructor(httpClient: HttpClient, private mapSupport:MapSupportService) {
     mapSupport.mapElements.subscribe(mapArray => {
       this.mapMarkers = mapArray;
       this.map_loaded = true;
+      this.clicked = false;
     })
   }
 
   ngOnInit(): void {
     this.mapSupport.getMapData();
+  }
+
+  showMarker(title:string){
+    this.clicked = true;
+    this.selectedMarker = this.mapSupport.getSelectedMarkerFromTitle(title);
+    console.log(this.selectedMarker);
+  }
+
+  asCrowMapMarker(marker:GoogleMapMarker): CrowMapMarker {
+    return marker as CrowMapMarker;
   }
 
 }

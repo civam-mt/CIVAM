@@ -1,3 +1,5 @@
+// The GoogleMapMarker class is the basic class that will be drawn on the map.  It is intended to be extended
+//     to support other map icons.
 export class GoogleMapMarker {
     clickable: boolean;
     dragable: boolean;
@@ -28,6 +30,7 @@ enum ObjectPhoto {
     'None' = 'NA'
 }
 
+// Extends GoogleMapMarker to include the data needed for the search and sorting of the objects in realtime
 export class CrowMapMarker extends GoogleMapMarker {
     crow_material: boolean;
     digital_collection: boolean;

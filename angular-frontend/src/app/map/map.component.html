@@ -1,11 +1,33 @@
 <div class="jumbotron container-fluid text-center text-md-center">
-    <h1 class="title">Crow Collections Around the World</h1>
+   <h1 class="title">Crow Collections Around the World</h1>
 </div>
-<div *ngIf="map_loaded">
-   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-      <div *ngFor='let marker of mapMarkers'>
-         <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.label" [label]="marker.title"></agm-marker>
+<div class="mapPage">
+   <div class="map" *ngIf="map_loaded">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+         <div *ngFor='let marker of mapMarkers'>
+            <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.label" [label]="marker.title"
+               (markerClick)="showMarker(marker.title)"></agm-marker>
+         </div>
+      </agm-map>
+   </div>
+   <div *ngIf="clicked" class="afterClick">
+      <div class="card-header" style="background-color:#77859A; color:#FFFFFF;">
+         <span id="title">{{selectedMarker.title}}</span>
       </div>
-   </agm-map>
+      <div class="card-body" *ngIf="selectedMarker instanceof CrowMapMarker; else default">
+         <div>{{asCrowMapMarker(selectedMarker).city}}</div>
+         <div>{{asCrowMapMarker(selectedMarker).country}}</div>
+         <div>{{asCrowMapMarker(selectedMarker).continent}}</div>
+         <div>{{asCrowMapMarker(selectedMarker).code}}</div>
+         <div>Crow: {{asCrowMapMarker(selectedMarker).crow_material}}, 
+            Digi: {{asCrowMapMarker(selectedMarker).digital_collection}}, 
+            Repl: {{asCrowMapMarker(selectedMarker).replied_to_contact}}</div>
+      </div>
+      <ng-template #default class="card-body">
+         <div>{{selectedMarker.label}}</div>
+         <div>{{selectedMarker.title}}</div>
+         <div>Default Item</div>
+      </ng-template>
+   </div>
 </div>
