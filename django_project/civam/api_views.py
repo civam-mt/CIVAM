@@ -529,10 +529,10 @@ def insert_bulk_map_data(request, map_api):
 			body = json.loads(request.body)
 			for id in body:
 				#print(body[id])
-				print(body[id]['lat'] + ' ' + body[id]['lng'])
+				#print(body[id]['lat'] + ' ' + body[id]['lng'])
 				latitude = 0.0 if body[id]['lat'] == "" else body[id]['lat']
 				longitude = 0.0 if body[id]['lng'] == "" else body[id]['lng']
-				print(Decimal(latitude))
+				#print(Decimal(latitude))
 				crow_mat = body[id]['crow_material'] if isinstance(body[id]['crow_material'], bool) else False
 				digi_col = body[id]['digital_collection'] if isinstance(body[id]['digital_collection'], bool) else False
 				repl_cnt = body[id]['replied'] if isinstance(body[id]['replied'], bool) else False

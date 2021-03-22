@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { GoogleMapMarker } from 'src/model/CrowMapMarker';
+import { MapSupportService } from '../map-support.service';
 
 @Component({
   selector: 'app-map',
@@ -7,22 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
-  toggleButton = false;
-  buttonMessage = "";
+  title = 'My first AGM project';
+  lat = 0;
+  lng = 0;
+  zoom = 2;
+  map_loaded:boolean = true;
+  mapMarkers:Array<GoogleMapMarker>; 
 
-  constructor() { }
+  constructor(httpClient: HttpClient, private mapSupport:MapSupportService) {
+    mapSupport.mapElements.subscribe(mapArray => {
+      this.mapMarkers = mapArray;
+      this.map_loaded = true;
+    })
+  }
 
   ngOnInit(): void {
-    this.buttonMessage = "Expand map";
+    this.mapSupport.getMapData();
   }
 
-  makeFullScreen() {
-    this.toggleButton = !this.toggleButton;
-    if (this.toggleButton) {
-      this.buttonMessage = "Shrink map";
-    } else {
-      this.buttonMessage = "Expand map";
-    }
-  }
 }
 
