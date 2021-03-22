@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from profanityfilter import ProfanityFilter
 from akismet import Akismet
+from decimal import *
 
 AKISMET_API_KEY = "2be27375a975"
 MAP_API_KEY = "JiNAk2nq9sk1jHakf0"
@@ -528,18 +529,37 @@ def insert_bulk_map_data(request, map_api):
 			body = json.loads(request.body)
 			for id in body:
 				#print(body[id])
-				print("")
+				print(body[id]['lat'] + ' ' + body[id]['lng'])
+				latitude = 0.0 if body[id]['lat'] == "" else body[id]['lat']
+				longitude = 0.0 if body[id]['lng'] == "" else body[id]['lng']
+				print(Decimal(latitude))
+				crow_mat = body[id]['crow_material'] if isinstance(body[id]['crow_material'], bool) else False
+				digi_col = body[id]['digital_collection'] if isinstance(body[id]['digital_collection'], bool) else False
+				repl_cnt = body[id]['replied'] if isinstance(body[id]['replied'], bool) else False
+				
+				obj_pt = ''
+				if ('object' in body[id]['obj_photo_both'].lower()):
+					if ('photo' in body[id]['obj_photo_both'].lower()):
+						obj_pt = 'BO'
+					else:
+						obj_pt = 'OB'
+				else:
+					if ('photo' in body[id]['obj_photo_both'].lower()):
+						obj_pt = 'PH'
+					else:
+						obj_pt = 'NA'
+
 				MapData.objects.create(
 					name = body[id]['name'],
-					lat = body[id]['lat'],
-					lng = body[id]['lng'],
+					lat = Decimal(latitude),
+					lng = Decimal(longitude),
 					url = body[id]['link'],
 					contact_email = body[id]['contact'],
-					crow_material = body[id]['crow_material'],
-					digital_collection = body[id]['digital_collection'],
-					replied_to_contact = body[id]['replied'],
+					crow_material = crow_mat,
+					digital_collection = digi_col,
+					replied_to_contact = repl_cnt,
 					history = body[id]['history'],
-					obj_photos = body[id]['obj_photo_both'],
+					obj_photos = obj_pt,
 					street = '',
 					city = body[id]['city'],
 					province = body[id]['province'],
