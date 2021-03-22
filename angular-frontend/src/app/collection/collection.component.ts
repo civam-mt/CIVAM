@@ -22,6 +22,7 @@ export class CollectionComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 
+  
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.getCollectionByCollectionID(params.get('collectionID'));
