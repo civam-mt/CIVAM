@@ -18,15 +18,19 @@ export class CollectionComponent implements OnInit {
   keywords;
   creators;
   originals;
+  panelOpenState;
   router_route = '/items';
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 
-  
+
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.getCollectionByCollectionID(params.get('collectionID'));
     });
+
+    this.panelOpenState = false;
+
   }
 
   getCollectionByCollectionID(collectionID: string) {
