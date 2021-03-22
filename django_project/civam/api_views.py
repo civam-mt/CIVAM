@@ -364,7 +364,7 @@ def item_solo(request, item_id):
 	except Image.DoesNotExist:
 		image = None
 
-	# TODO: Display videos
+	# TODO Display videos
 	try :
 		video = Video.objects.filter(item_id=item_id)
 	except Video.DoesNotExist:
