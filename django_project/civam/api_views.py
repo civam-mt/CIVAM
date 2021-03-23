@@ -8,7 +8,6 @@ from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, g
 from guardian.decorators import permission_required
 from django.contrib.postgres.search import TrigramSimilarity
 from .models import *
-from .models import Narrative
 from .forms import *
 import logging
 from guardian.models import Group
@@ -18,8 +17,11 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from profanityfilter import ProfanityFilter
 from akismet import Akismet
+from decimal import *
+from django_countries import countries
 
 AKISMET_API_KEY = "2be27375a975"
+MAP_API_KEY = "JiNAk2nq9sk1jHakf0"
 
 AKISMET_BLOG_URL = "http://localhost:4200/"
 pf = ProfanityFilter()
@@ -368,7 +370,7 @@ def item_solo(request, item_id):
 	except Image.DoesNotExist:
 		image = None
 
-	# TODO: Display videos
+	# TODO Display videos
 	try :
 		video = Video.objects.filter(item_id=item_id)
 	except Video.DoesNotExist:
@@ -480,3 +482,101 @@ def register(request):
 		return u.id
 	else:
 		return 0
+
+
+def get_all_mapdata(request):
+	rawlist = MapData.objects.filter(publish=True)
+	map_list = []
+	for entry in rawlist:
+		new_entry = {
+			"name": entry.name,
+			"lat": entry.lat,
+			"lng": entry.lng,
+			"url": entry.url,
+			"contact_email": entry.contact_email,
+			"crow_material": entry.crow_material,
+			"digital_collection": entry.digital_collection,
+			"replied_to_contact": entry.replied_to_contact,
+			"history": entry.history,
+			"obj_photos": entry.obj_photos,
+			'street': entry.street,
+			'city': entry.city,
+			'province': entry.province,
+			'country': 'Not Provided' if entry.country == None else dict(countries)[entry.country],
+			'code': entry.code,
+			"notes": entry.notes
+			}
+		map_list.append(new_entry)
+	print(map_list)
+
+
+	context = { "length": len(map_list) ,
+		"mapdata": map_list}
+	return JsonResponse(context, safe=False)
+
+def get_mapdata_by_id(request, mapdata_id):
+	mapentry = get_object_or_404(MapData, pk=mapdata_id)
+	map_list = [mapentry]
+	context = {	"mapdata": map_list}
+	return JsonResponse(context, safe=False)
+
+def new_mapdata(request):
+	
+	return 0
+
+def mapdata(request):
+	return 0
+
+def insert_bulk_map_data(request, map_api):
+	if (map_api != MAP_API_KEY):
+		return JsonResponse({	"status": 403,
+								"message": "Forbinen - API provided was incorrect"}, safe=False)
+	if request.method == 'POST':
+		try:
+			body = json.loads(request.body)
+			for id in body:
+				#print(body[id])
+				#print(body[id]['lat'] + ' ' + body[id]['lng'])
+				latitude = 0.0 if body[id]['lat'] == "" else body[id]['lat']
+				longitude = 0.0 if body[id]['lng'] == "" else body[id]['lng']
+				#print(Decimal(latitude))
+				crow_mat = body[id]['crow_material'] if isinstance(body[id]['crow_material'], bool) else False
+				digi_col = body[id]['digital_collection'] if isinstance(body[id]['digital_collection'], bool) else False
+				repl_cnt = body[id]['replied'] if isinstance(body[id]['replied'], bool) else False
+				
+				obj_pt = ''
+				if ('object' in body[id]['obj_photo_both'].lower()):
+					if ('photo' in body[id]['obj_photo_both'].lower()):
+						obj_pt = 'BO'
+					else:
+						obj_pt = 'OB'
+				else:
+					if ('photo' in body[id]['obj_photo_both'].lower()):
+						obj_pt = 'PH'
+					else:
+						obj_pt = 'NA'
+
+				MapData.objects.create(
+					name = body[id]['name'],
+					lat = Decimal(latitude),
+					lng = Decimal(longitude),
+					url = body[id]['link'],
+					contact_email = body[id]['contact'],
+					crow_material = crow_mat,
+					digital_collection = digi_col,
+					replied_to_contact = repl_cnt,
+					history = body[id]['history'],
+					obj_photos = obj_pt,
+					street = '',
+					city = body[id]['city'],
+					province = body[id]['province'],
+					continent = body[id]['continent'],
+					code = '',
+					notes = body[id]['notes'] + '\n' + body[id]['misc'],
+					publish = True
+					)
+			return JsonResponse({"status": 200})
+		except json.JSONDecodeError:
+			print("JSON Error")
+			return JsonResponse({"status": 400})
+	return JsonResponse({"status": 400})
