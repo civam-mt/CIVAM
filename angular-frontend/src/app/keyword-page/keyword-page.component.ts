@@ -15,7 +15,6 @@ export class KeywordPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
   ngOnInit(): void {
-    console.log(this.route.params);
     this.route.params.subscribe(params => {
       this.keyword = params['keyword'];
     });
@@ -29,10 +28,8 @@ export class KeywordPageComponent implements OnInit {
     else{
       keyword_temp = this.keyword;
     }
-    console.log("GETTING ITEMS FOR KEYWORD");
     this.api.getItemByKeyword(keyword_temp).subscribe((data) => {
       this.items = data["items"];
-      console.log("FINISED GETTING ITEMS FOR KEYWORD");
     });
 
   }

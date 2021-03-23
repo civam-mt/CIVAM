@@ -87,7 +87,6 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.api.getKeywordSearch("").subscribe((data) => {
       this.keywordOptions = data["keywords"];
-      console.log(this.keywordOptions);
     });
     this.filteredOptions = this.myControl.valueChanges
     .pipe(
