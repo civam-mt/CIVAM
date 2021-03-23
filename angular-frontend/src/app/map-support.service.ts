@@ -25,7 +25,7 @@ export class MapSupportService {
           //console.log(result);
           result['mapdata'].forEach(element => {
             //console.log(element);
-            cmm.push(new CrowMapMarker(element['lat'], element['lng'], element['name'],
+            cmm.push(new CrowMapMarker(parseFloat(element['lat']), parseFloat(element['lng']), element['name'],
               element['crow_material'], element['digital_collection'], element['replied_to_contact'],
               element['obj_photo'], element['street'], element['city'], element['province'],
               element['country'], element['continent'], element['code'], element['url']));

@@ -9,6 +9,7 @@ export class GoogleMapMarker {
     title: string;
     label: string;
     visible: boolean;
+    animation: string;
 
     _id: string;
     customImgUrl: string;
@@ -19,6 +20,7 @@ export class GoogleMapMarker {
         this.title = title;
         this.label = label;
         this._id = _id;
+        this.animation = ""
     }
 
 }

@@ -13,6 +13,7 @@ import json
 from profanityfilter import ProfanityFilter
 from akismet import Akismet
 from decimal import *
+from django_countries import countries
 
 AKISMET_API_KEY = "2be27375a975"
 MAP_API_KEY = "JiNAk2nq9sk1jHakf0"
@@ -496,6 +497,7 @@ def get_all_mapdata(request):
 			'street': entry.street,
 			'city': entry.city,
 			'province': entry.province,
+			'country': 'Not Provided' if entry.country == None else dict(countries)[entry.country],
 			'code': entry.code,
 			"notes": entry.notes
 			}
