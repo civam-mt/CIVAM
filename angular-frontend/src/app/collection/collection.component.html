@@ -11,81 +11,83 @@
     <div *ngIf="collection.title" class="jumbotron container-fluid text-center text-md-center">
         <h1 class="title">{{collection.title}}</h1>
     </div>
-    
+
     <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-description>
-                    Collection Information
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div *ngIf="collection.description">
-                <p><strong>Description</strong></p>
-                <p>{{collection.description}}</p>
-            </div>
+        <div class="outline">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-description class="cInformation">
+                        Collection Information
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngIf="collection.description">
+                    <p><strong>Description</strong></p>
+                    <p>{{collection.description}}</p>
+                </div>
 
-            <div *ngIf="collection.provenance">
-                <p><strong>Provenance</strong></p>
-                <p>{{collection.provenance}}</p>
-            </div>
+                <div *ngIf="collection.provenance">
+                    <p><strong>Provenance</strong></p>
+                    <p>{{collection.provenance}}</p>
+                </div>
 
-            <div *ngIf="collection.citation">
-                <p><strong>Citation</strong></p>
-                <p>{{collection.citation}}</p>
-            </div>
+                <div *ngIf="collection.citation">
+                    <p><strong>Citation</strong></p>
+                    <p>{{collection.citation}}</p>
+                </div>
 
-            <div *ngIf="collection.historical_note">
-                <p><strong>Historical Note</strong></p>
-                <p>{{collection.historical_note}}</p>
-            </div>
+                <div *ngIf="collection.historical_note">
+                    <p><strong>Historical Note</strong></p>
+                    <p>{{collection.historical_note}}</p>
+                </div>
 
-            <div *ngIf="collection.access_notes_or_rights_and_reproduction">
-                <p><strong>Access Notes or Rights and Reproduction</strong></p>
-                <p>{{collection.access_notes_or_rights_and_reproduction}}</p>
-            </div>
+                <div *ngIf="collection.access_notes_or_rights_and_reproduction">
+                    <p><strong>Access Notes or Rights and Reproduction</strong></p>
+                    <p>{{collection.access_notes_or_rights_and_reproduction}}</p>
+                </div>
 
-            <div *ngIf="collection.geographical_location">
-                <p><strong>Geographical Location</strong></p>
-                <p>{{collection.geographical_location}}</p>
-            </div>
+                <div *ngIf="collection.geographical_location">
+                    <p><strong>Geographical Location</strong></p>
+                    <p>{{collection.geographical_location}}</p>
+                </div>
 
-            <div *ngIf="keywords">
-                <div *ngIf="keywords.length > 0">
-                    <p><strong>Keywords</strong></p>
-                    <div *ngFor="let keyword of keywords">
-                        <p>{{keyword.name}}</p>
+                <div *ngIf="keywords">
+                    <div *ngIf="keywords.length > 0">
+                        <p><strong>Keyword(s)</strong></p>
+                        <div *ngFor="let keyword of keywords">
+                            <p>{{keyword.name}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div *ngIf="creators">
-                <div *ngIf="creators.length > 0">
-                    <p><strong>Creator(s)</strong></p>
-                    <div *ngFor="let creator of creators">
-                        <p>
-                            <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0"
-                                style="color:black; font-weight:500">
-                                {{creator.name}}
-                            </a>
-                        </p>
+                <div *ngIf="creators">
+                    <div *ngIf="creators.length > 0">
+                        <p><strong>Creator(s)</strong></p>
+                        <div *ngFor="let creator of creators">
+                            <p>
+                                <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0"
+                                    style="color:black; font-weight:500">
+                                    {{creator.name}}
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div *ngIf="originals">
-                <div *ngIf="originals.length > 0">
-                    <p><strong>Location of Originals</strong></p>
-                    <div *ngFor="let original of originals">
-                        <p>
-                            <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0"
-                                style="color:black; font-weight:500">
-                                {{original.name}}
-                            </a>
-                        </p>
+                <div *ngIf="originals">
+                    <div *ngIf="originals.length > 0">
+                        <p><strong>Location of Originals</strong></p>
+                        <div *ngFor="let original of originals">
+                            <p>
+                                <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0"
+                                    style="color:black; font-weight:500">
+                                    {{original.name}}
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </mat-expansion-panel>
+            </mat-expansion-panel>
+        </div>
     </mat-accordion>
 </div>
 
