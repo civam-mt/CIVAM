@@ -24,8 +24,6 @@ export class SearchResultComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.query = params['data']
     });
-    console.log("here");
-    console.log(this.query);
     this.getItems(this.query);
     this.route.params.subscribe(params => {
       this.handleChange(params['data']);
@@ -38,13 +36,8 @@ export class SearchResultComponent implements OnInit {
   }
 
   getItems(query: string) {
-
-    console.log("GETTING ITEMS FOR SEARCH");
-    console.log(query);
     this.api.getSearch(query).subscribe((data) => {
-      console.log(data);
       this.items = data["items"];
-      console.log("FINISED GETTING ITEMS FOR SEARCH");
     });
   }
 }
