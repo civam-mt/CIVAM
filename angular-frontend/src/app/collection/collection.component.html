@@ -11,19 +11,6 @@
         <h1 class="title">{{collection.title}}</h1>
     </div>
 
-    <!-- Collection Photo Grid -->
-    <div class="container" section="individual-collection">
-        <div *ngIf="items" class="row justify-content-center container-fluid">
-            <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">
-                <div *ngIf="item">
-                    <app-card [cover_image]="item.cover_image" [title]="item.name" [id]="item.id"
-                        [number]="indexOfelement" [route]=router_route>
-                    </app-card>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="container jumbotron bg-translucent border-primary">
         <div class="row">
             <div class="col-lg-12">
@@ -251,3 +238,16 @@
             </div>
         </div>
     </div>
+    <!-- Collection Photo Grid -->
+    <div class="container" section="individual-collection">
+        <div *ngIf="items" class="row justify-content-center container-fluid">
+            <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">
+                <div *ngIf="item">
+                    <app-card [cover_image]="item.cover_image" [title]="item.name" [id]="item.id"
+                        [number]="indexOfelement" [route]=router_route>
+                    </app-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
