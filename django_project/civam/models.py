@@ -42,6 +42,9 @@ class Keyword(models.Model):
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="keyword_modified")
     modified_on = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['word']
+
     def __str__(self):
         return self.word
 

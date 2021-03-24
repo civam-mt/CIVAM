@@ -23,7 +23,6 @@ export class CollectionsComponent implements OnInit {
   }
   getCollections() {
       this.api.getCollections().subscribe((data) => {
-        console.log(data);
         this.collections = data["collection_list"];
     });
   }
