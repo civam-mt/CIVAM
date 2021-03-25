@@ -84,7 +84,7 @@ class Collection(models.Model):
 # An Item belongs to a Collection
 # Each Item has a name and description (and the collection it belongs to) and alot more now
 class Item(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField("Heritage Item",max_length=255)
     cover_image = models.ImageField(upload_to="cover_images/items/", blank=True)
     description = models.TextField(blank=True)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="items", blank=True)
