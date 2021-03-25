@@ -302,6 +302,16 @@ def get_pori(request, pori_id):
 
 	return JsonResponse(context, safe=False)
 
+def get_site_text(request, loc):
+    st = SiteText.objects.filter(location__iexact=loc)[0]
+
+    context = {
+        "location" : st.location,
+        "content"  : st.content
+    }
+    
+    return JsonResponse(context, safe=False)
+
 def get_by_keyword(request, keyword):
 	#print(keyword)
 	if "@" in keyword:
