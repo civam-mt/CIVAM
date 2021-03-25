@@ -53,7 +53,6 @@ export class ItemComponent implements OnInit {
 
   getItemByItemID(itemID: string) {
     this.api.getItemByItemID(itemID).subscribe((data) => {
-      console.log(data)
       this.item = data;
       this.images = this.item["images"];
       this.narratives = this.item["narratives"];
@@ -77,8 +76,6 @@ export class ItemComponent implements OnInit {
       this.showNavigationArrows = false; 
       this.showNavigationIndicators = false; 
     }
-    console.log(this.showModal); 
-    console.log(this.showNavigationIndicators); 
   }
   showHideModal() {
     let setClass = {
@@ -87,11 +84,9 @@ export class ItemComponent implements OnInit {
     return setClass; 
   }
   submitNarrative(){
-    console.log(this.narrativeForm.value);
     let message = this.narrativeForm.value
     message.itemID = this.itemID;
-    this.api.addNarratives(message).subscribe(res => 
-      {console.log('success', res);
+    this.api.addNarratives(message).subscribe(res => {
       if (res["added_narrative"] == "true"){
         this.getItemByItemID(this.itemID);
       }
