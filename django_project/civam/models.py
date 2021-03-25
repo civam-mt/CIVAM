@@ -1,6 +1,9 @@
 ##  3/15/2021	-	Mark Wolgin
 ##      - Removed summary field from Collections Model
 ##
+##  3/25/2021   -   Josh Davis
+##      - Added SiteText Model
+##
 ##
 
 from django.db import models
@@ -185,7 +188,7 @@ class SiteText(models.Model):
         ('MISSION','About: Our Mission')
     ]
     content = models.TextField()
-    location = models.CharField(max_length=8,choices=DATA_LOCATIONS,default='ABOUT')
+    location = models.CharField('Location of text on site', max_length=8, choices=DATA_LOCATIONS, default='ABOUT', unique=True)
 
     def __str__(self):
         return self.location
