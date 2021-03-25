@@ -33,15 +33,21 @@
                     <p><strong>Geographical Location</strong></p>
                     <p>{{collection.geographical_location}}</p>
                 </div>
-                <div *ngIf="keywords">
+                <div *ngIf="keywords" class="kwords">
                     <div *ngIf="keywords.length > 0">
                         <p><strong>Keyword(s)</strong></p>
-                        <div *ngFor="let keyword of keywords">
-                            <p>{{keyword.name}}</p>
+                        <div *ngFor="let keyword of keywords; let last = last;" class="kwords">
+                            <div *ngIf="!last">
+                                <p>{{keyword.name}}, &nbsp;</p>
+                            </div>
+                            <div *ngIf="last">
+                                <p>{{keyword.name}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div *ngIf="creators">
+                <br>
+                <div *ngIf="creators" class ="creators">
                     <div *ngIf="creators.length > 0">
                         <p><strong>Creator(s)</strong></p>
                         <div *ngFor="let creator of creators">
