@@ -15,3 +15,31 @@ $lighter-gold: #ffd400;
 .btn-outline-warning:hover {
     background-color: $lighter-gold!important;
 }
+
+.outline{
+    background-color: white;
+    opacity: 85%;
+}
+
+.mat-expansion-panel{
+    outline-color: #f7d417;
+    outline-style: solid;
+    opacity: 85%;
+}
+
+.cInformation{
+    text-align: center;
+    display: block;
+    color: black;
+    
+}
+
+
+
+.kwords{
+    float:left;
+}
+
+.creators{
+    clear: both;
+}
