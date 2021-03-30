@@ -12,7 +12,7 @@ export class GoogleMapMarker {
     animation: string;
 
     _id: string;
-    customImgUrl: string;
+    customImgUrl: SVGIcon;
 
     public constructor(lat: number, lng: number, title: string, label: string, _id: string) {
         this.lat = lat;
@@ -25,6 +25,20 @@ export class GoogleMapMarker {
 
 }
 
+export class SVGIcon {
+    icon:any;
+
+    public constructor(Curl:string, Cwidth:number, Cheight:number) {
+        this.icon = {
+            url: Curl,
+            scaledSize: {
+                width: Cwidth,
+                height: Cheight
+            }
+        };
+    }
+}
+
 enum ObjectPhoto {
     'Object' = 'OB',
     'Photo' = 'PO',
@@ -32,7 +46,16 @@ enum ObjectPhoto {
     'None' = 'NA'
 }
 
+enum SVGMap {
+    'ARCH' = '../../assets/svg/tourist/archaeological.svg',
+    'ARTS' = '../../assets/svg/tourist/art_gallery.svg',
+    'ARRT' = '../../assets/svg/tourist/attraction.svg',
+    'MONT' = '../../assets/svg/tourist/monument.svg',
+    'MUES' = '../../assets/svg/tourist/museum.svg'
+}
+
 // Extends GoogleMapMarker to include the data needed for the search and sorting of the objects in realtime
+//      The svg is set to 15x15 by default, can be changed below.
 export class CrowMapMarker extends GoogleMapMarker {
     crow_material: boolean;
     digital_collection: boolean;
@@ -60,7 +83,8 @@ export class CrowMapMarker extends GoogleMapMarker {
         country: string,
         continent: string,
         code: string,
-        url: string) {
+        url: string,
+        svg: string) {
         super(lat, lng, name + ': ' + province + ', ' + country, 'Label To Be Filled Later', 'ID To Be Filled Later');
         this.crow_material = crow_material;
         this.digital_collection = digital;
@@ -72,5 +96,6 @@ export class CrowMapMarker extends GoogleMapMarker {
         this.continent = continent;
         this.code = code;
         this.url = url;
+        this.customImgUrl = new SVGIcon(SVGMap[svg], 20, 20);
     }
 }

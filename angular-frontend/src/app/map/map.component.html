@@ -7,7 +7,7 @@
          <!-- <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker> -->
          <div *ngFor='let marker of mapMarkers'>
             <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title" [label]=""
-               (markerClick)="showMarker(marker.title)" [animation]="marker.animation"></agm-marker>
+               (markerClick)="showMarker(marker.title)" [animation]="marker.animation" [iconUrl]="marker.customImgUrl.icon"></agm-marker>
          </div>
       </agm-map>
 
