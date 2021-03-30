@@ -493,6 +493,7 @@ def get_all_mapdata(request):
 			"lat": entry.lat,
 			"lng": entry.lng,
 			"url": entry.url,
+			"svg": 'MUES' if entry.svg_choice == None else entry.svg_choice,
 			"contact_email": entry.contact_email,
 			"crow_material": entry.crow_material,
 			"digital_collection": entry.digital_collection,
@@ -503,6 +504,7 @@ def get_all_mapdata(request):
 			'city': entry.city,
 			'province': entry.province,
 			'country': 'Not Provided' if entry.country == None else dict(countries)[entry.country],
+			'continent': 'Not Provided' if entry.continent == None else entry.continent,
 			'code': entry.code,
 			"notes": entry.notes
 			}
@@ -561,6 +563,7 @@ def insert_bulk_map_data(request, map_api):
 					lat = Decimal(latitude),
 					lng = Decimal(longitude),
 					url = body[id]['link'],
+					svg = 'MUES',
 					contact_email = body[id]['contact'],
 					crow_material = crow_mat,
 					digital_collection = digi_col,

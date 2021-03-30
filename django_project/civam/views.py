@@ -208,9 +208,7 @@ def new_mapdata(request):
             col_instance.save()
             return redirect("mapdata", mapdata_id = col_instance.id)
     context = {'mapdata_form': form}
-    return render(request, 'civam/new_collection.html', context)
-
-    return render(request, 'civam/new_mapdata')
+    return render(request, 'civam/new_mapdata.html', context)
 
 @permission_required('civam.mapdata', return_403=True)
 def mapdata(request):
