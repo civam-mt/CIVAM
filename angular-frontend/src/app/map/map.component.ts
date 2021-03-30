@@ -41,7 +41,8 @@ export class MapComponent implements OnInit {
     this.clicked = true;
     this.panning = true;
     this.selectedMarker = this.mapSupport.getSelectedMarkerFromTitle(title);
-    this.zoom = 17;
+    //this.zoom = 10;
+    //this.zoom = 17;
     this.lat = this.selectedMarker.lat;
     this.lng = this.selectedMarker.lng;
     this.selectedMarker.animation = "BOUNCE";
