@@ -15,6 +15,7 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 import json
+import urllib.request
 from profanityfilter import ProfanityFilter
 from akismet import Akismet
 from decimal import *
@@ -583,3 +584,14 @@ def insert_bulk_map_data(request, map_api):
 			print("JSON Error")
 			return JsonResponse({"status": 400})
 	return JsonResponse({"status": 400})
+
+
+## Google Maps JS Cache
+def get_current_map(request, detail):
+	print(request.GET.getlist('v'))
+	print(request.GET.getlist('callback'))
+	print(request.GET.getlist('key'))
+	url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + request.GET.getlist('key')[0]
+	with urllib.request.urlopen(url) as httpRes:
+		html = httpRes.read()
+		return HttpResponse(html, content_type='text/javascript')

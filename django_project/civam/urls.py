@@ -62,6 +62,7 @@ urlpatterns = [
     # API Calls
     path('api/mapdata/all/', api_views.get_all_mapdata, name='all_mapdata'),
     path('api/mapdata/<int:mapdata_id>/', api_views.get_mapdata_by_id, name='mapdata_by_id'),
-    path('api/mapdata/bulk/<str:map_api>/', api_views.insert_bulk_map_data, name='insert_bulk_map_data')
+    path('api/mapdata/bulk/<str:map_api>/', api_views.insert_bulk_map_data, name='insert_bulk_map_data'),
 
+    path('api/mapdata/cache/<str:detail>/', api_views.get_current_map, name="get_current_map")
 ]
