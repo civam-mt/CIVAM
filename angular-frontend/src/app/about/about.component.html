@@ -4,9 +4,8 @@
 
 
 <div class="container bg-translucent border-primary">
-    <div [innerHTML]="siteTexts['ABOUT']"></div>
     <p class="about-description">
-	The Crow Indian Virtual Archive & Museum (CIVAM) is a virtual repository of Crow Indian cultural items, images, and human remains housed in public and private collections around the world.
+	{{ siteTexts['ABOUT'] }}
     </p>
 </div>
 
@@ -17,17 +16,6 @@
             <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
 		    <div [innerHTML]="siteTexts['MISSION']"></div>
-                    <ul>
-                        <li>To collect, curate, and interpret digital representations of Crow materials for Crow
-                            Indians and all others interested in Crow history and culture</li>
-                        <li>To re-acquaint Crow Indians with materials removed from their reservation community so that
-                            these items and images can contribute to the on-going cultural life of Crow people</li>
-                        <li>To provide Crow elders with access to these materials so that they can explain their meaning
-                            and significance, improve the items’ attributions, and educate younger generations about
-                            them</li>
-                        <li>To maintain a digital storehouse of Crow family heirlooms currently held in private homes to
-                            document Crow culture all the way to the present.</li>
-                    </ul>
                 </div>
             </div>
         </mat-tab>
@@ -35,40 +23,6 @@
             <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
 		    <div [innerHTML]="siteTexts['ORIGINS']"></div>
-                    <p>Peggy White Wellknown Buffalo had a vision to help, as she said, “the generations in front us to
-                        have an understanding and knowledge of their roots.” She went to her clan father and brother
-                        Leroy White and to the Crow Nation Chairperson Clara Nomee. Both gave Wellknown Buffalo
-                        permission to fulfill her vision to re-acquaint the Crow Indian community with items that had
-                        long-ago been removed from the reservation. Chairman Nomee specifically gave Wellknown Buffalo
-                        written permission to access Crow Indian collections at the Smithsonian Institution’s National
-                        Museum of American Indian (NMAI) in 2001.
-                    </p>
-                    <p>Susie Kelly helped Wellknown Buffalo recruit and arrange for Crow elders Tilton Tall Bull and
-                        Clayton Mountain Picket to visit the NMAI in Washington, DC. To paraphrase Wellknown Buffalo:
-                        The mission was for those people to come forward with knowledge about the cultural items. Our
-                        bundles are dying, because almost no one is left with knowledge about them.</p>
-                    <p>Kelly and Wellknown Buffalo led seven trips to the NMAI between 2001 and 2008. Kelly and
-                        Wellknown Buffalo videotaped Old Bull and Mountain Picket as they examined and described the
-                        history and stories about the sacred and non-sacred items there. Wellknown said, “The bundles
-                        wanted to breathe. I prayed over each bundle and asked it permission to be opened.”</p>
-                    <p>
-                        For ten years, the videotapes of the elders’ encounters with the items stored at the national
-                        museum sat at The Center Pole compound without seeing the light of day. Wellknown Buffalo and
-                        Kelly were concerned that Wellknown Buffalo’s vision would not come to fruition.
-                    </p>
-                    <p>In the summer of 2018, University of Delaware Professor Cindy Ott visited her friends at The
-                        Center Pole and happened to ask Wellknown Buffalo and Kelly if there was a material culture
-                        project that Ott and her students could help them with. It was a fortuitous question that led to
-                        the creation of the Crow Indian Virtual Archive and Museum. Wellknown Buffalo gave Ott
-                        permission to create CIVAM because, she said, Ott is an educator. Wellknown Buffalo and Kelly
-                        were relieved that the items would no longer be in storage, but would be “used to educate
-                        others, to open up minds to what happened in our past. I would love to have my
-                        great-great-granddaughter learn about them in school. Lots of stories are now lost. This is for
-                        the future of our children. That is why this is important to me,” Wellknown Buffalo said.</p>
-                    <p>The CIVAM is maintained by students, staff, and faculty at the University of Delaware Departments
-                        of History, Museum Studies, and Computer Science with support from the UNIDEL Foundation and in
-                        collaboration with The Center Pole on the Crow reservation in Montana. Please send queries to
-                        <a href="mailto:civam-mt@gmail.com">civam-mt@gmail.com</a>.</p>
                 </div>
             </div>
         </mat-tab>
@@ -84,17 +38,6 @@
                         <div class="col-lg-7">
                             <h4 class="people-names">Peggy White Wellknown Buffalo</h4>
 			    <div [innerHTML]="siteTexts['PEOPLE1']"></div>
-                            <p>
-                                "Ba La Se She Lesh" (She Who Wears the Money) grew up traditional
-                                Crow. Sent away to Indian boarding schools at a young age, she has nurtured more than
-                                two
-                                hundred children in her home as an adult. She practices the Crow sweat lodge and has
-                                sponsored numerous Native American Church prayer meetings. With Susie Kelly, she runs
-                                The
-                                Center Pole, a Native non-profit organization founded in 1999 on the Crow Indian
-                                Reservation
-                                in Montana and spearheads many community development projects, including the CIVAM.
-                            </p>
                         </div>
                     </div>
 
@@ -106,15 +49,6 @@
                         <div class="col-lg-7">
                             <h4 class="people-names">Susie Kelly</h4>
 			    <div [innerHTML]="siteTexts['PEOPLE2']"></div>
-                            <p>
-                                "Dek Gash Bish" (Woman Eagle) helped Peggy create the Center Pole in
-                                1999, bringing practical skills to blend with traditional ways. Originally a photo
-                                editor,
-                                researcher, writer and project manager in the publishing industry, she brought up
-                                multicultural children and worked providing promising youth with opportunities for many
-                                years. Her motto: Start where you are...Use what you have...Do what you can--Arthur
-                                Ashe.
-                            </p>
                         </div>
                     </div>
 
@@ -126,13 +60,6 @@
                         <div class="col-lg-7">
                             <h4 class="people-names">Cindy Ott</h4>
 			    <div [innerHTML]="siteTexts['PEOPLE3']"></div>
-                            <p>
-                                Cindy is an Associate Professor of History and Material Culture Studies at the University of Delaware. 
-                                She began her career at the Smithsonian Institution in the 1980s and she has continued to develop public humanities projects ever since. 
-                                After serving as the history curator at the Museum of the Rockies in Bozeman, Montana from 2004 to 2006, she started spending summers on the Crow reservation in Montana. 
-                                She has been working on a local ranch, helping out at The Center Pole, and conducting research for her book 
-                                <i> Biscuits and Buffalo: The Reinvention of American Indian Culture in the 20th and 21st Centuries.</i>
-                            </p>
                         </div>
                     </div>
 
@@ -145,18 +72,6 @@
                         <div class="col-lg-7">
                             <h4 class="people-names">University of Delaware Students</h4>
 			    <div [innerHTML]="siteTexts['PEOPLE4']"></div>
-                            <p>
-                                A special thanks for their great efforts and dedication to the project goes to UD
-                                software engineering students
-                            </p><p>
-                                Brian Bugieda, Sam Zabaldo, Evan MacGregor, Emily Kresho, Jason Belak, Brianna Emrich, 
-                                Sophia Freaney, Joy Kitson, Christopher Outhwaite, Trevor Seidel, James Skripchuk, and Karl Stomberg
-                            </p> <p>
-                                And to humanities students 
-                            </p><p>
-                                Ellie Gorman, Adam Grimes, Danielle Haugk, Grace McKeon, Matthew Monk, Megan O’Donell, Fabian Martin Rempfer, Ryan Wood, and
-                                Sophie Zaidman who helped envision it.
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -166,12 +81,6 @@
             <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
 		    <div [innerHTML]="siteTexts['CONTACT']"></div>
-                    <ul>
-                        <li>To find out more about CIVAM and to access collections, please contact <a
-                                href="mailto:civam-mt@gmail.com">civam-mt@gmail.com</a></li>
-                        <li><a href="https://www.thecenterpole.org">The Center Pole</a></li>
-                        <li><a href="http://lib.lbhc.edu">Little Big Horn College Library</a></li>
-                    </ul>
                 </div>
             </div>
         </mat-tab>
