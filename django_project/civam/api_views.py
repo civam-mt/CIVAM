@@ -98,12 +98,22 @@ def search_keyword(request):
 
 
 def searchResult(request):
-	
 	query = request.GET.get('data', None)
 	item_list = []
-	matched_keywords = Keyword.objects.filter(word__trigram_similar=query)
-	print(list(matched_keywords))
-	items =Item.objects.filter(keywords__in= list(matched_keywords)).distinct()
+	
+	#matches if query is contained in any keywords of Items
+	matched_keywords = Keyword.objects.filter(word__iexact=query)
+	#matches if query is contained in name of items
+	matched_titles = Item.objects.filter(name__icontains=query)
+	#matches if query is contained in description of items
+	matched_desc = Item.objects.filter(description__icontains=query)
+
+	#print(list(matched_keywords))
+	#print(list(Item.objects.filter(name__icontains=query)))
+	#print(matched_desc)
+
+	#take union of sets
+	items = Item.objects.filter(keywords__in= list(matched_keywords)).union(matched_titles, matched_desc).distinct()
 	for item in items:
 		new_item = {
 			'item': item.id,
