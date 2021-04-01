@@ -17,7 +17,7 @@ export class AboutComponent implements OnInit {
   public resourcesCollapsed = true;
 
   public siteTextIDs = ['ABOUT', 'MISSION', 'ORIGINS', 'PEOPLE1',
-			'PEOPLE2', 'PEOPLE3', 'PEOPLE4', 'CONTACT'];
+                        'PEOPLE2', 'PEOPLE3', 'PEOPLE4', 'CONTACT'];
   public siteTexts = {};
   
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class AboutComponent implements OnInit {
   getSiteTexts() {
     for (var i = 0; i < this.siteTextIDs.length; i++) {
       this.api.getSiteTextByLocation(this.siteTextIDs[i]).subscribe((data) => {
-	this.siteTexts[data["location"]] = data["content"];
+        this.siteTexts[data["location"]] = data["content"];
       });
     }
     console.log(this.siteTexts);
