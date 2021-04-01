@@ -185,7 +185,13 @@ class CollectionGroup(models.Model):
 class SiteText(models.Model):
     DATA_LOCATIONS = [
         ('ABOUT','About Headline'),
-        ('MISSION','About: Our Mission')
+        ('MISSION','About: Our Mission'),
+        ('ORIGINS','About: Origins'),
+        ('PEOPLE1','About: People: Bio 1'),
+        ('PEOPLE2','About: People: Bio 2'),
+        ('PEOPLE3','About: People: Bio 3'),
+        ('PEOPLE4','About: People: Bio 4'),
+        ('CONTACT','About: Resources & Contact Information')
     ]
     content = models.TextField()
     location = models.CharField('Location of text on site', max_length=8, choices=DATA_LOCATIONS, default='ABOUT', unique=True)
