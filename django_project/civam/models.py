@@ -4,6 +4,8 @@
 ##  3/25/2021   -   Josh Davis
 ##      - Added SiteText Model
 ##
+##  4/1/2021    -   Josh Davis
+##      - Add additional site text location field options
 ##
 
 from django.db import models

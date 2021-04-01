@@ -4,8 +4,9 @@
 
 
 <div class="container bg-translucent border-primary">
-    <p class="about-description">{{ siteTexts['ABOUT'] }} The Crow Indian Virtual Archive & Museum (CIVAM) is a virtual repository of
-        Crow Indian cultural items, images, and human remains housed in public and private collections around the world.
+    <div [innerHTML]="siteTexts['ABOUT']"></div>
+    <p class="about-description">
+	The Crow Indian Virtual Archive & Museum (CIVAM) is a virtual repository of Crow Indian cultural items, images, and human remains housed in public and private collections around the world.
     </p>
 </div>
 
@@ -15,7 +16,7 @@
         <mat-tab label="Our Mission">
             <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
-		    {{ siteTexts['MISSION'] }}
+		    <div [innerHTML]="siteTexts['MISSION']"></div>
                     <ul>
                         <li>To collect, curate, and interpret digital representations of Crow materials for Crow
                             Indians and all others interested in Crow history and culture</li>
@@ -33,7 +34,7 @@
         <mat-tab label="Origins">
             <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
-		    {{ siteTexts['ORIGINS'] }}
+		    <div [innerHTML]="siteTexts['ORIGINS']"></div>
                     <p>Peggy White Wellknown Buffalo had a vision to help, as she said, “the generations in front us to
                         have an understanding and knowledge of their roots.” She went to her clan father and brother
                         Leroy White and to the Crow Nation Chairperson Clara Nomee. Both gave Wellknown Buffalo
@@ -82,7 +83,7 @@
                         </div>
                         <div class="col-lg-7">
                             <h4 class="people-names">Peggy White Wellknown Buffalo</h4>
-			    {{ siteTexts['PEOPLE1'] }}
+			    <div [innerHTML]="siteTexts['PEOPLE1']"></div>
                             <p>
                                 "Ba La Se She Lesh" (She Who Wears the Money) grew up traditional
                                 Crow. Sent away to Indian boarding schools at a young age, she has nurtured more than
@@ -104,7 +105,7 @@
                         </div>
                         <div class="col-lg-7">
                             <h4 class="people-names">Susie Kelly</h4>
-			    {{ siteTexts['PEOPLE2'] }}
+			    <div [innerHTML]="siteTexts['PEOPLE2']"></div>
                             <p>
                                 "Dek Gash Bish" (Woman Eagle) helped Peggy create the Center Pole in
                                 1999, bringing practical skills to blend with traditional ways. Originally a photo
@@ -124,7 +125,7 @@
                         </div>
                         <div class="col-lg-7">
                             <h4 class="people-names">Cindy Ott</h4>
-			    {{ siteTexts['PEOPLE3'] }}
+			    <div [innerHTML]="siteTexts['PEOPLE3']"></div>
                             <p>
                                 Cindy is an Associate Professor of History and Material Culture Studies at the University of Delaware. 
                                 She began her career at the Smithsonian Institution in the 1980s and she has continued to develop public humanities projects ever since. 
@@ -143,7 +144,7 @@
                         </div>
                         <div class="col-lg-7">
                             <h4 class="people-names">University of Delaware Students</h4>
-			    {{ siteTexts['PEOPLE4'] }}
+			    <div [innerHTML]="siteTexts['PEOPLE4']"></div>
                             <p>
                                 A special thanks for their great efforts and dedication to the project goes to UD
                                 software engineering students
@@ -164,8 +165,8 @@
         <mat-tab label="Resources & Contact Information">
             <div class="card container bg-translucent border-primary block-margin">
                 <div class="card-body">
+		    <div [innerHTML]="siteTexts['CONTACT']"></div>
                     <ul>
-			{{ siteTexts['CONTACT'] }}
                         <li>To find out more about CIVAM and to access collections, please contact <a
                                 href="mailto:civam-mt@gmail.com">civam-mt@gmail.com</a></li>
                         <li><a href="https://www.thecenterpole.org">The Center Pole</a></li>
