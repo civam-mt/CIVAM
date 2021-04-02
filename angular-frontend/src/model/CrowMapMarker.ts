@@ -23,12 +23,14 @@ export class GoogleMapMarker implements Comparable {
         this._id = _id;
         this.animation = ""
     }
-    
+
     compare(other: GoogleMapMarker): number {
         return this.title
             .toLocaleLowerCase()
             .localeCompare(other.title.toLocaleLowerCase());
     }
+
+    
 
 }
 
@@ -105,6 +107,4 @@ export class CrowMapMarker extends GoogleMapMarker {
         this.url = url;
         this.customImgUrl = new SVGIcon(SVGMap[svg], 20, 20);
     }
-
-    public compare
 }
