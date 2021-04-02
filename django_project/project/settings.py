@@ -28,7 +28,7 @@ GUARDIAN_RAISE_404 = True
 SECRET_KEY = 'au+me7y%0)7t4b@tqh#r7rez)badj=5vxv#ftyhdpd=a1#r-#d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #TODO: MAKE IT SO THIS TOGGLE IS AUTOMATED FOR DEV/PROD
 #ALLOWED_HOSTS = ['civam-mt.org']

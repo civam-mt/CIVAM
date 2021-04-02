@@ -21,6 +21,7 @@ import os
 import os.path
 import time
 import shutil
+from .critical_count import *
 from copy import deepcopy
 from datetime import datetime, timedelta
 from profanityfilter import ProfanityFilter
@@ -33,6 +34,7 @@ MAP_API_KEY = "JiNAk2nq9sk1jHakf0"
 
 AKISMET_BLOG_URL = "http://localhost:4200/"
 pf = ProfanityFilter()
+cc = Critical_Count("Maps API", .61)
 # Civam views defined here
 
 # TODO, add forms/views for editing/deleting Items, Collections, Stories, Images, Videos, and CollectionGroups
@@ -517,7 +519,7 @@ def get_all_mapdata(request):
 			"notes": entry.notes
 			}
 		map_list.append(new_entry)
-	print(map_list)
+	##print(map_list)
 
 
 	context = { "length": len(map_list) ,
@@ -597,11 +599,12 @@ def insert_bulk_map_data(request, map_api):
 ## Google Maps JS Cache
 def get_current_map(request, detail):
 	file_name = 'google_cache/google_map.js'
+	cc.increment()
 	if (os.path.exists(file_name)):
 		threshold = timedelta(minutes=2)
 		delta = timedelta(seconds=time.time() - os.stat(file_name).st_mtime)
 		
-		if (delta >= threshold):
+		if (not cc.hit_limit() and delta >= threshold):
 			print('{} Google Maps JS file out of date.  Refreshing...'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
 			url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + request.GET.getlist('key')[0]
 			with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
@@ -618,5 +621,6 @@ def get_current_map(request, detail):
 	html = f.read()
 	f.close()
 	print('{} Google Maps JS loaded from cache'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
+	print(cc)
 	return HttpResponse(html, content_type='text/javascript')
 		
