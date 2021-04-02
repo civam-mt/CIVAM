@@ -1,6 +1,7 @@
+import { Comparable } from '../app/interface/comparable';
 // The GoogleMapMarker class is the basic class that will be drawn on the map.  It is intended to be extended
 //     to support other map icons.
-export class GoogleMapMarker {
+export class GoogleMapMarker implements Comparable {
     clickable: boolean;
     dragable: boolean;
     openInfoWindow: boolean;
@@ -21,6 +22,12 @@ export class GoogleMapMarker {
         this.label = label;
         this._id = _id;
         this.animation = ""
+    }
+    
+    compare(other: GoogleMapMarker): number {
+        return this.title
+            .toLocaleLowerCase()
+            .localeCompare(other.title.toLocaleLowerCase());
     }
 
 }
@@ -98,4 +105,6 @@ export class CrowMapMarker extends GoogleMapMarker {
         this.url = url;
         this.customImgUrl = new SVGIcon(SVGMap[svg], 20, 20);
     }
+
+    public compare
 }

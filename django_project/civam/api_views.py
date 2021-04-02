@@ -553,7 +553,8 @@ def insert_bulk_map_data(request, map_api):
 				crow_mat = body[id]['crow_material'] if isinstance(body[id]['crow_material'], bool) else False
 				digi_col = body[id]['digital_collection'] if isinstance(body[id]['digital_collection'], bool) else False
 				repl_cnt = body[id]['replied'] if isinstance(body[id]['replied'], bool) else False
-				
+				print(len(body[id]['continent']))
+
 				obj_pt = ''
 				if ('object' in body[id]['obj_photo_both'].lower()):
 					if ('photo' in body[id]['obj_photo_both'].lower()):
@@ -571,7 +572,7 @@ def insert_bulk_map_data(request, map_api):
 					lat = Decimal(latitude),
 					lng = Decimal(longitude),
 					url = body[id]['link'],
-					svg = 'MUES',
+					svg_choice = 'MUES',
 					contact_email = body[id]['contact'],
 					crow_material = crow_mat,
 					digital_collection = digi_col,
@@ -581,7 +582,7 @@ def insert_bulk_map_data(request, map_api):
 					street = '',
 					city = body[id]['city'],
 					province = body[id]['province'],
-					continent = body[id]['continent'],
+					continent = body[id]['continent'] if len(body[id]['continent']) <= 2 else 'NA',
 					code = '',
 					notes = body[id]['notes'] + '\n' + body[id]['misc'],
 					publish = True
@@ -597,7 +598,7 @@ def insert_bulk_map_data(request, map_api):
 def get_current_map(request, detail):
 	file_name = 'google_cache/google_map.js'
 	if (os.path.exists(file_name)):
-		threshold = timedelta(days=2)
+		threshold = timedelta(minutes=2)
 		delta = timedelta(seconds=time.time() - os.stat(file_name).st_mtime)
 		
 		if (delta >= threshold):

@@ -249,4 +249,5 @@ class MapData(models.Model):
             self.lat, 
             self.lng)
     
-    
+    class Meta:
+        ordering = ['name']

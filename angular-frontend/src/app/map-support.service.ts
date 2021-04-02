@@ -9,7 +9,8 @@ import { ApiService } from './api.service';
 })
 export class MapSupportService {
 
-  mapElements: BehaviorSubject<Array<CrowMapMarker>> = new BehaviorSubject<Array<CrowMapMarker>>(null);
+  private _mapElementsMaster: BehaviorSubject<Array<GoogleMapMarker>> = new BehaviorSubject<Array<GoogleMapMarker>>(null);
+  mapElements: BehaviorSubject<Array<GoogleMapMarker>> = new BehaviorSubject<Array<GoogleMapMarker>>(null);
   mapElementsLoaded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private apiHelper: ApiService) {
@@ -31,6 +32,7 @@ export class MapSupportService {
               element['country'], element['continent'], element['code'], element['url'], element['svg']));
           });
           this.mapElements.next(cmm);
+          this._mapElementsMaster.next(cmm);
           this.mapElementsLoaded.next(true);
         });
     }
@@ -41,6 +43,10 @@ export class MapSupportService {
     return this.mapElements.getValue().filter((x: GoogleMapMarker) => {
       return x.title == title;
     })[0];
+  }
+
+  getSortedData(sort: (x1:GoogleMapMarker, x2:GoogleMapMarker) => number) {
+    this.mapElements.next(this._mapElementsMaster.getValue().sort(sort));
   }
 }
 

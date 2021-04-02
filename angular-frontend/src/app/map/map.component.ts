@@ -33,6 +33,8 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.mapSupport.getMapData();
+
+    console.log(this.mapSupport.mapElements);
   }
 
   showMarker(title:string){
