@@ -18,7 +18,7 @@ class Critical_Count():
 	def __str__(self):
 		time_delta = time.time() - self._created_time
 		current_avg = self._counter/(time_delta)
-		return "\t Current Count: {}\n\t Current Averg: {}".format(self._counter, current_avg)
+		return "{}\t Current Count: {}\n{}\t Current Averg: {}".format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]'), self._counter, datetime.now().strftime('[%d/%b/%Y %H:%M:%S]'), current_avg)
 
 	def increment(self):
 		self._counter = self._counter + 1

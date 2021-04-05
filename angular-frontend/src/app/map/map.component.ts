@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
 import { MapSupportService } from '../map-support.service';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-map',
@@ -16,7 +16,7 @@ export class MapComponent implements OnInit {
   lng = 0;
   zoom = 2;
   panelOpenState = false;
-  panning = false;
+  panning = true;
   map_loaded:boolean = true;
   clicked:boolean = false;
   selectedMarker:GoogleMapMarker;
@@ -34,21 +34,21 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     this.mapSupport.getMapData();
 
-    console.log(this.mapSupport.mapElements);
+    // console.log(this.mapSupport.mapElements);
   }
 
   showMarker(title:string){
     // This allows us to bounce the last selected marker without nulling a value
     if (this.selectedMarker != null) this.selectedMarker.animation = "";
-    this.clicked = true;
-    this.panning = true;
+    //this.panning = true;
     this.selectedMarker = this.mapSupport.getSelectedMarkerFromTitle(title);
     //this.zoom = 10;
     //this.zoom = 17;
     this.lat = this.selectedMarker.lat;
     this.lng = this.selectedMarker.lng;
     this.selectedMarker.animation = "BOUNCE";
-    this.panning = false;
+    this.clicked = true;
+    //this.panning = false;
   }
 
   asCrowMapMarker(marker:GoogleMapMarker): CrowMapMarker {

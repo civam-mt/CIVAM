@@ -58,9 +58,10 @@ enum ObjectPhoto {
 enum SVGMap {
     'ARCH' = '../../assets/svg/tourist/archaeological.svg',
     'ARTS' = '../../assets/svg/tourist/art_gallery.svg',
-    'ARRT' = '../../assets/svg/tourist/attraction.svg',
+    'ATTR' = '../../assets/svg/tourist/attraction.svg',
     'MONT' = '../../assets/svg/tourist/monument.svg',
-    'MUES' = '../../assets/svg/tourist/museum.svg'
+    'MUES' = '../../assets/svg/tourist/museum.svg',
+    'NULL' = 'NULL'
 }
 
 // Extends GoogleMapMarker to include the data needed for the search and sorting of the objects in realtime
@@ -105,6 +106,12 @@ export class CrowMapMarker extends GoogleMapMarker {
         this.continent = continent;
         this.code = code;
         this.url = url;
-        this.customImgUrl = new SVGIcon(SVGMap[svg], 20, 20);
+        try {
+            this.customImgUrl = new SVGIcon(SVGMap[svg], 20, 20);
+        }
+        catch (e) {
+            console.error("sgv param of " + svg + "invalid.");
+            this.customImgUrl = new SVGIcon('NULL', 20, 20);
+        }
     }
 }
