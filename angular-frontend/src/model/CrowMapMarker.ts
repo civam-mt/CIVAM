@@ -82,7 +82,7 @@ export class CrowMapMarker extends GoogleMapMarker {
     url: string;
     code: string;
 
-    static boolFilters:string[] = ['Crow Material', 'Digital Collection'];
+    static boolFilters:string[][] = [['crow_material', 'Crow Material'], ['digital_collection', 'Digital Collection']];
     static dropDownFilters:Array<[string, string[]]> = new Array<[string, string[]]>(['Continent', ['North America', 'South America', 'Europe',
     'Africa', 'Asia', 'Antartica', 'Oceana']]);    
 
@@ -122,7 +122,7 @@ export class CrowMapMarker extends GoogleMapMarker {
     }
 
     filter(args:string[]):boolean {
-        console.log(this);
+        //console.log(this);
         return true;
     }
 

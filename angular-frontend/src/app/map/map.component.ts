@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
 import { MapSupportService } from '../map-support.service';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-map',
@@ -22,23 +22,37 @@ export class MapComponent implements OnInit {
   clicked:boolean = false;
   boolFilters = CrowMapMarker.boolFilters;
   dropDownFilters = CrowMapMarker.dropDownFilters;
-  forms:Array<[string, FormControl]>;
+  form:FormGroup;
   selectedMarker:GoogleMapMarker;
   mapMarkers:Array<GoogleMapMarker>; 
 
 
-  constructor(httpClient: HttpClient, private mapSupport:MapSupportService) {
+  constructor(httpClient: HttpClient, private mapSupport:MapSupportService, private formBuilder: FormBuilder) {
     mapSupport.mapElements.subscribe(mapArray => {
-      this.mapMarkers = mapArray;
-      this.map_loaded = true;
-      this.clicked = false;
-    })
+      if (mapArray != null) {
+        this.mapMarkers = mapArray;
+        this.map_loaded = true;
+        this.clicked = false;
+
+        let data = new Map<string, string>();
+        this.mapMarkers.forEach( (e:CrowMapMarker) => {
+          if (!data.has(e.country)) data.set(e.country, e.country);
+        });
+        this.dropDownFilters = CrowMapMarker.dropDownFilters.concat([["Countries", Array.from(data.keys())]]);
+        }
+      })
   }
 
   ngOnInit(): void {
     this.mapSupport.getMapData();
 
-    // console.log(this.mapSupport.mapElements);
+    this.form = this.formBuilder.group({
+      crow_material: ['', Validators.nullValidator],
+      digital_collection: ['', Validators.nullValidator],
+      Continent: ['', Validators.nullValidator],
+      Countries: ['', Validators.nullValidator],
+    })
+
   }
 
   showMarker(title:string){
@@ -66,7 +80,16 @@ export class MapComponent implements OnInit {
   }
 
   filterData() {
+    let stringArray:any[][] = [['crow_material', this.form.controls.crow_material.value],
+                                ['digital_collection', this.form.controls.digital_collection.value],
+                                ['continent', this.form.controls.Continent.value],
+                                ['countries', this.form.controls.Countries.value]];
     this.mapSupport.getFilterData(null);
+    //this.submitted == true;
+    if (this.form.invalid) {
+      return;
+    }
+    console.log(stringArray);
   }
 
 }
