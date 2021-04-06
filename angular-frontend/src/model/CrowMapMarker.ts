@@ -30,7 +30,9 @@ export class GoogleMapMarker implements Comparable {
             .localeCompare(other.title.toLocaleLowerCase());
     }
 
-    
+    filter(args:string[]): boolean {   
+        return true;
+    }
 
 }
 
@@ -80,6 +82,9 @@ export class CrowMapMarker extends GoogleMapMarker {
     url: string;
     code: string;
 
+    static boolFilters:string[] = ['Crow Material', 'Digital Collection'];
+    static dropDownFilters:string[] = ['Continent', 'Country', 'What Kind of Collection']
+
     public constructor(lat: number,
         lng: number,
         name: string,
@@ -113,5 +118,26 @@ export class CrowMapMarker extends GoogleMapMarker {
             console.error("sgv param of " + svg + "invalid.");
             this.customImgUrl = new SVGIcon('NULL', 20, 20);
         }
+    }
+
+    filter(args:string[]):boolean {
+        console.log(this);
+        return true;
+    }
+
+    private _objectsPhotosBoth(str:string): boolean {
+        let status: boolean;
+        switch(str) {
+            case 'OB':
+                status = (this.obj_photos == 'OB');
+                break;
+            case 'PO':
+                break;
+            case 'BO':
+                break;
+            case 'NA':
+                break;
+        }
+        return false;
     }
 }

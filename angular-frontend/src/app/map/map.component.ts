@@ -19,6 +19,8 @@ export class MapComponent implements OnInit {
   panning = true;
   map_loaded:boolean = true;
   clicked:boolean = false;
+  boolFilters = CrowMapMarker.boolFilters;
+  dropDownFilters = CrowMapMarker.dropDownFilters;
   selectedMarker:GoogleMapMarker;
   mapMarkers:Array<GoogleMapMarker>; 
 
@@ -59,6 +61,10 @@ export class MapComponent implements OnInit {
     if (true) {
       return 'disabled-pointer';
     }
+  }
+
+  filterData() {
+    this.mapSupport.getFilterData(null);
   }
 
 }

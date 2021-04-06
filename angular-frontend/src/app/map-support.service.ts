@@ -48,5 +48,14 @@ export class MapSupportService {
   getSortedData(sort: (x1:GoogleMapMarker, x2:GoogleMapMarker) => number) {
     this.mapElements.next(this._mapElementsMaster.getValue().sort(sort));
   }
+
+  getFilterData(args:string[]):void {
+    let filterArray: Array<GoogleMapMarker> = new Array<GoogleMapMarker>();
+    this._mapElementsMaster.getValue().forEach(element => {
+      if (element.filter(args)) {
+        filterArray.push(element);
+      }
+    });
+  }
 }
 
