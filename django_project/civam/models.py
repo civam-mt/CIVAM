@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.db.models.functions import Lower
 
 # Civam models are defined here
 # Some models have created_by, created_on, modified_by, and modified_on fields
@@ -25,6 +26,9 @@ class PersonOrInstitute(models.Model):
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="Pori_modified")
 
     modified_on = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = [Lower('name')]
+        
     def __str__(self):
         return self.name
 
@@ -38,7 +42,7 @@ class Keyword(models.Model):
     modified_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['word']
+        ordering = [Lower('word')]
 
     def __str__(self):
         return self.word
