@@ -33,7 +33,9 @@ DEBUG = True
 #TODO: MAKE IT SO THIS TOGGLE IS AUTOMATED FOR DEV/PROD
 ALLOWED_HOSTS = ['civam-mt.org']
 #ALLOWED_HOSTS = ['198.211.99.20', 'localhost:8000', '127.0.0.1', 'civam-mt.org','localhost:4200', "*"]
-STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')
+# STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 '''
 CORS_ORIGIN_WHITELIST = [
@@ -148,7 +150,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
 
