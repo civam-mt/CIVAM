@@ -64,7 +64,7 @@ class Collection(models.Model):
     #summary = models.TextField(blank=True, null=True)      ## Removed due to ticket S21D10-36
     provenance = models.TextField(blank=True, null=True)
     citation = models.TextField(blank=True, null=True)
-    historical_note = models.TextField(blank=True, null=True)
+    historical_note = models.TextField("Historical/Biographical Note", blank=True, null=True)
     access_notes_or_rights_and_reproduction = models.TextField(blank=True, null=True)
     geographical_location = models.CharField(max_length=511, null=True, blank=True)
     
@@ -104,7 +104,7 @@ class Item(models.Model):
     provenance = models.TextField(blank=True, null=True)
     private_notes = models.TextField(null=True, blank=True)
     citation = models.TextField(blank=True, null=True)   
-    historical_note = models.TextField(max_length=255, null=True, blank=True)
+    historical_note = models.TextField("Historical/Biographical Note", max_length=255, null=True, blank=True)
     place_created = models.CharField(max_length=511, null=True, blank=True)
 
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="item_keywords")
