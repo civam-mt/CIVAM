@@ -47,6 +47,9 @@ export class ApiService {
   public getPoris() {
     return this.httpClient.get(`${this.API_URL}/api/pori/all/`);
   }
+  public getSiteTextByLocation(loc: string) {
+    return this.httpClient.get(`${this.API_URL}/api/sitetext/${loc}`);
+  }
   public addNarratives(data: any) {
     return this.httpClient.post<any>(`${this.API_URL}/api/narratives/` ,data);
   }

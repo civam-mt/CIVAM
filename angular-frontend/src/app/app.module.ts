@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPopper } from 'angular-popper'
 import { NgForm } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { MaterialModule } from './material-module'
 import { MatInputModule } from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -70,6 +71,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   imports:[
     BrowserAnimationsModule,
+    MaterialModule,
     MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,

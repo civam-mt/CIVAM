@@ -1,6 +1,11 @@
 ##  3/15/2021	-	Mark Wolgin
 ##      - Removed summary field from Collections Model
 ##
+##  3/25/2021   -   Josh Davis
+##      - Added SiteText Model
+##
+##  4/1/2021    -   Josh Davis
+##      - Add additional site text location field options
 ##
 
 from django.db import models
@@ -59,7 +64,7 @@ class Collection(models.Model):
     #summary = models.TextField(blank=True, null=True)      ## Removed due to ticket S21D10-36
     provenance = models.TextField(blank=True, null=True)
     citation = models.TextField(blank=True, null=True)
-    historical_note = models.TextField(blank=True, null=True)
+    historical_note = models.TextField("Historical/Biographical Note", blank=True, null=True)
     access_notes_or_rights_and_reproduction = models.TextField(blank=True, null=True)
     geographical_location = models.CharField(max_length=511, null=True, blank=True)
     
@@ -84,7 +89,7 @@ class Collection(models.Model):
 # An Item belongs to a Collection
 # Each Item has a name and description (and the collection it belongs to) and alot more now
 class Item(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField("Heritage Item",max_length=255)
     cover_image = models.ImageField(upload_to="cover_images/items/", blank=True)
     description = models.TextField(blank=True)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="items", blank=True)
@@ -99,7 +104,7 @@ class Item(models.Model):
     provenance = models.TextField(blank=True, null=True)
     private_notes = models.TextField(null=True, blank=True)
     citation = models.TextField(blank=True, null=True)   
-    historical_note = models.TextField(max_length=255, null=True, blank=True)
+    historical_note = models.TextField("Historical/Biographical Note", max_length=255, null=True, blank=True)
     place_created = models.CharField(max_length=511, null=True, blank=True)
 
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="item_keywords")
@@ -179,3 +184,19 @@ class CollectionGroup(models.Model):
         return "CollectionGroup: {} {}".format(self.collection.title, self.group.name)
 
 
+class SiteText(models.Model):
+    DATA_LOCATIONS = [
+        ('ABOUT','About Headline'),
+        ('MISSION','About: Our Mission'),
+        ('ORIGINS','About: Origins'),
+        ('PEOPLE1','About: People: Bio 1'),
+        ('PEOPLE2','About: People: Bio 2'),
+        ('PEOPLE3','About: People: Bio 3'),
+        ('PEOPLE4','About: People: Bio 4'),
+        ('CONTACT','About: Resources & Contact Information')
+    ]
+    content = models.TextField()
+    location = models.CharField('Location of text on site', max_length=8, choices=DATA_LOCATIONS, default='ABOUT', unique=True)
+
+    def __str__(self):
+        return self.location
