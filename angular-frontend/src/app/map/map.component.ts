@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
 import { MapSupportService } from '../map-support.service';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-map',
@@ -21,6 +22,7 @@ export class MapComponent implements OnInit {
   clicked:boolean = false;
   boolFilters = CrowMapMarker.boolFilters;
   dropDownFilters = CrowMapMarker.dropDownFilters;
+  forms:Array<[string, FormControl]>;
   selectedMarker:GoogleMapMarker;
   mapMarkers:Array<GoogleMapMarker>; 
 

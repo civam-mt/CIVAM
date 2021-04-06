@@ -83,7 +83,8 @@ export class CrowMapMarker extends GoogleMapMarker {
     code: string;
 
     static boolFilters:string[] = ['Crow Material', 'Digital Collection'];
-    static dropDownFilters:string[] = ['Continent', 'Country', 'What Kind of Collection']
+    static dropDownFilters:Array<[string, string[]]> = new Array<[string, string[]]>(['Continent', ['North America', 'South America', 'Europe',
+    'Africa', 'Asia', 'Antartica', 'Oceana']]);    
 
     public constructor(lat: number,
         lng: number,
