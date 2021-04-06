@@ -6,6 +6,7 @@ import { ApiService } from '../api.service';
 import { Router} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+// 3/25/21  - Tim Mazzarelli  - Added api call to get item's collection name
 
 @Component({
   selector: 'app-item',
@@ -32,6 +33,7 @@ export class ItemComponent implements OnInit {
   creators;
   originals;
   narratives;
+  collection;
   storiesCollapsed = true;
   narrativesCollapsed = true;
   showNavigationArrows = true;
@@ -54,6 +56,9 @@ export class ItemComponent implements OnInit {
   getItemByItemID(itemID: string) {
     this.api.getItemByItemID(itemID).subscribe((data) => {
       this.item = data;
+      this.api.getCollectionByCollectionID(this.item["collection"]).subscribe((result) =>{
+        this.collection = result["title"];
+      });
       this.images = this.item["images"];
       this.narratives = this.item["narratives"];
       this.rawVideos = this.item["videos"];
