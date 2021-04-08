@@ -20,7 +20,7 @@
          <mat-form-field appearance="fill">
             <mat-label>{{selectDropDown[0]}}</mat-label>
             <mat-select [formControlName]="selectDropDown[0]" multiple>
-               <mat-option>All</mat-option>
+               <mat-option default>All</mat-option>
                <mat-option *ngFor="let element of selectDropDown[1]" [value]="element">
                   {{element}}
                </mat-option>

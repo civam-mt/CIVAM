@@ -80,16 +80,15 @@ export class MapComponent implements OnInit {
   }
 
   filterData() {
-    let stringArray:any[][] = [['crow_material', this.form.controls.crow_material.value],
+    let stringArray:string[][] = [['crow_material', this.form.controls.crow_material.value],
                                 ['digital_collection', this.form.controls.digital_collection.value],
                                 ['continent', this.form.controls.Continent.value],
                                 ['countries', this.form.controls.Countries.value]];
-    this.mapSupport.getFilterData(null);
+    this.mapSupport.getFilterData(stringArray);
     //this.submitted == true;
     if (this.form.invalid) {
       return;
     }
-    console.log(stringArray);
   }
 
 }

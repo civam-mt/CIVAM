@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, filter, map } from 'rxjs/operators';
 import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
+import { isBoolean } from 'util';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -15,6 +16,12 @@ export class MapSupportService {
 
   constructor(private apiHelper: ApiService) {
 
+  }
+
+  // Call this function to update and notify all those dependent on the public map data
+  private _updateSiteFacingData(newArray:Array<GoogleMapMarker>):void {
+    this.mapElements.next(newArray);
+    this.mapElementsLoaded.next(true);
   }
 
   getMapData() {
@@ -31,9 +38,9 @@ export class MapSupportService {
               element['obj_photo'], element['street'], element['city'], element['province'],
               element['country'], element['continent'], element['code'], element['url'], element['svg']));
           });
-          this.mapElements.next(cmm);
           this._mapElementsMaster.next(cmm);
-          this.mapElementsLoaded.next(true);
+
+          this._updateSiteFacingData(cmm);
         });
     }
   }
@@ -46,16 +53,18 @@ export class MapSupportService {
   }
 
   getSortedData(sort: (x1:GoogleMapMarker, x2:GoogleMapMarker) => number) {
-    this.mapElements.next(this._mapElementsMaster.getValue().sort(sort));
+    this._updateSiteFacingData(this._mapElementsMaster.getValue().sort(sort));
   }
 
-  getFilterData(args:string[]):void {
+  getFilterData(args:string[][]):void {
     let filterArray: Array<GoogleMapMarker> = new Array<GoogleMapMarker>();
     this._mapElementsMaster.getValue().forEach(element => {
       if (element.filter(args)) {
         filterArray.push(element);
       }
     });
+    this._updateSiteFacingData(filterArray)
+    console.log(filterArray);
   }
 }
 

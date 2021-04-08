@@ -30,16 +30,41 @@ export class GoogleMapMarker implements Comparable {
             .localeCompare(other.title.toLocaleLowerCase());
     }
 
-    filter(args:string[]): boolean {   
+    strToObj(str: string): any {
+        switch (str.toLowerCase()) {
+            case "clickable":
+                return this.clickable;
+            case "dragable":
+                return this.dragable;
+            case "openInfoWindow":
+                return this.openInfoWindow;
+            case "lat":
+                return this.lat;
+            case "lng":
+                return this.lng;
+            case "title":
+                return this.title;
+            case "label":
+                return this.label;
+            case "visible":
+                return this.visible;
+            case "animation":
+                return this.animation;
+            default:
+                return null;
+        }
+    }
+
+    filter(args: string[][]): boolean {
         return true;
     }
 
 }
 
 export class SVGIcon {
-    icon:any;
+    icon: any;
 
-    public constructor(Curl:string, Cwidth:number, Cheight:number) {
+    public constructor(Curl: string, Cwidth: number, Cheight: number) {
         this.icon = {
             url: Curl,
             scaledSize: {
@@ -55,6 +80,16 @@ enum ObjectPhoto {
     'Photo' = 'PO',
     'Both' = 'BO',
     'None' = 'NA'
+}
+
+enum Continent {
+    'NA' = 'North America',
+    'SA' = 'South America',
+    'AF' = 'Africa',
+    'EU' = 'Europe',
+    'AS' = 'Asia',
+    'OS' = 'Oceania',
+    'AN' = 'Antartica'
 }
 
 enum SVGMap {
@@ -82,9 +117,9 @@ export class CrowMapMarker extends GoogleMapMarker {
     url: string;
     code: string;
 
-    static boolFilters:string[][] = [['crow_material', 'Crow Material'], ['digital_collection', 'Digital Collection']];
-    static dropDownFilters:Array<[string, string[]]> = new Array<[string, string[]]>(['Continent', ['North America', 'South America', 'Europe',
-    'Africa', 'Asia', 'Antartica', 'Oceana']]);    
+    static boolFilters: string[][] = [['crow_material', 'Crow Material'], ['digital_collection', 'Digital Collection']];
+    static dropDownFilters: Array<[string, string[]]> = new Array<[string, string[]]>(['Continent', ['North America', 'South America', 'Europe',
+        'Africa', 'Asia', 'Antartica', 'Oceana']]);
 
     public constructor(lat: number,
         lng: number,
@@ -121,14 +156,65 @@ export class CrowMapMarker extends GoogleMapMarker {
         }
     }
 
-    filter(args:string[]):boolean {
-        //console.log(this);
-        return true;
+    filter(args: string[][]): boolean {
+        let bool = true;
+        args.forEach(element => {
+            if (element[1].length >= 1) {
+                let subbool = false;
+                Array.from(element[1]).forEach(subelement => {
+                    //console.log(subelement);
+                    subbool = subbool || (subelement == this.strToObj(element[0]));
+                });
+                //console.log(subbool);
+                bool = subbool && bool;
+            }
+            else if ((typeof element[1] === 'boolean')) {
+                //console.log(element[0] + ' ' + element[1]);
+                bool = bool && this.strToObj(element[0]) == element[1];
+                //console.log(element[0] + ' ' + this.strToObj(element[0]) + ' \t res =' + bool);
+            }
+        });
+
+        return bool;
     }
 
-    private _objectsPhotosBoth(str:string): boolean {
+    strToObj(str: string): any {
+        let ret: any;
+        switch (str.toLowerCase()) {
+            case "crow_material":
+                return this.crow_material;
+            case "digital_collection":
+                return this.digital_collection;
+            case "replied_to_contact":
+                return this.replied_to_contact;
+            case "name":
+                return this.name;
+            case "obj_photo":
+                return this.obj_photos;
+            case "street":
+                return this.street;
+            case "city":
+                return this.city;
+            case "province":
+                return this.province;
+            case "countries":
+                return this.country;
+            case "continent":
+                return Continent[this.continent] != null ? Continent[this.continent] : "Not Provided";
+            case "code":
+                return this.code;
+            case "url":
+                return this.url;
+            default:
+                let t:GoogleMapMarker = this;
+                return t.strToObj(str);;
+        }
+    }
+
+
+    private _objectsPhotosBoth(str: string): boolean {
         let status: boolean;
-        switch(str) {
+        switch (str) {
             case 'OB':
                 status = (this.obj_photos == 'OB');
                 break;
