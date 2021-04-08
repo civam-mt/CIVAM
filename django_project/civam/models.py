@@ -38,6 +38,9 @@ class PersonOrInstitute(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Person or Institution'
+
 #Keyword Table
 class Keyword(models.Model):
     word = models.CharField(max_length=255, unique=True)
