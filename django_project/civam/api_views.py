@@ -29,8 +29,10 @@ from akismet import Akismet
 from decimal import *
 from django_countries import countries
 
+lazyLoad = True
 AKISMET_API_KEY = "2be27375a975"
 MAP_API_KEY = "JiNAk2nq9sk1jHakf0"
+GOOGLE_API_KEY = "AIzaSyBdzQliIx3SHhnFwX_YvxmoYcZJk9-2tQE"
 
 AKISMET_BLOG_URL = "http://localhost:4200/"
 pf = ProfanityFilter()
@@ -600,19 +602,25 @@ def insert_bulk_map_data(request, map_api):
 def get_current_map(request, detail):
 	file_name = 'google_cache/google_map.js'
 	cc.increment()
-	if (os.path.exists(file_name)):
+	if (lazyLoad):
+		url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
+		with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
+			shutil.copyfileobj(httpRes, file_out)
+			print('{} Google Maps JS file passthrough - CACHING DISABLED!'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
+	elif (not lazyLoad and os.path.exists(file_name)):
 		threshold = timedelta(minutes=2)
 		delta = timedelta(seconds=time.time() - os.stat(file_name).st_mtime)
 		
 		if (not cc.hit_limit() and delta >= threshold):
 			print('{} Google Maps JS file out of date.  Refreshing...'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
-			url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + request.GET.getlist('key')[0]
+			#url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + request.GET.getlist('key')[0]
+			url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
 			with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
 				shutil.copyfileobj(httpRes, file_out)
 				print('{} Google Maps JS file refreshed!'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
 	else:
 		print('{} No Google Maps JS file in dir.  Downloaing...'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
-		url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + request.GET.getlist('key')[0]
+		url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
 		with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
 			shutil.copyfileobj(httpRes, file_out)
 			print('{} Google Maps JS file refreshed!'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))

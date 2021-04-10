@@ -95,7 +95,7 @@ import { UsernameService } from './auth/username.service';
     MatTabsModule,
     FlexLayoutModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBd7fyJ02jvc3dmJUIn_wNdIY5RHy41xXw',
+      apiKey: 'replace',
       protocol:1,
       hostAndPath: 'localhost:8000/api/mapdata/cache/js'
     })
