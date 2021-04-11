@@ -49,7 +49,7 @@ class NarrativeInline(admin.TabularInline):
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
 
 # Can create Collections and Items and Poris directly
-class CollectionAdmin(DefaultAdmin):
+class CollectionAdmin(SortableAdminMixin, DefaultAdmin):
     list_display = ('title', 'created_by')
     search_fields = ['title','creator__name','keywords__word']
 
