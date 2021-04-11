@@ -8,7 +8,6 @@ from django.db import models
 from django.contrib.auth.models import User, Group
 
 
-
 # Civam models are defined here
 # Some models have created_by, created_on, modified_by, and modified_on fields
 # created_on and modied_on are set automatically
@@ -61,7 +60,7 @@ class Collection(models.Model):
     ('Courier New', 'Courier New'), ('Brush Script MT', 'Brush Script MT'))
 
     title = models.CharField(max_length=255, unique=True)
-    order_number = models.CharField(max_length=3, default=1)
+    my_order = models.PositiveIntegerField(default=0, blank=False, null=False)
 
     description = models.TextField(blank=True)
     dates = models.CharField(max_length=255, blank=True, null=True)
@@ -94,6 +93,9 @@ class Collection(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_modified")
     modified_on = models.DateTimeField(auto_now=True)
+
+    class Meta(object):
+        ordering = ['my_order']
 
     def __str__(self):
         return self.title

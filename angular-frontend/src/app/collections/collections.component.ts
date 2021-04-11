@@ -24,7 +24,7 @@ export class CollectionsComponent implements OnInit {
   getCollections() {
       this.api.getCollections().subscribe((data) => {
         this.collections = data["collection_list"];
-        this.collections.sort((a, b) => a.order_number > b.order_number ? 1 : -1)
+        console.log(this.collections);
     });
   }
 
