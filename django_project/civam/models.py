@@ -60,6 +60,20 @@ class Keyword(models.Model):
     def __str__(self):
         return self.word
 
+class NewsTag(models.Model):
+    word = models.CharField(max_length=255, unique=True)
+
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="news_article_tag_created")
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="news_article_tag_modified")
+    modified_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = [Lower('word')]
+
+    def __str__(self):
+        return self.word
+
 # A Collection of items
 # Each Collection has a title, description, cover_image, public (collection displayed on site if true)
 class Collection(models.Model):
@@ -207,3 +221,20 @@ class SiteText(models.Model):
 
     def __str__(self):
         return self.location
+
+class NewsArticle(models.Model):
+    title = models.CharField("Title", max_length=255)
+    cover_image = models.ImageField("Cover Image", upload_to="cover_images/articles/", blank=True)
+    publish_on = models.DateTimeField("When to publish the article")
+    content = models.TextField("Article Text")
+    tags = models.ManyToManyField(NewsTag, blank=True, related_name="news_article_tag")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="news_article_created", default=1)
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="news_article_modified", default=1)
+    modified_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '{}\n'.format(self.title)
+    
+    class Meta:
+        ordering = ['publish_on']

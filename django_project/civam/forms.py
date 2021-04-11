@@ -39,6 +39,11 @@ class KeywordForm(ModelForm):
         model = Keyword
         fields = ['word']
 
+class NewsTagForm(ModelForm):
+    class Meta:
+        model = NewsTag
+        fields = ['word']
+
 class RegistrationForm(ModelForm):
     class Meta:
         model = User

@@ -37,6 +37,7 @@ import { CardComponent } from './card/card.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NewsComponent } from './news/news.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -67,7 +68,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CardComponent,
     FullMapComponent,
     SmallMapComponent,
-    KeywordPageComponent
+    KeywordPageComponent,
+    NewsComponent
   ],
   imports:[
     BrowserAnimationsModule,

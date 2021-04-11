@@ -15,6 +15,7 @@ import { PeopleComponent } from './people/people.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
+import { NewsComponent } from './news/news.component';
 
 const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
 {path:'collections',component: CollectionsComponent},
 // {path:'districts',component: DistrictsComponent},
 {path:'oral-histories',component: OralHistoriesComponent},
+{path:'news',component: NewsComponent},
 {path:'images',component: ImagesComponent},
 {path:'material-culture',component: MaterialCultureComponent},
 {path:'items/:itemID', component: ItemComponent},
