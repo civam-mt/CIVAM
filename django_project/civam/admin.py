@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative
 from guardian.admin import GuardedModelAdmin
-
+import copy
 # Civam admin models are defined here
 # The admin module has capabilities to created/edit/view/delete Collections, Items, Images, Videos, and Stories
 
@@ -46,7 +46,7 @@ class VideoInline(admin.TabularInline):
 class NarrativeInline(admin.TabularInline):
     model = Narrative
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
-    
+
 # Can create Collections and Items and Poris directly
 class CollectionAdmin(DefaultAdmin):
     list_display = ('title', 'created_by')
