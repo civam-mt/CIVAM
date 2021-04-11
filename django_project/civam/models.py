@@ -61,7 +61,7 @@ class Collection(models.Model):
     ('Courier New', 'Courier New'), ('Brush Script MT', 'Brush Script MT'))
 
     title = models.CharField(max_length=255, unique=True)
-    order_number = models.CharField(max_length=3, blank=True)
+    order_number = models.CharField(max_length=3, default=1)
 
     description = models.TextField(blank=True)
     dates = models.CharField(max_length=255, blank=True, null=True)
