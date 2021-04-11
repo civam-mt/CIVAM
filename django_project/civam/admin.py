@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative
 from guardian.admin import GuardedModelAdmin
-import copy
+
 # Civam admin models are defined here
 # The admin module has capabilities to created/edit/view/delete Collections, Items, Images, Videos, and Stories
 
