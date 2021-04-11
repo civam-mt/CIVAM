@@ -3,8 +3,11 @@
 ##
 ##
 
+from colorfield.fields import ColorField
 from django.db import models
 from django.contrib.auth.models import User, Group
+
+
 
 # Civam models are defined here
 # Some models have created_by, created_on, modified_by, and modified_on fields
@@ -51,7 +54,15 @@ class Keyword(models.Model):
 # A Collection of items
 # Each Collection has a title, description, cover_image, public (collection displayed on site if true)
 class Collection(models.Model):
+
+    font_family = (('Times New Roman', 'Times New Roman'), ('Arial', 'Arial'), 
+    ('Verdana', 'Verdana'), ('Helvetica', 'Helvetica'), ('Tahoma', 'Tahoma'), 
+    ('Trebuchet MS', 'Trebuchet MS'), ('Georgia', 'Georgia'), ('Garamond', 'Garamond'),
+    ('Courier New', 'Courier New'), ('Brush Script MT', 'Brush Script MT'))
+
     title = models.CharField(max_length=255, unique=True)
+    order_number = models.CharField(max_length=3, blank=True)
+
     description = models.TextField(blank=True)
     dates = models.CharField(max_length=255, blank=True, null=True)
     cover_image = models.ImageField(upload_to="cover_images/", blank=True)
@@ -67,6 +78,13 @@ class Collection(models.Model):
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="collection_keywords")
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_creators")
     location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_locations")
+
+
+    background_image = models.ImageField(upload_to="background_images/collection/",blank=True)
+    font_color =  ColorField(max_length=10, default='#000000')
+    font_type = models.CharField(max_length=255,choices=font_family, blank=True)
+    font_size = models.CharField(max_length=5, blank=True)
+
 
     private_notes = models.TextField(blank=True, null=True)
     private_cataloger = models.CharField(max_length=511, null=True, blank=True)
