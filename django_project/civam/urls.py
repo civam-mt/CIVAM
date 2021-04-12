@@ -9,8 +9,10 @@ urlpatterns = [
     path('collections/', views.collection_list, name='collections'),#/collection/
     path('api/collections/', api_views.collection_list, name="api_collections"),
 
+    # Search
     path('search-result/', views.searchResult, name="searchResult"),
     path('api/search-result/', api_views.searchResult, name="searchResult"),
+
     # Login and register
     path('user/', include('django.contrib.auth.urls')),
     path('register/', views.register, name='registration'),
@@ -24,15 +26,14 @@ urlpatterns = [
     path('collections/<int:collection_id>/', views.collection, name='collection'),
     path('api/collections/<int:collection_id>/', api_views.collection, name="api_collection"),
 
-
     # Create a new item within collection
     path('collections/<int:collection_id>/new/', views.new_item, name='new_item'),
-    
     path('api/collections/<int:collection_id>/<int:item_id>/', api_views.item, name='api_item'),
 
     path('api/items/<int:item_id>/', api_views.item_solo, name='api_item_solo'),
     path('api/items/all/', api_views.all_items, name='api_all_items'),
     path('api/items/all/<str:keyword>', api_views.get_by_keyword, name='api_get_by_keyword'),
+    
     # View an item within a collection
     path('collections/<int:collection_id>/<int:item_id>/', views.item, name='item'),
     path('api/collections/<int:collection_id>/<int:item_id>/', api_views.item, name='api_item'),
@@ -64,5 +65,7 @@ urlpatterns = [
     path('api/mapdata/<int:mapdata_id>/', api_views.get_mapdata_by_id, name='mapdata_by_id'),
     path('api/mapdata/bulk/<str:map_api>/', api_views.insert_bulk_map_data, name='insert_bulk_map_data'),
 
-    path('api/mapdata/cache/<str:detail>/', api_views.get_current_map, name="get_current_map")
+    path('api/mapdata/cache/<str:detail>/', api_views.get_current_map, name="get_current_map"),
+    # View SiteTexts
+    path('api/sitetext/<str:loc>', api_views.get_site_text, name='api_get_site_text')
 ]

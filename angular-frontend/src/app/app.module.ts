@@ -7,6 +7,7 @@ import { SafePipe } from './Safepipe.pipe';
 
 // Module imports
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { MaterialModule } from './material-module'
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -81,6 +82,7 @@ import { UsernameService } from './auth/username.service';
   ],
   imports:[
     BrowserAnimationsModule,
+    MaterialModule,
     MatInputModule,
     MaterialModule,
     MatFormFieldModule,
