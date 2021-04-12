@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { environment } from 'src/environments/environment';
 import { NewsArticle } from 'src/model/NewsArticle';
 import { NewsSupportService } from '../services/news-support.service';
 
@@ -16,10 +18,13 @@ export interface Tile {
 })
 export class NewsComponent implements OnInit {
   _newsList:Array<NewsArticle> = null;
+  API_URL = environment.apiUrl;
   tiles: Tile[] = [
+    {text: 'title', cols:3, rows:1, color:'lightgreen'},
+    {text: 'author', cols:1, rows: 1, color: 'lightblue'},
     {text: 'cover_url', cols:1, rows:3, color:'lightgreen'},
     {text: 'content', cols:3, rows: 3, color: 'lightblue'},
-    {text: 'author', cols:1, rows:1, color: 'lightpink'},
+    {text: 'published_on', cols:1, rows:1, color: 'lightpink'},
     {text: 'tags.text', cols:3, rows:1, color: '#DDBDF1'},
   ];
 
@@ -27,14 +32,13 @@ export class NewsComponent implements OnInit {
     newsSupport.newsList.subscribe(newsList => {
       if (newsList != null) {
         this._newsList = newsList;
-        console.log(this._newsList);
       }
     })
    }
 
   ngOnInit(): void {
     if (this._newsList == null) {
-      this.newsSupport.getAllNews();
+      this.newsSupport.getAllNews(true);
     }
   }
 

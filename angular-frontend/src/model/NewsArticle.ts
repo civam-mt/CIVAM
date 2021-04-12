@@ -1,3 +1,5 @@
+import { stringify } from "@angular/compiler/src/util";
+
 export class NewsArticle {
 
     private _article_id:number;
@@ -43,10 +45,21 @@ export class NewsArticle {
         return this._tags;
     }
 
+    public getNewsDate():string {
+        return this._published_on.getDay() + ' / ' + 
+            this._published_on.getMonth() + ' / ' + 
+            this._published_on.getFullYear() + ' ' + 
+            this._published_on.getHours() + ':' +
+            this._published_on.getMinutes() + ':' +
+            this._published_on.getSeconds();
+    }
+
     public getTagsText():string[] {
-        return this._tags.map((e:[number, string]) => {
-            return e[1];  
+        let tmp_str:Array<string> = new Array<string>();
+        this._tags.forEach((e:[number, string]) => {
+            tmp_str.push(e[1]);
           });
+        return tmp_str;
     }
 
     public getTitle():string {

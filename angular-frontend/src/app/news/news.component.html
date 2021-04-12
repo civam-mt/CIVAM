@@ -9,7 +9,21 @@
                 [colspan]="tile.cols"
                 [rowspan]="tile.rows"
                 [style.background]="tile.color">
-                {{article.getElement(tile.text)}}
+                <div *ngIf="tile.text == 'cover_url'">
+                    <img src="{{API_URL}}/media/{{article.getElement(tile.text)}}"
+                        alt="Random slide" class="image">
+                </div>
+                <div *ngIf="tile.text == 'tags.text'">
+                    <mat-chip-list aria-label="Tags">
+                        <mat-chip *ngFor="let i of article.getElement(tile.text)">{{i}}</mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div *ngIf="tile.text == 'published_on'">
+                    {{article.getNewsDate()}}
+                </div>
+                <div *ngIf="tile.text != 'cover_url' && tile.text != 'tags.text' && tile.text != 'published_on'">
+                    {{article.getElement(tile.text)}}
+                </div>
             </mat-grid-tile>
         </mat-grid-list>
     </div>
