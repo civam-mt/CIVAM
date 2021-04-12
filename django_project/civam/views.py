@@ -195,3 +195,27 @@ def group_list(request, collection_id):
     return render(request, 'civam/groups.html', context)
 
 
+#ADD MAPDATA
+@permission_required('civam.add_mapdata', return_403=True)
+def new_mapdata(request):
+    form = MapDataForm(request.POST or None)
+    if(request.method == 'POST'):
+        print(request.POST)
+        if form.is_valid():
+            col_instance = form.save(commit=False)
+            col_instance.created_by = request.user
+            col_instance.modified_by = request.user
+            col_instance.save()
+            return redirect("mapdata", mapdata_id = col_instance.id)
+    context = {'mapdata_form': form}
+    return render(request, 'civam/new_mapdata.html', context)
+
+@permission_required('civam.mapdata', return_403=True)
+def mapdata(request):
+    mapdata = get_object_or_404(MapData)
+    context = {'map_list': mapdata}
+    return render(request, 'civam/mapdata')
+
+
+def get_mapdata_by_id(request, mapdata_id):
+    return render(request, 'civam/get_mapdata_by_id')

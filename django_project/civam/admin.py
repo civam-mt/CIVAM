@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText
+from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, MapData, SiteText
 from guardian.admin import GuardedModelAdmin
 
 # Civam admin models are defined here
@@ -63,9 +63,13 @@ class PorIAdmin(DefaultAdmin):
 class KeywordAdmin(DefaultAdmin):
     search_fields = ['word']
 
+class MapDataAdmin(DefaultAdmin):
+    model = MapData
+
 # Register admin models    
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Item, ItemAdmin)
 admin.site.register(PersonOrInstitute, PorIAdmin)
 admin.site.register(Keyword, KeywordAdmin)
+admin.site.register(MapData, MapDataAdmin)
 admin.site.register(SiteText)
