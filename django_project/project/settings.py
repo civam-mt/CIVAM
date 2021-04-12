@@ -30,11 +30,11 @@ SECURE_SSL_REDIRECT = False
 SECRET_KEY = 'au+me7y%0)7t4b@tqh#r7rez)badj=5vxv#ftyhdpd=a1#r-#d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #TODO: MAKE IT SO THIS TOGGLE IS AUTOMATED FOR DEV/PROD
-ALLOWED_HOSTS = ['civam-mt.org']
-#ALLOWED_HOSTS = ['198.211.99.20', 'localhost:8000', '127.0.0.1', 'civam-mt.org','localhost:4200', "*"]
+#ALLOWED_HOSTS = ['civam-mt.org']
+ALLOWED_HOSTS = ['198.211.99.20', 'localhost:8000', '127.0.0.1', 'civam-mt.org','localhost:4200', "*"]
 # STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
@@ -49,6 +49,10 @@ CORS_ORIGIN_WHITELIST = [
 '''
 CORS_ORIGIN_ALLOW_ALL = True
 
+#SECURE_SSL_REDIRECT = True
+
+# CORS_ALLOWED_ORIGINS = ['http://*']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,6 +66,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'django_countries',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -171,3 +176,12 @@ LOGGING = {
 
     },
 }
+
+# Countries Settings
+# Follows the ISO 3166-1 naming conventions
+COUNTRIES_FIRST = [
+    'US',
+    'UM',
+    'CA',
+    'UK'
+]

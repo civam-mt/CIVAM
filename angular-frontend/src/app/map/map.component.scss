@@ -1,10 +1,105 @@
-.ButtonContainer {
-    text-align: center; 
+.mapPage{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    background-color: #eeeeeec4;
+  }
+
+  .map {
+    width: 100%;
+    min-height: 30vh;
+    height: 70vh;
+    float: right;
+    margin: 0 auto;
+    margin-right: 0.5%;
+
+    agm-map {
+        height: 100%;
+        width: 100%;
+    }
+
+  .side-panel {
+    width: 20%;
+  }
 }
 
-.FullScreenButton {
-    text-align: center;
-    padding: auto;
-    width: 128px;
-    height: 36px;
+
+.accordion {
+    //width: 100%;
+    //height:100%;
 }
+
+.disabled-pointer {
+    pointer-events: none;
+}  
+
+.mat-dialog-title {
+  text-align: center;
+}
+
+.loginButton {
+  float:left;
+  padding-left: 20%;
+  padding-bottom: 1%;
+}
+
+.registerButton {
+  float:right;
+  padding-right: 20%;
+  padding-bottom: 1%;
+}
+
+#title {
+    font-size: 2em;
+}
+  .btn{
+    float: right;
+    vertical-align: middle;
+    margin: 0 auto;
+  }
+  .card{
+    margin-bottom: 2.5%;
+    width: 35vw;
+    height: 30vh;
+  }
+  i{
+    width: 2em;
+    text-align: center;
+  }
+
+.details{
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:30vh;
+}
+  .beforeClick{
+    padding: 2.5%;
+    font-size: 3em;
+    margin: 0 auto;
+  }
+  .afterClick{
+    padding: 2.5%;
+    margin: 0 auto;
+  }
+
+  .clickableCardItem:hover {
+    color: #2e2e2e;
+    border-radius: 25%;
+    background: #b0e0e6;
+  }
+
+  .example-section {
+    margin: 12px 0;
+  }
+  
+  .example-margin {
+    margin: 0 12px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }

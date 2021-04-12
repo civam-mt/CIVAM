@@ -10,6 +10,8 @@
 
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django_countries.fields import CountryField
+from django.utils.translation import gettext_lazy as _
 from django.db.models.functions import Lower
 
 # Civam models are defined here
@@ -191,7 +193,78 @@ class CollectionGroup(models.Model):
     def __str__(self):
         return "CollectionGroup: {} {}".format(self.collection.title, self.group.name)
 
+# The MapData class is used to allow easy insertion to the database a list of all map locations.
+# Previously, this was stored in a google sheets document, but this allows easier access and more fedelity for the maps opperations
+class MapData(models.Model):
 
+    class ObjOrPhoto(models.TextChoices):
+        OBJECT = 'OB', _('Objects')
+        PHOTO = 'PH', _('Photos')
+        BOTH = 'BO', _('Both')
+        NONE = 'NA', _('None')
+
+    class Continent(models.TextChoices):
+        NA = 'NA', _('North America')
+        SA = 'SA', _('South America')
+        AF = 'AF', _('Africa')
+        EU = 'EU', _('Europe')
+        AS = 'AS', _('Asia')
+        OS = 'OS', _('Oceania')
+        AN = 'AN', _('Antartica')
+
+    class SVGMapIcon(models.TextChoices):
+        ARCH = 'ARCH', _('Archaeological')
+        ARTS = 'ARTS', _('Art Gallery')
+        ATTR = 'ATTR', _('Attraction')
+        MONT = 'MONT', _('Monument')
+        MUES = 'MUES', _('Museum')
+
+    name = models.CharField("Instituition Name", max_length=255)
+    lat = models.DecimalField("Latitude", max_digits=14, decimal_places=10)
+    lng = models.DecimalField("Longitude", max_digits=14, decimal_places=10)
+    url = models.CharField("Institution URL", max_length=255)
+    svg_choice = models.CharField(
+        max_length=4,
+        choices=SVGMapIcon.choices,
+        default='MUES'
+    )
+    contact_email = models.EmailField("Contact Email", max_length=254)
+    crow_material = models.BooleanField("Do they have Crow Material?")
+    digital_collection = models.BooleanField("Do they have a Digital Collection?")
+    replied_to_contact = models.BooleanField("Have they replied to our contact?")
+    history = models.TextField("Relevant History")
+    obj_photos = models.CharField(
+        max_length=2,
+        choices=ObjOrPhoto.choices,
+        default='NA',
+    )
+    street = models.TextField(null=True)
+    city = models.TextField(null=True)
+    province = models.TextField("Province/State", null=True)
+    country = CountryField(null=True)
+    continent = models.CharField(null=True,
+        max_length=2,
+        choices=Continent.choices,
+        default = 'NA'
+    )
+    code = models.TextField("ZIP Code")
+    notes = models.TextField()
+
+    publish = models.BooleanField("Publish on Site", default=True)
+
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="mapdata_created")
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="mapdata_modified")
+    modified_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '{},{},{}\n'.format(self.name, 
+            self.lat, 
+            self.lng)
+    
+    class Meta:
+        ordering = ['name']
+        
 class SiteText(models.Model):
     DATA_LOCATIONS = [
         ('ABOUT','About Headline'),
