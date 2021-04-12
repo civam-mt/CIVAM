@@ -38,6 +38,7 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NewsComponent } from './news/news.component';
+import { NewsArticleComponent } from './news/news-article/news-article.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -69,7 +70,8 @@ import { NewsComponent } from './news/news.component';
     FullMapComponent,
     SmallMapComponent,
     KeywordPageComponent,
-    NewsComponent
+    NewsComponent,
+    NewsArticleComponent
   ],
   imports:[
     BrowserAnimationsModule,

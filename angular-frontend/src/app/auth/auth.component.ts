@@ -2,7 +2,7 @@
 import { Component, OnInit, Input, Injectable} from '@angular/core'; 
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl} from '@angular/forms'; 
 import * as jwt_decode from 'jwt-decode'; 
-import { ApiService } from '../api.service'; 
+import { ApiService } from '../services/api.service';
 
 import { HttpResponse } from '@angular/common/http'; 
 // import { ModalService } from '../_modal'; 

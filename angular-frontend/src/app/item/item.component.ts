@@ -2,7 +2,7 @@ import { Component, OnInit,Input, SecurityContext, ɵConsole } from '@angular/co
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 import { Router} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 

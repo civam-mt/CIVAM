@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http'; 
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 // import { AbstractJsEmitterVisitor } from '@angular/compiler/src/output/abstract_js_emitter';
 
 @Injectable({
@@ -52,6 +53,15 @@ export class ApiService {
   }
   public addNarratives(data: any) {
     return this.httpClient.post<any>(`${this.API_URL}/api/narratives/` ,data);
+  }
+  public getAllNews():Observable<Object> {
+    return this.httpClient.get(`${this.API_URL}/api/article/all`);
+  }
+  public getNewsByTag(_id:string[]):Observable<Object> {
+    return this.httpClient.post(`${this.API_URL}/api/article/tag/`, {tags: _id});
+  }
+  public getNewsArticleByID(_id:string):Observable<Object> {
+    return this.httpClient.get(`${this.API_URL}/api/article/id/${_id}`);
   }
   
   // public postCollection(collection: object) {

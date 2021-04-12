@@ -1,1 +1,19 @@
+<div style="margin-top: 7vh;"></div>
 <p>news works!</p>
+<div *ngIf="this._newsList != null">
+    <div id="news-feed">
+        <mat-grid-list cols="4" rowHeight="10vh" class="card"
+            *ngFor="let article of _newsList">
+            <mat-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color">
+                {{article.getElement(tile.text)}}
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
+<div *ngIf="this._newsList == null">
+    Loading News...
+</div>

@@ -378,6 +378,7 @@ def get_all_news_article(request):
 	news_list = []
 	for entry in rawlist:
 		new_entry = {
+			"article_id": entry.id,
 			"title": entry.title,
 			"cover": entry.cover_image.name,
 			"content": entry.content,
