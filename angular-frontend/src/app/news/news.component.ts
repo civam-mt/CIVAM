@@ -21,11 +21,12 @@ export class NewsComponent implements OnInit {
   API_URL = environment.apiUrl;
   tiles: Tile[] = [
     {text: 'title', cols:3, rows:1, color:'lightgreen'},
+    {text: '', cols:2, rows:1, color:''},
     {text: 'author', cols:1, rows: 1, color: 'lightblue'},
-    {text: 'cover_url', cols:1, rows:3, color:'lightgreen'},
-    {text: 'content', cols:3, rows: 3, color: 'lightblue'},
+    {text: 'cover_url', cols:2, rows:3, color:'lightgreen'},
+    {text: 'content.bounded', cols:4, rows: 3, color: 'lightblue'},
     {text: 'published_on', cols:1, rows:1, color: 'lightpink'},
-    {text: 'tags.text', cols:3, rows:1, color: '#DDBDF1'},
+    {text: 'tags.text', cols:5, rows:1, color: '#DDBDF1'},
   ];
 
   constructor(private newsSupport:NewsSupportService) {

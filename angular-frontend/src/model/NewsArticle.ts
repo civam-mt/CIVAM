@@ -33,6 +33,10 @@ export class NewsArticle {
         return this._content;
     }
 
+    public getContentBounded(bound:number = 512):string {
+        return  this._content.length <= bound ? this._content : this._content.substring(0,bound).concat(' ...');
+    }
+
     public getCoverURL():string {
         return this._cover_url;
     }
@@ -74,6 +78,8 @@ export class NewsArticle {
                 return this.getAuthor();
             case 'content':
                 return this.getContent();
+            case 'content.bounded':
+                    return this.getContentBounded();
             case 'cover_url':
                 return this.getCoverURL();
             case 'published_on':

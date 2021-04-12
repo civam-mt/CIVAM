@@ -1,8 +1,7 @@
-<div style="margin-top: 7vh;"></div>
-<p>news works!</p>
+<div style="margin-top: 10vh;"></div>
 <div *ngIf="this._newsList != null">
     <div id="news-feed">
-        <mat-grid-list cols="4" rowHeight="10vh" class="card"
+        <mat-grid-list cols="6" rowHeight="75px" class="card"
             *ngFor="let article of _newsList">
             <mat-grid-tile
                 *ngFor="let tile of tiles"
@@ -21,7 +20,10 @@
                 <div *ngIf="tile.text == 'published_on'">
                     {{article.getNewsDate()}}
                 </div>
-                <div *ngIf="tile.text != 'cover_url' && tile.text != 'tags.text' && tile.text != 'published_on'">
+                <div class="text" *ngIf="tile.text == 'content' || tile.text == 'content.bounded'">
+                    {{article.getElement(tile.text)}}
+                </div>
+                <div *ngIf="tile.text != 'cover_url' && tile.text != 'tags.text' && tile.text != 'published_on' && tile.text != 'content' && tile.text != 'content.bounded'">
                     {{article.getElement(tile.text)}}
                 </div>
             </mat-grid-tile>

@@ -1,5 +1,11 @@
 .card {
-    margin-bottom: 5vh;;
+    margin-bottom: 5vh;
+
+    .text {
+        padding: 5%;
+        text-align: left;
+        word-wrap: normal;
+    }
 }
 
 .image {
