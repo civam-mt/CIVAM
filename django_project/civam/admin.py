@@ -53,14 +53,9 @@ class CollectionAdmin(DefaultAdmin):
     search_fields = ['title','creator__name','keywords__word']
 
 class ItemAdmin(DefaultAdmin):
-    list_display = ('name', 'collection', 'cataloged')
+    list_display = ('name', 'collection')
     inlines = [ImageInline, VideoInline, NarrativeInline]
     search_fields = ['name','collection__title','culture_or_community','creator__name','date_of_creation','place_created','catalog_number','keywords__word']
-
-    def cataloged(self, obj):
-        return obj.is_cataloged == 1
-
-    cataloged.boolean = True
 
 class PorIAdmin(DefaultAdmin):
     search_fields = ['name']
