@@ -19,7 +19,3 @@
 * **tests.py** - Django tests
 * **urls.py** - Defines which urls go to which views
 * **views.py** - Creates the different available views, which templates they link to in the templates folder
-
-## If error w/css and sidebar
-* `python3 manage.py collectstatic --noinput --clear`
-* `python manage.py makemigrations`

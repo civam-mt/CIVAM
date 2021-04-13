@@ -53,9 +53,6 @@ export class ApiService {
   public addNarratives(data: any) {
     return this.httpClient.post<any>(`${this.API_URL}/api/narratives/` ,data);
   }
-  public getAllMapdata() {
-    return this.httpClient.get(`${this.API_URL}/api/mapdata/all/`);
-  }
   
   // public postCollection(collection: object) {
   //   return this.httpClient.post(`${this.API_URL}/api/collections`, collection);

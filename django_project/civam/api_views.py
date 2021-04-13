@@ -1,7 +1,6 @@
 ##  3/15/2021	-	Mark Wolgin
 ##      - Removed summary field from Collections Model
-##	4/01/2021	-	Mark Wolgin
-##		- Added Google Maps Cache
+##
 ##
 
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
@@ -9,6 +8,7 @@ from guardian.shortcuts import assign_perm, remove_perm, get_objects_for_user, g
 from guardian.decorators import permission_required
 from django.contrib.postgres.search import TrigramSimilarity
 from .models import *
+from .models import Narrative
 from .forms import *
 import logging
 from guardian.models import Group
@@ -16,27 +16,13 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 import json
-import urllib.request
-import os
-import os.path
-import time
-import shutil
-from .critical_count import *
-from copy import deepcopy
-from datetime import datetime, timedelta
 from profanityfilter import ProfanityFilter
 from akismet import Akismet
-from decimal import *
-from django_countries import countries
 
-lazyLoad = True
 AKISMET_API_KEY = "2be27375a975"
-MAP_API_KEY = "JiNAk2nq9sk1jHakf0"
-GOOGLE_API_KEY = "AIzaSyBdzQliIx3SHhnFwX_YvxmoYcZJk9-2tQE"
 
 AKISMET_BLOG_URL = "http://localhost:4200/"
 pf = ProfanityFilter()
-cc = Critical_Count("Maps API", .61)
 # Civam views defined here
 
 logger = logging.getLogger('my_app.views')
@@ -382,141 +368,3 @@ def register(request):
 		return u.id
 	else:
 		return 0
-
-
-def get_all_mapdata(request):
-	rawlist = MapData.objects.filter(publish=True)
-	map_list = []
-	for entry in rawlist:
-		new_entry = {
-			"name": entry.name,
-			"lat": entry.lat,
-			"lng": entry.lng,
-			"url": entry.url,
-			"svg": 'MUES' if entry.svg_choice == None else entry.svg_choice,
-			"contact_email": entry.contact_email,
-			"crow_material": entry.crow_material,
-			"digital_collection": entry.digital_collection,
-			"replied_to_contact": entry.replied_to_contact,
-			"history": entry.history,
-			"obj_photos": entry.obj_photos,
-			'street': entry.street,
-			'city': entry.city,
-			'province': entry.province,
-			'country': 'Not Provided' if entry.country == None else dict(countries)[entry.country],
-			'continent': 'Not Provided' if entry.continent == None else entry.continent,
-			'code': entry.code,
-			"notes": entry.notes
-			}
-		map_list.append(new_entry)
-	##print(map_list)
-
-
-	context = { "length": len(map_list) ,
-		"mapdata": map_list}
-	return JsonResponse(context, safe=False)
-
-def get_mapdata_by_id(request, mapdata_id):
-	mapentry = get_object_or_404(MapData, pk=mapdata_id)
-	map_list = [mapentry]
-	context = {	"mapdata": map_list}
-	return JsonResponse(context, safe=False)
-
-def new_mapdata(request):
-	
-	return 0
-
-def mapdata(request):
-	return 0
-
-def insert_bulk_map_data(request, map_api):
-	if (map_api != MAP_API_KEY):
-		return JsonResponse({	"status": 403,
-								"message": "Forbinen - API provided was incorrect"}, safe=False)
-	if request.method == 'POST':
-		try:
-			body = json.loads(request.body)
-			for id in body:
-				#print(body[id])
-				#print(body[id]['lat'] + ' ' + body[id]['lng'])
-				latitude = 0.0 if body[id]['lat'] == "" else body[id]['lat']
-				longitude = 0.0 if body[id]['lng'] == "" else body[id]['lng']
-				#print(Decimal(latitude))
-				crow_mat = body[id]['crow_material'] if isinstance(body[id]['crow_material'], bool) else False
-				digi_col = body[id]['digital_collection'] if isinstance(body[id]['digital_collection'], bool) else False
-				repl_cnt = body[id]['replied'] if isinstance(body[id]['replied'], bool) else False
-				print(len(body[id]['continent']))
-
-				obj_pt = ''
-				if ('object' in body[id]['obj_photo_both'].lower()):
-					if ('photo' in body[id]['obj_photo_both'].lower()):
-						obj_pt = 'BO'
-					else:
-						obj_pt = 'OB'
-				else:
-					if ('photo' in body[id]['obj_photo_both'].lower()):
-						obj_pt = 'PH'
-					else:
-						obj_pt = 'NA'
-
-				MapData.objects.create(
-					name = body[id]['name'],
-					lat = Decimal(latitude),
-					lng = Decimal(longitude),
-					url = body[id]['link'],
-					svg_choice = 'MUES',
-					contact_email = body[id]['contact'],
-					crow_material = crow_mat,
-					digital_collection = digi_col,
-					replied_to_contact = repl_cnt,
-					history = body[id]['history'],
-					obj_photos = obj_pt,
-					street = '',
-					city = body[id]['city'],
-					province = body[id]['province'],
-					continent = body[id]['continent'] if len(body[id]['continent']) <= 2 else 'NA',
-					code = '',
-					notes = body[id]['notes'] + '\n' + body[id]['misc'],
-					publish = True
-					)
-			return JsonResponse({"status": 200})
-		except json.JSONDecodeError:
-			print("JSON Error")
-			return JsonResponse({"status": 400})
-	return JsonResponse({"status": 400})
-
-
-## Google Maps JS Cache
-def get_current_map(request, detail):
-	file_name = 'google_cache/google_map.js'
-	cc.increment()
-	if (lazyLoad):
-		url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
-		with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
-			shutil.copyfileobj(httpRes, file_out)
-			print('{} Google Maps JS file passthrough - CACHING DISABLED!'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
-	elif (not lazyLoad and os.path.exists(file_name)):
-		threshold = timedelta(minutes=2)
-		delta = timedelta(seconds=time.time() - os.stat(file_name).st_mtime)
-		
-		if (not cc.hit_limit() and delta >= threshold):
-			print('{} Google Maps JS file out of date.  Refreshing...'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
-			#url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + request.GET.getlist('key')[0]
-			url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
-			with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
-				shutil.copyfileobj(httpRes, file_out)
-				print('{} Google Maps JS file refreshed!'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
-	else:
-		print('{} No Google Maps JS file in dir.  Downloaing...'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
-		url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
-		with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
-			shutil.copyfileobj(httpRes, file_out)
-			print('{} Google Maps JS file refreshed!'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
-
-	f = open(file_name, 'r')
-	html = f.read()
-	f.close()
-	print('{} Google Maps JS loaded from cache'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
-	print(cc)
-	return HttpResponse(html, content_type='text/javascript')
-		

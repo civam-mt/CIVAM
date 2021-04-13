@@ -22,7 +22,7 @@ media
 # Byte-compiled / optimized / DLL files
 *.py[cod]
 *$py.class
-django_project/civam/migrations/[0-9]*.py
+
 # C extensions
 *.so
 
