@@ -1,6 +1,6 @@
 # CIVAM
 ## Description
-* Django Version: 3.1.7
+* Django Version: 2.2.6
 * Python Version: 3.6.8
 * Angular Version: 11.2.5
 

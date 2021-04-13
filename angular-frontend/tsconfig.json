@@ -14,8 +14,7 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-    "types": ["google.maps"]
+    ]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
