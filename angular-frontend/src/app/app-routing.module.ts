@@ -17,6 +17,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 import { NewsComponent } from './news/news.component';
 import { NewsArticleComponent } from './news/news-article/news-article.component';
+import { NewsTagComponent } from './news/news-tag/news-tag.component';
 
 const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
@@ -27,6 +28,7 @@ const routes: Routes = [
 {path:'oral-histories',component: OralHistoriesComponent},
 {path:'news',component: NewsComponent},
 {path:'news/news-article/:newsArticleID',component: NewsArticleComponent},
+{path:'news/news-tag/:newsTagID',component: NewsTagComponent},
 {path:'images',component: ImagesComponent},
 {path:'material-culture',component: MaterialCultureComponent},
 {path:'items/:itemID', component: ItemComponent},

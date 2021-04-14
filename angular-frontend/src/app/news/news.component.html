@@ -14,7 +14,7 @@
                 </div>
                 <div *ngIf="tile.text == 'tags.text'">
                     <mat-chip-list aria-label="Tags">
-                        <mat-chip (click)="sysout(i);" *ngFor="let i of article.getElement(tile.text)"
+                        <mat-chip [routerLink]="['/news/news-tag/', i]" (click)="sysout(i);" *ngFor="let i of article.getElement(tile.text)"
                         >{{i}}</mat-chip>
                     </mat-chip-list>
                 </div>

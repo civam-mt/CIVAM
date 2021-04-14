@@ -39,6 +39,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NewsComponent } from './news/news.component';
 import { NewsArticleComponent } from './news/news-article/news-article.component';
+import { NewsTagComponent } from './news/news-tag/news-tag.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -71,7 +72,8 @@ import { NewsArticleComponent } from './news/news-article/news-article.component
     SmallMapComponent,
     KeywordPageComponent,
     NewsComponent,
-    NewsArticleComponent
+    NewsArticleComponent,
+    NewsTagComponent
   ],
   imports:[
     BrowserAnimationsModule,
