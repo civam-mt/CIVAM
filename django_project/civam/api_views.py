@@ -433,7 +433,15 @@ def get_news_article_by_tag(request):
 
 def get_news_article_by_id(request, article_id):
 	article = get_object_or_404(NewsArticle, pk=article_id)
-	news_list = [article]
+	news_list = [
+		{	"article": article.id,
+			"title": article.title,
+			"cover": article.cover_image.name,
+			"content": article.content,
+			"published_on": article.publish_on,
+			"tags": [{"id":x.id,"name":str(x)} for x in list(article.tags.all())],
+			"author": article.created_by.username
+		}]
 	context = {	"length": len(news_list),
 		"articles": news_list}
 	return JsonResponse(context, safe=False)

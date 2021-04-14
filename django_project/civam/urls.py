@@ -65,7 +65,7 @@ urlpatterns = [
 
     path('api/article/all/', api_views.get_all_news_article, name='all_news_article'),
     path('api/article/tag/', api_views.get_news_article_by_tag, name='news_article_by_tag'),
-    path('api/article/<int:article_id>/', api_views.get_news_article_by_id, name='news_article_by_id'),
+    path('api/article/id/<int:article_id>/', api_views.get_news_article_by_id, name='news_article_by_id'),
 
     # New News Article
     path('api/newstag/<int:newstag_id>/', api_views.get_news_tag_by_id, name='news_tag_by_id'),

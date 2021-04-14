@@ -3,13 +3,7 @@ import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { NewsArticle } from 'src/model/NewsArticle';
 import { NewsSupportService } from '../services/news-support.service';
-
-export interface Tile {
-  color:string;
-  cols: number;
-  rows: number;
-  text: string;
-}
+import { Tile } from 'src/model/Tile';
 
 @Component({
   selector: 'app-news',

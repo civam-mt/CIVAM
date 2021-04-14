@@ -1,0 +1,15 @@
+.card {
+    margin-bottom: 5vh;
+
+    .text {
+        padding: 5%;
+        text-align: left;
+        word-wrap: normal;
+    }
+}
+
+.image {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
