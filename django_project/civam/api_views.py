@@ -373,7 +373,7 @@ def get_news(request):
 	return 0
 
 def get_all_news_article(request):
-	#rawlist = NewsArticle.objects.filter(publish_on <= timezone.now)
+	#rawlist = NewsArticle.objects.filter(published_on__lte datetime.date.today())
 	rawlist = NewsArticle.objects.all()
 	news_list = []
 	for entry in rawlist:
@@ -393,6 +393,15 @@ def get_all_news_article(request):
 	context = { "length": len(news_list) ,
 		"articles": news_list}
 	return JsonResponse(context, safe=False)
+
+def get_news_tag_by_id(request, newstag_id):
+	tag = get_object_or_404(NewsTag, pk=newstag_id)
+	context = {	"length": 1,
+		"tag": [{
+			"word": tag.word
+			}]}
+	return JsonResponse(context, safe=False)
+
 
 def get_news_article_by_tag(request):
 	if (request.method == 'POST'):
@@ -425,5 +434,6 @@ def get_news_article_by_tag(request):
 def get_news_article_by_id(request, article_id):
 	article = get_object_or_404(NewsArticle, pk=article_id)
 	news_list = [article]
-	context = {	"articles": news_list}
+	context = {	"length": len(news_list),
+		"articles": news_list}
 	return JsonResponse(context, safe=False)

@@ -43,4 +43,8 @@ export class NewsComponent implements OnInit {
     }
   }
 
+  sysout(str:any) {
+    console.log(str);
+  }
+
 }

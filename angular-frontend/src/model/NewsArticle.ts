@@ -34,7 +34,10 @@ export class NewsArticle {
     }
 
     public getContentBounded(bound:number = 512):string {
-        return  this._content.length <= bound ? this._content : this._content.substring(0,bound).concat(' ...');
+        let readmore:string = " ...";
+        
+        let str:any = this._content.replace(new RegExp(/([<]((\s|.)*?)[>])/gm), '');
+        return  this._content.length <= bound ? this._content : str.substring(0,bound).concat(readmore);
     }
 
     public getCoverURL():string {

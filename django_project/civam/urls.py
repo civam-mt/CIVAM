@@ -68,7 +68,7 @@ urlpatterns = [
     path('api/article/<int:article_id>/', api_views.get_news_article_by_id, name='news_article_by_id'),
 
     # New News Article
-    path('newstag/<int:newstag_id>/', views.get_news_tag_by_id, name='news_tag_by_id'),
+    path('api/newstag/<int:newstag_id>/', api_views.get_news_tag_by_id, name='news_tag_by_id'),
     # Add a new MapData
     path('newstag/new/', views.new_news_tag, name='new_news_tag'),
     path('newstag/', views.news_tag, name="news_tag")
