@@ -21,7 +21,7 @@ export class NewsArticleComponent implements OnInit {
     {text: 'author', cols:9, rows:1, color:'#ffffff'},
     {text: 'published_on', cols:6, rows: 1, color: 'lightblue'},
     {text: 'cover_url', cols:6, rows:5, color:'lightgreen'},
-    {text: 'content', cols:9, rows: 6, color: 'lightblue'},
+    {text: '', cols:9, rows: 6, color: 'lightblue'},
     {text: 'tags.text', cols:6, rows:1, color: '#DDBDF1'},
   ];
 
