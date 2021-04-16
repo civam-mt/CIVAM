@@ -36,8 +36,14 @@ class PersonOrInstitute(models.Model):
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="Pori_modified")
 
     modified_on = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = [Lower('name')]
+        
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Person or Institution'
 
 #Keyword Table
 class Keyword(models.Model):
@@ -49,7 +55,7 @@ class Keyword(models.Model):
     modified_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['word']
+        ordering = [Lower('word')]
 
     def __str__(self):
         return self.word
@@ -112,6 +118,7 @@ class Item(models.Model):
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_creators")
     location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")    
 
+    is_cataloged = models.IntegerField(default=0, blank=True, null=True, help_text="1: Cataloged, 0: Uncataloged", choices=((1,"Cataloged"),(0,"Uncataloged")))
     private_cataloger = models.CharField(max_length=511, null=True, blank=True)
     private_catalog_date = models.DateTimeField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_created")
