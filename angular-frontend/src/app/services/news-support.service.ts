@@ -46,4 +46,20 @@ export class NewsSupportService {
     });
   }
 
+  getNewsArticleByID(arg0: string) {
+    let localArticles:Array<NewsArticle> = new Array<NewsArticle>(null);
+    let jsn = {"tags": [arg0]};
+    this.apiService.getNewsByTag(jsn).subscribe(response => {
+      response['articles'].forEach(article => {
+        let localArticle = new NewsArticle(article['article_id'], article['title'], 
+          article['cover'], article['content'], new Date(article['published_on']), 
+          article['tags'].map(tag => {
+            return NewsArticle.convertJSONToTag(tag);
+          }), article['author']);
+        localArticles.push(localArticle);
+      });
+      this.newsList.next(localArticles);
+    });
+  }
+
 }

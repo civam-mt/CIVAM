@@ -57,8 +57,8 @@ export class ApiService {
   public getAllNews():Observable<Object> {
     return this.httpClient.get(`${this.API_URL}/api/article/all`);
   }
-  public getNewsByTag(_id:string[]):Observable<Object> {
-    return this.httpClient.post(`${this.API_URL}/api/article/tag/`, {tags: _id});
+  public getNewsByTag(_id:any):Observable<Object> {
+    return this.httpClient.post(`${this.API_URL}/api/article/tag/`, _id);
   }
   public getNewsArticleByID(_id:string):Observable<Object> {
     return this.httpClient.get(`${this.API_URL}/api/article/id/${_id}`);
