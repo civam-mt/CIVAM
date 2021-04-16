@@ -19,7 +19,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 //import { GoogleMapsModule } from '@angular/google-maps';
 import { AgmCoreModule } from '@agm/core';
-import { MaterialModule } from './material-module';
 
 // Component imports
 import { AppComponent } from './app.component';
@@ -84,7 +83,6 @@ import { UsernameService } from './auth/username.service';
     BrowserAnimationsModule,
     MaterialModule,
     MatInputModule,
-    MaterialModule,
     MatFormFieldModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
