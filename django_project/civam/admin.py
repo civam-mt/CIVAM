@@ -61,6 +61,8 @@ class ItemAdmin(DefaultAdmin):
         return obj.is_cataloged == 1
 
     cataloged.boolean = True
+    cataloged.admin_order_field = '-is_cataloged'
+    cataloged.short_description = 'Is Cataloged?'
 
 class PorIAdmin(DefaultAdmin):
     search_fields = ['name']
