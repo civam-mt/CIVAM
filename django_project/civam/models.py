@@ -8,11 +8,13 @@
 ##      - Add additional site text location field options
 ##
 
+from colorfield.fields import ColorField
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.db.models.functions import Lower
+
 
 # Civam models are defined here
 # Some models have created_by, created_on, modified_by, and modified_on fields
@@ -65,7 +67,15 @@ class Keyword(models.Model):
 # A Collection of items
 # Each Collection has a title, description, cover_image, public (collection displayed on site if true)
 class Collection(models.Model):
+
+    font_family = (('Times New Roman', 'Times New Roman'), ('Arial', 'Arial'), 
+    ('Verdana', 'Verdana'), ('Helvetica', 'Helvetica'), ('Tahoma', 'Tahoma'), 
+    ('Trebuchet MS', 'Trebuchet MS'), ('Georgia', 'Georgia'), ('Garamond', 'Garamond'),
+    ('Courier New', 'Courier New'), ('Brush Script MT', 'Brush Script MT'))
+
     title = models.CharField(max_length=255, unique=True)
+    my_order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
     description = models.TextField(blank=True)
     dates = models.CharField(max_length=255, blank=True, null=True)
     cover_image = models.ImageField(upload_to="cover_images/", blank=True)
@@ -82,6 +92,13 @@ class Collection(models.Model):
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_creators")
     location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_locations")
 
+
+    background_image = models.ImageField(upload_to="background_images/collection/",blank=True)
+    font_color =  ColorField(max_length=10, default='#000000')
+    font_type = models.CharField(max_length=255,choices=font_family, blank=True)
+    font_size = models.CharField(max_length=5, blank=True)
+
+
     private_notes = models.TextField(blank=True, null=True)
     private_cataloger = models.CharField(max_length=511, null=True, blank=True)
     private_catalog_date = models.DateTimeField(blank=True, null=True)
@@ -90,6 +107,9 @@ class Collection(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_modified")
     modified_on = models.DateTimeField(auto_now=True)
+
+    class Meta(object):
+        ordering = ['my_order']
 
     def __str__(self):
         return self.title
