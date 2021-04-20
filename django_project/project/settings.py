@@ -30,7 +30,7 @@ SECURE_SSL_REDIRECT = False
 SECRET_KEY = 'au+me7y%0)7t4b@tqh#r7rez)badj=5vxv#ftyhdpd=a1#r-#d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #TODO: MAKE IT SO THIS TOGGLE IS AUTOMATED FOR DEV/PROD
 #ALLOWED_HOSTS = ['civam-mt.org', 'http://maps.googleapis.com/', 'https://maps.googleapis.com/']
@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'colorfield',
+    'adminsortable2',
     'django_countries',
 ]
 

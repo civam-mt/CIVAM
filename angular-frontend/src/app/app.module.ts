@@ -97,7 +97,7 @@ import { environment } from 'src/environments/environment';
     FlexLayoutModule,
     AgmCoreModule.forRoot({
       apiKey: 'replace',
-      protocol:1,
+      protocol:0,
       hostAndPath: environment.apiUrlWithOutProt + '/api/mapdata/cache/js'
     })
   ],
