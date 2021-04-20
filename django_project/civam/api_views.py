@@ -488,11 +488,11 @@ def insert_bulk_map_data(request, map_api):
 
 ## Google Maps JS Cache
 def get_current_map(request, detail):
-	file_name = 'google_cache/google_map.js'
+	file_name = '/home/ubuntu/CISC475_D5/django_project/google_cache/google_map.js'
 	http_prefix = request.headers.HTTP_PREFIX
 	url_root = ''
 	if http_prefix == 'HTTP_':
-		url_root = 'http://maps.googleapis.com/maps/api/js?'
+		url_root = 'https://maps.googleapis.com/maps/api/js?'
 	else:
 		url_root = 'https://maps.googleapis.com/maps/api/js?'
 	cc.increment()
