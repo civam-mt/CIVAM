@@ -96,8 +96,8 @@ import { UsernameService } from './auth/username.service';
     FlexLayoutModule,
     AgmCoreModule.forRoot({
       apiKey: 'replace',
-      protocol:1,
-      hostAndPath: 'localhost:8000/api/mapdata/cache/js'
+      protocol:0,
+      hostAndPath: 'civam-mt.org:8000/api/mapdata/cache/js'
     })
   ],
    
