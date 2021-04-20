@@ -56,6 +56,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
+    'colorfield',
+    'adminsortable2',
     'django.contrib.postgres',
     'guardian',
     'civam.apps.CivamConfig',
