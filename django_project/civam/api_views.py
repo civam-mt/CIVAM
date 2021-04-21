@@ -488,10 +488,16 @@ def insert_bulk_map_data(request, map_api):
 
 ## Google Maps JS Cache
 def get_current_map(request, detail):
-	file_name = 'google_cache/google_map.js'
+	file_name = '/home/ubuntu/CISC475_D5/django_project/google_cache/google_map.js'
+	http_prefix = request.headers.HTTP_PREFIX
+	url_root = ''
+	if http_prefix == 'HTTP_':
+		url_root = 'https://maps.googleapis.com/maps/api/js?'
+	else:
+		url_root = 'https://maps.googleapis.com/maps/api/js?'
 	cc.increment()
 	if (lazyLoad):
-		url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
+		url = url_root + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
 		with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
 			shutil.copyfileobj(httpRes, file_out)
 			print('{} Google Maps JS file passthrough - CACHING DISABLED!'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
@@ -502,13 +508,13 @@ def get_current_map(request, detail):
 		if (not cc.hit_limit() and delta >= threshold):
 			print('{} Google Maps JS file out of date.  Refreshing...'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
 			#url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + request.GET.getlist('key')[0]
-			url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
+			url = url_root + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
 			with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
 				shutil.copyfileobj(httpRes, file_out)
 				print('{} Google Maps JS file refreshed!'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
 	else:
 		print('{} No Google Maps JS file in dir.  Downloaing...'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))
-		url = 'http://maps.googleapis.com/maps/api/js?' + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
+		url = url_root + 'v=' + request.GET.getlist('v')[0] + '&callback=' + request.GET.getlist('callback')[0] + '&key=' + GOOGLE_API_KEY
 		with urllib.request.urlopen(url) as httpRes, open(file_name, 'wb') as file_out:
 			shutil.copyfileobj(httpRes, file_out)
 			print('{} Google Maps JS file refreshed!'.format(datetime.now().strftime('[%d/%b/%Y %H:%M:%S]')))

@@ -47,6 +47,7 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 
 // Service imports
 import { UsernameService } from './auth/username.service';
+import { environment } from 'src/environments/environment';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -96,8 +97,8 @@ import { UsernameService } from './auth/username.service';
     FlexLayoutModule,
     AgmCoreModule.forRoot({
       apiKey: 'replace',
-      protocol:1,
-      hostAndPath: 'localhost:8000/api/mapdata/cache/js'
+      protocol:2,
+      hostAndPath: environment.apiUrlWithOutProt + '/api/mapdata/cache/js'
     })
   ],
    

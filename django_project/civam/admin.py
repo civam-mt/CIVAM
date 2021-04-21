@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, MapData, SiteText
 from guardian.admin import GuardedModelAdmin
+from adminsortable2.admin import SortableAdminMixin
 
 # Civam admin models are defined here
 # The admin module has capabilities to created/edit/view/delete Collections, Items, Images, Videos, and Stories
@@ -46,16 +47,23 @@ class VideoInline(admin.TabularInline):
 class NarrativeInline(admin.TabularInline):
     model = Narrative
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
-    
+
 # Can create Collections and Items and Poris directly
-class CollectionAdmin(DefaultAdmin):
+class CollectionAdmin(SortableAdminMixin, DefaultAdmin):
     list_display = ('title', 'created_by')
     search_fields = ['title','creator__name','keywords__word']
 
 class ItemAdmin(DefaultAdmin):
-    list_display = ('name', 'collection')
+    list_display = ('name', 'collection', 'cataloged')
     inlines = [ImageInline, VideoInline, NarrativeInline]
     search_fields = ['name','collection__title','culture_or_community','creator__name','date_of_creation','place_created','catalog_number','keywords__word']
+
+    def cataloged(self, obj):
+        return obj.is_cataloged == 1
+
+    cataloged.boolean = True
+    cataloged.admin_order_field = '-is_cataloged'
+    cataloged.short_description = 'Is Cataloged?'
 
 class PorIAdmin(DefaultAdmin):
     search_fields = ['name']
