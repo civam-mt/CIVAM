@@ -1,42 +1,48 @@
 <div class="jumbotron container-fluid text-center text-md-center">
    <h1 class="title">Crow Collections Around the World</h1>
 </div>
-<div fxLayout="row">
-   <form [formGroup]="form" (ngSubmit)="filterData()">
-   <section class="example-section">
-      <span class="example-list-section">
-         <ul>
-            <li *ngFor="let selectFilter of boolFilters">
-               <mat-checkbox class="example-margin" [formControlName]="selectFilter[0]">
-                  {{selectFilter[1]}}
-               </mat-checkbox>
-            </li>
-         </ul>
-      </span>
-   </section>
+<div>
+   <h3> Content</h3>
+</div>
+<div>
+   <form class="filter" [formGroup]="form" (ngSubmit)="filterData()">
+      <div class="filter-item-1 filter-item">
+         <section class="">
+            <span class="">
+               <ul>
+                  <li *ngFor="let selectFilter of boolFilters">
+                     <mat-checkbox class="example-margin" [formControlName]="selectFilter[0]">
+                        {{selectFilter[1]}}
+                     </mat-checkbox>
+                  </li>
+               </ul>
+            </span>
+         </section>
+      </div>
 
-   <div *ngFor="let selectDropDown of dropDownFilters">
-      <section class="example-section">
-         <mat-form-field appearance="fill">
-            <mat-label>{{selectDropDown[0]}}</mat-label>
-            <mat-select [formControlName]="selectDropDown[0]" multiple>
-               <mat-option default>All</mat-option>
-               <mat-option *ngFor="let element of selectDropDown[1]" [value]="element">
-                  {{element}}
-               </mat-option>
-            </mat-select>
-         </mat-form-field>
-      </section>
-   </div>
-   <button type="button" class="btn btn-light" style="background-color: #F1FAEE;" (click)="filterData()"
-      style="margin-left:1%;">Test Button</button>
+      <div class="filter-item-2 filter-item" [attr.grid-column]="i + 1"
+         *ngFor="let selectDropDown of dropDownFilters; let i = index">
+         <section>
+            <mat-form-field appearance="fill">
+               <mat-label>{{selectDropDown[0]}}</mat-label>
+               <mat-select [formControlName]="selectDropDown[0]" multiple>
+                  <mat-option *ngFor="let element of selectDropDown[1]" [value]="element">
+                     {{element}}
+                  </mat-option>
+               </mat-select>
+            </mat-form-field>
+         </section>
+      </div>
+      <div class="filter-item-3 filter-item">
+         <button type="button" class="btn btn-light " style="background-color: #F1FAEE;" (click)="filterData()"
+            style="margin-left:1%;">Search</button>
+      </div>
    </form>
 </div>
 <div class="mapPage">
-   
+
    <div class="map" *ngIf="map_loaded">
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [usePanning]="panning" class="accordion">
-         <!-- <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker> -->
          <div *ngFor='let marker of mapMarkers'>
             <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title" [label]=""
                (markerClick)="showMarker(marker.title)" [animation]="marker.animation"
@@ -46,36 +52,15 @@
 
       <mat-accordion>
          <mat-expansion-panel [expanded]="clicked" hideToggle class="accordion" [ngClass]="isClickable()">
-            <!-- <mat-expansion-panel-header class="accordion">
-               <mat-panel-title>
-                  Not needed, looks better w/o
-               </mat-panel-title>
-            </mat-expansion-panel-header> -->
             <div *ngIf="clicked" class="afterClick">
-               <div class="card-header" style="background-color:#77859A; color:#FFFFFF;">
-                  <span id="title">{{selectedMarker.title}}</span>
-               </div>
-               <div class="card-body" *ngIf="selectedMarker instanceof CrowMapMarker; else default">
-                  <div>{{asCrowMapMarker(selectedMarker).city}}</div>
-                  <div>{{asCrowMapMarker(selectedMarker).country}}</div>
-                  <div>{{asCrowMapMarker(selectedMarker).continent}}</div>
-                  <div>{{asCrowMapMarker(selectedMarker).code}}</div>
-                  <div>Crow: {{asCrowMapMarker(selectedMarker).crow_material}},
-                     Digi: {{asCrowMapMarker(selectedMarker).digital_collection}},
-                     Repl: {{asCrowMapMarker(selectedMarker).replied_to_contact}}</div>
-               </div>
-               <ng-template #default class="card-body">
-                  <div>{{selectedMarker.label}}</div>
-                  <div>{{selectedMarker.title}}</div>
-                  <div>Default Item</div>
-               </ng-template>
-            </div>
-            <div *ngIf="!map_loaded">
-               <div class="d-flex justify-content-center" style="padding-top: 45vh; vertical-align: middle;">
-                  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                     <span class="sr-only">Loading...</span>
-                  </div>
-               </div>
+               <mat-grid-list cols="6" rowHeight="75px" class="card" style="width:100%">
+                  <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
+                     [style.background]="tile.color">
+                     <div>
+                        {{selectedMarker.getElement(tile.text)}}
+                     </div>
+                  </mat-grid-tile>
+               </mat-grid-list>
             </div>
          </mat-expansion-panel>
       </mat-accordion>
