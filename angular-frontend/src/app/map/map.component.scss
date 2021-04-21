@@ -28,6 +28,7 @@
 .accordion {
     //width: 100%;
     //height:100%;
+    padding-bottom:0%;
 }
 
 .disabled-pointer {
@@ -87,7 +88,6 @@
     margin: 0 auto;
   }
   .card{
-    margin-bottom: 2.5%;
     width: 35vw;
     height: 30vh;
   }
@@ -109,7 +109,8 @@
     margin: 0 auto;
   }
   .afterClick{
-    padding: 2.5%;
+    padding-top: 2.5%;
+    //padding-bottom: 2.5%;
     margin: 0 auto;
   }
 

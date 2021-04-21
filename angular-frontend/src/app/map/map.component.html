@@ -51,7 +51,7 @@
       </agm-map>
 
       <mat-accordion>
-         <mat-expansion-panel [expanded]="clicked" hideToggle class="accordion" [ngClass]="isClickable()">
+         <mat-expansion-panel [expanded]="clicked" hideToggle style="padding-bottom:0%;" [ngClass]="isClickable()">
             <div *ngIf="clicked" class="afterClick">
                <mat-grid-list cols="6" rowHeight="75px" class="card" style="width:100%">
                   <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"

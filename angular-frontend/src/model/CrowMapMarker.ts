@@ -146,9 +146,11 @@ export class CrowMapMarker extends GoogleMapMarker {
         this.digital_collection = digital;
         this.replied_to_contact = replied;
         this.obj_photos = obj_photo;
+        this.name = name;
         this.street = street;
         this.city = city;
         this.country = country;
+        this.province = province;
         this.continent = continent;
         this.code = code;
         this.url = url;
@@ -213,6 +215,8 @@ export class CrowMapMarker extends GoogleMapMarker {
                 return this.url;
             case "notes":
                 return this.notes;
+            case "cityprovincecountry":
+                return this.cityProvinceCountry();
             default:
                 return super.getElement(str);
         }
@@ -238,4 +242,10 @@ export class CrowMapMarker extends GoogleMapMarker {
     static asContinent(arg0: string): string {
         return Continent[arg0];
       }
+
+    public cityProvinceCountry():string {
+        return this.city == this.province ? 
+            this.city + ', ' + this.country :
+            this.city + ', ' + this.province + ', ' + this.country;
+    }
 }

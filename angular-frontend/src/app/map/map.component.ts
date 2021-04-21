@@ -15,13 +15,11 @@ import { environment } from 'src/environments/environment';
 export class MapComponent implements OnInit {
   API_URL = environment.apiUrl;
   tiles: MapTile[] = [
-    {text: 'name', cols:3, rows:1, color:'lightgreen'},
-    {text: '', cols:1, rows:1, color:'#ffffff'},
-    {text: 'city', cols:1, rows: 1, color: 'lightblue'},
-    {text: 'countries', cols:1, rows:1, color:'lightgreen'},
+    {text: 'name', cols:4, rows:1, color:'lightgreen'},
+    {text: 'cityProvinceCountry', cols:2, rows: 1, color: 'lightblue'},
     {text: '', cols:2, rows: 3, color: 'lightblue'},
-    {text: 'notes', cols:4, rows:3, color: 'lightpink'},
-    {text: 'url', cols:6, rows:1, color: '#DDBDF1'},
+    {text: 'notes', cols:4, rows:2, color: 'lightpink'},
+    {text: 'url', cols:4, rows:1, color: '#DDBDF1'},
   ];
 
   lat = 0;
