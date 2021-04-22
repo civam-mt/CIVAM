@@ -40,8 +40,6 @@ import { ImagesComponent } from './images/images.component';
 import { PeopleComponent } from './people/people.component';
 import { ModalComponent } from './modal/modal.component';
 import { SearchResultComponent } from './search-result/search-result.component';
-import { FullMapComponent } from './map/full-map/full-map.component';
-import { SmallMapComponent } from './map/small-map/small-map.component';
 import { CardComponent } from './card/card.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 
@@ -77,8 +75,6 @@ import { environment } from 'src/environments/environment';
     ModalComponent,
     SearchResultComponent,
     CardComponent,
-    FullMapComponent,
-    SmallMapComponent,
     KeywordPageComponent
   ],
   imports:[
