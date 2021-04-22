@@ -30,7 +30,11 @@ export class GoogleMapMarker implements Comparable {
             .localeCompare(other.title.toLocaleLowerCase());
     }
 
-    strToObj(str: string): any {
+    getElement(str: string): any {
+        return this._getElement(str);
+    }
+
+    _getElement(str: string): any {
         switch (str.toLowerCase()) {
             case "clickable":
                 return this.clickable;
@@ -116,10 +120,11 @@ export class CrowMapMarker extends GoogleMapMarker {
     continent: string;
     url: string;
     code: string;
+    notes: string;
 
     static boolFilters: string[][] = [['crow_material', 'Crow Material'], ['digital_collection', 'Digital Collection']];
     static dropDownFilters: Array<[string, string[]]> = new Array<[string, string[]]>(['Continent', ['North America', 'South America', 'Europe',
-        'Africa', 'Asia', 'Antartica', 'Oceana']]);
+        'Africa', 'Asia', 'Antartica', 'Oceania']]);
 
     public constructor(lat: number,
         lng: number,
@@ -135,18 +140,21 @@ export class CrowMapMarker extends GoogleMapMarker {
         continent: string,
         code: string,
         url: string,
-        svg: string) {
+        svg: string, notes:string) {
         super(lat, lng, name + ': ' + province + ', ' + country, 'Label To Be Filled Later', 'ID To Be Filled Later');
         this.crow_material = crow_material;
         this.digital_collection = digital;
         this.replied_to_contact = replied;
         this.obj_photos = obj_photo;
+        this.name = name;
         this.street = street;
         this.city = city;
         this.country = country;
+        this.province = province;
         this.continent = continent;
         this.code = code;
         this.url = url;
+        this.notes = notes;
         try {
             this.customImgUrl = new SVGIcon(SVGMap[svg], 20, 20);
         }
@@ -163,14 +171,14 @@ export class CrowMapMarker extends GoogleMapMarker {
                 let subbool = false;
                 Array.from(element[1]).forEach(subelement => {
                     //console.log(subelement);
-                    subbool = subbool || (subelement == this.strToObj(element[0]));
+                    subbool = subbool || (subelement == this.getElement(element[0]));
                 });
                 //console.log(subbool);
                 bool = subbool && bool;
             }
-            else if ((typeof element[1] === 'boolean')) {
+            else if ((typeof element[1] === 'boolean') && element[1] == true) {
                 //console.log(element[0] + ' ' + element[1]);
-                bool = bool && this.strToObj(element[0]) == element[1];
+                bool = bool && this.getElement(element[0]) == element[1];
                 //console.log(element[0] + ' ' + this.strToObj(element[0]) + ' \t res =' + bool);
             }
         });
@@ -178,7 +186,7 @@ export class CrowMapMarker extends GoogleMapMarker {
         return bool;
     }
 
-    strToObj(str: string): any {
+    getElement(str: string): any {
         let ret: any;
         switch (str.toLowerCase()) {
             case "crow_material":
@@ -200,14 +208,17 @@ export class CrowMapMarker extends GoogleMapMarker {
             case "countries":
                 return this.country;
             case "continent":
-                return Continent[this.continent] != null ? Continent[this.continent] : "Not Provided";
+                return this.continent;
             case "code":
                 return this.code;
             case "url":
                 return this.url;
+            case "notes":
+                return this.notes;
+            case "cityprovincecountry":
+                return this.cityProvinceCountry();
             default:
-                let t:GoogleMapMarker = this;
-                return t.strToObj(str);;
+                return super.getElement(str);
         }
     }
 
@@ -226,5 +237,15 @@ export class CrowMapMarker extends GoogleMapMarker {
                 break;
         }
         return false;
+    }
+
+    static asContinent(arg0: string): string {
+        return Continent[arg0];
+      }
+
+    public cityProvinceCountry():string {
+        return this.city == this.province ? 
+            this.city + ', ' + this.country :
+            this.city + ', ' + this.province + ', ' + this.country;
     }
 }
