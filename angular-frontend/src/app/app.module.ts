@@ -19,6 +19,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 //import { GoogleMapsModule } from '@angular/google-maps';
 import { AgmCoreModule } from '@agm/core';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 // Component imports
 import { AppComponent } from './app.component';
@@ -39,8 +40,6 @@ import { ImagesComponent } from './images/images.component';
 import { PeopleComponent } from './people/people.component';
 import { ModalComponent } from './modal/modal.component';
 import { SearchResultComponent } from './search-result/search-result.component';
-import { FullMapComponent } from './map/full-map/full-map.component';
-import { SmallMapComponent } from './map/small-map/small-map.component';
 import { CardComponent } from './card/card.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 
@@ -76,8 +75,6 @@ import { environment } from 'src/environments/environment';
     ModalComponent,
     SearchResultComponent,
     CardComponent,
-    FullMapComponent,
-    SmallMapComponent,
     KeywordPageComponent
   ],
   imports:[
@@ -95,9 +92,10 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     MatTabsModule,
     FlexLayoutModule,
+    NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'replace',
-      protocol:0,
+      protocol:2,
       hostAndPath: environment.apiUrlWithOutProt + '/api/mapdata/cache/js'
     })
   ],

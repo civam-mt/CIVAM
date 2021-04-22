@@ -36,6 +36,7 @@
     "jquery": "^3.5.0",
     "jwt-decode": "^2.2.0",
     "micromatch": "^4.0.2",
+    "ng-multiselect-dropdown": "^0.3.4",
     "popper": "^1.0.1",
     "popper.js": "^1.14.0",
     "rxjs": "~6.6.6",

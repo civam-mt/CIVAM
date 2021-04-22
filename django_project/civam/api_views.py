@@ -28,6 +28,8 @@ from profanityfilter import ProfanityFilter
 from akismet import Akismet
 from decimal import *
 from django_countries import countries
+from django.core.mail import send_mail, BadHeaderError
+import warnings
 
 lazyLoad = True
 AKISMET_API_KEY = "2be27375a975"
@@ -76,23 +78,47 @@ def add_narrative(request):
 		body_unicode = request.body.decode('utf-8')
 		body = json.loads(body_unicode)
 		akismet_api = Akismet(key=AKISMET_API_KEY, blog_url=AKISMET_BLOG_URL)
+		item = get_object_or_404(Item, pk=body["itemID"])
 
 		is_spam = akismet_api.comment_check(
-            user_ip=request.META['REMOTE_ADDR'],
-            user_agent=request.META['HTTP_USER_AGENT'],
-            comment_type='contact-form',
-            comment_author=body['author'],
-            comment_content=body['narrative'],
-        )
+			user_ip=request.META['REMOTE_ADDR'],
+			user_agent=request.META['HTTP_USER_AGENT'],
+			comment_type='contact-form',
+			comment_author=body['author'],
+			comment_content=body['narrative'],
+		)
+
+		# email generation
+		admin_email = ["civam-mt@gmail.com"]
+		subject = "[AUTOMATED] Narrative Post Submitted: "
+		message = "New Narrative posted on Item <" + str(item) + ">\n\nNarrative author: " + body['author'] + "\nNarrative text: " + body['narrative'] + "\nUser IP: " + request.META['REMOTE_ADDR'] + "\nUser agent: " + request.META['HTTP_USER_AGENT'] + "\n"
+
 		if is_spam:
+			subject += "NOT POSTED"
+			message += "\nResult: NOT Posted\nReason: Failed spam filter\n"
+			try:
+				send_mail(subject, message, None, admin_email)
+			except BadHeaderError:
+				warnings.warn("Invalid header. Mail send failed.", UserWarning)
 			return JsonResponse({'added_narrative': "false"}, safe=False)
 
 		if pf.is_profane(body["narrative"]) or pf.is_profane(body["author"]):
+			subject += "NOT POSTED"
+			message += "\nResult: NOT Posted\nReason: Failed profanity filter\n"
+			try:
+				send_mail(subject, message, None, admin_email)
+			except BadHeaderError:
+				warnings.warn("Invalid header. Mail send failed.", UserWarning)
 			return JsonResponse({'added_narrative': "false"}, safe=False)
-		item = get_object_or_404(Item, pk=body["itemID"])
 		new_narrative = Narrative.objects.create(author=body["author"], 
 												content=body["narrative"],
 												item=item)
+		subject += "POSTED"
+		message += "\nResult: Posted\n"
+		try:
+			send_mail(subject, message, None, admin_email)
+		except BadHeaderError:
+			warnings.warn("Invalid header. Mail send failed.", UserWarning)
 		return JsonResponse({'added_narrative': "true"}, safe=False)
 	return JsonResponse({'added_narrative': "false"}, safe=False)
 
@@ -155,8 +181,19 @@ def searchResult(request):
 # @permission_required('civam.view_collection', (Collection, 'id', 'collection_id'), return_403=True)
 def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
-    item_list = Item.objects.filter(collection=collection)
+
+    keywordIds = json.loads(request.GET['keywordIds'])
+
+    if (keywordIds == []):
+        item_list = Item.objects.filter(collection=collection)
+    else :
+        item_list = Item.objects.filter(collection=collection, keywords__in=keywordIds).distinct()
+
+    uniqueKeywordIds = Item.objects.filter(collection=collection).values('keywords').distinct()
+    uniqueKeywords = Keyword.objects.filter(id__in=uniqueKeywordIds)
+
     item_list = list(item_list.values())
+
     for item in item_list:
         del item["created_by_id"]
         del item["created_on"]
@@ -165,6 +202,7 @@ def collection(request, collection_id):
     context = {
 	'item_list': item_list, 
     'title': collection.title,
+	'unique_item_keywords': [{"id":x.id,"name":str(x)} for x in list(uniqueKeywords)],
     'description': collection.description,
 	'cover_image':collection.cover_image.name,
 	'public':collection.public,
