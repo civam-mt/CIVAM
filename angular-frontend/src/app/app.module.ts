@@ -19,6 +19,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 //import { GoogleMapsModule } from '@angular/google-maps';
 import { AgmCoreModule } from '@agm/core';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 // Component imports
 import { AppComponent } from './app.component';
@@ -91,6 +92,7 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     MatTabsModule,
     FlexLayoutModule,
+    NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'replace',
       protocol:1,

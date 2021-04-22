@@ -4,6 +4,8 @@ import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
 import { MapSupportService } from '../map-support.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Tile, MapTile } from 'src/model/Tile';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-map',
@@ -11,8 +13,15 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  API_URL = environment.apiUrl;
+  tiles: MapTile[] = [
+    {text: 'name', cols:4, rows:1, color:'lightgreen'},
+    {text: 'cityProvinceCountry', cols:2, rows: 1, color: 'lightblue'},
+    {text: '', cols:2, rows: 3, color: 'lightblue'},
+    {text: 'notes', cols:4, rows:2, color: 'lightpink'},
+    {text: 'url', cols:4, rows:1, color: '#DDBDF1'},
+  ];
 
-  title = 'My first AGM project';
   lat = 0;
   lng = 0;
   zoom = 2;

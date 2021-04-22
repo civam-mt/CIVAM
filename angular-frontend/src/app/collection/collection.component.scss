@@ -16,15 +16,20 @@ $lighter-gold: #ffd400;
     background-color: $lighter-gold!important;
 }
 
+.theme-filter {
+    margin-top: 1rem;
+    width: 50%;
+}
+
 .outline{
     background-color: white;
-    opacity: 85%;
+    opacity: .85;
 }
 
 .mat-expansion-panel{
     outline-color: #f7d417;
     outline-style: solid;
-    opacity: 85%;
+    opacity: .85;
 }
 
 .cInformation{

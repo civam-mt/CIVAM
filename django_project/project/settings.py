@@ -39,6 +39,19 @@ ALLOWED_HOSTS = ['198.211.99.20', 'localhost:8000', '127.0.0.1', 'civam-mt.org',
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+# Local Development SMPT Server
+# Command to launch: python -m smtpd -n -c DebuggingServer localhost:1025
+#EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
+
+# Gmail SMTP Server
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'civam-mt@gmail.com'
+EMAIL_HOST_PASSWORD = '<insert generated application password from env>'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 '''
 CORS_ORIGIN_WHITELIST = [
     'https://127.0.0.1:4200',
