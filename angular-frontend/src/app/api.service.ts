@@ -32,8 +32,9 @@ export class ApiService {
   public getItemByCollectionIDItemID(collectionID: string, itemID: string) {
     return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/${itemID}/`);
   }
-  public getCollectionByCollectionID(collectionID: string) {
-    return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/`);
+  public getCollectionByCollectionID(collectionID: string, keywordIds: string[]) {
+    const keywordIdsString = JSON.stringify(keywordIds);
+    return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/?keywordIds=${keywordIdsString}`);
   }
   public getAllGroupsByCollectionID(collectionID: string) {
     return this.httpClient.get(`${this.API_URL}/collections/${collectionID}/groups/`);

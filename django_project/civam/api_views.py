@@ -181,8 +181,19 @@ def searchResult(request):
 # @permission_required('civam.view_collection', (Collection, 'id', 'collection_id'), return_403=True)
 def collection(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
-    item_list = Item.objects.filter(collection=collection)
+
+    keywordIds = json.loads(request.GET['keywordIds'])
+
+    if (keywordIds == []):
+        item_list = Item.objects.filter(collection=collection)
+    else :
+        item_list = Item.objects.filter(collection=collection, keywords__in=keywordIds).distinct()
+
+    uniqueKeywordIds = Item.objects.filter(collection=collection).values('keywords').distinct()
+    uniqueKeywords = Keyword.objects.filter(id__in=uniqueKeywordIds)
+
     item_list = list(item_list.values())
+
     for item in item_list:
         del item["created_by_id"]
         del item["created_on"]
@@ -191,6 +202,7 @@ def collection(request, collection_id):
     context = {
 	'item_list': item_list, 
     'title': collection.title,
+	'unique_item_keywords': [{"id":x.id,"name":str(x)} for x in list(uniqueKeywords)],
     'description': collection.description,
 	'cover_image':collection.cover_image.name,
 	'public':collection.public,
