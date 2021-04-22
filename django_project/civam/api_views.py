@@ -32,7 +32,7 @@ from django_countries import countries
 lazyLoad = True
 AKISMET_API_KEY = "2be27375a975"
 MAP_API_KEY = "JiNAk2nq9sk1jHakf0"
-GOOGLE_API_KEY = "AIzaSyCKsC8YlYs6bkPacj3Sd_Jf2SAvMWGJMy8"
+GOOGLE_API_KEY = "AIzaSyBdzQliIx3SHhnFwX_YvxmoYcZJk9-2tQE"
 
 AKISMET_BLOG_URL = "http://localhost:4200/"
 pf = ProfanityFilter()
@@ -488,7 +488,7 @@ def insert_bulk_map_data(request, map_api):
 
 ## Google Maps JS Cache
 def get_current_map(request, detail):
-	file_name = '/home/ubuntu/CISC475_D5/django_project/google_cache/google_map.js'
+	file_name = 'google_cache/google_map.js'
 	http_prefix = request.headers.HTTP_PREFIX
 	url_root = ''
 	if http_prefix == 'HTTP_':
