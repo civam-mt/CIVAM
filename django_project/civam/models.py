@@ -8,9 +8,13 @@
 ##      - Add additional site text location field options
 ##
 
+from colorfield.fields import ColorField
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django_countries.fields import CountryField
+from django.utils.translation import gettext_lazy as _
 from django.db.models.functions import Lower
+
 
 # Civam models are defined here
 # Some models have created_by, created_on, modified_by, and modified_on fields
@@ -63,7 +67,15 @@ class Keyword(models.Model):
 # A Collection of items
 # Each Collection has a title, description, cover_image, public (collection displayed on site if true)
 class Collection(models.Model):
+
+    font_family = (('Times New Roman', 'Times New Roman'), ('Arial', 'Arial'), 
+    ('Verdana', 'Verdana'), ('Helvetica', 'Helvetica'), ('Tahoma', 'Tahoma'), 
+    ('Trebuchet MS', 'Trebuchet MS'), ('Georgia', 'Georgia'), ('Garamond', 'Garamond'),
+    ('Courier New', 'Courier New'), ('Brush Script MT', 'Brush Script MT'))
+
     title = models.CharField(max_length=255, unique=True)
+    my_order = models.PositiveIntegerField(default=0, blank=False, null=False)
+
     description = models.TextField(blank=True)
     dates = models.CharField(max_length=255, blank=True, null=True)
     cover_image = models.ImageField(upload_to="cover_images/", blank=True)
@@ -80,6 +92,13 @@ class Collection(models.Model):
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_creators")
     location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_locations")
 
+
+    background_image = models.ImageField(upload_to="background_images/collection/",blank=True)
+    font_color =  ColorField(max_length=10, default='#000000')
+    font_type = models.CharField(max_length=255,choices=font_family, blank=True)
+    font_size = models.CharField(max_length=5, blank=True)
+
+
     private_notes = models.TextField(blank=True, null=True)
     private_cataloger = models.CharField(max_length=511, null=True, blank=True)
     private_catalog_date = models.DateTimeField(blank=True, null=True)
@@ -88,6 +107,9 @@ class Collection(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="collections_modified")
     modified_on = models.DateTimeField(auto_now=True)
+
+    class Meta(object):
+        ordering = ['my_order']
 
     def __str__(self):
         return self.title
@@ -191,7 +213,78 @@ class CollectionGroup(models.Model):
     def __str__(self):
         return "CollectionGroup: {} {}".format(self.collection.title, self.group.name)
 
+# The MapData class is used to allow easy insertion to the database a list of all map locations.
+# Previously, this was stored in a google sheets document, but this allows easier access and more fedelity for the maps opperations
+class MapData(models.Model):
 
+    class ObjOrPhoto(models.TextChoices):
+        OBJECT = 'OB', _('Objects')
+        PHOTO = 'PH', _('Photos')
+        BOTH = 'BO', _('Both')
+        NONE = 'NA', _('None')
+
+    class Continent(models.TextChoices):
+        NA = 'NA', _('North America')
+        SA = 'SA', _('South America')
+        AF = 'AF', _('Africa')
+        EU = 'EU', _('Europe')
+        AS = 'AS', _('Asia')
+        OS = 'OS', _('Oceania')
+        AN = 'AN', _('Antartica')
+
+    class SVGMapIcon(models.TextChoices):
+        ARCH = 'ARCH', _('Archaeological')
+        ARTS = 'ARTS', _('Art Gallery')
+        ATTR = 'ATTR', _('Attraction')
+        MONT = 'MONT', _('Monument')
+        MUES = 'MUES', _('Museum')
+
+    name = models.CharField("Instituition Name", max_length=255)
+    lat = models.DecimalField("Latitude", max_digits=14, decimal_places=10)
+    lng = models.DecimalField("Longitude", max_digits=14, decimal_places=10)
+    url = models.CharField("Institution URL", max_length=255)
+    svg_choice = models.CharField(
+        max_length=4,
+        choices=SVGMapIcon.choices,
+        default='MUES'
+    )
+    contact_email = models.EmailField("Contact Email", max_length=254)
+    crow_material = models.BooleanField("Do they have Crow Material?")
+    digital_collection = models.BooleanField("Do they have a Digital Collection?")
+    replied_to_contact = models.BooleanField("Have they replied to our contact?")
+    history = models.TextField("Relevant History")
+    obj_photos = models.CharField(
+        max_length=2,
+        choices=ObjOrPhoto.choices,
+        default='NA',
+    )
+    street = models.TextField(null=True)
+    city = models.TextField(null=True)
+    province = models.TextField("Province/State", null=True)
+    country = CountryField(null=True)
+    continent = models.CharField(null=True,
+        max_length=2,
+        choices=Continent.choices,
+        default = 'NA'
+    )
+    code = models.TextField("ZIP Code")
+    notes = models.TextField()
+
+    publish = models.BooleanField("Publish on Site", default=True)
+
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="mapdata_created")
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="mapdata_modified")
+    modified_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '{},{},{}\n'.format(self.name, 
+            self.lat, 
+            self.lng)
+    
+    class Meta:
+        ordering = ['name']
+        
 class SiteText(models.Model):
     DATA_LOCATIONS = [
         ('ABOUT','About Headline'),
