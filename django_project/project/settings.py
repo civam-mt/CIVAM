@@ -47,8 +47,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 # Gmail SMTP Server
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'civam-mt@gmail.com'
-EMAIL_HOST_PASSWORD = '<insert generated application password from env>'
+EMAIL_HOST_USER = 'civam.mt@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get("GMAILPASSWORD")
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
