@@ -6,6 +6,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tile, MapTile } from 'src/model/Tile';
 import { environment } from 'src/environments/environment';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-map',
@@ -21,22 +22,23 @@ export class MapComponent implements OnInit {
     {text: 'notes', cols:4, rows:2, color: 'lightpink'},
     {text: 'url', cols:4, rows:1, color: '#DDBDF1'},
   ];
+  public siteText:string;
 
-  lat = 0;
-  lng = 0;
-  zoom = 2;
-  panelOpenState = false;
-  panning = true;
-  map_loaded:boolean = true;
-  clicked:boolean = false;
-  boolFilters = CrowMapMarker.boolFilters;
-  dropDownFilters = CrowMapMarker.dropDownFilters;
-  form:FormGroup;
-  selectedMarker:GoogleMapMarker;
-  mapMarkers:Array<GoogleMapMarker>; 
+  public lat = 0;
+  public lng = 0;
+  public zoom = 2;
+  public panelOpenState = false;
+  public panning = true;
+  public map_loaded:boolean = true;
+  public clicked:boolean = false;
+  public boolFilters = CrowMapMarker.boolFilters;
+  public dropDownFilters = CrowMapMarker.dropDownFilters;
+  public form:FormGroup;
+  public selectedMarker:GoogleMapMarker;
+  public mapMarkers:Array<GoogleMapMarker>; 
 
 
-  constructor(httpClient: HttpClient, private mapSupport:MapSupportService, private formBuilder: FormBuilder) {
+  constructor(httpClient: HttpClient, private mapSupport:MapSupportService, private formBuilder:FormBuilder, private apiService:ApiService) {
     mapSupport.mapElements.subscribe(mapArray => {
       if (mapArray != null) {
         this.mapMarkers = mapArray;
@@ -62,7 +64,8 @@ export class MapComponent implements OnInit {
       Countries: ['', Validators.nullValidator],
     })
 
-  }
+    this.getSiteTexts();
+   }
 
   showMarker(title:string){
     // This allows us to bounce the last selected marker without nulling a value
@@ -98,6 +101,12 @@ export class MapComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+  }
+
+  getSiteTexts() {
+    this.apiService.getSiteTextByLocation('MAP_CONTEXT').subscribe((data) => {
+      this.siteText = data["content"];
+    });
   }
 
 }

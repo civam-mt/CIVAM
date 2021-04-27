@@ -279,17 +279,12 @@ django_project/civam/migrations/0007_collection_dates.py
 * Go into the angular folder with `cd angular-frontend`
 * Run `ng build --prod` to get the updated angular files
 * Run `sudo cp -r /home/ubuntu/CISC475_D5/angular-frontend/dist/angular-frontend/* /var/www/html/` to move the updated angular files into the frontend html folder
-* Run `ps auxw | grep runserver` to see any instances of the django server running
-* If there are any threads running the process `/home/ubuntu/CISC475_D5/civam-env/bin/python3 /home/ubuntu/CISC475_D5/django_project/manage.py runserver 0.0.0.0:8000` then take their thread number and `run sudo kill 1234` (replace 1234 with the thread number)
-* To start and properly detach the Django server, we will use screen
-* Type `screen -S Django` and hit enter
 * Go back to the CISC475_D5 folder and run `source civam-env/bin/activate` so that you’ll be able to run the django commands correctly
 * Run `python3 manage.py makemigrations` and `python3 manage.py migrate`. If these don’t work you make have to follow the steps to reset the postgres tables (THIS WILL DELETE ALL ITEMS SO ONLY DO IT IF YOU’VE CHECKED EVERYTHING ELSE)
-* Run `python3 manage.py runserver 0.0.0.0:8000` to make sure the server runs
-* Once the server is running, detach the screen using `Ctrl + A , D`  (Control and A together followed by D)
-* To reattach, simply `screen -r`, and for more info checkout the `man screen`
-* Go to civam-mt.org/home to make sure that collections are loading, and once you’ve confirmed that go into the instance in aws and reboot it, which will allow you to keep the django server running in the background continuously
-* Give aws a few minutes to reboot, and if it isn’t working after that, make sure to clear your cache before checking for any further problems
+* Django is served in production by apache using the wsgi module to allow apache to understand python code
+* Django and WSGI configuration located at `/etc/apache2/sites-available/django-le-ssl.conf` and `/home/ubuntu/CISC475_D5/django_project/project/wsgi.py`
+* In order to start and stop the django backend, you must start and stop apache which uses the commands: `sudo service apache2 start` and `sudo service apache2 stop` respectively
+* Go to civam-mt.org/home to make sure that collections are loading
 
 ---
 # TODO: Tasks Cindy Would Like Done on Website (for a future group)

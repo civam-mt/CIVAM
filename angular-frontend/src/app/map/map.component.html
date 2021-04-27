@@ -1,8 +1,8 @@
 <div class="jumbotron container-fluid text-center text-md-center">
    <h1 class="title">Crow Collections Around the World</h1>
 </div>
-<div>
-   <h3> Content</h3>
+<div [innerHTML]="siteText">
+   
 </div>
 <div>
    <form class="filter" [formGroup]="form" (ngSubmit)="filterData()">

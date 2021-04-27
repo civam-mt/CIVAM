@@ -29,7 +29,6 @@ export class AboutComponent implements OnInit {
         this.siteTexts[data["location"]] = data["content"];
       });
     }
-    console.log(this.siteTexts);
   }
 }
 
