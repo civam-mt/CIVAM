@@ -104,7 +104,7 @@ export class MapComponent implements OnInit {
   }
 
   getSiteTexts() {
-    this.apiService.getSiteTextByLocation('MAP_CONTEXT').subscribe((data) => {
+    this.apiService.getSiteTextByLocation('MAP_CON').subscribe((data) => {
       this.siteText = data["content"];
     });
   }

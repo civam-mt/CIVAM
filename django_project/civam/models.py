@@ -294,7 +294,8 @@ class SiteText(models.Model):
         ('PEOPLE2','About: People: Bio 2'),
         ('PEOPLE3','About: People: Bio 3'),
         ('PEOPLE4','About: People: Bio 4'),
-        ('CONTACT','About: Resources & Contact Information')
+        ('CONTACT','About: Resources & Contact Information'),
+        ('MAP_CON', 'Map: Context for the Map, and How to use it')
     ]
     content = models.TextField()
     location = models.CharField('Location of text on site', max_length=8, choices=DATA_LOCATIONS, default='ABOUT', unique=True)

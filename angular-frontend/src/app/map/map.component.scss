@@ -9,7 +9,7 @@
   .map {
     width: 100%;
     min-height: 30vh;
-    height: 70vh;
+    height: 50vh;
     float: right;
     margin: 0 auto;
     margin-right: 0.5%;
@@ -31,12 +31,21 @@
     padding-bottom:0%;
 }
 
+.accordian-wrapper {
+  margin-bottom:2vh;
+}
+
 .disabled-pointer {
     pointer-events: none;
 }  
 
 .mat-dialog-title {
   text-align: center;
+}
+
+.map-icon-credit {
+  margin-top:1vh;
+  margin-bottom:1vh;
 }
 
 .loginButton {
