@@ -282,6 +282,8 @@ django_project/civam/migrations/0007_collection_dates.py
 * Go back to the CISC475_D5 folder and run `source civam-env/bin/activate` so that you’ll be able to run the django commands correctly
 * Run `python3 manage.py makemigrations` and `python3 manage.py migrate`. If these don’t work you make have to follow the steps to reset the postgres tables (THIS WILL DELETE ALL ITEMS SO ONLY DO IT IF YOU’VE CHECKED EVERYTHING ELSE)
 * Django is served in production by apache using the wsgi module to allow apache to understand python code
+* Django and WSGI configuration located at `/etc/apache2/sites-available/django-le-ssl.conf` and `/home/ubuntu/CISC475_D5/django_project/project/wsgi.py`
+* In order to start and stop the django backend, you must start and stop apache which uses the commands: `sudo service apache2 start` and `sudo service apache2 stop` respectively
 * Go to civam-mt.org/home to make sure that collections are loading
 
 ---
