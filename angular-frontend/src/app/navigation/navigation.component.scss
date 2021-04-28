@@ -82,6 +82,7 @@ a {
     color: $gold;
 }
 
+
 // the current drop-down menu item hovered on from within the browse drop-down
 a.dropdown-item:hover {
     background-color: $lighter-gold!important;
@@ -103,6 +104,7 @@ a.dropdown-item.active {
 
 .dropdown-menu {
     background-color: $theme-color;
+    position: absolute;
 }
 
 .nav-link {
