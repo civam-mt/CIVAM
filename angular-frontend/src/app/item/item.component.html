@@ -148,7 +148,6 @@
         </div>
 
         <div class="item-grid-top-right">
-            <div class="col-lg-7">
                 <div *ngIf="videos">
                     <div *ngFor="let video of videos">
                         <div style="padding:56.25% 0 0 0;position:relative;">
@@ -159,10 +158,10 @@
                         <script src="https://player.vimeo.com/api/player.js">
                         </script>
                         <br>
-                    </div>
+                    
                 </div>
 
-                <div *ngIf="images" class="col">
+                <div *ngIf="images" >
                     <div *ngIf="images.length < 2; else elseBlock">
                         <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
                             <ng-template ngbSlide *ngFor="let image of images">
@@ -194,13 +193,13 @@
         </div>
         <div class="item-grid-bottom">
             <div *ngIf="narratives">
-                <div class="card container block-margin bg-translucent" id="body">
+                <div id="body">
                     <div class="card-body">
                         <div *ngFor="let narrative of narratives">
                             <h3 class="subtitle">{{narrative.author}}</h3>
                             <p>{{narrative.content}}</p>
                         </div>
-                        <div class="container jumbotron border-primary" section="add-narrative-section">
+                        <div section="add-narrative-section">
                             <h3 class="title" id="have-something-to-add">Have something to add?</h3>
                             <form [formGroup]="narrativeForm" (ngSubmit)="submitNarrative()">
                                 <div class="form-group">
