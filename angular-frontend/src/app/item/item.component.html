@@ -3,16 +3,151 @@
 <div *ngIf="item">
     <div class="jumbotron container-fluid text-center text-md-center">
         <h1 class="title">{{item.name}}</h1>
-        <h1 class="title">{{collection}}</h1>
+        <h2 class="subtitle">{{collection}}</h2>
     </div>
 
-    <div class="container jumbotron bg-translucent border-primary">
-        <div class=row>
-
-            <div class="collection-item-description col">
-                <p *ngIf="item.description">{{item.description}}</p>
+    <div class="item-grid">
+        <div class="item-grid-top-left">
+            <h3 class="title">Item Information</h3>
+            <div *ngIf="item.description">
+                <div>
+                    <p><strong>Description</strong></p>
+                    <a>{{item.description}}</a>
+                </div>
+                <br>
             </div>
+            <div *ngIf="item.culture_or_community">
+                <div>
+                    <p><strong>Culture or Community</strong></p>
+                    <a>{{item.culture_or_community}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.other_forms">
+                <div>
+                    <p><strong>Other Forms</strong></p>
+                    <a>{{item.other_forms}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.digital_heritage_item">
+                <div>
+                    <p><strong>Digital Heritage Item</strong></p>
+                    <a>{{item.digital_heritage_item}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.date_of_creation">
+                <div>
+                    <p><strong>Date of Creation</strong></p>
+                    <a>{{item.date_of_creation}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.physical_details">
+                <div>
+                    <p><strong>Physical Details</strong></p>
+                    <a>{{item.physical_details}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.access_notes_or_rights_and_reproduction">
+                <div>
+                    <p><strong>Access Notes or Rights and Reproduction</strong></p>
+                    <a>{{item.access_notes_or_rights_and_reproduction}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.catalog_number">
+                <div>
+                    <p><strong>Catalog Number</strong></p>
+                    <a>{{item.catalog_number}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.external_link">
+                <div>
+                    <p><strong>External Link</strong></p>
+                    <a><a href={{item.external_link}} style="color:black;">Checkout More
+                            Here</a>
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.provenance">
+                <div>
+                    <p><strong>Provenance</strong></p>
+                    <a>{{item.provenance}}</a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.citation">
+                <div>
+                    <p><strong>Citation</strong></p>
+                    <a>{{item.citation}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.historical_note">
+                <div>
+                    <p><strong>Historical Note</strong></p>
+                    <a>{{item.historical_note}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="item.place_created">
+                <div>
+                    <p><strong>Place Created</strong></p>
+                    <a>{{item.place_created}}
+                    </a>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="creators && creators.length > 0">
+                <div>
+                    <p><strong>Creator(s)</strong></p>
+                    <div *ngFor="let creator of creators">
+                        <a [routerLink]="['/pori', creator.id]">
+                            {{creator.name}}
+                        </a>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="originals && originals.length > 0">
+                <div>
+                    <p><strong>Location of Originals</strong></p>
+                    <div *ngFor="let original of originals">
+                        <a [routerLink]="['/pori', original.id]">
+                            {{original.name}}
+                        </a>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div *ngIf="keywords && keywords.length > 0">
+                <div>
+                    <p class="list-item"><strong>Keyword(s)</strong></p>
+                    <div *ngFor="let keyword of keywords">
+                        <a [routerLink]="['/keyword-page', keyword.name]">
+                            {{keyword.name}}
+                        </a>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
 
+        <div class="item-grid-top-right">
             <div class="col-lg-7">
                 <div *ngIf="videos">
                     <div *ngFor="let video of videos">
@@ -57,196 +192,50 @@
 
             </div>
         </div>
-    </div>
-
-    <div>
-        <mat-tab-group class="border-primary" animationDuration="0ms" dynamicHeight mat-align-tabs="center"
-            mat-stretch-tabs id="button_group">
-            
-            <mat-tab label="Item Information">
-                <div class="container jumbotron bg-translucent border-primary" id="body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="container text-center">
-                                <h3 class="title">Item Information</h3>
-                            </div>
+        <div class="item-grid-bottom">
+            <div *ngIf="narratives">
+                <div class="card container block-margin bg-translucent" id="body">
+                    <div class="card-body">
+                        <div *ngFor="let narrative of narratives">
+                            <h3 class="subtitle">{{narrative.author}}</h3>
+                            <p>{{narrative.content}}</p>
                         </div>
-                    </div>
-                    <div class="container" fxLayout="column">
-                        <div *ngIf="item.culture_or_community">
-                            <div>
-                                <p><strong>Culture or Community</strong>
-                                    <br>{{item.culture_or_community}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.other_forms">
-                            <div>
-                                <p><strong>Other Forms</strong>
-                                    <br>{{item.other_forms}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.digital_heritage_item">
-                            <div>
-                                <p><strong>Digital Heritage Item</strong>
-                                    <br>{{item.digital_heritage_item}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.date_of_creation">
-                            <div>
-                                <p><strong>Date of Creation</strong>
-                                    <br>{{item.date_of_creation}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.physical_details">
-                            <div>
-                                <p><strong>Physical Details</strong>
-                                    <br>{{item.physical_details}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.access_notes_or_rights_and_reproduction">
-                            <div>
-                                <p><strong>Access Notes or Rights and Reproduction</strong>
-                                    <br>{{item.access_notes_or_rights_and_reproduction}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.catalog_number">
-                            <div>
-                                <p><strong>Catalog Number</strong>
-                                    <br>{{item.catalog_number}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.external_link">
-                            <div>
-                                <p><strong>External Link</strong>
-                                    <br><a href={{item.external_link}} style="color:black;">Checkout More
-                                        Here</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.provenance">
-                            <div>
-                                <p><strong>Provenance</strong>
-                                    <br>{{item.provenance}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.citation">
-                            <div>
-                                <p><strong>Citation</strong>
-                                    <br>{{item.citation}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.historical_note">
-                            <div>
-                                <p><strong>Historical Note</strong>
-                                    <br>{{item.historical_note}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="item.place_created">
-                            <div>
-                                <p><strong>Place Created</strong>
-                                    <br>{{item.place_created}}</p>
-                            </div>
-                        </div>
-                        <div *ngIf="creators">
-                            <div *ngIf="creators.length > 0">
-                                <div>
-                                    <p class="margin-0"><strong>Creator(s)</strong></p>
-                                </div>
-                                <div *ngFor="let creator of creators">
-                                    <a [routerLink]="['/pori', creator.id]"
-                                        class="btn btn-outline-info my-2 my-sm-0 margin-half"
-                                        style="color:black; font-weight:500">
-                                        {{creator.name}}
-                                    </a>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                        <div *ngIf="originals">
-                            <div *ngIf="originals.length > 0">
-                                <div>
-                                    <p class="margin-0"><strong>Location of Originals</strong></p>
-                                </div>
-                                <div *ngFor="let original of originals">
-                                    <a [routerLink]="['/pori', original.id]"
-                                        class="btn btn-outline-info my-2 my-sm-0 margin-half" style="color:black;">
-                                        {{original.name}}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div *ngIf="keywords">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div *ngIf="keywords.length > 0">
-                                    <div class="col-lg-12">
-                                        <div>
-                                            <p><strong>Keyword(s)</strong></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="row mb-5">
-                                            <div *ngFor="let keyword of keywords" class="col-lg-4">
-                                                <a [routerLink]="['/keyword-page', keyword.name]"
-                                                    class="btn btn-outline-info my-2 my-sm-0"
-                                                    style="color:black; font-weight:500">
-                                                    {{keyword.name}}
-                                                </a>
-                                            </div>
-                                        </div>
+                        <div class="container jumbotron border-primary" section="add-narrative-section">
+                            <h3 class="title" id="have-something-to-add">Have something to add?</h3>
+                            <form [formGroup]="narrativeForm" (ngSubmit)="submitNarrative()">
+                                <div class="form-group">
+                                    <label for="author">Name</label>
+                                    <input placeholder="Your name" type="text" formControlName="author"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.author.errors }" />
+                                    <div *ngIf="submitted && narrativeForm.controls.author.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="narrativeForm.controls.author.errors.required"></div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="narrative">Narrative</label>
+                                    <textarea placeholder="Your narrative" rows="3" type="text"
+                                        formControlName="narrative" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.narrative.errors }"></textarea>
+                                    <div *ngIf="submitted && narrativeForm.controls.narrative.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="narrativeForm.controls.narrative.errors.required">Narrative is
+                                            required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button [disabled]="loading" class="btn btn-primary">
+                                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </mat-tab>
-            <mat-tab label="Narratives">
-                <div *ngIf="narratives">
-                    <div class="card container block-margin bg-translucent" id="body">
-                        <div class="card-body">
-                            <div *ngFor="let narrative of narratives">
-                                <h3 class="subtitle">{{narrative.author}}</h3>
-                                <p>{{narrative.content}}</p>
-                            </div>
-                            <div class="container jumbotron border-primary" section="add-narrative-section">
-                                <h3 class="title" id="have-something-to-add">Have something to add?</h3>
-                                <form [formGroup]="narrativeForm" (ngSubmit)="submitNarrative()">
-                                    <div class="form-group">
-                                        <label for="author">Name</label>
-                                        <input placeholder="Your name" type="text" formControlName="author"
-                                            class="form-control"
-                                            [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.author.errors }" />
-                                        <div *ngIf="submitted && narrativeForm.controls.author.errors"
-                                            class="invalid-feedback">
-                                            <div *ngIf="narrativeForm.controls.author.errors.required"></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="narrative">Narrative</label>
-                                        <textarea placeholder="Your narrative" rows="3" type="text"
-                                            formControlName="narrative" class="form-control"
-                                            [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.narrative.errors }"></textarea>
-                                        <div *ngIf="submitted && narrativeForm.controls.narrative.errors"
-                                            class="invalid-feedback">
-                                            <div *ngIf="narrativeForm.controls.narrative.errors.required">Narrative is
-                                                required</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button [disabled]="loading" class="btn btn-primary">
-                                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                                            Submit
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-            </mat-tab>
-        </mat-tab-group>
+            </div>
+        </div>
     </div>
 </div>

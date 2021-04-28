@@ -60,3 +60,29 @@ strong {
 .margin-half {
     margin-bottom: 0.5rem !important; 
 }
+
+.item-grid{
+    display:grid;
+    grid-gap: 5%;
+    
+}
+
+.item-grid-top-left{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.item-grid-top-right{
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.item-grid-bottom{
+    grid-row: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+p{
+    margin-bottom: 0 !important;
+}
