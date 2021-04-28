@@ -73,3 +73,31 @@ img {
     object-fit: contain; 
     background-color: black; 
 }
+
+.top-content {
+    width: 230%;
+    height: 70vh;
+    overflow: visible;
+    margin-left: -65% !important;
+    margin-top: 2vh;
+    padding: 20%;
+    background-position: top;
+    background-size: cover;
+    background-attachment: scroll;
+    font-size: xxx-large;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+    background-color: #fff3;
+    background-blend-mode: lighten;
+
+
+    .quote {
+        font-style: italic;
+    }
+    
+    .speaker {
+        font-size:xx-large;
+    }
+}
+

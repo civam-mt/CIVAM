@@ -12,9 +12,55 @@ a {
 }
 
 
+@media (min-width: 1500px){
+    .navbar-expand-custom {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    .navbar-expand-custom .navbar-nav {
+        flex-direction: row;
+    }
+    .navbar-expand-custom .navbar-nav .nav-link {
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
+    .navbar-expand-custom .navbar-collapse {
+        display: flex!important;
+    }
+    .navbar-expand-custom .navbar-toggler {
+        display: none;
+    }
+    
+    .nav-container-right {
+        margin-left: auto !important;
+        margin-right: 0% !important;
+        padding-right: 1vw;
+        flex-direction: row !important;
+    }
+    
+    .nav-container-left {
+        margin-left: 0% !important;
+        margin-right: auto !important;
+        flex-direction: column !important;
+    }
+    
+    .nav-container-col {
+        flex-direction: column;
+    }
+    
+    .nav-container-col-left-fix-stuff {
+        margin-left: -5vw !important;
+        padding-top: 1vh;
+    }
+
+}
+
+
+
 .destrech-img {
-    width:100%;
-    height:110%;
+    width: 30%;
+    height: 30%;
 }
 
 .navbar {
@@ -61,11 +107,15 @@ a.dropdown-item.active {
 
 .nav-link {
     color: $gold;
+    font-size: large;
+    padding-left: 2vw;
 }
 
 .nav-link:hover {
     color: $light-brown;
 }
+
+
 
 .btn:active {
     color: $dark-brown;

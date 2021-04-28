@@ -1,5 +1,5 @@
 <!-- Do NOT modify the classes in the <nav> tag below (navbar-light, and bg-light are essential for the collapsable menu button) -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-custom navbar-light bg-light">
 
     <!-- Collapsable Menu Button (3 horizontal lines) -->
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -15,51 +15,60 @@
                         2.) data-target=".navbar-collapse.show"
      -->
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
+        <span class="navbar-brand"><a href="https://www.thecenterpole.org/"><img src="../../assets/images/crow_large.png" class="destrech-img"></a></span>
+            <ul class="navbar-nav nav-container-left nav-container-col nav-container-col-left-fix-stuff" >
+                <li class="nav-item title">
+                    <h3>Crow Indian Virtual Archive and Museum</h3>
+                </li>
+                <li class="nav-item subtitle">
+                    <h5>Apsáalooke ammaaiiláxiio</h5>
+                </li>
+            </ul>
+        <ul class="navbar-nav nav-container-right ">
             <!-- Navbar Brand Image (shown on the right) -->
-            <span class="navbar-brand"><a href="https://www.thecenterpole.org/"><img src="../../assets/images/favicon-32x32.png" class="destrech-img"></a></span>
+            
+                <!-- Navbar links (like this one) are set up using a list item.Fill in the routerLink for the page generated in `app-routing.module.ts`  -->
+                <li class="nav-item">
+                    <a [routerLinkActive]='activeClass' class="nav-link" routerLink='home' data-toggle="collapse"
+                        data-target=".navbar-collapse.show">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLinkActive]='activeClass' class="nav-link" routerLink='about' data-toggle="collapse"
+                        data-target=".navbar-collapse.show">About</a>
+                </li>
 
-            <!-- Navbar links (like this one) are set up using a list item.Fill in the routerLink for the page generated in `app-routing.module.ts`  -->
-            <li class="nav-item">
-                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='home' data-toggle="collapse"
-                    data-target=".navbar-collapse.show">Home</a>
-            </li>
-            <li class="nav-item">
-                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='about' data-toggle="collapse"
-                    data-target=".navbar-collapse.show">About</a>
-            </li>
+                <li class="nav-item">
 
-            <li class="nav-item">
+                    <a [routerLinkActive]='activeClass' class="nav-link" routerLink='collections' data-toggle="collapse"
+                        data-target=".navbar-collapse.show">Collections</a>
 
-                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='collections' data-toggle="collapse"
-                    data-target=".navbar-collapse.show">Collections</a>
-
-            </li>
-            <li class="nav-item">
-                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='map' data-toggle="collapse"
-                    data-target=".navbar-collapse.show">Crow Collections Around The World</a>
-            </li>
-            <li class="nav-item">
-                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='oral-histories' data-toggle="collapse"
-                    data-target=".navbar-collapse.show">Oral Histories</a>
-            </li>
-            <li>
-                <!-- Dropdown Links in the Navbar -->
-                <div class="dropdown show">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Browse</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a [routerLinkActive]='activeClass' routerLink='images' class="dropdown-item" href="#"
-                            data-toggle="collapse" data-target=".navbar-collapse.show">Images</a>
-                        <a [routerLinkActive]='activeClass' routerLink='material-culture' class="dropdown-item" href="#"
-                            data-toggle="collapse" data-target=".navbar-collapse.show">Material Culture</a>
-                        <a [routerLinkActive]='activeClass' routerLink='people' class="dropdown-item" href="#"
-                            data-toggle="collapse" data-target=".navbar-collapse.show">People</a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLinkActive]='activeClass' class="nav-link" routerLink='map' data-toggle="collapse"
+                        data-target=".navbar-collapse.show">Crow Collections Around The World</a>
+                </li>
+                <li class="nav-item">
+                    
+                </li>
+                <li>
+                    <!-- Dropdown Links in the Navbar -->
+                    <div class="dropdown show">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Browse</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <!-- <a [routerLinkActive]='activeClass' class="dropdown-item" routerLink='oral-histories' 
+                                data-toggle="collapse" data-target=".navbar-collapse.show">Oral Histories</a> -->
+                            <a [routerLinkActive]='activeClass' routerLink='images' class="dropdown-item" href="#"
+                                data-toggle="collapse" data-target=".navbar-collapse.show">Images</a>
+                            <a [routerLinkActive]='activeClass' routerLink='material-culture' class="dropdown-item" href="#"
+                                data-toggle="collapse" data-target=".navbar-collapse.show">Material Culture</a>
+                            <a [routerLinkActive]='activeClass' routerLink='people' class="dropdown-item" href="#"
+                                data-toggle="collapse" data-target=".navbar-collapse.show">People</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
         </ul>
-        <div class="searchField">
+        <!-- <div class="searchField">
             <form class="form-inline my-2 my-sm-0" (ngSubmit)="onSubmit()">
                 <mat-form-field mat-autocomplete-snap appearance="none">
                     <input type="search" placeholder="Search" aria-label="Search" matInput id="searchBox" name="query"
@@ -72,7 +81,7 @@
                 </mat-autocomplete>
                 <button class="btn btn-warning my-2 my-sm-2" id="search-button" type="submit">Search</button>
             </form>
-        </div>
+        </div> -->
     </div>
 
 
