@@ -47,6 +47,7 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 // Service imports
 import { UsernameService } from './auth/username.service';
 import { environment } from 'src/environments/environment';
+import { FooterComponent } from './footer/footer.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -75,7 +76,8 @@ import { environment } from 'src/environments/environment';
     ModalComponent,
     SearchResultComponent,
     CardComponent,
-    KeywordPageComponent
+    KeywordPageComponent,
+    FooterComponent
   ],
   imports:[
     BrowserAnimationsModule,

@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Collection } from '../collection';
 import { DISTRICTS } from '../mock-collections';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
 import { verifyHostBindings } from '@angular/compiler';
-
 
 @Component({
   selector: 'app-home',
@@ -13,6 +12,8 @@ import { verifyHostBindings } from '@angular/compiler';
 })
 export class HomeComponent implements OnInit {
 
+  innerWidth:number;
+  smallWindow:number = environment.windowSmall;
   showNavigationArrows = true;
   showNavigationIndicators = true;
 
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.innerWidth = window.innerWidth;
     this.getCollections();
   }
   getCollections() {
@@ -48,5 +50,10 @@ export class HomeComponent implements OnInit {
     for (var i = 0; i < cbs.length; i++) {
       cbs[i].style.opacity = "0"; 
     }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
   }
 }
