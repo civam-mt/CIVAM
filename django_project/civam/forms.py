@@ -90,7 +90,7 @@ class MapDataForm(ModelForm):
         model = MapData
         fields = ['name', 'lat', 'lng', 'url', 'contact_email', 'crow_material',
             'digital_collection', 'replied_to_contact', 'history', 'obj_photos',
-            'street', 'city', 'province', 'country', 'continent', 'code', 'notes']
+            'street', 'city', 'province', 'country', 'continent', 'code', 'notes', 'cover_image']
         widgets = {'country': CountrySelectWidget()}
 
     name = forms.CharField(label="Institution Name", max_length=255)
@@ -110,5 +110,5 @@ class MapDataForm(ModelForm):
     continent = forms.CharField(widget=forms.Textarea)
     code = forms.CharField(widget=forms.Textarea)
     notes = forms.CharField(widget=forms.Textarea)
-
+    cover_image = forms.ImageField()
     publish = forms.BooleanField()

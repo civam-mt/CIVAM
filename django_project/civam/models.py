@@ -243,24 +243,25 @@ class MapData(models.Model):
     lat = models.DecimalField("Latitude", max_digits=14, decimal_places=10)
     lng = models.DecimalField("Longitude", max_digits=14, decimal_places=10)
     url = models.CharField("Institution URL", max_length=255)
+    cover_image = models.ImageField("Cover Image", upload_to="cover_images/articles/", blank=True, null=True)
     svg_choice = models.CharField(
         max_length=4,
         choices=SVGMapIcon.choices,
         default='MUES'
     )
-    contact_email = models.EmailField("Contact Email", max_length=254)
+    contact_email = models.EmailField("Contact Email", max_length=254, blank=True)
     crow_material = models.BooleanField("Do they have Crow Material?")
     digital_collection = models.BooleanField("Do they have a Digital Collection?")
     replied_to_contact = models.BooleanField("Have they replied to our contact?")
-    history = models.TextField("Relevant History")
+    history = models.TextField("Relevant History", blank=True)
     obj_photos = models.CharField(
         max_length=2,
         choices=ObjOrPhoto.choices,
         default='NA',
     )
-    street = models.TextField(null=True)
-    city = models.TextField(null=True)
-    province = models.TextField("Province/State", null=True)
+    street = models.TextField(null=True, blank=True)
+    city = models.TextField(null=True, blank=True)
+    province = models.TextField("Province/State", null=True, blank=True)
     country = CountryField(null=True)
     continent = models.CharField(null=True,
         max_length=2,

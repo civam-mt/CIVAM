@@ -58,9 +58,13 @@
                <mat-grid-list cols="6" rowHeight="75px" class="card" style="width:100%">
                   <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
                      [style.background]="tile.color">
-                     <div>
+                     <div *ngIf="tile.text != 'cover_image'">
                         {{selectedMarker.getElement(tile.text)}}
                      </div>
+                     <div *ngIf="tile.text == 'cover_image'">
+                        <img src="{{API_URL}}/media/{{selectedMarker.getElement(tile.text)}}"
+                            alt="Random slide" class="image" [class]="'matt-grid-opt-'+tile.text">
+                    </div>
                   </mat-grid-tile>
                </mat-grid-list>
             </div>

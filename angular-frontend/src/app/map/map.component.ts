@@ -16,11 +16,11 @@ import { ApiService } from '../api.service';
 export class MapComponent implements OnInit {
   API_URL = environment.apiUrl;
   tiles: MapTile[] = [
-    {text: 'name', cols:4, rows:1, color:'lightgreen'},
-    {text: 'cityProvinceCountry', cols:2, rows: 1, color: 'lightblue'},
-    {text: '', cols:2, rows: 3, color: 'lightblue'},
-    {text: 'notes', cols:4, rows:2, color: 'lightpink'},
-    {text: 'url', cols:4, rows:1, color: '#DDBDF1'},
+    {text: 'name', cols:4, rows:1, color:''},
+    {text: 'cityProvinceCountry', cols:2, rows: 1, color: ''},
+    {text: 'cover_image', cols:2, rows: 3, color: ''},
+    {text: 'notes', cols:4, rows:2, color: ''},
+    {text: 'url', cols:4, rows:1, color: ''},
   ];
   public siteText:string;
 

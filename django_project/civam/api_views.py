@@ -444,7 +444,8 @@ def get_all_mapdata(request):
 			'country': 'Not Provided' if entry.country == None else dict(countries)[entry.country],
 			'continent': 'Not Provided' if entry.continent == None else entry.continent,
 			'code': entry.code,
-			"notes": entry.notes
+			"notes": entry.notes,
+			'cover_image': entry.cover_image.name
 			}
 		map_list.append(new_entry)
 	##print(map_list)
@@ -515,6 +516,7 @@ def insert_bulk_map_data(request, map_api):
 					continent = body[id]['continent'] if len(body[id]['continent']) <= 2 else 'NA',
 					code = '',
 					notes = body[id]['notes'] + '\n' + body[id]['misc'],
+					cover_image = body[id]['cover_image'],
 					publish = True
 					)
 			return JsonResponse({"status": 200})

@@ -36,7 +36,8 @@ export class MapSupportService {
             cmm.push(new CrowMapMarker(parseFloat(element['lat']), parseFloat(element['lng']), element['name'],
               element['crow_material'], element['digital_collection'], element['replied_to_contact'],
               element['obj_photo'], element['street'], element['city'], element['province'],
-              element['country'], CrowMapMarker.asContinent(element['continent']), element['code'], element['url'], element['svg'], element['notes']));
+              element['country'], CrowMapMarker.asContinent(element['continent']), element['code'],
+              element['url'], element['svg'], element['notes'], element['cover_image']));
           });
           this._mapElementsMaster.next(cmm);
 

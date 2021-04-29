@@ -121,6 +121,7 @@ export class CrowMapMarker extends GoogleMapMarker {
     url: string;
     code: string;
     notes: string;
+    cover_image: string;
 
     static boolFilters: string[][] = [['crow_material', 'Crow Material'], ['digital_collection', 'Digital Collection']];
     static dropDownFilters: Array<[string, string[]]> = new Array<[string, string[]]>(['Continent', ['North America', 'South America', 'Europe',
@@ -140,7 +141,7 @@ export class CrowMapMarker extends GoogleMapMarker {
         continent: string,
         code: string,
         url: string,
-        svg: string, notes:string) {
+        svg: string, notes:string, cov_img: string) {
         super(lat, lng, name + ': ' + province + ', ' + country, 'Label To Be Filled Later', 'ID To Be Filled Later');
         this.crow_material = crow_material;
         this.digital_collection = digital;
@@ -155,6 +156,7 @@ export class CrowMapMarker extends GoogleMapMarker {
         this.code = code;
         this.url = url;
         this.notes = notes;
+        this.cover_image = cov_img;
         try {
             this.customImgUrl = new SVGIcon(SVGMap[svg], 20, 20);
         }
@@ -215,6 +217,8 @@ export class CrowMapMarker extends GoogleMapMarker {
                 return this.url;
             case "notes":
                 return this.notes;
+            case "cover_image":
+                return this.cover_image;
             case "cityprovincecountry":
                 return this.cityProvinceCountry();
             default:
