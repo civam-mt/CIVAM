@@ -12,13 +12,13 @@ class DefaultAdmin(GuardedModelAdmin):
     readonly_fields = ('created_by', 'created_on', 'modified_by', 'modified_on')
 
 
-    '''
+    
     # User have permission to change objects that they own
     def has_change_permission(self, request, obj=None):
         if obj is not None and obj.created_by and not request.user.is_superuser and obj.created_by != request.user:
             return False
         return True
-    '''
+    
 
     # Sets created_by and modified_by fields
     def save_model(self, request, instance, form, change):
