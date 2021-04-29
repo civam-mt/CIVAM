@@ -11,7 +11,20 @@
  <div class="container" section="home-page">
     
     <div class="row justify-content-center container-fluid">
-        <ngb-carousel [showNavigationArrows]="showNavigationArrows"
+        <div class="home-collection-grid">
+            <div class="collection-grid-left ">
+                <p *ngFor="let collection of collections; let i=index" class="">
+                    <img *ngIf="collection.cover_image" class="collection-img"
+                    src="{{API_URL}}/media/{{collection.cover_image}}">
+                </p>
+            </div>
+            <div class="collection-grid-right">
+                <p>
+                    Discription about what collections are and how to get to them.
+                </p>
+            </div>
+        </div>
+        <!-- <ngb-carousel [showNavigationArrows]="showNavigationArrows"
             [showNavigationIndicators]="showNavigationIndicators" class="carousel" (mouseover)="mouseOver()"
             (mouseout)="mouseOut()">
             <ng-template ngbSlide *ngFor="let collection of collections; let i=index" class="col-md-4">
@@ -27,7 +40,7 @@
                     </div>
                 </div>
             </ng-template>
-        </ngb-carousel>
+        </ngb-carousel> -->
     </div>
 </div> 
 <div class="mid-content barrier-img">

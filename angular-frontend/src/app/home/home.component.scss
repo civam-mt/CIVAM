@@ -79,12 +79,11 @@ img {
 }
 
 .top-content {
-    width: 230%;
+    width: 100%;
     height: 70vh;
     overflow: visible;
-    margin-left: -65% !important;
-    margin-top: 2vh;
-    padding: 20%;
+    margin-top: 3vh;
+    //padding: 20%;
     background-position: top;
     background-size: cover;
     background-attachment: scroll;
@@ -94,6 +93,8 @@ img {
     color: #000;
     background-color: #fff3;
     background-blend-mode: lighten;
+    padding-top: 10%;
+    max-height: 700px;
 
 
     .quote {
@@ -105,11 +106,35 @@ img {
     }
 }
 
+.home-collection-grid {
+    
+    display:grid;
+    grid-template-columns: 50%;
+    column-gap: 10vw;
+
+    .collection-grid-style {
+
+    }
+
+    .collection-grid-left {
+        grid-column: 1;
+    }
+
+    .collection-grid-right {
+        grid-column: 2;
+    }
+
+    .collection-img {
+        max-width: 100%;
+        height:auto;
+    }
+}
+
 .mid-content {
-    width: 230%;
+    width: 100%;
     height: 70vh;
     overflow: visible;
-    margin-left: -65% !important;
+    //margin-left: -65% !important;
     margin-top: 2vh;
     padding-top: 10%;
     padding-right: 20%;
