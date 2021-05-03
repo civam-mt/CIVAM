@@ -20,8 +20,8 @@
             </p>
         </div>
         <div class="collection-grid-right">
-            <p class="collection-inline-text">
-                Discription about what collections are and how to get to them.
+            <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_COL']">
+                Our collections are the backbone of preservation efforts.  Carfully catolouged, we present them in there entirity here for your edification.
             </p>
             <a routerLink="/collections"><button type="button" class="collection-btn">
                 See Collections
@@ -37,8 +37,8 @@
             </p>
         </div>
         <div class="collection-grid-bottom">
-            <p class="collection-inline-text">
-                Discription about what collections are and how to get to them.
+            <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_MAP']">
+                Over time, many of the physical items we value have been scattered across the planet.  This map is a living record of what organizations have what, and how you can visit them to learn more.
             </p>
             <a routerLink="/collections"><button type="button" class="collection-btn">
                 See Collections
@@ -50,9 +50,9 @@
     <!-- If larger then 992px -->
     <div *ngIf="this.innerWidth > this.smallWindow"
         class="home-collection-grid layer-unbounded collection-grid-col">
-        <div class="collection-grid-left ">
-            <p class="collection-inline-text">
-                Description about what collections are and how to get to them.
+        <div class="collection-grid-left " >
+            <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_COL']">
+                Our collections are the backbone of preservation efforts.  Carfully catolouged, we present them in there entirity here for your edification.
             </p>
             <a routerLink="/map"><button type="button" class="collection-btn">
                 See the Map
@@ -73,9 +73,9 @@
                 src="../../assets/images/doctoring_on_open_range.JPG">
             </p>
         </div>
-        <div class="collection-grid-bottom">
-            <p class="collection-inline-text">
-                Description about what collections are and how to get to them.
+        <div class="collection-grid-bottom" >
+            <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_MAP']">
+                Over time, many of the physical items we value have been scattered across the planet.  This map is a living record of what organizations have what, and how you can visit them to learn more.
             </p>
             <a routerLink="/map"><button type="button" class="collection-btn">
                 See the Map

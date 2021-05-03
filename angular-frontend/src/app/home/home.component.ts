@@ -12,6 +12,10 @@ import { verifyHostBindings } from '@angular/compiler';
 })
 export class HomeComponent implements OnInit {
 
+  public siteTexts = {};
+  public siteTextIDs:string[] = ['HOME_MAP', 'HOME_COL'];
+  public loaded_context:boolean;
+
   innerWidth:number;
   smallWindow:number = environment.windowSmall;
   showNavigationArrows = true;
@@ -30,6 +34,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
+    this.loaded_context = false;
+    this.getSiteTexts()
     this.getCollections();
   }
   getCollections() {
@@ -38,6 +44,13 @@ export class HomeComponent implements OnInit {
           return (new Date(a.modified_on).getTime() < new Date(b.modified_on).getTime());
         });
     });
+  }
+  getSiteTexts() {
+    for (var i = 0; i < this.siteTextIDs.length; i++) {
+      this.api.getSiteTextByLocation(this.siteTextIDs[i]).subscribe((data) => {
+        this.siteTexts[data["location"]] = data["content"];
+      });
+    }
   }
   mouseOver() {
     let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)
