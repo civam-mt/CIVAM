@@ -3,4 +3,12 @@ export interface Tile {
     cols: number;
     rows: number;
     text: string;
-  }
+}
+
+export interface NewsTile extends Tile {
+        
+}
+
+export interface MapTile extends Tile {
+    
+}

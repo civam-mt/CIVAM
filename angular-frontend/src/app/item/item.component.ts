@@ -56,7 +56,7 @@ export class ItemComponent implements OnInit {
   getItemByItemID(itemID: string) {
     this.api.getItemByItemID(itemID).subscribe((data) => {
       this.item = data;
-      this.api.getCollectionByCollectionID(this.item["collection"]).subscribe((result) =>{
+      this.api.getCollectionByCollectionID(this.item["collection"], []).subscribe((result) =>{
         this.collection = result["title"];
       });
       this.images = this.item["images"];

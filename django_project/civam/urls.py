@@ -54,6 +54,18 @@ urlpatterns = [
     # View/Edit a CollectionGroup
     path('collections/<int:collection_id>/groups/<int:group_id>/', views.group, name='group'),
 
+    # View/Edit a MapDataEntry
+    path('mapdata/<int:mapdata_id>/', views.get_mapdata_by_id, name='mapdata_by_id'),
+    # Add a new MapData
+    path('mapdata/new/', views.new_mapdata, name='new_mapdata'),
+    path('mapdata/', views.mapdata, name="mapdata"),
+    
+    # API Calls
+    path('api/mapdata/all/', api_views.get_all_mapdata, name='all_mapdata'),
+    path('api/mapdata/<int:mapdata_id>/', api_views.get_mapdata_by_id, name='mapdata_by_id'),
+    path('api/mapdata/bulk/<str:map_api>/', api_views.insert_bulk_map_data, name='insert_bulk_map_data'),
+
+    path('api/mapdata/cache/<str:detail>/', api_views.get_current_map, name="get_current_map"),
     # View SiteTexts
     path('api/sitetext/<str:loc>', api_views.get_site_text, name='api_get_site_text'),
 

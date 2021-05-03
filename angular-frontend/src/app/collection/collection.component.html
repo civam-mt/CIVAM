@@ -70,6 +70,21 @@
         </div>
     </mat-accordion>
 </div>
+
+<div class="theme-filter">
+    <ng-multiselect-dropdown
+        [placeholder]="'Filter by Keyword'"
+        [settings]="dropdownSettings"
+        [data]="itemKeywords"
+        [(ngModel)]="selectedKeywords"
+        (onSelect)="onKeywordFilterSelect()"
+        (onSelectAll)="onKeywordFilterSelect()"
+        (onDeSelect)="onKeywordFilterSelect()"
+        (onDeSelectAll)="onKeywordFilterSelect()"
+    >
+    </ng-multiselect-dropdown>
+</div>
+
 <div class="container" section="individual-collection">
     <div *ngIf="items" class="row justify-content-center container-fluid">
         <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">

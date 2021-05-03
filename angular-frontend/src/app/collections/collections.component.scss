@@ -1,0 +1,13 @@
+.collection-grid{
+    display: grid;
+    grid-template-columns: 50%;
+}
+
+.collection-grid-left{
+    grid-column: 1;
+
+}
+
+.collection-grid-right{
+    grid-column: 2;
+}

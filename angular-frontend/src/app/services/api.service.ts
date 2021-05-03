@@ -33,8 +33,9 @@ export class ApiService {
   public getItemByCollectionIDItemID(collectionID: string, itemID: string) {
     return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/${itemID}/`);
   }
-  public getCollectionByCollectionID(collectionID: string) {
-    return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/`);
+  public getCollectionByCollectionID(collectionID: string, keywordIds: string[]) {
+    const keywordIdsString = JSON.stringify(keywordIds);
+    return this.httpClient.get(`${this.API_URL}/api/collections/${collectionID}/?keywordIds=${keywordIdsString}`);
   }
   public getAllGroupsByCollectionID(collectionID: string) {
     return this.httpClient.get(`${this.API_URL}/collections/${collectionID}/groups/`);
@@ -62,6 +63,8 @@ export class ApiService {
   }
   public getNewsArticleByID(_id:string):Observable<Object> {
     return this.httpClient.get(`${this.API_URL}/api/article/id/${_id}`);
+  public getAllMapdata() {
+    return this.httpClient.get(`${this.API_URL}/api/mapdata/all/`);
   }
   
   // public postCollection(collection: object) {

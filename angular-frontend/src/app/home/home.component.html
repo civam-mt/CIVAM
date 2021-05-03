@@ -1,34 +1,92 @@
-<!-- Jumbotron and Heading of the Page -->
-<div class="jumbotron container-fluid text-center text-md-center">
-    <h1 class="title">Crow Indian Virtual Archive and Museum</h1>
-    <h3 class="subtitle">Apsáalooke ammaaiiláxiio</h3>
-    <blockquote class="blockquote text-center bg-translucent border-primary container container-lg">
-        <p class="mb-0">They want to be known.</p>
-        <footer class="blockquote-footer">
-            <p class="mb-0">Peggy White Wellknown Buffalo</p>
-        </footer>
-    </blockquote>
-</div>
+<div class="layers">
 
-<!-- Home Page Main Content Below Here -->
- <div class="container" section="home-page">
-    <div class="row justify-content-center container-fluid">
-        <ngb-carousel [showNavigationArrows]="showNavigationArrows"
-            [showNavigationIndicators]="showNavigationIndicators" class="carousel" (mouseover)="mouseOver()"
-            (mouseout)="mouseOut()">
-            <ng-template ngbSlide *ngFor="let collection of collections; let i=index" class="col-md-4">
-                <div *ngIf="collection">
-                    <div class="card h-100">
-                        <img *ngIf="collection.cover_image" class="card-img-top"
-                            src="{{API_URL}}/media/{{collection.cover_image}}">
-                        <div class="card-body">
-                            <a [routerLink]="['/collections', collection.id]" class="btn btn-outline-info my-2 my-sm-0">
-                                <h3>{{collection.title}}</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </ng-template>
-        </ngb-carousel>
+<div class="top-content background-img layer-lg">
+    <div class="quote">
+        "They want to be known"
     </div>
-</div> 
+    <div class="speaker">
+        - Peggy White Wellknown Buffalo
+    </div>
+</div>
+<!-- Home Page Main Content Below Here -->   
+<div id="home-collection-div" class="collection-container">
+    <!-- If larger then 1000px -->
+    <div *ngIf="this.innerWidth > this.smallWindow"
+        class="home-collection-grid layer-unbounded collection-grid-col">
+        <div class="collection-grid-left ">
+            <p *ngFor="let collection of collections; let i=index" class="">
+                <img *ngIf="collection.cover_image" class="collection-img"
+                src="{{API_URL}}/media/{{collection.cover_image}}">
+            </p>
+        </div>
+        <div class="collection-grid-right">
+            <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_COL']">
+                Our collections are the backbone of preservation efforts.  Carfully catolouged, we present them in there entirity here for your edification.
+            </p>
+            <a routerLink="/collections"><button type="button" class="collection-btn">
+                See Collections
+            </button></a>
+        </div>
+    </div> <!-- If smaller then 1000px -->
+    <div *ngIf="this.innerWidth <= this.smallWindow"
+        class="home-collection-grid layer-unbounded collection-grid-row">
+        <div class="collection-grid-top">
+            <p *ngFor="let collection of collections; let i=index" class="">
+                <img *ngIf="collection.cover_image" class="collection-img"
+                src="{{API_URL}}/media/{{collection.cover_image}}">
+            </p>
+        </div>
+        <div class="collection-grid-bottom">
+            <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_MAP']">
+                Over time, many of the physical items we value have been scattered across the planet.  This map is a living record of what organizations have what, and how you can visit them to learn more.
+            </p>
+            <a routerLink="/collections"><button type="button" class="collection-btn">
+                See Collections
+            </button></a>
+        </div>
+    </div> 
+</div>
+<div id="map-collection-div" class="collection-container">
+    <!-- If larger then 992px -->
+    <div *ngIf="this.innerWidth > this.smallWindow"
+        class="home-collection-grid layer-unbounded collection-grid-col">
+        <div class="collection-grid-left " >
+            <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_COL']">
+                Our collections are the backbone of preservation efforts.  Carfully catolouged, we present them in there entirity here for your edification.
+            </p>
+            <a routerLink="/map"><button type="button" class="collection-btn">
+                See the Map
+            </button></a>
+        </div>
+        <div class="collection-grid-right">
+            <p *ngFor="let collection of collections; let i=index" class="">
+                <img class="collection-img"
+                src="../../assets/images/doctoring_on_open_range.JPG">
+            </p>
+        </div>
+    </div> <!-- If smaller then 992px -->
+    <div *ngIf="this.innerWidth <= this.smallWindow"
+        class="home-collection-grid layer-unbounded collection-grid-row">
+        <div class="collection-grid-top">
+            <p *ngFor="let collection of collections; let i=index" class="">
+                <img class="collection-img"
+                src="../../assets/images/doctoring_on_open_range.JPG">
+            </p>
+        </div>
+        <div class="collection-grid-bottom" >
+            <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_MAP']">
+                Over time, many of the physical items we value have been scattered across the planet.  This map is a living record of what organizations have what, and how you can visit them to learn more.
+            </p>
+            <a routerLink="/map"><button type="button" class="collection-btn">
+                See the Map
+            </button></a>
+        </div>
+    </div> 
+</div>
+<div class="mid-content barrier-img layer-lg">
+    <div class="header">
+        News
+    </div>
+</div>
+    
+</div>
