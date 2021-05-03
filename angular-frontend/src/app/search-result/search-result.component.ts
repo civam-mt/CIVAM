@@ -2,7 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
