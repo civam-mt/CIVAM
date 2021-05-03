@@ -138,7 +138,9 @@ class Item(models.Model):
 
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="item_keywords")
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_creators")
-    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")    
+    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")
+
+    changers = models.ManyToManyField(User, blank=True, related_name="changeable_items")
 
     is_cataloged = models.IntegerField(default=0, blank=True, null=True, help_text="1: Cataloged, 0: Uncataloged", choices=((1,"Cataloged"),(0,"Uncataloged")))
     private_cataloger = models.CharField(max_length=511, null=True, blank=True)
