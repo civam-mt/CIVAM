@@ -4,6 +4,7 @@ import { DISTRICTS } from '../mock-collections';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-collection',

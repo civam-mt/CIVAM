@@ -63,6 +63,7 @@ export class ApiService {
   }
   public getNewsArticleByID(_id:string):Observable<Object> {
     return this.httpClient.get(`${this.API_URL}/api/article/id/${_id}`);
+  }
   public getAllMapdata() {
     return this.httpClient.get(`${this.API_URL}/api/mapdata/all/`);
   }

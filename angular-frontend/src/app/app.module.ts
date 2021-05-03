@@ -42,8 +42,6 @@ import { ModalComponent } from './modal/modal.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { CardComponent } from './card/card.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
-import { MatTabsModule } from '@angular/material/tabs';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { NewsComponent } from './news/news.component';
 import { NewsArticleComponent } from './news/news-article/news-article.component';
 import { NewsTagComponent } from './news/news-tag/news-tag.component';
@@ -81,8 +79,6 @@ import { FooterComponent } from './footer/footer.component';
     ModalComponent,
     SearchResultComponent,
     CardComponent,
-    FullMapComponent,
-    SmallMapComponent,
     NewsComponent,
     NewsArticleComponent,
     NewsTagComponent,

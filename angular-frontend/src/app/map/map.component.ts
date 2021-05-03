@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
-import { MapSupportService } from '../map-support.service';
+import { MapSupportService } from '../services/map-support.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tile, MapTile } from 'src/model/Tile';
 import { environment } from 'src/environments/environment';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-map',
