@@ -1,13 +1,83 @@
 .collection-grid{
     display: grid;
     grid-template-columns: 50%;
+   
 }
 
 .collection-grid-left{
     grid-column: 1;
+    
 
 }
 
 .collection-grid-right{
     grid-column: 2;
 }
+
+.top{
+    margin-top: 5%;
+    background-color: tan;
+}
+
+h1{
+    text-align: center;
+}
+
+.even{
+    background-color: tan;
+
+}
+
+.odd{
+    background-color: grey;
+}
+
+.layer{
+    width: 100%;
+    height: 600px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+.collection-img{
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    margin-top: 15%;
+}
+
+.collection-description{
+    padding: 10%;
+}
+
+p{
+    text-align: center;
+    font-size:x-large;
+}
+
+.collection-title{
+    margin-top: 10%;
+    text-align: center;
+}
+
+.barrier-img {
+    background: url('../../assets/images/background-field.jpg') no-repeat fixed;;
+}
+
+.top-content {
+    margin-top:1vh;
+    padding-top: min(10%, 20vh);
+    padding-bottom: min(10%, 10vh);
+    overflow: visible;
+    background-position: top;
+    background-size: cover;
+    background-attachment: scroll;
+    font-size: xxx-large;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+    background-color: #fff3;
+    background-blend-mode: lighten;
+}
+    

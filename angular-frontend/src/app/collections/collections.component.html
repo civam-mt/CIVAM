@@ -1,16 +1,23 @@
-<div class="jumbotron container-fluid text-center text-md-center">
+
+
+<div class="top-content barrier-img">
     <h1 class="title">Collections</h1>
 </div>
 
-<div class="container" section="collections-page">
-    <div class="justify-content-center">
-        <div *ngFor="let collection of collections; let indexOfelement=index">
-            <div *ngIf="collection" class="collection-grid">
-                <p class="collection-grid-left">{{collection.description}}</p>
-                <app-card class="collection-grid-right" [cover_image]="collection.cover_image" [title]="collection.title" [id]="collection.id" [number]="indexOfelement" [route]=route>
-                </app-card>
-            </div>
-            <br>
+<div section="collections-page">
+    <div *ngFor="let collection of collections; let indexOfelement=index">
+        <div *ngIf="collection && indexOfelement % 2 == 0" class="collection-grid even layer">
+            <p class="collection-grid-left collection-description">{{collection.description}}</p>
+            <app-card class="collection-grid-right collection-img" [cover_image]="collection.cover_image" [title]="collection.title"
+                [id]="collection.id" [number]="indexOfelement" [route]=route>
+            </app-card>
+        </div>
+        <div *ngIf="collection && indexOfelement % 2 != 0" class="collection-grid odd layer">
+            <app-card class="collection-grid-left collection-img" [cover_image]="collection.cover_image" [title]="collection.title"
+                [id]="collection.id" [number]="indexOfelement" [route]=route>
+            </app-card>
+            <p class="collection-grid-right collection-description">{{collection.description}}</p>
         </div>
     </div>
+
 </div>
