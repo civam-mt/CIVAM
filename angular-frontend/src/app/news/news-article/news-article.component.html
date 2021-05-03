@@ -1,0 +1,40 @@
+<div style="margin-top: 10vh;"></div>
+<div *ngIf="this.localNewsArticle != null">
+    <div id="news-feed">
+        <mat-grid-list cols="15" rowHeight="25px" class="card">
+            <mat-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color">
+                <div *ngIf="tile.text == 'cover_url'">
+                    <img src="{{API_URL}}/media/{{localNewsArticle.getElement(tile.text)}}"
+                        alt="Random slide" class="image">
+                </div>
+                <div *ngIf="tile.text == 'tags.text'">
+                    <mat-chip-list aria-label="Tags">
+                        <mat-chip [routerLink]="['/news/news-tag/', i]" *ngFor="let i of localNewsArticle.getElement(tile.text)"
+                        >{{i}}</mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div *ngIf="tile.text == 'published_on'">
+                    {{localNewsArticle.getNewsDate()}}
+                </div>
+                <div *ngIf="tile.text == 'author'">
+                    Author: <a>{{localNewsArticle.getAuthor()}}</a>
+                </div>
+                <div class="text" *ngIf="tile.text == 'content' || tile.text == 'content.bounded'">
+                    <div [innerHTML]="localNewsArticle.getElement('content')"></div>
+                </div>
+                <div *ngIf="tile.text != 'cover_url' && tile.text != 'tags.text' && tile.text != 'published_on' && tile.text != 'content' && tile.text != 'content.bounded' && tile.text != 'author'">
+                    {{localNewsArticle.getElement(tile.text)}}
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <div [innerHTML]="localNewsArticle.getContent()"></div>
+    </div>
+</div>
+<div *ngIf="this.localNewsArticle == null">
+    <mat-spinner></mat-spinner>
+    Loading News...
+</div>
