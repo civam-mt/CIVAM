@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   public siteTexts = {};
   public siteTextIDs:string[] = ['HOME_MAP', 'HOME_COL'];
   public loaded_context:boolean;
+  public collection:Collection;
 
   innerWidth:number;
   smallWindow:number = environment.windowSmall;
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
         this.collections = data["collection_list"].sort((a, b) => {
           return (new Date(a.modified_on).getTime() < new Date(b.modified_on).getTime());
         });
+        this.collection = this.collections[0];
     });
   }
   getSiteTexts() {

@@ -9,6 +9,7 @@ $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
 
 $gold-l1: #FDF6CD;
+$gold-l1a: #FEF9DC;
 $gold-l2: #FEFCEE;
 
 .card-title {
@@ -74,12 +75,25 @@ img {
 }
 
 #home-collection-div {
-    background-color: gold-l1 !important;
+    background-color: $gold-l1 !important;
 }
 
 #map-collection-div {
-    background-color: gold-l2 !important;
+    background-color: $gold-l1a !important;
 }
+
+.text-center-in-div-outer {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+
+    .text-center-in-div-inner {
+        align-self: center;
+    }
+}
+
+
+
 
 .layers {
     .layer-lg {
@@ -126,8 +140,8 @@ img {
     }
 
     .top-content {
-        margin-top:3vh;
-        padding-top: min(15%, 40vh);
+        margin-top: 3vh;
+        padding-top: min(10%, 30vh);
         overflow: visible;
         background-position: top;
         background-size: cover;
@@ -136,8 +150,12 @@ img {
         font-weight: bold;
         text-align: center;
         color: #000;
-        background-color: #fff3;
-        background-blend-mode: lighten;
+        background-color: #0000000a;
+        background-blend-mode: darken;
+        font-weight: bolder;
+        font-size: 3vw;
+        color: whitesmoke;
+    
         
         .quote {
             font-style: italic;
@@ -164,6 +182,18 @@ img {
         grid-template-rows: 50%;
         row-gap: 10vw;
     }
+
+    .collection-left-wrap-text {
+        background-color: $gold-l2 !important;
+        margin-right: -10vw;
+        padding-right: 10vw;
+    }
+
+    .collection-right-wrap-text {
+        background-color: $gold-l2 !important;
+        margin-left: -10vw;
+        padding-left: 10vw;
+    }
     
     @media (min-width: 1500px ) {
         .home-collection-grid {
@@ -176,12 +206,26 @@ img {
                 grid-column: 1;
                 text-align: left;
                 font-size: xx-large;
+                background-color: $gold-l2 !important;
+
+                .collection-inline-text {
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: normal;
+                }
             }
         
             .collection-grid-right {
                 grid-column: 2;
                 text-align: right;
                 font-size: xx-large;
+                background-color: $gold-l2 !important;
+
+                .collection-inline-text {
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: normal;
+                }
             }
 
             .collection-grid-top {
@@ -192,12 +236,6 @@ img {
                 grid-row: 2;
                 text-align: center;
                 font-size: x-large;
-            }
-
-            .collection-inline-text {
-                display: inline-block;
-                vertical-align: middle;
-                line-height: normal;
             }
         
             .collection-img {
@@ -239,12 +277,26 @@ img {
                 grid-column: 1;
                 text-align: left;
                 font-size: x-large;
+                background-color: $gold-l2 !important;
+
+                .collection-inline-text {
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: normal;
+                }
             }
         
             .collection-grid-right {
                 grid-column: 2;
                 text-align: right;
                 font-size: x-large;
+                background-color: $gold-l2 !important;
+
+                .collection-inline-text {
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: normal;
+                }
             }
 
             .collection-grid-top {
@@ -255,12 +307,6 @@ img {
                 grid-row: 2;
                 text-align: center;
                 font-size: x-large;
-            }
-
-            .collection-inline-text {
-                display: inline-block;
-                vertical-align: middle;
-                line-height: normal;
             }
         
             .collection-img {
@@ -293,7 +339,7 @@ img {
     
     
     .mid-content {
-        
+        padding-top:6%;
         overflow: visible;
         background-position: top;
         background-size: cover;
