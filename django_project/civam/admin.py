@@ -61,10 +61,16 @@ class NarrativeInline(admin.TabularInline):
     model = Narrative
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
 
+class PorIInline(admin.TabularInline):
+    model = PersonOrInstitute.related_collections.through
+    verbose_name = "Related person"
+    verbose_name_plural = "Related people"
+
 # Can create Collections and Items and Poris directly
 class CollectionAdmin(SortableAdminMixin, DefaultAdmin):
     list_display = ('title', 'created_by')
     search_fields = ['title','creator__name','keywords__word']
+    inlines = [PorIInline]
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection', 'cataloged')
