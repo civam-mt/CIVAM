@@ -14,14 +14,17 @@
         <div *ngIf="this.innerWidth > this.smallWindow"
             class="home-collection-grid layer-unbounded collection-grid-col">
             <div class="collection-grid-left ">
-                <div class="">
+                <div class="collection-img-container">
                     <p class="">
                         <img *ngIf="collection.cover_image" class="collection-img"
                             src="{{API_URL}}/media/{{collection.cover_image}}">
                     </p>
+                    <p class="collection-img-text-img-left">
+                        <!-- Over Image Text -->
+                    </p>
                 </div>
             </div>
-            <div class="collection-grid-right collection-right-wrap-text text-center-in-div-outer">
+            <div class="collection-grid-right collection-right-wrap-text ">
                 <div class="">
                     <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_COL']">
                         Our collections are the backbone of preservation efforts. Carfully catolouged, we present them
@@ -36,17 +39,20 @@
         <div *ngIf="this.innerWidth <= this.smallWindow"
             class="home-collection-grid layer-unbounded collection-grid-row">
             <div class="collection-grid-top">
-                <div class="">
+                <div class="collection-img-container">
                     <p class="">
                         <img *ngIf="collection.cover_image" class="collection-img"
                             src="{{API_URL}}/media/{{collection.cover_image}}">
                     </p>
+                    <p class="collection-img-text-img-left">
+                        <!-- Over Image Text -->
+                    </p>
                 </div>
 
             </div>
-            <div class="collection-grid-bottom text-center-in-div-outer">
+            <div class="collection-grid-bottom ">
                 <div class="">
-                    <p class="collection-inline-text text-center-in-div-innter" [innerHTML]="siteTexts['HOME_MAP']">
+                    <p class="collection-inline-text " [innerHTML]="siteTexts['HOME_MAP']">
                         Over time, many of the physical items we value have been scattered across the planet. This map
                         is a living record of what organizations have what, and how you can visit them to learn more.
                     </p>
@@ -57,11 +63,11 @@
             </div>
         </div>
     </div>
-    <div id="map-collection-div" class="collection-container">
+    <div id="map-collection-div" class="collection-container collection-bottom">
         <!-- If larger then 992px -->
         <div *ngIf="this.innerWidth > this.smallWindow"
             class="home-collection-grid layer-unbounded collection-grid-col">
-            <div class="collection-grid-left collection-left-wrap-text text-center-in-div-outer">
+            <div class="collection-grid-left collection-left-wrap-text ">
                 <div class="">
                     <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_COL']">
                         Our collections are the backbone of preservation efforts. Carfully catolouged, we present them
@@ -73,9 +79,12 @@
                 </div>
             </div>
             <div class="collection-grid-right">
-                <div class="">
+                <div class="collection-img-container">
                     <p class="">
                         <img class="collection-img" src="../../assets/images/doctoring_on_open_range.JPG">
+                    </p>
+                    <p class="collection-img-text-img-right">
+                        <!-- Over Text -->
                     </p>
                 </div>
             </div>
@@ -83,9 +92,12 @@
         <div *ngIf="this.innerWidth <= this.smallWindow"
             class="home-collection-grid layer-unbounded collection-grid-row">
             <div class="collection-grid-top">
-                <div class="">
+                <div class="collection-img-container">
                     <p class="">
                         <img class="collection-img" src="../../assets/images/doctoring_on_open_range.JPG">
+                    </p>
+                    <p class="collection-img-text-img-right">
+                        <!-- Over Text -->
                     </p>
                 </div>
             </div>

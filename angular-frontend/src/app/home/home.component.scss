@@ -79,17 +79,7 @@ img {
 }
 
 #map-collection-div {
-    background-color: $gold-l1a !important;
-}
-
-.text-center-in-div-outer {
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
-
-    .text-center-in-div-inner {
-        align-self: center;
-    }
+    background-color: $gold-l1 !important;
 }
 
 
@@ -134,7 +124,7 @@ img {
         height: fit-content;
         min-height: 300px;
         //margin-top: 3vh;
-        padding-top: 6%;
+        padding-top: 4%;
         padding-left: 5%;
         padding-right:5%;
     }
@@ -168,14 +158,23 @@ img {
 
     .collection-container {
         //margin-bottom: 2.5%;
-        padding-bottom:2.5%;
+        //padding-bottom:2.5%;
+        color: #000;
+        background-color: #fff3;
+
+    }
+
+    .collection-bottom {
+        //margin-bottom: 2.5%;
+        //padding-bottom:2.5%;
+        padding-bottom:4%;
         color: #000;
         background-color: #fff3;
     }
 
     .collection-grid-col {
         grid-auto-columns: 1fr;
-        column-gap: 10vw;
+        //column-gap: 10vw;
     }
 
     .collection-grid-row {
@@ -185,18 +184,28 @@ img {
 
     .collection-left-wrap-text {
         background-color: $gold-l2 !important;
-        margin-right: -10vw;
-        padding-right: 10vw;
+        padding:calc(38px + 1vw);
+        align-items: center;
+        display:flex;
+        // margin-right: -10vw;
+        // padding-right: 10vw;
     }
 
     .collection-right-wrap-text {
         background-color: $gold-l2 !important;
-        margin-left: -10vw;
-        padding-left: 10vw;
+        padding:calc(38px + 1vw);
+        align-items: center;
+        display:flex;
+        // margin-left: -10vw;
+        // padding-left: 10vw;
     }
     
     @media (min-width: 1500px ) {
         .home-collection-grid {
+
+            img{
+                z-index:-1;
+              }
         
             display:grid;
             padding-left: min(15%, 300px);
@@ -207,11 +216,13 @@ img {
                 text-align: left;
                 font-size: xx-large;
                 background-color: $gold-l2 !important;
+                
 
                 .collection-inline-text {
                     display: inline-block;
                     vertical-align: middle;
                     line-height: normal;
+                    
                 }
             }
         
@@ -220,6 +231,7 @@ img {
                 text-align: right;
                 font-size: xx-large;
                 background-color: $gold-l2 !important;
+                
 
                 .collection-inline-text {
                     display: inline-block;
@@ -246,6 +258,27 @@ img {
                 height:auto;
             }
 
+            .collection-img-container {
+                position: relative;
+
+                // .img-grad {
+                //     background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(245, 246, 252, 0) 60%, rgba(251, 248, 250, 0.7) 100%, url('../../assets/images/doctoring_on_open_range.JPG');
+                //     background-size: contain;
+                // }
+            }
+
+
+            .collection-img-text-img-left {
+                bottom:0%;
+                left:5%;
+                position: absolute;
+            }
+
+            .collection-img-text-img-right {
+                bottom:0%;
+                right:5%;
+                position: absolute;
+            }
             
 
             .collection-btn {
@@ -268,7 +301,6 @@ img {
     
     @media (max-width: 1500px) {
         .home-collection-grid {
-        
             display:grid;
             padding-left: min(15%, 300px);
             padding-right: min(15%, 300px);
@@ -283,6 +315,7 @@ img {
                     display: inline-block;
                     vertical-align: middle;
                     line-height: normal;
+                    font-size: large;
                 }
             }
         
@@ -296,6 +329,7 @@ img {
                     display: inline-block;
                     vertical-align: middle;
                     line-height: normal;
+                    font-size: large;
                 }
             }
 
@@ -315,6 +349,20 @@ img {
                 // aspect-ratio: attr(width) / attr(height);
                 width:100%;
                 height:auto;
+
+
+            }
+
+            .collection-img-text-img-left {
+                bottom:0%;
+                left:5%;
+                position: absolute;
+            }
+
+            .collection-img-text-img-right {
+                bottom:0%;
+                right:5%;
+                position: absolute;
             }
 
             
