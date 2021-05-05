@@ -4,6 +4,8 @@ import { DISTRICTS } from '../mock-collections';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../services/api.service';
 import { verifyHostBindings } from '@angular/compiler';
+import { NewsArticle } from 'src/model/NewsArticle';
+import { NewsSupportService } from '../services/news-support.service';
 
 @Component({
   selector: 'app-home',
@@ -12,22 +14,26 @@ import { verifyHostBindings } from '@angular/compiler';
 })
 export class HomeComponent implements OnInit {
 
+  public collections;
+  public collection:Collection;
+  public innerWidth:number;
+  public loaded_context:boolean;
+  public newsList:Array<NewsArticle>;
+  public smallWindow:number = environment.windowSmall;
+  public showNavigationArrows = true;
+  public showNavigationIndicators = true;
   public siteTexts = {};
   public siteTextIDs:string[] = ['HOME_MAP', 'HOME_COL'];
-  public loaded_context:boolean;
-  public collection:Collection;
 
-  innerWidth:number;
-  smallWindow:number = environment.windowSmall;
-  showNavigationArrows = true;
-  showNavigationIndicators = true;
+
+
 
   featuredCollections: Collection[] = DISTRICTS.slice(0, 3);
   /* TODO : Uncomment API Stuff*/
   API_URL = environment.apiUrl;
-  collections;
+  
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private newsSupport:NewsSupportService) { }
 
   private getTime(date?: Date){
     return date != null ? date.getTime(): 0;
@@ -38,6 +44,7 @@ export class HomeComponent implements OnInit {
     this.loaded_context = false;
     this.getSiteTexts()
     this.getCollections();
+    this.getNews();
   }
   getCollections() {
       this.api.getCollections().subscribe((data) => {
@@ -53,6 +60,18 @@ export class HomeComponent implements OnInit {
         this.siteTexts[data["location"]] = data["content"];
       });
     }
+  }
+  getNews() {
+    this.newsSupport.getAllNews();
+    this.newsSupport.newsList.subscribe((nl) => {
+      if (nl != null) {
+        this.newsList = nl;
+        console.log(this.newsList);
+      }
+    })
+  }
+  newsUrlWrapper(news:NewsArticle):string {
+    return this.API_URL + '/media/' + news.getCoverURL();
   }
   mouseOver() {
     let cbs = Array.from(document.getElementsByClassName("card-body") as HTMLCollectionOf<HTMLElement>)

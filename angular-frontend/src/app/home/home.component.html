@@ -114,9 +114,28 @@
             </div>
         </div>
     </div>
-    <div class="mid-content barrier-img layer-lg">
+    <div class="mid-content barrier-img layer-lg-ub">
         <div class="header">
-            News
+            News           
+        </div>
+        <div class="news-carousel-wrapper">
+            <ngb-carousel *ngIf="newsList" class="news-carousel-override">
+                <ng-template ngbSlide *ngFor="let news of newsList">
+                    <a [routerLink]="['/news/news-article', news.getArticleID()]">
+                    <div class="picsum-img-wrapper">
+                        <img [src]="newsUrlWrapper(news)" class="card-img-top">
+                        <div class="card-body"></div>
+                    </div>
+                    <div class="carousel-caption">
+                        <h3>{{news.getTitle()}}</h3>
+                        <p class="news-carousel-subtitle">{{news.getAuthor()}} - {{news.getNewsDate()}}</p>
+                    </div>
+                </a>
+                </ng-template>
+            </ngb-carousel>
+            <div *ngIf="newsList == null">
+                No News Found!
+            </div>
         </div>
     </div>
 
