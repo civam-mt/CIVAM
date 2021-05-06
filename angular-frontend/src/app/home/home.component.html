@@ -9,7 +9,7 @@
         </div>
     </div>
     <!-- Home Page Main Content Below Here -->
-    <div id="home-collection-div" class="collection-container">
+    <div *ngIf="collection" id="home-collection-div" class="collection-container">
         <!-- If larger then 1000px -->
         <div *ngIf="this.innerWidth > this.smallWindow"
             class="home-collection-grid layer-unbounded collection-grid-col">
