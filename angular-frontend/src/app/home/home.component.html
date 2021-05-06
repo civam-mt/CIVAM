@@ -13,9 +13,9 @@
         <!-- If larger then 1000px -->
         <div *ngIf="this.innerWidth > this.smallWindow"
             class="home-collection-grid layer-unbounded collection-grid-col">
-            <div class="collection-grid-left ">
+            <div class="collection-grid-left colleciton-text-gray">
                 <div class="collection-img-container">
-                    <p class="">
+                    <p class="collection-img-boarderless">
                         <img *ngIf="collection.cover_image" class="collection-img"
                             src="{{API_URL}}/media/{{collection.cover_image}}">
                     </p>
@@ -24,7 +24,7 @@
                     </p>
                 </div>
             </div>
-            <div class="collection-grid-right collection-right-wrap-text ">
+            <div class="collection-grid-right collection-right-wrap-text colleciton-text-gray">
                 <div class="">
                     <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_COL']">
                         Our collections are the backbone of preservation efforts. Carfully catolouged, we present them
@@ -40,7 +40,7 @@
             class="home-collection-grid layer-unbounded collection-grid-row">
             <div class="collection-grid-top">
                 <div class="collection-img-container">
-                    <p class="">
+                    <p class="collection-img-boarderless">
                         <img *ngIf="collection.cover_image" class="collection-img"
                             src="{{API_URL}}/media/{{collection.cover_image}}">
                     </p>
@@ -67,7 +67,7 @@
         <!-- If larger then 992px -->
         <div *ngIf="this.innerWidth > this.smallWindow"
             class="home-collection-grid layer-unbounded collection-grid-col">
-            <div class="collection-grid-left collection-left-wrap-text ">
+            <div class="collection-grid-left collection-left-wrap-text colleciton-text-gray">
                 <div class="">
                     <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_COL']">
                         Our collections are the backbone of preservation efforts. Carfully catolouged, we present them
@@ -78,9 +78,9 @@
                         </button></a>
                 </div>
             </div>
-            <div class="collection-grid-right">
+            <div class="collection-grid-right colleciton-text-gray">
                 <div class="collection-img-container">
-                    <p class="">
+                    <p class="collection-img-boarderless">
                         <img class="collection-img" src="../../assets/images/doctoring_on_open_range.JPG">
                     </p>
                     <p class="collection-img-text-img-right">
@@ -93,7 +93,7 @@
             class="home-collection-grid layer-unbounded collection-grid-row">
             <div class="collection-grid-top">
                 <div class="collection-img-container">
-                    <p class="">
+                    <p class="collection-img-boarderless">
                         <img class="collection-img" src="../../assets/images/doctoring_on_open_range.JPG">
                     </p>
                     <p class="collection-img-text-img-right">

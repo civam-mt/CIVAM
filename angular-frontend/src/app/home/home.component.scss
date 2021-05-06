@@ -10,7 +10,10 @@ $lighter-gold: #ffd400;
 
 $gold-l1: #FDF6CD;
 $gold-l1a: #FEF9DC;
+$gold-l1b: #ffeeb5;
 $gold-l2: #FEFCEE;
+
+$gray-l1: #1e1e1ecf;
 
 .card-title {
     text-align: center;
@@ -76,11 +79,11 @@ img {
 }
 
 #home-collection-div {
-    background-color: $gold-l1 !important;
+    background-color: $gold-l2 !important;
 }
 
 #map-collection-div {
-    background-color: $gold-l1 !important;
+    background-color: $gold-l2 !important;
 }
 
 
@@ -199,8 +202,12 @@ img {
         row-gap: 10vw;
     }
 
+    .colleciton-text-gray {
+        background-color: $gray-l1 !important;
+        color:whitesmoke !important;
+    }
+
     .collection-left-wrap-text {
-        background-color: $gold-l2 !important;
         padding:calc(38px + 1vw);
         align-items: center;
         display:flex;
@@ -209,7 +216,6 @@ img {
     }
 
     .collection-right-wrap-text {
-        background-color: $gold-l2 !important;
         padding:calc(38px + 1vw);
         align-items: center;
         display:flex;
@@ -232,7 +238,6 @@ img {
                 grid-column: 1;
                 text-align: left;
                 font-size: xx-large;
-                background-color: $gold-l2 !important;
                 
 
                 .collection-inline-text {
@@ -247,7 +252,6 @@ img {
                 grid-column: 2;
                 text-align: right;
                 font-size: xx-large;
-                background-color: $gold-l2 !important;
                 
 
                 .collection-inline-text {
@@ -268,11 +272,12 @@ img {
             }
         
             .collection-img {
-                // max-width: min(100%, 1020px);
-                // max-height: min(720px, 100%);
-                // aspect-ratio: attr(width) / attr(height);
-                width:100%;
-                height:auto;
+                // width:100%;
+                // height:auto;
+                width: 100%;
+                height: auto;
+                max-height: 45vh;
+                object-fit: cover;
             }
 
             .collection-img-container {
@@ -282,6 +287,11 @@ img {
                 //     background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(245, 246, 252, 0) 60%, rgba(251, 248, 250, 0.7) 100%, url('../../assets/images/doctoring_on_open_range.JPG');
                 //     background-size: contain;
                 // }
+            }
+
+            .collection-img-boarderless {
+                margin-bottom: 0px;
+                margin-top: 0px;
             }
 
 
@@ -326,7 +336,6 @@ img {
                 grid-column: 1;
                 text-align: left;
                 font-size: x-large;
-                background-color: $gold-l2 !important;
 
                 .collection-inline-text {
                     display: inline-block;
@@ -340,7 +349,6 @@ img {
                 grid-column: 2;
                 text-align: right;
                 font-size: x-large;
-                background-color: $gold-l2 !important;
 
                 .collection-inline-text {
                     display: inline-block;
