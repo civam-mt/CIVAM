@@ -2,7 +2,7 @@ $dark-brown: #553c0f;       // selected element
 $light-brown: #a67c00;      // active element
 $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
-       
+$crow-red: rgb(231, 28, 44);       
 $theme-color: #f7d417;      // theme color
 $lighter-yellow: #ffffb7;   // dropdown color (lighter version of theme)
 
@@ -69,6 +69,7 @@ a {
     background-color: $theme-color!important;
     font-weight: 600;
     z-index: 999; //Hacky way to make autocomplete appear over the navbar
+    border-bottom: 3px solid $crow-red!important;
 }
 
 .dropdown-toggle {
@@ -107,8 +108,8 @@ a.dropdown-item.active {
 .dropdown-menu {
     background-color: $theme-color;
     position: absolute;
+    
 }
-
 .nav-link {
     color: $gold;
     font-size: large;
@@ -159,5 +160,9 @@ button#search-button:hover {
     height:60px;
     display:flex;
     flex-direction: row;
+}
+.search-icon {
+    width: 20px;
+    height:auto;
 }
 
