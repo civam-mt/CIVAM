@@ -13,17 +13,30 @@
             <br>
         </div>
         <div *ngIf="pori.description" class="poriDescription">
-           <p>{{pori.description}}</p>
+            <p>{{pori.description}}</p>
             <br>
-        </div>
+	</div>
+	<div *ngIf="pori.related_collections" class="poriRelatedCollections">
+	    <div><p><strong>Related Collections</strong></p></div>
+	    <div *ngFor="let collection of pori.related_collections; let indexOfelement=index" class="col-md-4">
+		<div *ngIf="collection">
+		    <a [routerLink]="['/collections', collection.id]"
+		       class="btn btn-outline-info my-2 my-sm-0"
+		       style="color:black; font-weight:500">
+                        {{collection.title}}
+		    </a>				
+		</div>
+		<br>
+            </div>
+	</div>
         <div *ngIf="pori.historical_note" class="poriHistoricalNote">
-            <p>{{pori.historical_note}}</p>
-            <br>
+	    <p>{{pori.historical_note}}</p>
+	    <br>
         </div>
         <div *ngIf="pori.contact" class="poriContact">
-            <p>Contact {{pori.name}} at {{pori.contact}}</p>
-            <br>
-            <br>
+	    <p>Contact {{pori.name}} at {{pori.contact}}</p>
+	    <br>
+	    <br>
         </div>
     </div>
 </div>
