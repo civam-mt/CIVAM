@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 export class PoriComponent implements OnInit {
   API_URL = environment.apiUrl;
   pori;
+  b_route = '/collections';
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 

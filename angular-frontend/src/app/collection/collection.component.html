@@ -57,14 +57,9 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="originals">
-                    <div *ngIf="originals.length > 0">
-                        <p><strong>Location of Originals</strong></p>
-                        <div *ngFor="let original of originals">
-                            <p> <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0"
-                                    style="color:black; font-weight:500"> {{original.name}} </a> </p>
-                        </div>
-                    </div>
+                <div *ngIf="collection.location_of_originals">
+                    <p><strong>Location of Originals</strong></p>
+                    <p>{{collection.location_of_originals}}</p>		    
                 </div>
             </mat-expansion-panel>
         </div>

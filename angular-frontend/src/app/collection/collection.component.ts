@@ -18,7 +18,6 @@ export class CollectionComponent implements OnInit {
   items;
   keywords;
   creators;
-  originals;
   panelOpenState;
   itemKeywords;
   selectedKeywords;
@@ -54,7 +53,6 @@ export class CollectionComponent implements OnInit {
       this.items = this.collection["item_list"];
       this.keywords = this.collection["keywords"];
       this.creators = this.collection["creator"];
-      this.originals = this.collection["location_of_originals"];
 
       if (keywordIds = []) {
         this.itemKeywords = this.collection['unique_item_keywords']

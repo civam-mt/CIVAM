@@ -85,12 +85,6 @@
                                     <br>{{item.other_forms}}</p>
                             </div>
                         </div>
-                        <div *ngIf="item.digital_heritage_item">
-                            <div>
-                                <p><strong>Digital Heritage Item</strong>
-                                    <br>{{item.digital_heritage_item}}</p>
-                            </div>
-                        </div>
                         <div *ngIf="item.date_of_creation">
                             <div>
                                 <p><strong>Date of Creation</strong>
@@ -162,17 +156,10 @@
                             </div>
                             <br>
                         </div>
-                        <div *ngIf="originals">
-                            <div *ngIf="originals.length > 0">
-                                <div>
-                                    <p class="margin-0"><strong>Location of Originals</strong></p>
-                                </div>
-                                <div *ngFor="let original of originals">
-                                    <a [routerLink]="['/pori', original.id]"
-                                        class="btn btn-outline-info my-2 my-sm-0 margin-half" style="color:black;">
-                                        {{original.name}}
-                                    </a>
-                                </div>
+                        <div *ngIf="item.location_of_originals">
+                            <div>
+                                <p><strong>Location of Originals</strong>
+                                    <br>{{item.location_of_originals}}</p>
                             </div>
                         </div>
                     </div>
