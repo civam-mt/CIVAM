@@ -231,8 +231,8 @@ img {
               }
         
             display:grid;
-            padding-left: min(15%, 300px);
-            padding-right: min(15%, 300px);
+            padding-left: min(20%, 300px);
+            padding-right: min(20%, 300px);
         
             .collection-grid-left {
                 grid-column: 1;
@@ -276,7 +276,7 @@ img {
                 // height:auto;
                 width: 100%;
                 height: auto;
-                max-height: 45vh;
+                max-height: 50vh;
                 object-fit: cover;
             }
 
@@ -373,9 +373,7 @@ img {
                 // max-height: min(720px, 100%);
                 // aspect-ratio: attr(width) / attr(height);
                 width:100%;
-                height:auto;
-
-
+                //height:auto;
             }
 
             .collection-img-text-img-left {
