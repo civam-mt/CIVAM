@@ -18,6 +18,7 @@ import { KeywordPageComponent } from './keyword-page/keyword-page.component';
 import { NewsComponent } from './news/news.component';
 import { NewsArticleComponent } from './news/news-article/news-article.component';
 import { NewsTagComponent } from './news/news-tag/news-tag.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 
 const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
@@ -40,6 +41,7 @@ const routes: Routes = [
 {path:'people', component: PeopleComponent},
 {path:'search-result', component: SearchResultComponent},
 {path:'keyword-page/:keyword', component: KeywordPageComponent},
+{path:'terms-and-conditions', component: TermsConditionsComponent},
 // Keep this one last, so it catches everything else
 {path:'**',component: PageNotFoundComponent}
 ];

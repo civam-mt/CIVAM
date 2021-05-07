@@ -290,8 +290,8 @@ img {
             }
 
             .collection-img-boarderless {
-                margin-bottom: 0px;
-                margin-top: 0px;
+                margin-bottom: 0px !important;
+                margin-top: 0px !important;
             }
 
 
@@ -372,8 +372,11 @@ img {
                 // max-width: min(100%, 1020px);
                 // max-height: min(720px, 100%);
                 // aspect-ratio: attr(width) / attr(height);
-                width:100%;
-                //height:auto;
+                width: 100%;
+                height: auto;
+                max-height: 50vh;
+                //-o-object-fit: cover;
+                object-fit: cover;
             }
 
             .collection-img-text-img-left {

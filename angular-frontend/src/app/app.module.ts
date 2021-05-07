@@ -51,6 +51,7 @@ import { NewsTagComponent } from './news/news-tag/news-tag.component';
 import { UsernameService } from './auth/username.service';
 import { environment } from 'src/environments/environment';
 import { FooterComponent } from './footer/footer.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -83,7 +84,8 @@ import { FooterComponent } from './footer/footer.component';
     NewsArticleComponent,
     NewsTagComponent,
     KeywordPageComponent,
-    FooterComponent
+    FooterComponent,
+    TermsConditionsComponent
   ],
   imports:[
     BrowserAnimationsModule,

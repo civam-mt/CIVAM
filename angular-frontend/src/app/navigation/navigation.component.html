@@ -15,24 +15,30 @@
                         2.) data-target=".navbar-collapse.show"
      -->
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <span class="navbar-brand"><a href="https://www.thecenterpole.org/"><img
-                    src="../../assets/images/crow_large.png" class="destrech-img"></a></span>
-        <ul class="navbar-nav nav-container-left nav-container-col nav-container-col-left-fix-stuff">
-            <li class="nav-item title">
-                <h3>Crow Indian Virtual Archive and Museum</h3>
-            </li>
-            <li class="nav-item subtitle">
-                <h5>Apsáalooke ammaaiiláxiio</h5>
-            </li>
-        </ul>
+        <div class="push-inline">
+            <span class="navbar-brand"><a href="https://www.thecenterpole.org/"><img
+            src="../../assets/images/crow_large.png" class="destrech-img"></a></span>
+            <ul class="navbar-nav nav-container-left nav-container-col nav-container-col-left-fix-stuff">
+                <a class="nav-item" routerLink='home' data-toggle="collapse"
+                data-target=".navbar-collapse.show">
+                <li class="nav-item title">
+                    <h3>Crow Indian Virtual Archive and Museum</h3>
+                </li>
+                <li class="nav-item subtitle">
+                    <h5>Apsáalooke ammaaiiláxiio</h5>
+                </li>
+                </a>
+            </ul>
+        </div>
+        
         <ul class="navbar-nav nav-container-right ">
             <!-- Navbar Brand Image (shown on the right) -->
 
             <!-- Navbar links (like this one) are set up using a list item.Fill in the routerLink for the page generated in `app-routing.module.ts`  -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a [routerLinkActive]='activeClass' class="nav-link" routerLink='home' data-toggle="collapse"
                     data-target=".navbar-collapse.show">Home</a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a [routerLinkActive]='activeClass' class="nav-link" routerLink='about' data-toggle="collapse"
                     data-target=".navbar-collapse.show">About</a>
@@ -64,6 +70,8 @@
                             data-toggle="collapse" data-target=".navbar-collapse.show">Material Culture</a>
                         <a [routerLinkActive]='activeClass' routerLink='people' class="dropdown-item" href="#"
                             data-toggle="collapse" data-target=".navbar-collapse.show">People</a>
+                        <a [routerLinkActive]='activeClass' routerLink='news' class="dropdown-item" href="#"
+                            data-toggle="collapse" data-target=".navbar-collapse.show">News</a>
                     </div>
                 </div>
             </li>
