@@ -1,7 +1,7 @@
 import { Component, OnInit,Input, SecurityContext, ɵConsole } from '@angular/core';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 import { environment } from '../../environments/environment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Router} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -41,12 +41,28 @@ export class ItemComponent implements OnInit {
   showNavigationArrows = true;
   showNavigationIndicators = true;
   showModal: boolean = false; 
+
+  
+  currentSubPage:string;
+  currentPageUrl:string = '';
+  allowedSubPage:string[] = ['item', 'attr', 'narr'];
   constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder,) { }
 
   ngOnInit() {
+    this.route.url.subscribe((url) => {
+      this.currentPageUrl = '';
+      url.forEach((urlComp) => {this.currentPageUrl = this.currentPageUrl + '/' + urlComp.path});
+    });
     this.route.paramMap.subscribe(params => {
       this.getItemByItemID(params.get('itemID'));
       this.itemID = params.get('itemID');
+    });
+    this.route.fragment.subscribe((fragment: string) => {
+      if (this.allowedSubPage.includes(fragment)) this.currentSubPage = fragment;
+      else this.currentSubPage = this.allowedSubPage[0];
+      console.log(this.currentSubPage);
+    }, (nonString:any) => {
+      this.currentSubPage = this.allowedSubPage[0];
     });
     this.narrativeForm = this.formBuilder.group({
       author: ['', Validators.required],
@@ -102,5 +118,14 @@ export class ItemComponent implements OnInit {
         alert("Invalid narrative");
       }
     });
+  }
+
+  angularLog(obj:any):void {
+    console.log(obj);
+  }
+
+  applySelectedClass(str:string):string {
+    if (str == this.currentSubPage) return 'nav-item-selected';
+    else return '';
   }
 }
