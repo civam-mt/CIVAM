@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Router} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { url } from 'inspector';
 
 // 3/25/21  - Tim Mazzarelli  - Added api call to get item's collection name
 
@@ -24,6 +25,7 @@ export class ItemComponent implements OnInit {
   loading = false;
 
   API_URL = environment.apiUrl;
+  backgroundUrl;
   item;
   itemID;
   images;
@@ -58,6 +60,7 @@ export class ItemComponent implements OnInit {
       this.item = data;
       this.api.getCollectionByCollectionID(this.item["collection"], []).subscribe((result) =>{
         this.collection = result["title"];
+        this.backgroundUrl = result["cover_image"];
       });
       this.images = this.item["images"];
       this.narratives = this.item["narratives"];
