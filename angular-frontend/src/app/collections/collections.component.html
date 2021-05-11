@@ -1,23 +1,69 @@
-
-
-<div class="top-content barrier-img">
+<div class="top-content barrier-img layer-lg">
     <h1 class="title">Collections</h1>
 </div>
 
 <div section="collections-page">
-    <div *ngFor="let collection of collections; let indexOfelement=index">
-        <div *ngIf="collection && indexOfelement % 2 == 0" class="collection-grid even layer">
-            <p class="collection-grid-left collection-description">{{collection.description}}</p>
-            <app-card class="collection-grid-right collection-img" [cover_image]="collection.cover_image" [title]="collection.title"
-                [id]="collection.id" [number]="indexOfelement" [route]=route>
-            </app-card>
+    <div *ngIf="collections" class="collection-container">
+        <div *ngIf="this.innerWidth > this.smallWindow">
+            <div *ngFor="let collection of collections; let indexOfelement=index">
+                <div *ngIf="collection && indexOfelement % 2 == 0"   
+                class="collection-collection-grid layer-unbounded collection-grid-col even">
+                    <div class="collection-grid-left collection-left-wrap-text">
+                        <h1 class="collection-title">{{collection.title}}</h1>
+                        <p class="collection-description">{{collection.description}}</p>
+                        <a [routerLink]="collection.id"><button type="button" class="collection-btn">
+                                See Collection
+                            </button></a>
+                    </div>
+                    <div class="collection-grid-right">
+                        <div class="collection-img-container-right">
+                            <div class="collection-img-borderless">
+                                <img *ngIf="collection.cover_image" class="collection-img"
+                                    src="{{API_URL}}/media/{{collection.cover_image}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="collection && indexOfelement % 2 != 0"
+                class="collection-collection-grid layer-unbounded collection-grid-col odd">
+                   <div class="collection-grid-left">
+                    <div class="collection-img-container-left">
+                        <div class="collection-img-borderless">
+                            <img *ngIf="collection.cover_image" class="collection-img"
+                                src="{{API_URL}}/media/{{collection.cover_image}}">
+                        </div>
+                    </div>
+                   </div>
+                   <div class="collection-grid-right collection-right-wrap-text">
+                    <h1 class="collection-title">{{collection.title}}</h1>
+                    <p class="collection-description">{{collection.description}}</p>
+                    <a [routerLink]="collection.id"><button type="button" class="collection-btn">
+                            See Collection
+                        </button></a>
+                   </div>
+                    
+                </div>
+            </div>
         </div>
-        <div *ngIf="collection && indexOfelement % 2 != 0" class="collection-grid odd layer">
-            <app-card class="collection-grid-left collection-img" [cover_image]="collection.cover_image" [title]="collection.title"
-                [id]="collection.id" [number]="indexOfelement" [route]=route>
-            </app-card>
-            <p class="collection-grid-right collection-description">{{collection.description}}</p>
+        <div *ngIf="this.innerWidth <= this.smallWindow"
+            class="collection-collection-grid layer-unbounded collection-grid-row">
+            <div *ngFor="let collection of collections; let indexOfelement=index">
+                <div class="collection-grid-top">
+                    <div class="collection-img-container">
+                        <div class="collection-img-borderless">
+                            <img *ngIf="collection.cover_image" class="collection-img"
+                                src="{{API_URL}}/media/{{collection.cover_image}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="collection-grid-bottom">
+                    <h1 class="collection-title">{{collection.title}}</h1>
+                    <p class="collection-description">{{collection.description}}</p>
+                    <a [routerLink]="collection.id"><button type="button" class="collection-btn">
+                            See Collection
+                        </button></a>
+                </div>
+            </div>
         </div>
     </div>
-
 </div>
