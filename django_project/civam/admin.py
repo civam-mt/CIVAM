@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, MapData, SiteText
+from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, NewsTag, MapData
 from guardian.admin import GuardedModelAdmin
 from adminsortable2.admin import SortableAdminMixin
 
@@ -71,6 +71,11 @@ class PorIAdmin(DefaultAdmin):
 class KeywordAdmin(DefaultAdmin):
     search_fields = ['word']
 
+class NewsTagAdmin(DefaultAdmin):
+    search_fields = ['word']
+
+class NewsArticleAdmin(DefaultAdmin):
+    model = NewsArticle
 class MapDataAdmin(DefaultAdmin):
     model = MapData
 
@@ -79,5 +84,7 @@ admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Item, ItemAdmin)
 admin.site.register(PersonOrInstitute, PorIAdmin)
 admin.site.register(Keyword, KeywordAdmin)
+admin.site.register(NewsTag, NewsTagAdmin)
 admin.site.register(MapData, MapDataAdmin)
 admin.site.register(SiteText)
+admin.site.register(NewsArticle, NewsArticleAdmin)

@@ -42,12 +42,16 @@ import { ModalComponent } from './modal/modal.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { CardComponent } from './card/card.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
+import { NewsComponent } from './news/news.component';
+import { NewsArticleComponent } from './news/news-article/news-article.component';
+import { NewsTagComponent } from './news/news-tag/news-tag.component';
 
 
 // Service imports
 import { UsernameService } from './auth/username.service';
 import { environment } from 'src/environments/environment';
 import { FooterComponent } from './footer/footer.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -76,8 +80,12 @@ import { FooterComponent } from './footer/footer.component';
     ModalComponent,
     SearchResultComponent,
     CardComponent,
+    NewsComponent,
+    NewsArticleComponent,
+    NewsTagComponent,
     KeywordPageComponent,
-    FooterComponent
+    FooterComponent,
+    TermsConditionsComponent
   ],
   imports:[
     BrowserAnimationsModule,

@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
-import { MapSupportService } from '../map-support.service';
+import { MapSupportService } from '../services/map-support.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tile, MapTile } from 'src/model/Tile';
 import { environment } from 'src/environments/environment';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
+import { AgmInfoWindow } from '@agm/core';
 
 @Component({
   selector: 'app-map',
@@ -36,6 +37,7 @@ export class MapComponent implements OnInit {
   public form:FormGroup;
   public selectedMarker:GoogleMapMarker;
   public mapMarkers:Array<GoogleMapMarker>; 
+  public toOpen:boolean = true;
 
 
   constructor(httpClient: HttpClient, private mapSupport:MapSupportService, private formBuilder:FormBuilder, private apiService:ApiService) {
@@ -72,13 +74,14 @@ export class MapComponent implements OnInit {
     if (this.selectedMarker != null) this.selectedMarker.animation = "";
     //this.panning = true;
     this.selectedMarker = this.mapSupport.getSelectedMarkerFromTitle(title);
-    //this.zoom = 10;
+    this.zoom = 10;
     //this.zoom = 17;
     this.lat = this.selectedMarker.lat;
     this.lng = this.selectedMarker.lng;
-    this.selectedMarker.animation = "BOUNCE";
+    //this.selectedMarker.animation = "BOUNCE";
     this.clicked = true;
     //this.panning = false;
+    //this.agmInfo.open();
   }
 
   asCrowMapMarker(marker:GoogleMapMarker): CrowMapMarker {

@@ -421,6 +421,82 @@ def register(request):
 	else:
 		return 0
 
+def get_news(request):
+	return 0
+
+def get_all_news_article(request):
+	#rawlist = NewsArticle.objects.filter(published_on__lte datetime.date.today())
+	rawlist = NewsArticle.objects.all()
+	news_list = []
+	for entry in rawlist:
+		new_entry = {
+			"article_id": entry.id,
+			"title": entry.title,
+			"cover": entry.cover_image.name,
+			"content": entry.content,
+			"published_on": entry.publish_on,
+			"tags": [{"id":x.id,"name":str(x)} for x in list(entry.tags.all())],
+			"author": entry.created_by.username
+			}
+		news_list.append(new_entry)
+	##print(map_list)
+
+
+	context = { "length": len(news_list) ,
+		"articles": news_list}
+	return JsonResponse(context, safe=False)
+
+def get_news_tag_by_id(request, newstag_id):
+	tag = get_object_or_404(NewsTag, pk=newstag_id)
+	context = {	"length": 1,
+		"tag": [{
+			"word": tag.word
+			}]}
+	return JsonResponse(context, safe=False)
+
+
+def get_news_article_by_tag(request):
+	if (request.method == 'POST'):
+		news_list = []
+		body = json.loads(request.body)
+		for tag in body['tags']:
+			rawlist = NewsArticle.objects.filter(tags__word=tag)
+			for entry in rawlist:
+				contains = False
+				for n in news_list:
+					contains = n["article_id"] == entry.id or contains
+				if not contains:
+					new_entry = {
+						"article_id": entry.id,
+						"title": entry.title,
+						"cover": entry.cover_image.name,
+						"content": entry.content,
+						"published_on": entry.publish_on,
+						"tags": [{"id":x.id,"name":str(x)} for x in list(entry.tags.all())],
+						"author": entry.created_by.username
+						}
+					news_list.append(new_entry)
+		context = { "length": len(news_list) ,
+			"articles": news_list}
+		return JsonResponse(context, safe=False)
+	else:
+		return JsonResponse({"length": 0,
+			"articles": []}, safe=False)
+
+def get_news_article_by_id(request, article_id):
+	article = get_object_or_404(NewsArticle, pk=article_id)
+	news_list = [
+		{	"article": article.id,
+			"title": article.title,
+			"cover": article.cover_image.name,
+			"content": article.content,
+			"published_on": article.publish_on,
+			"tags": [{"id":x.id,"name":str(x)} for x in list(article.tags.all())],
+			"author": article.created_by.username
+		}]
+	context = {	"length": len(news_list),
+		"articles": news_list}
+	return JsonResponse(context, safe=False)
 
 def get_all_mapdata(request):
 	rawlist = MapData.objects.filter(publish=True)

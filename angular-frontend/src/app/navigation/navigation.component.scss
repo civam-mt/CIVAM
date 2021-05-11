@@ -56,13 +56,22 @@ a {
 
 }
 
+.push-inline {
+    display: inherit;
+}
+
+.nav-item {
+    color: black;
+    text-decoration: none;
+}
+
 .nav-min-size {
     min-height: 100px;
 }
 
 .destrech-img {
     width: 30%;
-    height: 30%;
+    //height: 30%;
 }
 
 .navbar {
@@ -83,6 +92,7 @@ a {
 // this is a bootstrap class, so any changes need to have the !important tag on the end
 .dropdown-item {
     color: $gold;
+    
 }
 
 

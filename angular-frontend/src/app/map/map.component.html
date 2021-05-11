@@ -2,7 +2,7 @@
    <h1 class="title">Crow Collections Around the World</h1>
 </div>
 <div [innerHTML]="siteText">
-   
+
 </div>
 <div>
    <form class="filter" [formGroup]="form" (ngSubmit)="filterData()">
@@ -46,29 +46,34 @@
          <div *ngFor='let marker of mapMarkers'>
             <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title" [label]=""
                (markerClick)="showMarker(marker.title)" [animation]="marker.animation"
-               [iconUrl]="marker.customImgUrl.icon"></agm-marker>
+               [iconUrl]="marker.customImgUrl.icon">
+               <agm-info-window [disableAutoPan]="true" >
+                  <div *ngIf="selectedMarker" class="info">
+                           <div *ngIf="clicked" class="afterClick">
+                              <mat-grid-list cols="6" rowHeight="75px" class="card" style="width:100%">
+                                 <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
+                                    [style.background]="tile.color">
+                                    <div *ngIf="tile.text != 'cover_image' && tile.text != 'name'">
+                                       {{selectedMarker.getElement(tile.text)}}
+                                    </div>
+                                    <div *ngIf="tile.text == 'name'" class="info-title">
+                                       {{selectedMarker.getElement(tile.text)}}
+                                    </div>
+                                    <div *ngIf="tile.text == 'cover_image'">
+                                       <img src="{{API_URL}}/media/{{selectedMarker.getElement(tile.text)}}" alt="Random slide"
+                                          class="image" [class]="'matt-grid-opt-'+tile.text">
+                                    </div>
+                                 </mat-grid-tile>
+                              </mat-grid-list>
+                           </div>
+                  </div>
+               </agm-info-window>
+            </agm-marker>
          </div>
+
       </agm-map>
       <div class="map-icon-credit">
          Map icons CC-0 from <a href='http://www.sjjb.co.uk/mapicons/'>SJJB Management</a>
       </div>
-      <mat-accordion class="">
-         <mat-expansion-panel [expanded]="clicked" hideToggle style="padding-bottom:0%; margin-top:2vh; margin-bottom:2vh;" [ngClass]="isClickable()" >
-            <div *ngIf="clicked" class="afterClick">
-               <mat-grid-list cols="6" rowHeight="75px" class="card" style="width:100%">
-                  <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
-                     [style.background]="tile.color">
-                     <div *ngIf="tile.text != 'cover_image'">
-                        {{selectedMarker.getElement(tile.text)}}
-                     </div>
-                     <div *ngIf="tile.text == 'cover_image'">
-                        <img src="{{API_URL}}/media/{{selectedMarker.getElement(tile.text)}}"
-                            alt="Random slide" class="image" [class]="'matt-grid-opt-'+tile.text">
-                    </div>
-                  </mat-grid-tile>
-               </mat-grid-list>
-            </div>
-         </mat-expansion-panel>
-      </mat-accordion>
    </div>
 </div>

@@ -15,6 +15,10 @@ import { PeopleComponent } from './people/people.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
+import { NewsComponent } from './news/news.component';
+import { NewsArticleComponent } from './news/news-article/news-article.component';
+import { NewsTagComponent } from './news/news-tag/news-tag.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 
 const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
@@ -23,6 +27,9 @@ const routes: Routes = [
 {path:'collections',component: CollectionsComponent},
 // {path:'districts',component: DistrictsComponent},
 {path:'oral-histories',component: OralHistoriesComponent},
+{path:'news',component: NewsComponent},
+{path:'news/news-article/:newsArticleID',component: NewsArticleComponent},
+{path:'news/news-tag/:newsTagID',component: NewsTagComponent},
 {path:'images',component: ImagesComponent},
 {path:'material-culture',component: MaterialCultureComponent},
 {path:'items/:itemID', component: ItemComponent},
@@ -34,6 +41,7 @@ const routes: Routes = [
 {path:'people', component: PeopleComponent},
 {path:'search-result', component: SearchResultComponent},
 {path:'keyword-page/:keyword', component: KeywordPageComponent},
+{path:'terms-and-conditions', component: TermsConditionsComponent},
 // Keep this one last, so it catches everything else
 {path:'**',component: PageNotFoundComponent}
 ];
