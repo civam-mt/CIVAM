@@ -29,24 +29,25 @@
         <div class="tab-content pt-0">
             <div *ngIf="currentSubPage=='coll'">
                 <div *ngIf="items" class="row justify-content-center container-fluid">
-                    <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">
+                    <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="col-md-4">
                         <div *ngIf="item">
                             <a href="/items/{{item.id}}"> 
                                 <div *ngIf="!item.cover_image">
                                     <button class="coverImage"
                                         style="background-color:black">
-                                        <div class="hoverButton buttonText">{{item.name}}</div>
+                                        {{item.name}}
                                     </button>
                                 </div>
                                 <div *ngIf="item.cover_image">
                                     <button class="coverImage"
                                         style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
-                                        <div class="hoverButton buttonText">{{item.name}}</div>
+                                        {{item.name}}
                                     </button>
                                 </div>
                             </a>
                         </div>
                     </div>
+                    <jw-pagination pageSize = 9 [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
                 </div>
                 <!-- <app-card [cover_image]="item.cover_image" [title]="item.name" [id]="item.id"
                                     [number]="indexOfelement" [route]=router_route> </app-card> -->
