@@ -153,7 +153,8 @@ $darkless-brown: #77510d;
 }
 
 .theme-filter {
-    margin-top: 1rem;
+    margin-bottom: 1rem;
+    float: right;
     width: 50%;
 }
 
@@ -203,8 +204,10 @@ $darkless-brown: #77510d;
     background-image: linear-gradient(to bottom, rgba(black, 1.0), rgba(black, 0.5), rgba(black, 0.0)) !important;
 }
 
-
-
+.pagination{
+    justify-content: center;
+    padding-top: 1%;
+}
 
 .kwords{
     float:left;

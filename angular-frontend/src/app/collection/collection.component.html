@@ -28,13 +28,20 @@
     <div class="collection-content-panel">
         <div class="tab-content pt-0">
             <div *ngIf="currentSubPage=='coll'">
+                <div class="theme-filter">
+                    <ng-multiselect-dropdown [placeholder]="'Filter by Keyword'" [settings]="dropdownSettings"
+                        [data]="itemKeywords" [(ngModel)]="selectedKeywords" (onSelect)="onKeywordFilterSelect()"
+                        (onSelectAll)="onKeywordFilterSelect()" (onDeSelect)="onKeywordFilterSelect()"
+                        (onDeSelectAll)="onKeywordFilterSelect()">
+                    </ng-multiselect-dropdown>
+                </div>
+
                 <div *ngIf="items" class="row justify-content-center container-fluid">
                     <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="col-md-4">
                         <div *ngIf="item">
-                            <a href="/items/{{item.id}}"> 
+                            <a href="/items/{{item.id}}">
                                 <div *ngIf="!item.cover_image">
-                                    <button class="coverImage"
-                                        style="background-color:black">
+                                    <button class="coverImage" style="background-color:black">
                                         {{item.name}}
                                     </button>
                                 </div>
@@ -47,15 +54,15 @@
                             </a>
                         </div>
                     </div>
-                    <jw-pagination pageSize = 9 [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
                 </div>
-                <!-- <app-card [cover_image]="item.cover_image" [title]="item.name" [id]="item.id"
-                                    [number]="indexOfelement" [route]=router_route> </app-card> -->
+                <div>
+                    <jw-pagination class="pagination" [pageSize]=9 [items]="items" (changePage)="onChangePage($event)">
+                    </jw-pagination>
+                </div>
             </div>
+
+
         </div>
-
-
-
 
         <div *ngIf="currentSubPage=='attr'">
             <div *ngIf="collection.description">
@@ -116,12 +123,4 @@
             </div>
         </div>
     </div>
-</div>
-
-
-<div class="theme-filter">
-    <ng-multiselect-dropdown [placeholder]="'Filter by Keyword'" [settings]="dropdownSettings" [data]="itemKeywords"
-        [(ngModel)]="selectedKeywords" (onSelect)="onKeywordFilterSelect()" (onSelectAll)="onKeywordFilterSelect()"
-        (onDeSelect)="onKeywordFilterSelect()" (onDeSelectAll)="onKeywordFilterSelect()">
-    </ng-multiselect-dropdown>
 </div>

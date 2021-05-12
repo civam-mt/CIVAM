@@ -29,6 +29,7 @@ export class CollectionComponent implements OnInit {
   currentPageUrl:string = '';
   allowedSubPage:string[] = ['coll', 'attr', 'back'];
   pageOfItems;
+  pageSize = 9;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 
