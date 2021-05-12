@@ -22,15 +22,31 @@ export class CollectionComponent implements OnInit {
   panelOpenState;
   itemKeywords;
   selectedKeywords;
+  backgroundURL;
   dropdownSettings: IDropdownSettings;
   router_route = '/items';
+  currentSubPage:string;
+  currentPageUrl:string = '';
+  allowedSubPage:string[] = ['coll', 'attr', 'back'];
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 
 
   ngOnInit() {
+    this.route.url.subscribe((url) => {
+      this.currentPageUrl = '';
+      url.forEach((urlComp) => {this.currentPageUrl = this.currentPageUrl + '/' + urlComp.path});
+    });
     this.route.paramMap.subscribe(params => {
       this.getCollectionByCollectionID(params.get('collectionID'), []);
+    });
+
+    this.route.fragment.subscribe((fragment: string) => {
+      if (this.allowedSubPage.includes(fragment)) this.currentSubPage = fragment;
+      else this.currentSubPage = this.allowedSubPage[0];
+      console.log(this.currentSubPage);
+    }, (nonString:any) => {
+      this.currentSubPage = this.allowedSubPage[0];
     });
 
     this.selectedKeywords = [];
@@ -55,6 +71,7 @@ export class CollectionComponent implements OnInit {
       this.keywords = this.collection["keywords"];
       this.creators = this.collection["creator"];
       this.originals = this.collection["location_of_originals"];
+      this.backgroundURL = this.collection["cover_image"];
 
       if (keywordIds = []) {
         this.itemKeywords = this.collection['unique_item_keywords']
