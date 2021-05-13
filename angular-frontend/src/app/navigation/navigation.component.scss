@@ -53,11 +53,18 @@ a {
         margin-left: -5vw !important;
         padding-top: 1vh;
     }
+}
 
+ 
+.hide-when-big {
+    @media (max-width: 1000px) {display: none;}
+    @media (min-width: 1000px) {display: inherit;}
 }
 
 .push-inline {
     display: inherit;
+    // float: right;
+    // text-align: right;
 }
 
 .nav-item {
@@ -128,6 +135,7 @@ a.dropdown-item.active {
 
 .nav-link:hover {
     color: $light-brown;
+    text-decoration: underline;
 }
 
 
