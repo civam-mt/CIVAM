@@ -18,20 +18,21 @@ export class AboutComponent implements OnInit {
   public historyCollapsed = true;
   public resourcesCollapsed = true;
 
-  public selected_tab;
-
+  public currentSubPage:string;
+  public currentPageUrl:string;
+  public allowedSubPage:string[] = ['mission', 'origin', 'people', 'contact'];
   public siteTextIDs = ['ABOUT', 'MISSION', 'ORIGINS', 'PEOPLE1',
                         'PEOPLE2', 'PEOPLE3', 'PEOPLE4', 'CONTACT'];
   public siteTexts = {};
   
   ngOnInit(): void {
+    this.route.url.subscribe((url) => {
+      this.currentPageUrl = '';
+      url.forEach((urlComp) => {this.currentPageUrl = this.currentPageUrl + '/' + urlComp.path});
+    });
     this.route.fragment.subscribe((fragment: string) => {
-      if (fragment == 'mission') this.selected_tab = 0;
-      else if (fragment == 'origin') this.selected_tab = 1;
-      else if (fragment == 'people') this.selected_tab = 2;
-      else if (fragment == 'contact') this.selected_tab = 3;
-      else this.selected_tab = 0;
-  })
+      this.currentSubPage = this.allowedSubPage.includes(fragment) ? fragment : this.allowedSubPage[0];
+    });
     this.getSiteTexts();
     
   }
