@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, SecurityContext, ɵConsole } from '@angular/core';
+import { Component, HostListener, OnInit,Input, SecurityContext, ɵConsole } from '@angular/core';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 import { environment } from '../../environments/environment';
 import { ActivatedRoute, UrlSegment } from '@angular/router';
@@ -23,6 +23,10 @@ export class ItemComponent implements OnInit {
   submitted = false;
   error: string;
   loading = false;
+  
+  public smallWindow:number = environment.windowSmall;
+  
+  public innerWidth:number;
 
   API_URL = environment.apiUrl;
   backgroundUrl;
@@ -49,6 +53,7 @@ export class ItemComponent implements OnInit {
   constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder,) { }
 
   ngOnInit() {
+    this.innerWidth = window.innerWidth;
     this.route.url.subscribe((url) => {
       this.currentPageUrl = '';
       url.forEach((urlComp) => {this.currentPageUrl = this.currentPageUrl + '/' + urlComp.path});
@@ -127,5 +132,9 @@ export class ItemComponent implements OnInit {
   applySelectedClass(str:string):string {
     if (str == this.currentSubPage) return 'nav-item-selected';
     else return '';
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
   }
 }
