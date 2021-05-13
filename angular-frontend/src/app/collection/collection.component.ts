@@ -28,6 +28,8 @@ export class CollectionComponent implements OnInit {
   currentSubPage:string;
   currentPageUrl:string = '';
   allowedSubPage:string[] = ['coll', 'attr', 'back'];
+  pageOfItems;
+  pageSize = 9;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 
@@ -83,4 +85,11 @@ export class CollectionComponent implements OnInit {
     const keywordIds = this.selectedKeywords.map(keyword => keyword.id);
     this.getCollectionByCollectionID(this.route.snapshot.params.collectionID, keywordIds);
   }
+
+  onChangePage(pageOfItems) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+  }
+
 }
+

@@ -20,6 +20,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 //import { GoogleMapsModule } from '@angular/google-maps';
 import { AgmCoreModule } from '@agm/core';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { JwPaginationModule } from 'jw-angular-pagination';
+
 
 // Component imports
 import { AppComponent } from './app.component';
@@ -102,6 +104,7 @@ import { TermsConditionsComponent } from './terms-conditions/terms-conditions.co
     HttpClientModule,
     MatTabsModule,
     FlexLayoutModule,
+    JwPaginationModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'replace',
