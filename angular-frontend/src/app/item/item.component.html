@@ -14,14 +14,21 @@
         <div class="collection-container">
             <!--Grid column-->
             <ul class="item-button-column">
-                <li class="nav-item ibc1  top-button" >
-                    <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'item'}" href="{{currentPageUrl}}#item">Item</a>
+                <li class="nav-item ibc1  top-button">
+                    <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'item'}"
+                        href="{{currentPageUrl}}#item">Item</a>
                 </li>
-                <li class="nav-item ibc2" > 
-                    <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'attr'}" href="{{currentPageUrl}}#attr">Item Information</a>
+                <li class="nav-item ibc2">
+                    <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'attr'}"
+                        href="{{currentPageUrl}}#attr">Item Information</a>
                 </li>
-                <li class="nav-item ibc3" >
-                    <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'narr'}" href="{{currentPageUrl}}#narr">Narratives</a>
+                <li class="nav-item ibc3">
+                    <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'narr'}"
+                        href="{{currentPageUrl}}#narr">Narratives</a>
+                </li>
+                <li class="nav-item ibc4">
+                    <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'coll'}"
+                        href="collections/{{item.collection}}">Back to Collection</a>
                 </li>
             </ul>
             <!--/Grid column-->
@@ -34,6 +41,9 @@
 
                     <!--Panel 1-->
                     <div *ngIf="currentSubPage == 'item'">
+                        
+                       
+                    
                         <div *ngIf="item.description">
                             <div>
                                 <p><strong>Description</strong></p>

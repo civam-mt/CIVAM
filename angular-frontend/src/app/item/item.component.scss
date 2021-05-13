@@ -52,6 +52,9 @@ $gold-l2: #FEFCEE;
     }
     .ibc3{
         grid-row: 3;
+    }
+    .ibc4{
+        grid-row: 4;
     } 
 }
 
@@ -218,6 +221,10 @@ p{
     row-gap: 10vw;
 }
 
+#home-collection-div {
+    background-color: $gold-l2 !important;
+}
+
 .layers {
     .layer-lg {
         width: 100%;
@@ -312,13 +319,13 @@ p{
             .collection-grid-left {
                 grid-column: 1;
                 text-align: left;
-                font-size: xx-large;
+                font-size: large;
             }
         
             .collection-grid-right {
                 grid-column: 2;
                 text-align: right;
-                font-size: xx-large;
+                font-size: large;
             }
 
             .collection-grid-top {
