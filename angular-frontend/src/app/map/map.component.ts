@@ -16,12 +16,22 @@ import { AgmInfoWindow } from '@agm/core';
 })
 export class MapComponent implements OnInit {
   API_URL = environment.apiUrl;
-  tiles: MapTile[] = [
-    {text: 'name', cols:4, rows:1, color:''},
-    {text: 'cityProvinceCountry', cols:2, rows: 1, color: ''},
-    {text: 'cover_image', cols:2, rows: 3, color: ''},
-    {text: 'notes', cols:4, rows:2, color: ''},
-    {text: 'url', cols:4, rows:1, color: ''},
+  imgTile: MapTile[] = [
+    {text: 'cover_image', cols: 5, rows: 4, color: '', style: ''},
+    {text: 'name', cols: 10, rows: 2, color: '', style: ''},
+    {text: 'cityProvinceCountry', cols: 10, rows: 1, color: '', style: ''},
+    {text: 'url', cols: 10, rows: 1, color: '', style: { 'border-bottom': '#c5c4c4 solid 1px'}},
+    {text: 'history', cols: 12, rows: 5, color: '', style: { 'border-right': '#c5c4c4 solid 1px'}},
+    {text: 'crow_material', cols: 3, rows: 3, color: '', style: {'text-align':'right'}},
+    {text: 'digital_collection', cols: 3, rows: 2, color: '', style: {'text-align':'right'}},
+  ];
+  txtTile: MapTile[] = [
+    {text: 'name', cols: 15, rows: 2, color: '', style: ''},
+    {text: 'cityProvinceCountry', cols: 15, rows: 1, color: '', style: ''},
+    {text: 'url', cols: 15, rows: 1, color: '', style: { 'border-bottom': '#c5c4c4 solid 1px'}},
+    {text: 'history', cols: 12, rows: 5, color: '', style: { 'border-right': '#c5c4c4 solid 1px'}},
+    {text: 'crow_material', cols: 3, rows: 3, color: '', style: {'text-align':'right'}},
+    {text: 'digital_collection', cols: 3, rows: 2, color: '', style: {'text-align':'right'}},
   ];
   public siteText:string;
 

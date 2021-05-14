@@ -6,6 +6,7 @@ import { ApiService } from '../services/api.service';
 import { verifyHostBindings } from '@angular/compiler';
 import { NewsArticle } from 'src/model/NewsArticle';
 import { NewsSupportService } from '../services/news-support.service';
+import { SiteTextSupportService } from '../services/site-text-support.service';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
   API_URL = environment.apiUrl;
   
 
-  constructor(private api: ApiService, private newsSupport:NewsSupportService) { }
+  constructor(private api: ApiService, private newsSupport:NewsSupportService, private siteTextSupport:SiteTextSupportService) { }
 
   private getTime(date?: Date){
     return date != null ? date.getTime(): 0;
@@ -55,18 +56,22 @@ export class HomeComponent implements OnInit {
     });
   }
   getSiteTexts() {
-    for (var i = 0; i < this.siteTextIDs.length; i++) {
-      this.api.getSiteTextByLocation(this.siteTextIDs[i]).subscribe((data) => {
-        this.siteTexts[data["location"]] = data["content"];
-      });
-    }
+    this.siteTextSupport.getManySiteText(this.siteTextIDs);
+    this.siteTextSupport.loadedElements.subscribe((emitter) => {
+      if (emitter) {
+        var arr = this.siteTextSupport.loadManySiteText(this.siteTextIDs);
+        for (var i = 0; i < arr.length; i ++ ) {
+          this.siteTexts[arr[i][0]] = arr[i][1];
+        }
+      }
+    });
   }
+  
   getNews() {
     this.newsSupport.getAllNews();
     this.newsSupport.newsList.subscribe((nl) => {
       if (nl != null) {
         this.newsList = nl;
-        console.log(this.newsList);
       }
     })
   }

@@ -10,5 +10,5 @@ export interface NewsTile extends Tile {
 }
 
 export interface MapTile extends Tile {
-    
+    style: {};
 }

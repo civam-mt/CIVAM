@@ -55,20 +55,42 @@
                      <agm-info-window [disableAutoPan]="true">
                         <div *ngIf="selectedMarker" class="info">
                            <div *ngIf="clicked" class="afterClick">
-                              <mat-grid-list cols="6" rowHeight="75px" class="card" style="width:100%">
-                                 <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
-                                    [style.background]="tile.color">
-                                    <div *ngIf="tile.text != 'cover_image' && tile.text != 'name'">
-                                       {{selectedMarker.getElement(tile.text)}}
-                                    </div>
-                                    <div *ngIf="tile.text == 'name'" class="info-title">
-                                       {{selectedMarker.getElement(tile.text)}}
-                                    </div>
-                                    <div *ngIf="tile.text == 'cover_image'">
-                                       <img src="{{API_URL}}/media/{{selectedMarker.getElement(tile.text)}}"
-                                          alt="Random slide" class="image" [class]="'matt-grid-opt-'+tile.text">
-                                    </div>
-                                 </mat-grid-tile>
+                              <mat-grid-list cols="15" rowHeight="2rem" class="card" style="width:max(100%, 400px)">
+                                 <!--     Image Based Entry     -->
+                                 <div *ngIf="selectedMarker.hasElement('cover_image')">
+                                    <mat-grid-tile *ngFor="let tile of imgTile" [colspan]="tile.cols" [rowspan]="tile.rows"
+                                    [style.background]="tile.color" [ngStyle]="tile.style">
+                                       <div *ngIf="tile.text != 'cover_image' && tile.text != 'name' && tile.text != 'url'" 
+                                          [innerHTML]="selectedMarker.getElement(tile.text)">
+                                       </div>
+                                       <div *ngIf="tile.text == 'name'" class="info-title"   
+                                          [innerHTML]="selectedMarker.getElement(tile.text)"> 
+                                       </div>
+                                       <div *ngIf="tile.text == 'url'">
+                                          <a href="https://{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
+                                       </div>
+                                       <div *ngIf="tile.text == 'cover_image'">
+                                          <img src="{{API_URL}}/media/{{selectedMarker.getElement(tile.text)}}"
+                                             alt="Random slide" class="image" [class]="'matt-grid-opt-'+tile.text">
+                                       </div>
+                                    </mat-grid-tile>
+                                 </div>
+
+                                 <!--     Text Only Entry     -->
+                                 <div *ngIf="!selectedMarker.hasElement('cover_image')">
+                                    <mat-grid-tile *ngFor="let tile of txtTile" [colspan]="tile.cols" [rowspan]="tile.rows"
+                                    [style.background]="tile.color" [ngStyle]="tile.style">
+                                       <div *ngIf="tile.text != 'cover_image' && tile.text != 'name' && tile.text != 'url'" 
+                                          [innerHTML]="selectedMarker.getElement(tile.text)">
+                                       </div>
+                                       <div *ngIf="tile.text == 'name'" class="info-title" 
+                                          [innerHTML]="selectedMarker.getElement(tile.text)">
+                                       </div>
+                                       <div *ngIf="tile.text == 'url'">
+                                          <a href="https://{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
+                                       </div>
+                                    </mat-grid-tile>
+                                 </div>
                               </mat-grid-list>
                            </div>
                         </div>
@@ -85,4 +107,29 @@
          Map icons CC-0 from <a href='http://www.sjjb.co.uk/mapicons/'>SJJB Management</a>
       </div>
    </div>
+   <!-- <div style="height:1000px">
+      <div style="display:grid;  grid-template-columns: auto; column-gap: 1%; grid-template-rows: auto; row-gap: 1%;">
+         <div style="grid-column-start: 1; grid-column-end: 5; grid-row-start: 1; grid-row-end: 5;">
+            IMG
+         </div>
+         <div style="grid-column-start: 5; grid-column-end: 15; grid-row-start: 1; grid-row-end: 3;">
+            Title
+         </div>
+         <div style="grid-column-start: 5; grid-column-end: 15; grid-row-start: 3; grid-row-end: 4;">
+            addr
+         </div>
+         <div style="grid-column-start: 5; grid-column-end: 15; grid-row-start: 4; grid-row-end: 5;">
+            url
+         </div>
+         <div style="grid-column-start: 1; grid-column-end: 12; grid-row-start: 5; grid-row-end: 9;">
+            notes
+         </div>
+         <div style="grid-column-start: 12; grid-column-end: 15; grid-row-start: 5; grid-row-end: 7;">
+            Crow
+         </div>
+         <div style="grid-column-start: 12; grid-column-end: 15; grid-row-start: 7; grid-row-end: 9;">
+            Digi
+         </div>
+      </div>
+   </div> -->
 </div>

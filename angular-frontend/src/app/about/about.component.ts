@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { ApiService } from '../services/api.service';
+import { SiteTextSupportService } from '../services/site-text-support.service';
 
 @Component({
   selector: 'app-about',
@@ -10,7 +11,7 @@ import { ApiService } from '../services/api.service';
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private api: ApiService, private route:ActivatedRoute) { }
+  constructor(private api: ApiService, private route:ActivatedRoute, private siteTextSupport:SiteTextSupportService) { }
 
   public missionCollapsed = true;
   public originCollapsed = true;
@@ -37,11 +38,15 @@ export class AboutComponent implements OnInit {
     
   }
   getSiteTexts() {
-    for (var i = 0; i < this.siteTextIDs.length; i++) {
-      this.api.getSiteTextByLocation(this.siteTextIDs[i]).subscribe((data) => {
-        this.siteTexts[data["location"]] = data["content"];
-      });
-    }
+    this.siteTextSupport.getManySiteText(this.siteTextIDs);
+    this.siteTextSupport.loadedElements.subscribe((emitter) => {
+      if (emitter) {
+        var arr = this.siteTextSupport.loadManySiteText(this.siteTextIDs);
+        for (var i = 0; i < arr.length; i ++ ) {
+          this.siteTexts[arr[i][0]] = arr[i][1];
+        }
+      }
+    });
   }
 }
 
