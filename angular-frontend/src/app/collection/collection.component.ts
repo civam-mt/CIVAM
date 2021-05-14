@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Collection } from '../collection';
 import { DISTRICTS } from '../mock-collections';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+
 
 @Component({
   selector: 'app-collection',
@@ -29,12 +30,14 @@ export class CollectionComponent implements OnInit {
   currentPageUrl:string = '';
   allowedSubPage:string[] = ['coll', 'attr', 'back'];
   pageOfItems;
-  pageSize = 9;
+  pageSize;
+  compact = false;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 
 
   ngOnInit() {
+    this.pageSize = 9;
     this.route.url.subscribe((url) => {
       this.currentPageUrl = '';
       url.forEach((urlComp) => {this.currentPageUrl = this.currentPageUrl + '/' + urlComp.path});
@@ -46,7 +49,6 @@ export class CollectionComponent implements OnInit {
     this.route.fragment.subscribe((fragment: string) => {
       if (this.allowedSubPage.includes(fragment)) this.currentSubPage = fragment;
       else this.currentSubPage = this.allowedSubPage[0];
-      console.log(this.currentSubPage);
     }, (nonString:any) => {
       this.currentSubPage = this.allowedSubPage[0];
     });
@@ -81,15 +83,24 @@ export class CollectionComponent implements OnInit {
     });
   }
 
-  onKeywordFilterSelect() {
-    const keywordIds = this.selectedKeywords.map(keyword => keyword.id);
-    this.getCollectionByCollectionID(this.route.snapshot.params.collectionID, keywordIds);
+  onKeywordFilterSelect(value) {
+    this.getCollectionByCollectionID(this.route.snapshot.params.collectionID, value);
   }
 
   onChangePage(pageOfItems) {
     // update current page of items
     this.pageOfItems = pageOfItems;
   }
+
+  makeCompact(){
+    this.compact = !this.compact;
+  }
+
+  changePageSize(event){
+    this.pageSize = event.value;
+  }
+
+ 
 
 }
 

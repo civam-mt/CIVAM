@@ -152,10 +152,46 @@ $darkless-brown: #77510d;
     background-color: $lighter-gold!important;
 }
 
+.selectionGrid{
+    display:grid;
+    width: 97%;
+    column-gap: 2.5%;
+    grid-template-columns: 45% 10% 45%;
+    grid-template-rows: 50% 50%;
+    margin: 0 !important;
+}
+
+.left{
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.middle{
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+}
+
+.right{
+    grid-row: 1;
+    grid-column: 3;
+}
 .theme-filter {
     margin-bottom: 1rem;
-    float: right;
-    width: 50%;
+    width: 100%;
+    float:left;
+}
+
+.dropdown{
+    width: 100%;
+    float:left;
+
+}
+
+.checkbox{
+    width: 100%;
+    align-self: center;
+    
 }
 
 .outline{
@@ -208,6 +244,10 @@ $darkless-brown: #77510d;
 .pagination{
     justify-content: center;
     padding-top: 1%;
+}
+
+.compactItem{
+    align-self: center;
 }
 
 .kwords{

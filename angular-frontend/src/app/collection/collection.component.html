@@ -28,15 +28,36 @@
     <div class="collection-content-panel">
         <div class="tab-content pt-0">
             <div *ngIf="currentSubPage=='coll'">
-                <div class="theme-filter">
-                    <ng-multiselect-dropdown [placeholder]="'Filter by Keyword'" [settings]="dropdownSettings"
-                        [data]="itemKeywords" [(ngModel)]="selectedKeywords" (onSelect)="onKeywordFilterSelect()"
-                        (onSelectAll)="onKeywordFilterSelect()" (onDeSelect)="onKeywordFilterSelect()"
-                        (onDeSelectAll)="onKeywordFilterSelect()">
-                    </ng-multiselect-dropdown>
-                </div>
 
-                <div *ngIf="items" class="row justify-content-center container-fluid">
+                <div class="selectionGrid">
+                    <div class="left">
+                        <mat-form-field class="theme-filter">
+                            <mat-label>Filter by Keyword</mat-label>
+                            <mat-select multiple [placeholder]="'Filter by Keyword'" [(ngModel)]="selectedKeywords"
+                                (selectionChange)="onKeywordFilterSelect($event.value)">
+                                <div *ngFor="let keyword of itemKeywords">
+                                    <mat-option [value]="keyword.id">{{keyword.name}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="right">
+                        <mat-form-field class="dropdown">
+                            <mat-label>Number of items to display</mat-label>
+                            <mat-select (selectionChange)="changePageSize($event)">
+                                <mat-option [value]="9">9</mat-option>
+                                <mat-option [value]="12">12</mat-option>
+                                <mat-option [value]="15">15</mat-option>
+                                <mat-option [value]="18">18</mat-option>
+                                <mat-option [value]="21">21</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="middle">
+                        <mat-checkbox (click)="makeCompact()" class="checkbox">Compact</mat-checkbox>
+                    </div>
+                </div>
+                <div *ngIf="items && compact==false" class="row justify-content-center container-fluid">
                     <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="col-md-4">
                         <div *ngIf="item">
                             <a href="/items/{{item.id}}">
@@ -55,9 +76,42 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <jw-pagination class="pagination" [pageSize]=9 [items]="items" (changePage)="onChangePage($event)">
-                    </jw-pagination>
+                <div *ngIf="items && compact">
+                    <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="compactItem">
+                        <div *ngIf="item">
+                            <a href="/items/{{item.id}}">
+                                {{item.name}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div [ngSwitch]="pageSize">
+                    <div *ngSwitchCase=9>
+                        <jw-pagination class="pagination" [pageSize]="9" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=12>
+                        <jw-pagination class="pagination" [pageSize]="12" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=15>
+                        <jw-pagination class="pagination" [pageSize]="15" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=18>
+                        <jw-pagination class="pagination" [pageSize]="18" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=21>
+                        <jw-pagination class="pagination" [pageSize]="21" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+
                 </div>
             </div>
 
