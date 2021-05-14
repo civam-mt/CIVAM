@@ -58,6 +58,9 @@ $darkless-brown: #77510d;
     .cbc3{
         grid-row: 3;
     } 
+    .cbc4{
+        grid-row: 4;
+    }
 }
 
 .collection-content-panel{
@@ -167,8 +170,8 @@ $darkless-brown: #77510d;
 }
 
 .middle{
+    grid-row: 1;
     grid-column: 2;
-    grid-row: 2;
     width: 100%;
 }
 
@@ -189,7 +192,7 @@ $darkless-brown: #77510d;
 }
 
 .checkbox{
-    width: 100%;
+    width: 50%;
     align-self: center;
     
 }
@@ -246,8 +249,30 @@ $darkless-brown: #77510d;
     padding-top: 1%;
 }
 
-.compactItem{
-    align-self: center;
+.compactButton{
+    height: 5vh;
+    width: 100%;
+    background-size: cover !important;
+    background-attachment: scroll !important;
+    background-image: linear-gradient(to bottom, rgba(black, 1.0), rgba(black, 0.5), rgba(black, 0.0));
+    border: none;
+    color: black;
+    font-size: large;
+    background-size: 8vh 6vw !important;
+    font-size: large;
+    text-align:center;
+}
+
+
+.compactButton:hover{
+    border: solid;
+    border-color: rgb(97, 95, 95);
+    border-width: thin;
+}
+
+.buttonContainer{
+    padding-bottom: 2%;
+
 }
 
 .kwords{

@@ -28,7 +28,7 @@ export class CollectionComponent implements OnInit {
   router_route = '/items';
   currentSubPage:string;
   currentPageUrl:string = '';
-  allowedSubPage:string[] = ['coll', 'attr', 'back'];
+  allowedSubPage:string[] = ['coll', 'list', 'attr', 'back'];
   pageOfItems;
   pageSize;
   compact = false;
