@@ -63,11 +63,6 @@ $darkless-brown: #77510d;
     }
 }
 
-.collection-content-panel{
-    display: grid;
-    grid-column: 2;
-}
-
 .top-button{ 
     border-top: none !important;
 }
@@ -104,6 +99,12 @@ $darkless-brown: #77510d;
     color: $light-brown !important;
     text-decoration: none;
 }
+
+.collection-content-panel{
+    display: grid;
+    grid-column: 2;
+}
+
 
 .layer-lg {
     width: 100%;
@@ -272,7 +273,6 @@ $darkless-brown: #77510d;
 
 .buttonContainer{
     padding-bottom: 2%;
-
 }
 
 .kwords{
