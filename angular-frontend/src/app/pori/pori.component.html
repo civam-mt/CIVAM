@@ -1,102 +1,29 @@
 <div *ngIf="pori">
-    <div class="jumbotron container-fluid text-center text-md-center">
-        <h1 *ngIf="pori.name" class="title">{{pori.name}}</h1>
-    </div>
-
-    <br>
-    <div class = "container jumbotron bg-translucent border-primary">
-        <div class = row>
-            <p *ngIf="pori.description">{{pori.description}}</p>
-            <div class = "col-lg-6">
-                <img *ngIf="pori.cover_image" src="{{API_URL}}/media/{{pori.cover_image}}" class="img-fluid rounded float-left">
-            </div>
+    <div class="poriGrid">
+        <div class="name">
+            <h1 *ngIf="pori.name" class="poriName">
+                {{pori.name}}</h1>
+            <h2 *ngIf="pori.culture" class="poriCulture">
+                {{pori.culture}}
+            </h2>    
         </div>
-    </div>
-
-    <div class = "container jumbotron bg-translucent border-primary">
-        <div class = "row">
-            <div class = "col-lg-12">
-                <div class = "container text-center">
-                <h1 class="title">Information</h1>
-                </div>
-            </div>
+        <div *ngIf="pori.cover_image" class="poriImage">
+            <img class="sourceImage" src="{{API_URL}}/media/{{pori.cover_image}}">
+            <br>
+            <br>
         </div>
-        <br>
-
-         <div *ngIf="pori.culture">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Culture</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{pori.culture}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
+        <div *ngIf="pori.description" class="poriDescription">
+           <p>{{pori.description}}</p>
+            <br>
         </div>
-
-        <div *ngIf="pori.dates">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Dates</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{pori.dates}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
+        <div *ngIf="pori.historical_note" class="poriHistoricalNote">
+            <p>{{pori.historical_note}}</p>
+            <br>
         </div>
-
-        <div *ngIf="pori.historical_note">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Historical Note</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{pori.historical_note}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
+        <div *ngIf="pori.contact" class="poriContact">
+            <p>Contact {{pori.name}} at {{pori.contact}}</p>
+            <br>
+            <br>
         </div>
-
-        <div *ngIf="pori.address">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Address</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{pori.address}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
-        <div *ngIf="pori.contact">
-            <div class ="row">
-                <div class = "col-lg-3"></div>
-                <div class = "col-lg-3">
-                    <div><p><strong>Contact Information</strong></p></div>
-                </div>
-                <div class = "col-lg-5">
-                    <div><p>{{pori.contact}}</p></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><hr><br></div>
-            </div>
-        </div>
-
     </div>
 </div>
