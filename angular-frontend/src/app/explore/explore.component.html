@@ -3,10 +3,16 @@
 </div>
 
 <div *ngIf="explores">
-    <div *ngFor="let explore of explores">
-        <a href="/search-result;data={{explore.name}}"
-        style="background: url({{API_URL}}/media/{{explore.background_image}}) no-repeat fixed;" class="exploreButton">
-            {{explore.name}}
-        </a>
+    <div class="exploreFlex">
+        <div *ngFor="let explore of explores; let indexOfelement = index" class="exploreItemFlex">
+            <div *ngIf="explore" class="exploreItem">
+                <a href="/search-result;data={{explore.name}}" style="text-align:center;">
+                    <button class="exploreButton"
+                        style="background: url({{API_URL}}/media/{{explore.background_image}}) no-repeat fixed;">
+                        <span>{{explore.name}} </span>
+                    </button>
+                </a>
+            </div>
+        </div>
     </div>
 </div>

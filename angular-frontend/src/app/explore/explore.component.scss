@@ -77,7 +77,59 @@ $gold: #bf9b30;
 
 }
 
+.exploreFlex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.exploreItemFlex{
+    flex-grow: 0;
+    flex-basis: 33%;
+}
+
 .exploreButton{
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 60vh;
+    background-position: top !important;
+    background-size: cover !important;
+    background-attachment: scroll !important;
+    background-image: linear-gradient(to bottom, rgba(black, 1.0), rgba(black, 0.5), rgba(black, 0.0));
+    border: none;
+    color: white;
+    font-size: x-large;
+    position: relative;
+    box-shadow: 0 -20vh 20vh -10vh black inset;
+}
+
+.exploreButton span{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-weight: bold;
+}
+
+.exploreButton:hover span{
+    display: none;
+}
+
+
+.exploreButton:hover::after{
+    content: "Explore Topic" !important;
+}
+
+.exploreButton:hover{
+    color: white !important;
+    opacity: 1;
+    padding: 0;
+    background-blend-mode: darken; 
+    border: solid;
+    border-color: rgb(97, 95, 95);
+    border-width: thin;
+    color: white; 
+    font-size: x-large;
+    font-weight: bold;
+    box-shadow: 0 -40vh 50vh -10vh black inset;
+    bottom: 0;
 }
