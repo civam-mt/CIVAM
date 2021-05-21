@@ -1,0 +1,12 @@
+<div class="top-content barrier-img layer-lg">
+    <h1 class="title">Explore</h1>
+</div>
+
+<div *ngIf="explores">
+    <div *ngFor="let explore of explores">
+        <a href="/search-result;data={{explore.name}}"
+        style="background: url({{API_URL}}/media/{{explore.background_image}}) no-repeat fixed;" class="exploreButton">
+            {{explore.name}}
+        </a>
+    </div>
+</div>

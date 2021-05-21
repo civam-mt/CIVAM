@@ -446,6 +446,19 @@ def get_all_news_article(request):
 		"articles": news_list}
 	return JsonResponse(context, safe=False)
 
+def get_all_explores(request):
+	rawlist = Explore.objects.all()
+	explore_list = []
+	for entry in rawlist:
+		new_entry = {
+		"name": entry.name,
+		"background_image": entry.background_image.name
+		}
+		explore_list.append(new_entry)
+
+	context = {"explores": explore_list}
+	return JsonResponse(context, safe=False)
+
 def get_news_tag_by_id(request, newstag_id):
 	tag = get_object_or_404(NewsTag, pk=newstag_id)
 	context = {	"length": 1,

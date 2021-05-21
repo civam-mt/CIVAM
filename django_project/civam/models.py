@@ -337,3 +337,13 @@ class NewsArticle(models.Model):
     
     class Meta:
         ordering = ['publish_on']
+
+
+class Explore(models.Model):
+    name = models.CharField("Name", max_length=255)
+    background_image = models.ImageField("Background Image", upload_to="background_images/explore/", blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="explore_created")
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="explore_modified")
+    modified_on = models.DateTimeField(auto_now=True)
+

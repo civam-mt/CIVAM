@@ -8,6 +8,14 @@ from django_countries import countries
 from django_countries.widgets import CountrySelectWidget
 
 # Civam forms are defined here
+
+
+class ExploreForm(ModelForm):
+    class Meta:
+        model = Explore
+        fields = ['name', 'background_image']
+
+
 class NarrativeForm(ModelForm):
     class Meta:
         model = Narrative
@@ -46,6 +54,7 @@ class NewsTagForm(ModelForm):
     class Meta:
         model = NewsTag
         fields = ['word']
+
 
 class RegistrationForm(ModelForm):
     class Meta:

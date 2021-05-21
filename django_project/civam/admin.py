@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, NewsTag, MapData
+from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, NewsTag, MapData, Explore
 from guardian.admin import GuardedModelAdmin
 from adminsortable2.admin import SortableAdminMixin
 
@@ -79,6 +79,10 @@ class NewsArticleAdmin(DefaultAdmin):
 class MapDataAdmin(DefaultAdmin):
     model = MapData
 
+class ExploreAdmin(DefaultAdmin):
+    model = Explore
+    list_display = ('name', 'background_image')
+
 # Register admin models    
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Item, ItemAdmin)
@@ -88,3 +92,4 @@ admin.site.register(NewsTag, NewsTagAdmin)
 admin.site.register(MapData, MapDataAdmin)
 admin.site.register(SiteText)
 admin.site.register(NewsArticle, NewsArticleAdmin)
+admin.site.register(Explore, ExploreAdmin)

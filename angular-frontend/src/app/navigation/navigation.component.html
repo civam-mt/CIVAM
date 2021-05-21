@@ -40,6 +40,10 @@
                     data-target=".navbar-collapse.show">Home</a>
             </li> -->
             <li class="nav-item">
+                <a [routerLinkActive]='activeClass' class="nav-link" routerLink='explore' data-toggle="collapse"
+                    data-target=".navbar-collapse.show">Explore</a>
+            </li>
+            <li class="nav-item">
                 <a [routerLinkActive]='activeClass' class="nav-link" routerLink='about' data-toggle="collapse"
                     data-target=".navbar-collapse.show">About</a>
             </li>
@@ -60,9 +64,9 @@
             </li>
             <li>
                 <!-- Dropdown Links in the Navbar -->
-                <div class="dropdown show">
+                <!-- <div class="dropdown show">
                     <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Explore</a>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Browse</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a [routerLinkActive]='activeClass' routerLink='images' class="dropdown-item" href="#"
                             data-toggle="collapse" data-target=".navbar-collapse.show">Images</a>
@@ -73,7 +77,7 @@
                         <a [routerLinkActive]='activeClass' routerLink='news' class="dropdown-item" href="#"
                             data-toggle="collapse" data-target=".navbar-collapse.show">News</a>
                     </div>
-                </div>
+                </div> -->
             </li>
             
             <li class="dropdown show nav-item">
