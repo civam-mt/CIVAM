@@ -16,12 +16,15 @@ export class CollectionsComponent implements OnInit {
   collections;
   route = '/collections';
   public smallWindow:number = environment.windowSmall;
+  public siteText:string;
+
 
   constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.getCollections();
     this.innerWidth = window.innerWidth;
+    this.getSiteTexts();
     
   }
   getCollections() {
@@ -33,6 +36,12 @@ export class CollectionsComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
+  }
+
+  getSiteTexts() {
+    this.api.getSiteTextByLocation('COL_MORE').subscribe((data) => {
+      this.siteText = data["content"];
+    });
   }
 
 }
