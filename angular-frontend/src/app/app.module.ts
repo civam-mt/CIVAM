@@ -30,6 +30,7 @@ import { AboutComponent } from './about/about.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { DistrictsComponent } from './districts/districts.component';
+import { ExploreComponent } from './explore/explore.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ItemComponent } from './item/item.component';
@@ -68,6 +69,7 @@ import { TermsConditionsComponent } from './terms-conditions/terms-conditions.co
     NavigationComponent,
     CollectionsComponent,
     DistrictsComponent,
+    ExploreComponent,
     OralHistoriesComponent,
     AuthComponent,
     CollectionComponent,

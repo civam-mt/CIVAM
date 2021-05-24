@@ -5,6 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { CollectionsComponent } from './collections/collections.component';
 // import { DistrictsComponent } from './districts/districts.component';
 import { ImagesComponent } from './images/images.component';
+import { ExploreComponent } from './explore/explore.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
 import { MaterialCultureComponent } from './material-culture/material-culture.component';
 import { ItemComponent } from './item/item.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
 {path:'collections',component: CollectionsComponent},
 // {path:'districts',component: DistrictsComponent},
 {path:'oral-histories',component: OralHistoriesComponent},
+{path:'explore', component: ExploreComponent},
 {path:'news',component: NewsComponent},
 {path:'news/news-article/:newsArticleID',component: NewsArticleComponent},
 {path:'news/news-tag/:newsTagID',component: NewsTagComponent},

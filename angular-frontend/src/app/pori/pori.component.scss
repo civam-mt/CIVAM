@@ -1,0 +1,34 @@
+.poriGrid{
+    display: grid;
+    text-align: center;
+    grid-template-columns: 20% 60% 20%;
+    font-size: large;
+
+}
+
+.name{
+    padding-top: min(10%, 20vh);
+    grid-column: 2;
+}
+
+.poriImage{
+    grid-column: 2;
+}
+
+.poriDescription{
+    grid-column: 2;
+}
+
+.poriHistoricalNote{
+    grid-column: 2;
+}
+
+.poriContact{
+    grid-column: 2;
+}
+
+.sourceImage{
+    max-height: 50vh;
+}
+
+

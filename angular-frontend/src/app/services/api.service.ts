@@ -67,6 +67,9 @@ export class ApiService {
   public getAllMapdata() {
     return this.httpClient.get(`${this.API_URL}/api/mapdata/all/`);
   }
+  public getAllExplores(){
+    return this.httpClient.get(`${this.API_URL}/api/explore/all/`)
+  }
   
   // public postCollection(collection: object) {
   //   return this.httpClient.post(`${this.API_URL}/api/collections`, collection);

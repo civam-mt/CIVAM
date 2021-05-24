@@ -1,15 +1,151 @@
-<div class = "container-fluid jumbotron text-center" style="font-size:4vw;"> 
-   <strong>Search Results for "{{query}}"</strong>
+<div class="query">
+    <h1>{{query}}</h1>
 </div>
 
- <div class="container" section="individual-collection">
-        <div *ngIf="items" class="row justify-content-center container-fluid">
-            <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">
-                <div *ngIf="item">
-                    <app-card [cover_image]="item.cover_image" [title]="item.name" [id]="item.item"
-                        [number]="indexOfelement" [route]=router_route>
-                    </app-card>
+<div class="searchContainer">
+    <ul class="search-button-column">
+        <li class="nav-item sbc1  top-button">
+            <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'gall'}"
+                href="{{currentPageUrl}}#gall">Gallery</a>
+        </li>
+        <li class="nav-item sbc2">
+            <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'list'}"
+                href="{{currentPageUrl}}#list">List</a>
+        </li>
+    </ul>
+
+    <div class="search-content-panel">
+        <div class="tab-content pt-0">
+            <div *ngIf="currentSubPage=='gall'">
+                <div class="searchGrid">
+                    <div class="left"></div>
+                    <div class="right">
+                        <mat-form-field class="dropdown">
+                            <mat-label>Number of items to display</mat-label>
+                            <mat-select (selectionChange)="changePageSize($event)">
+                                <mat-option [value]="9">9</mat-option>
+                                <mat-option [value]="12">12</mat-option>
+                                <mat-option [value]="15">15</mat-option>
+                                <mat-option [value]="18">18</mat-option>
+                                <mat-option [value]="21">21</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div *ngIf="items" class="row justify-content-center container-fluid">
+                    <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="col-md-4">
+                        <div *ngIf="item">
+                            <a href="/items/{{item.item}}">
+                                <div *ngIf="!item.cover_image">
+                                    <button class="coverImage" style="background-color:black">
+                                        {{item.name}}
+                                    </button>
+                                </div>
+                                <div *ngIf="item.cover_image">
+                                    <button class="coverImage"
+                                        style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
+                                        {{item.name}}
+                                    </button>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div [ngSwitch]="pageSize">
+                    <div *ngSwitchCase=9>
+                        <jw-pagination class="pagination" [pageSize]="9" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=12>
+                        <jw-pagination class="pagination" [pageSize]="12" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=15>
+                        <jw-pagination class="pagination" [pageSize]="15" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=18>
+                        <jw-pagination class="pagination" [pageSize]="18" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=21>
+                        <jw-pagination class="pagination" [pageSize]="21" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="currentSubPage=='list'">
+            <div class="searchGrid">
+                <div class="left"></div>
+                <div class="right">
+                    <mat-form-field class="dropdown">
+                        <mat-label>Number of items to display</mat-label>
+                        <mat-select (selectionChange)="changePageSize($event)">
+                            <mat-option [value]="9">9</mat-option>
+                            <mat-option [value]="12">12</mat-option>
+                            <mat-option [value]="15">15</mat-option>
+                            <mat-option [value]="18">18</mat-option>
+                            <mat-option [value]="21">21</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="items" class="compactItems">
+                <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="buttonContainer">
+                    <div *ngIf="item" class="itemObject">
+                        <div *ngIf="item.cover_image">
+                            <a href="/items/{{item.item}}">
+                                <button class="compactButton"
+                                    style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
+                                    {{item.name}}
+                                </button>
+                            </a>
+                        </div>
+                        <div *ngIf="!item.cover_image">
+                            <a href="/items/{{item.item}}">
+                                <button class="compactButton"
+                                    style="background: url(../../assets/images/black.png) no-repeat fixed;">
+                                    {{item.name}}
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div [ngSwitch]="pageSize">
+                    <div *ngSwitchCase=9>
+                        <jw-pagination class="pagination" [pageSize]="9" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=12>
+                        <jw-pagination class="pagination" [pageSize]="12" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=15>
+                        <jw-pagination class="pagination" [pageSize]="15" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=18>
+                        <jw-pagination class="pagination" [pageSize]="18" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=21>
+                        <jw-pagination class="pagination" [pageSize]="21" [items]="items"
+                            (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

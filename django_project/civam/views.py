@@ -220,6 +220,28 @@ def mapdata(request):
 def get_mapdata_by_id(request, mapdata_id):
     return render(request, 'civam/get_mapdata_by_id')
 
+#Add Explore
+@permission_required('civam.add_explore', return_403=True)
+def new_explore(request):
+    form = Explore(request.POST or None)
+    if (request.method == 'POST'):
+        print(request.POST)
+        if form.is_valid():
+            col_instance = form.save(commit = False)
+            col_instance.created_by = request.user
+            col_instance.modified_by = request.user
+            col_instance.save
+            return redirect("explore", explore_id = col_instance.id)
+    context = {'explore_form': form}
+    return render(request, 'civam/new_explore.html', context)
+
+@permission_required('civam.explore', return_403=True)
+def explore(request):
+    expl = get_object_or_404(Explore)
+    context = {'explore_list': expl}
+    return render(request, 'civam/explore')
+
+
 #ADD News Article
 @permission_required('civam.add_mapdata', return_403=True)
 def new_news_article(request):
