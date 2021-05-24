@@ -293,9 +293,9 @@ class MapData(models.Model):
     modified_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return '{},{},{}\n'.format(self.name, 
-            self.lat, 
-            self.lng)
+        return '{} - {},{}\n'.format(self.name, 
+            self.province, 
+            self.country)
     
     class Meta:
         ordering = ['name']
