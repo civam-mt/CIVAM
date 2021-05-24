@@ -18,8 +18,8 @@ export class NewsComponent implements OnInit {
     {text: 'author', cols:3, rows: 1, color: '', style: {'text-align':'right', 'border-bottom': '#c5c4c4 solid 1px'}},
     {text: 'cover_url', cols:2, rows:3, color:'', style: {'text-align':'right'}},
     {text: 'content.bounded', cols:4, rows: 3, color: '', style: {'text-align':'right'}},
-    {text: 'published_on', cols:1, rows:1, color: '', style: {'text-align':'right'}},
-    {text: 'tags.text', cols:5, rows:1, color: '', style: {'text-align':'right'}},
+    {text: 'published_on', cols:1, rows:1, color: '', style: {'text-align':'right', 'border-top': '#c5c4c4 solid 1px'}},
+    {text: 'tags.text', cols:5, rows:1, color: '', style: {'text-align':'right', 'border-top': '#c5c4c4 solid 1px'}},
   ];
 
   constructor(private newsSupport:NewsSupportService) {

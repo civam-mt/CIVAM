@@ -64,16 +64,23 @@ $gold: #bf9b30;
     }
     margin-top: 3vh;
     overflow: visible;
-    background-position: top;
+    background-position: center;
     background-size: cover;
     background-attachment: scroll;
     font-size: xxx-large;
     font-weight: bold;
     text-align: center;
     color: #000;
+    background-color: #0000000a;
     background-blend-mode: darken;
     font-weight: bolder;
     font-size: 3vw;
+    color: whitesmoke;
+
+    
+    .title {
+        font-size: inherit;   
+    }
 
 }
 
@@ -108,6 +115,7 @@ $gold: #bf9b30;
     left: 0;
     right: 0;
     font-weight: bold;
+    padding-bottom:5%;
 }
 
 .exploreButton:hover span{

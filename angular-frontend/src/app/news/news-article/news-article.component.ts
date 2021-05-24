@@ -16,6 +16,9 @@ export class NewsArticleComponent implements OnInit {
   public localNewsArticle:NewsArticle;
   public newsArticleID:string;
   API_URL = environment.apiUrl;
+  currentSubPage:string;
+  currentPageUrl:string = '';
+  allowedSubPage:string[] = ['item', 'attr', 'narr'];
   tiles: Tile[] = [
     {text: 'title', cols:15, rows:3, color:'lightgreen'},
     {text: '', cols:15, rows:1, color:'rgba(0, 0, 0, 0.1)'},
@@ -38,7 +41,21 @@ export class NewsArticleComponent implements OnInit {
       this.newsSupport.getNewsByID(params.get('newsArticleID'));
       this.newsArticleID = params.get('newsArticleID');
     });
-    
+    this.route.url.subscribe((url) => {
+      this.currentPageUrl = '';
+      url.forEach((urlComp) => {this.currentPageUrl = this.currentPageUrl + '/' + urlComp.path});
+    });
+    this.route.fragment.subscribe((fragment: string) => {
+      if (this.allowedSubPage.includes(fragment)) this.currentSubPage = fragment;
+      else this.currentSubPage = this.allowedSubPage[0];
+      console.log(this.currentSubPage);
+    }, (nonString:any) => {
+      this.currentSubPage = this.allowedSubPage[0];
+    });
+  }
+
+  getUrl():string {
+    return this.API_URL + '/media/' + this.localNewsArticle.getElement('cover_url');
   }
 
 

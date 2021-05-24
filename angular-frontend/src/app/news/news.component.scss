@@ -153,5 +153,16 @@
     .news-carousel-subtitle {
         font-size: large;
     }
+
+    .news-feed {
+        .remove-decoration {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .news-title {
+            font-size: xx-large;
+        }
+    }
   }
   
