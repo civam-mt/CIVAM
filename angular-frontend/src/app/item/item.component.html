@@ -221,7 +221,24 @@
                             </div>
                             <br>
                         </div>
-                        <div *ngIf="keywords && keywords.length > 0">
+                        <div *ngIf="keywords" class="kwords">
+                            <div *ngIf="keywords.length > 0">
+                                <p><strong>Keyword(s)</strong></p>
+                                <div *ngFor="let keyword of keywords; let last = last;" class="kwords">
+                                    <div *ngIf="!last">
+                                        <a [routerLink]="['/search-result',  { 'data': keyword.name}]">
+                                            {{keyword.name}},
+                                        </a> &nbsp;
+                                    </div>
+                                    <div *ngIf="last">
+                                        <a [routerLink]="['/search-result', { 'data': keyword.name}]">
+                                            {{keyword.name}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div *ngIf="keywords && keywords.length > 0">
                             <div>
                                 <p class="list-item"><strong>Keyword(s)</strong></p>
                                 <div *ngFor="let keyword of keywords">
@@ -231,7 +248,7 @@
                                 </div>
                             </div>
                             <br>
-                        </div>
+                        </div> -->
 
                     </div>
                     <!--/.Panel 2-->

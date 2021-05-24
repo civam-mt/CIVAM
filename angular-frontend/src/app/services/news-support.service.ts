@@ -23,9 +23,12 @@ export class NewsSupportService {
               return NewsArticle.convertJSONToTag(tag);
             }), article['author']));
         });
+
+        tmp_arr.reverse();
+        this._newsMasterList.next(tmp_arr);
+        this.newsList.next(tmp_arr);
       });
-      this._newsMasterList.next(tmp_arr);
-      this.newsList.next(tmp_arr);
+      
     }
     else {
       this.newsList.next(this._newsMasterList.getValue());

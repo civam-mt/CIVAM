@@ -137,4 +137,8 @@ export class ItemComponent implements OnInit {
   onResize(event) {
     this.innerWidth = window.innerWidth;
   }
+
+  public produceLink(s:string):string {
+    return "/search-result;data=" + s;
+  }
 }

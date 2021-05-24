@@ -81,7 +81,7 @@
                                     <mat-grid-tile *ngFor="let tile of txtTile" [colspan]="tile.cols" [rowspan]="tile.rows"
                                     [style.background]="tile.color" [ngStyle]="tile.style">
                                        <div *ngIf="tile.text != 'cover_image' && tile.text != 'name' && tile.text != 'url'" 
-                                          [innerHTML]="selectedMarker.getElement(tile.text)">
+                                          [innerHTML]="selectedMarker.getContentBounded(selectedMarker.getElement(tile.text))">
                                        </div>
                                        <div *ngIf="tile.text == 'name'" class="info-title" 
                                           [innerHTML]="selectedMarker.getElement(tile.text)">
