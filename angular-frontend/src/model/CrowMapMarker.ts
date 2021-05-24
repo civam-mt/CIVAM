@@ -34,6 +34,13 @@ export class GoogleMapMarker implements Comparable {
         return this._getElement(str);
     }
 
+    public getContentBounded(content:string, bound:number = 512):string {
+        let readmore:string = " ...";
+        
+        let str:any = content.replace(new RegExp(/([<]((\s|.)*?)[>])/gm), '');
+        return  content.length <= bound ? content : str.substring(0,bound).concat(readmore);
+    }
+
     _getElement(str: string): any {
         switch (str.toLowerCase()) {
             case "clickable":

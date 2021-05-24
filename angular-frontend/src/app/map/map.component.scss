@@ -18,6 +18,14 @@ $gray-l1: #1e1e1ecf;
   background-color: #eeeeeec4;
 }
 
+.gm-style {
+  .gm-style-iw-d {
+    box-sizing: border-box;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+}
+
 .map {
   width: 100%;
   min-height: 30vh;
@@ -135,7 +143,7 @@ $gray-l1: #1e1e1ecf;
     margin: 0 auto;
   }
   .afterClick{
-    padding-top: 2.5%;
+    //padding-top: 2.5%;
     //padding-bottom: 2.5%;
     margin: 0 auto;
   }
