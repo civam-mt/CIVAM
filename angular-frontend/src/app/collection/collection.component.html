@@ -2,7 +2,7 @@
 <!-- 3/25/2021   -   Tim Mazzarelli - Removed whitespace and created dropdown-->
 
 <div *ngIf="collection" class="top-content layer-md"
-    style="background: url({{API_URL}}/media/{{backgroundURL}}) no-repeat fixed;">
+     style="background: url({{API_URL}}/media/{{backgroundURL}}) no-repeat fixed;">
     <div class="quote">
         <h1 class="title">{{collection.title}}</h1>
     </div>
@@ -13,15 +13,15 @@
     <ul class="collection-button-column">
         <li class="nav-item cbc1  top-button">
             <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'coll'}"
-                href="{{currentPageUrl}}#coll">Gallery</a>
+               href="{{currentPageUrl}}#coll">Gallery</a>
         </li>
         <li class="nav-item cbc2">
             <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'list'}"
-                href="{{currentPageUrl}}#list">List</a>
+               href="{{currentPageUrl}}#list">List</a>
         </li>
         <li class="nav-item cbc3">
             <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'attr'}"
-                href="{{currentPageUrl}}#attr">Collection Information</a>
+               href="{{currentPageUrl}}#attr">Collection Information</a>
         </li>
         <li class="nav-item cbc4">
             <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'back'}" href="/collections">Back to
@@ -37,7 +37,7 @@
                         <mat-form-field class="theme-filter">
                             <mat-label>Filter by Keyword</mat-label>
                             <mat-select multiple [placeholder]="'Filter by Keyword'" [(ngModel)]="selectedKeywords"
-                                (selectionChange)="onKeywordFilterSelect($event.value)">
+					(selectionChange)="onKeywordFilterSelect($event.value)">
                                 <div *ngFor="let keyword of itemKeywords">
                                     <mat-option [value]="keyword.id">{{keyword.name}}</mat-option>
                                 </div>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div *ngIf="item.cover_image">
                                     <button class="coverImage"
-                                        style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
+                                            style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
                                         {{item.name}}
                                     </button>
                                 </div>
@@ -79,27 +79,27 @@
                 <div [ngSwitch]="pageSize">
                     <div *ngSwitchCase=9>
                         <jw-pagination class="pagination" [pageSize]="9" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                     <div *ngSwitchCase=12>
                         <jw-pagination class="pagination" [pageSize]="12" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                     <div *ngSwitchCase=15>
                         <jw-pagination class="pagination" [pageSize]="15" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                     <div *ngSwitchCase=18>
                         <jw-pagination class="pagination" [pageSize]="18" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                     <div *ngSwitchCase=21>
                         <jw-pagination class="pagination" [pageSize]="21" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                     <mat-form-field class="theme-filter">
                         <mat-label>Filter by Keyword</mat-label>
                         <mat-select multiple [placeholder]="'Filter by Keyword'" [(ngModel)]="selectedKeywords"
-                            (selectionChange)="onKeywordFilterSelect($event.value)">
+				    (selectionChange)="onKeywordFilterSelect($event.value)">
                             <div *ngFor="let keyword of itemKeywords">
                                 <mat-option [value]="keyword.id">{{keyword.name}}</mat-option>
                             </div>
@@ -138,7 +138,7 @@
                         <div *ngIf="item.cover_image">
                             <a href="/items/{{item.id}}">
                                 <button class="compactButton"
-                                    style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
+					style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
                                     {{item.name}}
                                 </button>
                             </a>
@@ -146,7 +146,7 @@
                         <div *ngIf="!item.cover_image">
                             <a href="/items/{{item.id}}">
                                 <button class="compactButton" 
-                                style="background: url(../../assets/images/black.png) no-repeat fixed;">
+					style="background: url(../../assets/images/black.png) no-repeat fixed;">
                                     {{item.name}}
                                 </button>
                             </a>
@@ -156,27 +156,27 @@
                 <div [ngSwitch]="pageSize">
                     <div *ngSwitchCase=9>
                         <jw-pagination class="pagination" [pageSize]="9" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                     <div *ngSwitchCase=12>
                         <jw-pagination class="pagination" [pageSize]="12" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                     <div *ngSwitchCase=15>
                         <jw-pagination class="pagination" [pageSize]="15" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                     <div *ngSwitchCase=18>
                         <jw-pagination class="pagination" [pageSize]="18" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                     <div *ngSwitchCase=21>
                         <jw-pagination class="pagination" [pageSize]="21" [items]="items"
-                            (changePage)="onChangePage($event)">
+				       (changePage)="onChangePage($event)">
                         </jw-pagination>
                     </div>
                 </div>
@@ -218,24 +218,19 @@
                             <p>{{keyword.name}}</p>
                         </div>
                     </div>
-                </div>
-            </div>
-            <br>
-            <div *ngIf="creators" class="creators">
+		</div>
+	    </div>
+            <div *ngIf="collection.location_of_originals">
+		<p><strong>Location of Originals</strong></p>
+		<p>{{collection.location_of_originals}}</p>		    
+		<br>
+	    </div>
+	    <div *ngIf="creators" class="creators">
                 <div *ngIf="creators.length > 0">
-                    <p><strong>Creator(s)</strong></p>
-                    <div *ngFor="let creator of creators">
+		    <p><strong>Creator(s)</strong></p>
+		    <div *ngFor="let creator of creators">
                         <p> <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0"
-                                style="color:black; font-weight:500"> {{creator.name}} </a> </p>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="originals">
-                <div *ngIf="originals.length > 0">
-                    <p><strong>Location of Originals</strong></p>
-                    <div *ngFor="let original of originals">
-                        <p> <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0"
-                                style="color:black; font-weight:500"> {{original.name}} </a> </p>
+                               style="color:black; font-weight:500"> {{creator.name}} </a> </p>
                     </div>
                 </div>
             </div>
