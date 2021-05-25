@@ -1,0 +1,48 @@
+<div class="layers">
+    <div class="top-content montana-img layer-lg">
+       <div class="top-title">
+          Communications
+       </div>
+    </div>
+    <div class="context-content layer-sm">
+       <div *ngIf="siteText" [innerHTML]="siteText"></div>
+    </div>
+    <div *ngIf="this._newsList != null" class="layer-lg-ub news-feed">
+        <mat-grid-list cols="6" rowHeight="75px" class="card"
+            *ngFor="let article of _newsList">
+            <mat-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color" 
+                [ngStyle]="tile.style">
+                <div *ngIf="tile.text == 'cover_url'">
+                    <img src="{{API_URL}}/media/{{article.getElement(tile.text)}}"
+                        alt="Random slide" class="image">
+                </div>
+                <div *ngIf="tile.text == 'tags.text'">
+                    <mat-chip-list aria-label="Tags">
+                        <mat-chip [routerLink]="['/news/news-tag/', i]" (click)="sysout(i);" *ngFor="let i of article.getElement(tile.text)"
+                        >{{i}}</mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div *ngIf="tile.text == 'published_on'">
+                    {{article.getNewsDate()}}
+                </div>
+                <div class="text" *ngIf="tile.text == 'content' || tile.text == 'content.bounded'">
+                    <div [innerHTML]="article.getElement(tile.text)"></div>
+                    <a [routerLink]="['/news/news-article', article.getArticleID()]"> Read More</a>
+                </div>
+                <div *ngIf="tile.text == 'title'" >
+                    <a [routerLink]="['/news/news-article', article.getArticleID()]" class="remove-decoration news-title">{{article.getElement(tile.text)}}</a>
+                </div>
+                <div *ngIf="tile.text != 'cover_url' && tile.text != 'tags.text' && tile.text != 'published_on' && tile.text != 'content' && tile.text != 'content.bounded' && tile.text != 'title'">
+                    {{article.getElement(tile.text)}}
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <div *ngIf="this._newsList == null">
+        Loading News...
+    </div>
+</div>

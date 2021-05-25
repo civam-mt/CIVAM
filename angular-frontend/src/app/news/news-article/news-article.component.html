@@ -1,0 +1,33 @@
+<div class="layers" *ngIf="this.localNewsArticle != null">
+    <div class="top-content montana-img layer-lg" 
+    style="background: url({{getUrl()}}) no-repeat fixed; 
+            background-position: center; 
+            background-size: cover;
+            background-attachment: scroll;">
+       <div class="top-title">
+          {{this.localNewsArticle.getTitle()}}
+       </div>
+       <div class="top-author">
+           Written by, {{this.localNewsArticle.getAuthor()}}
+       </div>
+    </div>
+    <div class="collection-container news-feed">
+        <!--Grid column-->
+        <ul class="item-button-column">
+            <li class="nav-item ibc1  top-button">
+                <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'item'}"
+                    href="">Item</a>
+            </li>
+            <li class="nav-item ibc4">
+                <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'coll'}"
+                    href="news/">Back to News</a>
+            </li>
+        </ul>
+        <div [innerHTML]="localNewsArticle.getContent()"></div>
+        <div class="empy-container"></div>
+    </div>
+    <div *ngIf="this.localNewsArticle == null">
+        <mat-spinner></mat-spinner>
+        Loading News...
+    </div>
+</div>

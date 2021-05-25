@@ -34,7 +34,7 @@ import warnings
 lazyLoad = True
 AKISMET_API_KEY = "2be27375a975"
 MAP_API_KEY = "JiNAk2nq9sk1jHakf0"
-GOOGLE_API_KEY = "AIzaSyCKsC8YlYs6bkPacj3Sd_Jf2SAvMWGJMy8"
+GOOGLE_API_KEY = "AIzaSyBdzQliIx3SHhnFwX_YvxmoYcZJk9-2tQE"
 
 AKISMET_BLOG_URL = "http://localhost:4200/"
 pf = ProfanityFilter()
@@ -421,6 +421,95 @@ def register(request):
 	else:
 		return 0
 
+def get_news(request):
+	return 0
+
+def get_all_news_article(request):
+	#rawlist = NewsArticle.objects.filter(published_on__lte datetime.date.today())
+	rawlist = NewsArticle.objects.all()
+	news_list = []
+	for entry in rawlist:
+		new_entry = {
+			"article_id": entry.id,
+			"title": entry.title,
+			"cover": entry.cover_image.name,
+			"content": entry.content,
+			"published_on": entry.publish_on,
+			"tags": [{"id":x.id,"name":str(x)} for x in list(entry.tags.all())],
+			"author": entry.created_by.username
+			}
+		news_list.append(new_entry)
+	##print(map_list)
+
+
+	context = { "length": len(news_list) ,
+		"articles": news_list}
+	return JsonResponse(context, safe=False)
+
+def get_all_explores(request):
+	rawlist = Explore.objects.all()
+	explore_list = []
+	for entry in rawlist:
+		new_entry = {
+		"name": entry.name,
+		"background_image": entry.background_image.name
+		}
+		explore_list.append(new_entry)
+
+	context = {"explores": explore_list}
+	return JsonResponse(context, safe=False)
+
+def get_news_tag_by_id(request, newstag_id):
+	tag = get_object_or_404(NewsTag, pk=newstag_id)
+	context = {	"length": 1,
+		"tag": [{
+			"word": tag.word
+			}]}
+	return JsonResponse(context, safe=False)
+
+
+def get_news_article_by_tag(request):
+	if (request.method == 'POST'):
+		news_list = []
+		body = json.loads(request.body)
+		for tag in body['tags']:
+			rawlist = NewsArticle.objects.filter(tags__word=tag)
+			for entry in rawlist:
+				contains = False
+				for n in news_list:
+					contains = n["article_id"] == entry.id or contains
+				if not contains:
+					new_entry = {
+						"article_id": entry.id,
+						"title": entry.title,
+						"cover": entry.cover_image.name,
+						"content": entry.content,
+						"published_on": entry.publish_on,
+						"tags": [{"id":x.id,"name":str(x)} for x in list(entry.tags.all())],
+						"author": entry.created_by.username
+						}
+					news_list.append(new_entry)
+		context = { "length": len(news_list) ,
+			"articles": news_list}
+		return JsonResponse(context, safe=False)
+	else:
+		return JsonResponse({"length": 0,
+			"articles": []}, safe=False)
+
+def get_news_article_by_id(request, article_id):
+	article = get_object_or_404(NewsArticle, pk=article_id)
+	news_list = [
+		{	"article": article.id,
+			"title": article.title,
+			"cover": article.cover_image.name,
+			"content": article.content,
+			"published_on": article.publish_on,
+			"tags": [{"id":x.id,"name":str(x)} for x in list(article.tags.all())],
+			"author": article.created_by.username
+		}]
+	context = {	"length": len(news_list),
+		"articles": news_list}
+	return JsonResponse(context, safe=False)
 
 def get_all_mapdata(request):
 	rawlist = MapData.objects.filter(publish=True)
@@ -444,7 +533,8 @@ def get_all_mapdata(request):
 			'country': 'Not Provided' if entry.country == None else dict(countries)[entry.country],
 			'continent': 'Not Provided' if entry.continent == None else entry.continent,
 			'code': entry.code,
-			"notes": entry.notes
+			"notes": entry.notes,
+			'cover_image': entry.cover_image.name
 			}
 		map_list.append(new_entry)
 	##print(map_list)
@@ -515,6 +605,7 @@ def insert_bulk_map_data(request, map_api):
 					continent = body[id]['continent'] if len(body[id]['continent']) <= 2 else 'NA',
 					code = '',
 					notes = body[id]['notes'] + '\n' + body[id]['misc'],
+					cover_image = body[id]['cover_image'],
 					publish = True
 					)
 			return JsonResponse({"status": 200})
@@ -526,7 +617,7 @@ def insert_bulk_map_data(request, map_api):
 
 ## Google Maps JS Cache
 def get_current_map(request, detail):
-	file_name = '/home/ubuntu/CISC475_D5/django_project/google_cache/google_map.js'
+	file_name = 'google_cache/google_map.js'
 	http_prefix = request.headers.HTTP_PREFIX
 	url_root = ''
 	if http_prefix == 'HTTP_':

@@ -219,3 +219,76 @@ def mapdata(request):
 
 def get_mapdata_by_id(request, mapdata_id):
     return render(request, 'civam/get_mapdata_by_id')
+
+#Add Explore
+@permission_required('civam.add_explore', return_403=True)
+def new_explore(request):
+    form = Explore(request.POST or None)
+    if (request.method == 'POST'):
+        print(request.POST)
+        if form.is_valid():
+            col_instance = form.save(commit = False)
+            col_instance.created_by = request.user
+            col_instance.modified_by = request.user
+            col_instance.save
+            return redirect("explore", explore_id = col_instance.id)
+    context = {'explore_form': form}
+    return render(request, 'civam/new_explore.html', context)
+
+@permission_required('civam.explore', return_403=True)
+def explore(request):
+    expl = get_object_or_404(Explore)
+    context = {'explore_list': expl}
+    return render(request, 'civam/explore')
+
+
+#ADD News Article
+@permission_required('civam.add_mapdata', return_403=True)
+def new_news_article(request):
+    form = NewsArticle(request.POST or None)
+    if(request.method == 'POST'):
+        print(request.POST)
+        if form.is_valid():
+            col_instance = form.save(commit=False)
+            col_instance.created_by = request.user
+            col_instance.modified_by = request.user
+            col_instance.save()
+            return redirect("news_article", mapdata_id = col_instance.id)
+    context = {'news_article_form': form}
+    return render(request, 'civam/new_news_article.html', context)
+
+@permission_required('civam.news_article', return_403=True)
+def news_article(request):
+    article = get_object_or_404(NewsArticle)
+    context = {'news_article_list': article}
+    return render(request, 'civam/news_article')
+
+@permission_required('civam.news_article', return_403=True)
+def get_news_article_by_id(request, article_id):
+    return render(request, 'civam/get_news_article_by_id')
+
+
+#ADD News Tag
+@permission_required('civam.add_newstag', return_403=True)
+def new_news_tag(request):
+    form = NewsArticle(request.POST or None)
+    if(request.method == 'POST'):
+        print(request.POST)
+        if form.is_valid():
+            col_instance = form.save(commit=False)
+            col_instance.created_by = request.user
+            col_instance.modified_by = request.user
+            col_instance.save()
+            return redirect("newstag", mapdata_id = col_instance.id)
+    context = {'newstag_form': form}
+    return render(request, 'civam/new_newstag.html', context)
+
+@permission_required('civam.newstag', return_403=True)
+def news_tag(request):
+    article = get_object_or_404(NewsArticle)
+    context = {'newstag_list': article}
+    return render(request, 'civam/newstag')
+
+@permission_required('civam.newstag', return_403=True)
+def get_news_tag_by_id(request, article_id):
+    return render(request, 'civam/get_newstag_by_id')

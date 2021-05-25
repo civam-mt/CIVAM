@@ -2,7 +2,7 @@ $dark-brown: #553c0f;       // selected element
 $light-brown: #a67c00;      // active element
 $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
-       
+$crow-red: rgb(231, 28, 44);       
 $theme-color: #f7d417;      // theme color
 $lighter-yellow: #ffffb7;   // dropdown color (lighter version of theme)
 
@@ -12,10 +12,80 @@ a {
 }
 
 
+@media (min-width: 1500px){
+    .navbar-expand-custom {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    .navbar-expand-custom .navbar-nav {
+        flex-direction: row;
+    }
+    .navbar-expand-custom .navbar-nav .nav-link {
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
+    .navbar-expand-custom .navbar-collapse {
+        display: flex!important;
+    }
+    .navbar-expand-custom .navbar-toggler {
+        display: none;
+    }
+
+    .nav-container-right {
+        margin-left: auto !important;
+        margin-right: 0% !important;
+        padding-right: 1vw;
+        flex-direction: row !important;
+    }
+    
+    .nav-container-left {
+        margin-left: 0% !important;
+        margin-right: auto !important;
+        flex-direction: column !important;
+    }
+    
+    .nav-container-col {
+        flex-direction: column;
+    }
+    
+    .nav-container-col-left-fix-stuff {
+        margin-left: -5vw !important;
+        padding-top: 1vh;
+    }
+}
+
+ 
+.hide-when-big {
+    @media (max-width: 1000px) {display: none;}
+    @media (min-width: 1000px) {display: inherit;}
+}
+
+.push-inline {
+    display: inherit;
+    // float: right;
+    // text-align: right;
+}
+
+.nav-item {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-min-size {
+    min-height: 100px;
+}
+
+.destrech-img {
+    width: 30%;
+    //height: 30%;
+}
+
 .navbar {
     background-color: $theme-color!important;
     font-weight: 600;
     z-index: 999; //Hacky way to make autocomplete appear over the navbar
+    border-bottom: 3px solid $crow-red!important;
 }
 
 .dropdown-toggle {
@@ -29,7 +99,9 @@ a {
 // this is a bootstrap class, so any changes need to have the !important tag on the end
 .dropdown-item {
     color: $gold;
+    
 }
+
 
 // the current drop-down menu item hovered on from within the browse drop-down
 a.dropdown-item:hover {
@@ -52,15 +124,21 @@ a.dropdown-item.active {
 
 .dropdown-menu {
     background-color: $theme-color;
+    position: absolute;
+    
 }
-
 .nav-link {
     color: $gold;
+    font-size: large;
+    padding-left: 2vw;
 }
 
 .nav-link:hover {
     color: $light-brown;
+    text-decoration: underline;
 }
+
+
 
 .btn:active {
     color: $dark-brown;
@@ -100,5 +178,9 @@ button#search-button:hover {
     height:60px;
     display:flex;
     flex-direction: row;
+}
+.search-icon {
+    width: 20px;
+    height:auto;
 }
 

@@ -67,5 +67,23 @@ urlpatterns = [
 
     path('api/mapdata/cache/<str:detail>/', api_views.get_current_map, name="get_current_map"),
     # View SiteTexts
-    path('api/sitetext/<str:loc>', api_views.get_site_text, name='api_get_site_text')
+    path('api/sitetext/<str:loc>', api_views.get_site_text, name='api_get_site_text'),
+
+    # New News Article
+    path('article/<int:article_id>/', views.get_news_article_by_id, name='news_article_by_id'),
+    # Add a new MapData
+    path('article/new/', views.new_news_article, name='new_news_article'),
+    path('article/', views.news_article, name="news_article"),
+
+    path('api/article/all/', api_views.get_all_news_article, name='all_news_article'),
+    path('api/article/tag/', api_views.get_news_article_by_tag, name='news_article_by_tag'),
+    path('api/article/id/<int:article_id>/', api_views.get_news_article_by_id, name='news_article_by_id'),
+
+    # New News Article
+    path('api/newstag/<int:newstag_id>/', api_views.get_news_tag_by_id, name='news_tag_by_id'),
+    # Add a new MapData
+    path('newstag/new/', views.new_news_tag, name='new_news_tag'),
+    path('newstag/', views.news_tag, name="news_tag"),
+
+    path('api/explore/all/', api_views.get_all_explores, name='all_explores')
 ]

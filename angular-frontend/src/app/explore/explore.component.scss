@@ -1,0 +1,144 @@
+$gold: #bf9b30;  
+.barrier-img {
+    background: url('../../assets/images/background-field.jpg') no-repeat fixed;
+}
+
+.layer-lg {
+    width: 100%;
+    height: 45vh;
+    // margin-top: 3vh;
+    padding-top: 2.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.layer-lg-ub {
+    width: 100%;
+    height: max(70vh, 100%);
+    // max-height: 800px;
+    min-height: 500px;
+    // margin-top: 3vh;
+    padding-top: 2.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.layer-md {
+    width: 100%;
+    height: max(60vh, 100%);
+    max-height: 600px;
+    min-height: 300px;
+    // margin-top: 3vh;
+    padding-top: 2.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.layer-sm {
+    width: 100%;
+    height: 30vh;
+    max-height: 300px;
+    min-height: 200px;
+    // margin-top: 3vh;
+    padding-top: 2.5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.layer-unbounded {
+    width: 100%;
+    height: fit-content;
+    min-height: 300px;
+    // margin-top: 3vh;
+    padding-top: 4%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.top-content {
+    @media(min-width:1500px) {
+        padding-top: min(10%, 30vh);
+    }
+    @media(max-width:1500px) {
+        padding-top: min(20%, 30vh);
+    }
+    margin-top: 3vh;
+    overflow: visible;
+    background-position: center;
+    background-size: cover;
+    background-attachment: scroll;
+    font-size: xxx-large;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+    background-color: #0000000a;
+    background-blend-mode: darken;
+    font-weight: bolder;
+    font-size: 3vw;
+    color: whitesmoke;
+
+    
+    .title {
+        font-size: inherit;   
+    }
+
+}
+
+.exploreFlex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.exploreItemFlex{
+    flex-grow: 0;
+    flex-basis: 33.33333333%;
+    //Fun division w/ floating point math!
+}
+
+.exploreButton{
+    width: 100%;
+    height: 60vh;
+    background-position: top !important;
+    background-size: cover !important;
+    background-attachment: scroll !important;
+    background-image: linear-gradient(to bottom, rgba(black, 1.0), rgba(black, 0.5), rgba(black, 0.0));
+    border: none;
+    color: white;
+    font-size: x-large;
+    position: relative;
+    box-shadow: 0 -20vh 20vh -10vh black inset;
+}
+
+.exploreButton span{
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-weight: bold;
+    padding-bottom:5%;
+}
+
+.exploreButton:hover span{
+    display: none;
+}
+
+
+.exploreButton:hover::after{
+    content: "Explore Topic" !important;
+}
+
+.exploreButton:hover{
+    color: white !important;
+    opacity: 1;
+    padding: 0;
+    background-blend-mode: darken; 
+    border: solid;
+    border-color: rgb(97, 95, 95);
+    border-width: thin;
+    color: white; 
+    font-size: x-large;
+    font-weight: bold;
+    box-shadow: 0 -40vh 50vh -10vh black inset;
+    bottom: 0;
+}
