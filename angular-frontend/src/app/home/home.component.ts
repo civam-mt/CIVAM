@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   public showNavigationArrows = true;
   public showNavigationIndicators = true;
   public siteTexts = {};
-  public siteTextIDs:string[] = ['HOME_MAP', 'HOME_COL'];
+  public siteTextIDs:string[] = ['HOME_MAP', 'HOME_COL', 'HOME_EXP'];
 
 
 
