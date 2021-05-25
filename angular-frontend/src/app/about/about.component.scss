@@ -124,6 +124,7 @@ h3 {
 .about-content-panel{
     display: grid;
     grid-column: 2;
+    font-size: large;
 }
 
 .empy-container{
@@ -308,9 +309,7 @@ strong {
         background-color: #fff3 !important;
         background-blend-mode: lighten !important;
         
-        .quote {
-            font-style: italic;
-        }
+        
         
         .speaker {
             @media (min-width:1500px) {
@@ -325,6 +324,20 @@ strong {
             color: inherit;
             text-decoration: none;
         }
+    }
+    .title {
+        color:whitesmoke;
+        font-weight: bold;
+    }
+
+    .context {
+        font-size: x-large;
+        text-align: center;
+        align-self: center;
+    }
+
+    .flex-box {
+        display: flex;
     }
 }
 

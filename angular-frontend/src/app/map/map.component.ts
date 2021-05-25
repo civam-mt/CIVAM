@@ -122,5 +122,9 @@ export class MapComponent implements OnInit {
     });
   }
 
+  getExternalURL(url:string):string {
+    return url.startsWith("http") ? url : "".concat("https://", url);
+  }
+
 }
 
