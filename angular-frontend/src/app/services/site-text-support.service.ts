@@ -42,7 +42,7 @@ export class SiteTextSupportService {
     let arr:Array<[string, string]> = new Array<[string, string]>();
     req.forEach((str) => {
       if (this._textMap.has(str)) arr.push([str, this._textMap.get(str)]);
-      else throw new Error('Attemped to load an element not in the map!');
+      else return '';//throw new Error('Attemped to load an element not in the map!');
     });
     return arr;
   }

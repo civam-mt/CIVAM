@@ -52,7 +52,7 @@
             </div>
             <div class="collection-grid-bottom ">
                 <div class="">
-                    <p class="collection-inline-text " [innerHTML]="siteTexts['HOME_MAP']">
+                    <p class="collection-inline-text " [innerHTML]="siteTexts['HOME_COL']">
                         Over time, many of the physical items we value have been scattered across the planet. This map
                         is a living record of what organizations have what, and how you can visit them to learn more.
                     </p>
@@ -69,7 +69,7 @@
             class="home-collection-grid layer-unbounded collection-grid-col">
             <div class="collection-grid-left collection-left-wrap-text colleciton-text-gray">
                 <div class="">
-                    <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_COL']">
+                    <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_MAP']">
                         Our collections are the backbone of preservation efforts. Carfully catolouged, we present them
                         in there entirity here for your edification.
                     </p>
@@ -114,12 +114,63 @@
             </div>
         </div>
     </div>
-    <div class="mid-content barrier-img layer-lg-ub">
+    <div id="explore-div" class="collection-container collection-bottom">
+        <!-- If larger then 992px -->
+        <div *ngIf="this.innerWidth > this.smallWindow"
+            class="home-collection-grid layer-unbounded collection-grid-col">
+            <div class="collection-grid-left colleciton-text-gray">
+                <div class="collection-img-container">
+                    <div class="collection-img-boarderless">
+                        <img class="collection-img" src="../../assets/images/montana.png">
+                    </div>
+                    <p class="collection-img-text-img-right">
+                        <!-- Over Text -->
+                    </p>
+                </div>
+            </div>
+            <div class="collection-grid-right collection-right-wrap-text colleciton-text-gray">
+                <div class="">
+                    <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_EXP']">
+                        
+                    </p>
+                    <a routerLink="/explore"><button type="button" class="collection-btn">
+                            Explore More
+                        </button></a>
+                </div>
+            </div>
+            
+        </div> <!-- If smaller then 992px -->
+        <div *ngIf="this.innerWidth <= this.smallWindow"
+            class="home-collection-grid layer-unbounded collection-grid-row">
+            <div class="collection-grid-top">
+                <div class="collection-img-container">
+                    <div class="collection-img-boarderless">
+                        <img class="collection-img" src="../../assets/images/montana.png">
+                    </div>
+                    <p class="collection-img-text-img-right">
+                        <!-- Over Text -->
+                    </p>
+                </div>
+            </div>
+            <div class="collection-grid-bottom text-center-in-div-outer">
+                <div class="">
+                    <p class="collection-inline-text" [innerHTML]="siteTexts['HOME_EXP']">
+                        Over time, many of the physical items we value have been scattered across the planet. This map
+                        is a living record of what organizations have what, and how you can visit them to learn more.
+                    </p>
+                    <a routerLink="/explore"><button type="button" class="collection-btn">
+                        Explore More
+                        </button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mid-content barrier-img layer-lg-ub" *ngIf="newsList.length != 0">
         <div class="header">
-            <a [routerLink]="'/news'" class="link-title">News</a>           
+            <a [routerLink]="'/news'" class="link-title">Communications</a>           
         </div>
         <div class="news-carousel-wrapper">
-            <ngb-carousel *ngIf="newsList" class="news-carousel-override">
+            <ngb-carousel *ngIf="newsList.length != 0" class="news-carousel-override">
                 <ng-template ngbSlide *ngFor="let news of newsList">
                     <a [routerLink]="['/news/news-article', news.getArticleID()]">
                     <div class="picsum-img-wrapper">
@@ -133,8 +184,8 @@
                 </a>
                 </ng-template>
             </ngb-carousel>
-            <div *ngIf="newsList == null">
-                No News Found!
+            <div *ngIf="newsList.length == 0">
+                
             </div>
         </div>
     </div>

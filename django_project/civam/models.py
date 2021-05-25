@@ -313,7 +313,9 @@ class SiteText(models.Model):
         ('MAP_CON', 'Map: Context for the Map, and How to use it'),
         ('HOME_MAP', 'Home: Simple context about the map'),
         ('HOME_COL', 'Home: Simple context about the collections'),
-        ('COL_MORE', 'Collections: Note that more collections will be added')
+        ('HOME_EXP', 'Home: Simple context about the explore page'),
+        ('COL_MORE', 'Collections: Note that more collections will be added'),
+        ('NEWSCON', 'News: Context about the news page')
     ]
     content = models.TextField()
     location = models.CharField('Location of text on site', max_length=8, choices=DATA_LOCATIONS, default='ABOUT', unique=True)

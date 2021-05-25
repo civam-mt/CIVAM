@@ -5,7 +5,7 @@
        </div>
     </div>
     <div class="context-content layer-sm">
-       <div [innerHTML]=""></div>
+       <div *ngIf="siteText" [innerHTML]="siteText"></div>
     </div>
     <div *ngIf="this._newsList != null" class="layer-lg-ub news-feed">
         <mat-grid-list cols="6" rowHeight="75px" class="card"

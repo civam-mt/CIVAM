@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   public collection:Collection;
   public innerWidth:number;
   public loaded_context:boolean;
-  public newsList:Array<NewsArticle>;
+  public newsList:Array<NewsArticle> = new Array<NewsArticle>();
   public smallWindow:number = environment.windowSmall;
   public showNavigationArrows = true;
   public showNavigationIndicators = true;
