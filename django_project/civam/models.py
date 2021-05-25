@@ -326,7 +326,7 @@ class SiteText(models.Model):
         return self.location
 
 class NewsArticle(models.Model):
-    title = models.CharField("Title", max_length=255)
+    title = models.CharField("Article Title", max_length=255)
     cover_image = models.ImageField("Cover Image", upload_to="cover_images/articles/", blank=True)
     publish_on = models.DateTimeField("When to publish the article")
     content = models.TextField("Article Text")
