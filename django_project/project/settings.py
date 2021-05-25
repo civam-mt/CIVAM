@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 """
 Django settings for project project.
 
@@ -30,7 +37,7 @@ SECURE_SSL_REDIRECT = False
 SECRET_KEY = 'au+me7y%0)7t4b@tqh#r7rez)badj=5vxv#ftyhdpd=a1#r-#d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #TODO: MAKE IT SO THIS TOGGLE IS AUTOMATED FOR DEV/PROD
 ALLOWED_HOSTS = ['civam-mt.org', 'http://maps.googleapis.com/', 'https://maps.googleapis.com/']
@@ -47,8 +54,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 # Gmail SMTP Server
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'civam.mt@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ.get("GMAILPASSWORD")
+EMAIL_HOST_USER = 'civamwebmaster@gmail.com'
+EMAIL_HOST_PASSWORD = 'fnanfjjakavwowhk'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

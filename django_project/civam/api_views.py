@@ -89,7 +89,7 @@ def add_narrative(request):
 		)
 
 		# email generation
-		admin_email = ["civam-mt@gmail.com"]
+		admin_email = ["civam.mt@gmail.com"]
 		subject = "[AUTOMATED] Narrative Post Submitted: "
 		message = "New Narrative posted on Item <" + str(item) + ">\n\nNarrative author: " + body['author'] + "\nNarrative text: " + body['narrative'] + "\nUser IP: " + request.META['REMOTE_ADDR'] + "\nUser agent: " + request.META['HTTP_USER_AGENT'] + "\n"
 
