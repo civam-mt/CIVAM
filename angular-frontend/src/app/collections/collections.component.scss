@@ -5,9 +5,6 @@ $gold: #bf9b30;
     text-align: center;
 }
 
-.barrier-img {
-    background: url('../../assets/images/background-field.jpg') no-repeat fixed;
-}
 
 .even {
     background-color: #FDF6CD;
@@ -87,11 +84,12 @@ $gold: #bf9b30;
     @media(max-width:1500px) {
         padding-top: min(20%, 30vh);
     }
+    background: url('../../assets/images/background-field.jpg') no-repeat fixed;
     margin-top: 3vh;
     overflow: visible;
-    background-position: top;
-    background-size: cover;
+    background-size: 100% 100%;
     background-attachment: scroll;
+    object-fit: contain;
     font-size: xxx-large;
     font-weight: bold;
     text-align: center;
