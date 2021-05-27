@@ -20,6 +20,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 //import { GoogleMapsModule } from '@angular/google-maps';
 import { AgmCoreModule } from '@agm/core';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { JwPaginationModule } from 'jw-angular-pagination';
+
 
 // Component imports
 import { AppComponent } from './app.component';
@@ -28,6 +30,7 @@ import { AboutComponent } from './about/about.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { DistrictsComponent } from './districts/districts.component';
+import { ExploreComponent } from './explore/explore.component';
 import { OralHistoriesComponent } from './oral-histories/oral-histories.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ItemComponent } from './item/item.component';
@@ -42,11 +45,16 @@ import { ModalComponent } from './modal/modal.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { CardComponent } from './card/card.component';
 import { KeywordPageComponent } from './keyword-page/keyword-page.component';
+import { NewsComponent } from './news/news.component';
+import { NewsArticleComponent } from './news/news-article/news-article.component';
+import { NewsTagComponent } from './news/news-tag/news-tag.component';
 
 
 // Service imports
 import { UsernameService } from './auth/username.service';
 import { environment } from 'src/environments/environment';
+import { FooterComponent } from './footer/footer.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -61,6 +69,7 @@ import { environment } from 'src/environments/environment';
     NavigationComponent,
     CollectionsComponent,
     DistrictsComponent,
+    ExploreComponent,
     OralHistoriesComponent,
     AuthComponent,
     CollectionComponent,
@@ -75,7 +84,12 @@ import { environment } from 'src/environments/environment';
     ModalComponent,
     SearchResultComponent,
     CardComponent,
-    KeywordPageComponent
+    NewsComponent,
+    NewsArticleComponent,
+    NewsTagComponent,
+    KeywordPageComponent,
+    FooterComponent,
+    TermsConditionsComponent
   ],
   imports:[
     BrowserAnimationsModule,
@@ -92,6 +106,7 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     MatTabsModule,
     FlexLayoutModule,
+    JwPaginationModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'replace',

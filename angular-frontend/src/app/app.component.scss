@@ -1,4 +1,14 @@
-.middle-strip {
-	height:100%;
-	background-color: #eeeeeec4;
+.content {
+    //margin-bottom: -142px; 
+}
+
+.footer {
+    //height:142px;
+    // position: fixed;
+    // bottom: 0;
+    width:100%;
+}
+
+.general-wrapper {
+    min-height: calc(100vh - 115px);
 }

@@ -1,0 +1,168 @@
+.card {
+    margin-bottom: 5vh;
+
+    .text {
+        padding: 5%;
+        text-align: left;
+        word-wrap: normal;
+    }
+}
+
+.image {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+.layers {
+    .montana-img {
+        background: url("../../assets/images/montana.png") no-repeat fixed;
+    }
+
+    .layer-lg {
+        width: 100%;
+        height: max(70vh, 100%);
+        max-height: 800px;
+        min-height: 500px;
+        //margin-top: 3vh;
+        padding-top: 2.5%;
+        padding-left: 5%;
+        padding-right:5%;
+    }
+  
+    .layer-lg-ub {
+        width: 100%;
+        height: max(70vh, 100%);
+        //max-height: 800px;
+        min-height: 500px;
+        //margin-top: 3vh;
+        padding-top: 2.5%;
+        padding-left: 5%;
+        padding-right:5%;
+    }
+  
+    .layer-md {
+        width: 100%;
+        height: 60vh;
+        max-height: 600px;
+        min-height: 300px;
+        //margin-top: 3vh;
+        padding-top: 2.5%;
+        padding-left: 5%;
+        padding-right:5%;
+    }
+  
+    .layer-sm {
+        width: 100%;
+        height: 30vh;
+        max-height: 300px;
+        min-height: 200px;
+        //margin-top: 3vh;
+        padding-top: 2.5%;
+        padding-left: 5%;
+        padding-right:5%;
+    }
+  
+    .layer-sm-lock {
+      width: 100%;
+      //height: 30vh;
+      max-height: 250px;
+      min-height: 100px;
+      //margin-top: 3vh;
+      padding-top: 2.5%;
+      padding-left: 5%;
+      padding-right:5%;
+  }
+  
+    .layer-unbounded {
+        width: 100%;
+        height: fit-content;
+        min-height: 300px;
+        //margin-top: 3vh;
+        padding-top: 4%;
+        padding-left: 5%;
+        padding-right:5%;
+    }
+  
+    .top-content {
+        @media (min-width:1500px) {
+            padding-top: min(10%, 30vh);
+        }
+        @media (max-width:1500px) {
+            padding-top: min(20%, 30vh);
+        }
+        margin-top: 3vh;
+        overflow: visible;
+        background-position: center;
+        background-size: cover;
+        background-attachment: scroll;
+        font-size: xxx-large;
+        font-weight: bold;
+        text-align: center;
+        color: #000;
+        background-color: #0000000a;
+        background-blend-mode: darken;
+        font-weight: bolder;
+        font-size: 3vw;
+        color: whitesmoke;
+    
+        
+        .top-title {
+            
+        }
+    }
+  
+    
+    .context-content {
+      text-align: center;
+      color: #000;
+      font-size: 150%;
+    }
+  
+    .disclamer {
+      margin-bottom: 1rem;
+    }
+  
+    .mid-content {
+        padding-top:6%;
+        overflow: visible;
+        background-position: top;
+        background-size: cover;
+        background-attachment: scroll;
+        font-size: xxx-large;
+        font-weight: bold;
+        text-align: center;
+        color: #000;
+        background-color: #fff3;
+        background-blend-mode: lighten;
+  
+        .header {
+            text-align: left;
+        }
+    }
+    
+    .news-carousel-wrapper {
+  
+    }
+  
+    .news-carousel-override {
+        margin-left: auto;
+        margin-right: auto;
+    }
+  
+    .news-carousel-subtitle {
+        font-size: large;
+    }
+
+    .news-feed {
+        .remove-decoration {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .news-title {
+            font-size: xx-large;
+        }
+    }
+  }
+  

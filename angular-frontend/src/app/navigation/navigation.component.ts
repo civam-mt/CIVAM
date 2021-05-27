@@ -6,7 +6,9 @@ import { FormControl, NgForm } from '@angular/forms';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
+import { NewsSupportService } from '../services/news-support.service';
+import { MetaDataService } from '../services/meta-data.service';
 
 @Component({
   selector: 'app-navigation',
@@ -20,6 +22,8 @@ export class NavigationComponent implements OnInit {
   keywordOptions: string[] = [];
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
+  width:number;
+  WIDTH_LIM:number = 1200;
 
 
 
@@ -33,7 +37,7 @@ export class NavigationComponent implements OnInit {
   // name;
   // constructor(private usernameService: UsernameService) { }
 
-  constructor(config: NgbNavConfig, private router: Router, private api: ApiService) {
+  constructor(config: NgbNavConfig, private router: Router, private api: ApiService, private newsSupport:NewsSupportService, private meta:MetaDataService) {
 
     // customize default values of navs used by this component tree
     config.destroyOnHide = false;
@@ -45,6 +49,9 @@ export class NavigationComponent implements OnInit {
 
     this.router.navigate(['/search-result', { 'data': this.myControl.value }]);
   }
+
+  
+
 /*
 .subscribe((data) => {
       this.keywordOptions = data["keywords"];
@@ -85,6 +92,10 @@ export class NavigationComponent implements OnInit {
 
 
   ngOnInit() {
+    // Preping News List
+    this.newsSupport.getAllNews();
+    
+    //Default Behavior
     this.api.getKeywordSearch("").subscribe((data) => {
       this.keywordOptions = data["keywords"];
     });
@@ -93,6 +104,9 @@ export class NavigationComponent implements OnInit {
       startWith(''),
       map(value => this.filter(value))
     );
+    this.meta.getBehavioSubject().subscribe(n => {
+      this.width = n;
+    });
 
 /*
     this.filteredOptions = this.myControl.valueChanges

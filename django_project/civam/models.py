@@ -33,6 +33,7 @@ class PersonOrInstitute(models.Model):
     cover_image = models.ImageField(upload_to="cover_images/pori/", blank=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     contact = models.CharField(max_length=255, blank=True, null=True)
+    related_collections = models.ManyToManyField('Collection', blank=True, related_name="related_people")
 
     private_notes = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="PorI_created")
@@ -56,6 +57,20 @@ class Keyword(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="keyword_created")
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="keyword_modified")
+    modified_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = [Lower('word')]
+
+    def __str__(self):
+        return self.word
+
+class NewsTag(models.Model):
+    word = models.CharField(max_length=255, unique=True)
+
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="news_article_tag_created")
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="news_article_tag_modified")
     modified_on = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -90,7 +105,7 @@ class Collection(models.Model):
     
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="collection_keywords")
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_creators")
-    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_locations")
+    location_of_originals = models.TextField(blank=True)
 
 
     background_image = models.ImageField(upload_to="background_images/collection/",blank=True)
@@ -124,7 +139,6 @@ class Item(models.Model):
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="items", blank=True)
     culture_or_community = models.CharField(max_length=127, null=True, blank=True)
     other_forms = models.TextField(blank=True, null=True)
-    digital_heritage_item = models.CharField(max_length=127, null=True, blank=True)
     date_of_creation = models.CharField(max_length=127, null=True, blank=True)
     physical_details = models.TextField(blank=True, null=True)
     access_notes_or_rights_and_reproduction = models.TextField(blank=True, null=True)
@@ -138,7 +152,7 @@ class Item(models.Model):
 
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="item_keywords")
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_creators")
-    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")
+    location_of_originals = models.TextField(blank=True)
 
     changers = models.ManyToManyField(User, blank=True, related_name="changeable_items")
 
@@ -245,24 +259,25 @@ class MapData(models.Model):
     lat = models.DecimalField("Latitude", max_digits=14, decimal_places=10)
     lng = models.DecimalField("Longitude", max_digits=14, decimal_places=10)
     url = models.CharField("Institution URL", max_length=255)
+    cover_image = models.ImageField("Cover Image", upload_to="cover_images/articles/", blank=True, null=True)
     svg_choice = models.CharField(
         max_length=4,
         choices=SVGMapIcon.choices,
         default='MUES'
     )
-    contact_email = models.EmailField("Contact Email", max_length=254)
+    contact_email = models.EmailField("Contact Email", max_length=254, blank=True)
     crow_material = models.BooleanField("Do they have Crow Material?")
     digital_collection = models.BooleanField("Do they have a Digital Collection?")
     replied_to_contact = models.BooleanField("Have they replied to our contact?")
-    history = models.TextField("Relevant History")
+    history = models.TextField("Relevant History", blank=True)
     obj_photos = models.CharField(
         max_length=2,
         choices=ObjOrPhoto.choices,
         default='NA',
     )
-    street = models.TextField(null=True)
-    city = models.TextField(null=True)
-    province = models.TextField("Province/State", null=True)
+    street = models.TextField(null=True, blank=True)
+    city = models.TextField(null=True, blank=True)
+    province = models.TextField("Province/State", null=True, blank=True)
     country = CountryField(null=True)
     continent = models.CharField(null=True,
         max_length=2,
@@ -280,9 +295,9 @@ class MapData(models.Model):
     modified_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return '{},{},{}\n'.format(self.name, 
-            self.lat, 
-            self.lng)
+        return '{} - {},{}\n'.format(self.name, 
+            self.province, 
+            self.country)
     
     class Meta:
         ordering = ['name']
@@ -296,10 +311,43 @@ class SiteText(models.Model):
         ('PEOPLE2','About: People: Bio 2'),
         ('PEOPLE3','About: People: Bio 3'),
         ('PEOPLE4','About: People: Bio 4'),
-        ('CONTACT','About: Resources & Contact Information')
+        ('CONTACT','About: Resources & Contact Information'),
+        ('MAP_CON', 'Map: Context for the Map, and How to use it'),
+        ('HOME_MAP', 'Home: Simple context about the map'),
+        ('HOME_COL', 'Home: Simple context about the collections'),
+        ('HOME_EXP', 'Home: Simple context about the explore page'),
+        ('COL_MORE', 'Collections: Note that more collections will be added'),
+        ('NEWSCON', 'News: Context about the news page')
     ]
     content = models.TextField()
     location = models.CharField('Location of text on site', max_length=8, choices=DATA_LOCATIONS, default='ABOUT', unique=True)
 
     def __str__(self):
         return self.location
+
+class NewsArticle(models.Model):
+    title = models.CharField("Article Title", max_length=255)
+    cover_image = models.ImageField("Cover Image", upload_to="cover_images/articles/", blank=True)
+    publish_on = models.DateTimeField("When to publish the article")
+    content = models.TextField("Article Text")
+    tags = models.ManyToManyField(NewsTag, blank=True, related_name="news_article_tag")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="news_article_created", default=1)
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="news_article_modified", default=1)
+    modified_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '{}\n'.format(self.title)
+    
+    class Meta:
+        ordering = ['publish_on']
+
+
+class Explore(models.Model):
+    name = models.CharField("Name", max_length=255)
+    background_image = models.ImageField("Background Image", upload_to="background_images/explore/", blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="explore_created")
+    created_on = models.DateTimeField(auto_now_add=True)
+    modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="explore_modified")
+    modified_on = models.DateTimeField(auto_now=True)
+

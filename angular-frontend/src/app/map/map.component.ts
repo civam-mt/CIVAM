@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CrowMapMarker, GoogleMapMarker } from 'src/model/CrowMapMarker';
-import { MapSupportService } from '../map-support.service';
+import { MapSupportService } from '../services/map-support.service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Tile, MapTile } from 'src/model/Tile';
 import { environment } from 'src/environments/environment';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
+import { AgmInfoWindow } from '@agm/core';
 
 @Component({
   selector: 'app-map',
@@ -15,12 +16,22 @@ import { ApiService } from '../api.service';
 })
 export class MapComponent implements OnInit {
   API_URL = environment.apiUrl;
-  tiles: MapTile[] = [
-    {text: 'name', cols:4, rows:1, color:'lightgreen'},
-    {text: 'cityProvinceCountry', cols:2, rows: 1, color: 'lightblue'},
-    {text: '', cols:2, rows: 3, color: 'lightblue'},
-    {text: 'notes', cols:4, rows:2, color: 'lightpink'},
-    {text: 'url', cols:4, rows:1, color: '#DDBDF1'},
+  imgTile: MapTile[] = [
+    {text: 'cover_image', cols: 5, rows: 4, color: '', style: ''},
+    {text: 'name', cols: 10, rows: 2, color: '', style: ''},
+    {text: 'cityProvinceCountry', cols: 10, rows: 1, color: '', style: ''},
+    {text: 'url', cols: 10, rows: 1, color: '', style: { 'border-bottom': '#c5c4c4 solid 1px'}},
+    {text: 'history', cols: 12, rows: 5, color: '', style: { 'border-right': '#c5c4c4 solid 1px'}},
+    {text: 'crow_material', cols: 3, rows: 3, color: '', style: {'text-align':'right'}},
+    {text: 'digital_collection', cols: 3, rows: 2, color: '', style: {'text-align':'right'}},
+  ];
+  txtTile: MapTile[] = [
+    {text: 'name', cols: 15, rows: 2, color: '', style: ''},
+    {text: 'cityProvinceCountry', cols: 15, rows: 1, color: '', style: ''},
+    {text: 'url', cols: 15, rows: 1, color: '', style: { 'border-bottom': '#c5c4c4 solid 1px'}},
+    {text: 'history', cols: 12, rows: 5, color: '', style: { 'border-right': '#c5c4c4 solid 1px'}},
+    {text: 'crow_material', cols: 3, rows: 3, color: '', style: {'text-align':'right'}},
+    {text: 'digital_collection', cols: 3, rows: 2, color: '', style: {'text-align':'right'}},
   ];
   public siteText:string;
 
@@ -36,6 +47,7 @@ export class MapComponent implements OnInit {
   public form:FormGroup;
   public selectedMarker:GoogleMapMarker;
   public mapMarkers:Array<GoogleMapMarker>; 
+  public toOpen:boolean = true;
 
 
   constructor(httpClient: HttpClient, private mapSupport:MapSupportService, private formBuilder:FormBuilder, private apiService:ApiService) {
@@ -58,8 +70,8 @@ export class MapComponent implements OnInit {
     this.mapSupport.getMapData();
 
     this.form = this.formBuilder.group({
-      crow_material: ['', Validators.nullValidator],
-      digital_collection: ['', Validators.nullValidator],
+      crow_material_val: ['', Validators.nullValidator],
+      digital_collection_val: ['', Validators.nullValidator],
       Continent: ['', Validators.nullValidator],
       Countries: ['', Validators.nullValidator],
     })
@@ -72,13 +84,14 @@ export class MapComponent implements OnInit {
     if (this.selectedMarker != null) this.selectedMarker.animation = "";
     //this.panning = true;
     this.selectedMarker = this.mapSupport.getSelectedMarkerFromTitle(title);
-    //this.zoom = 10;
+    this.zoom = 10;
     //this.zoom = 17;
     this.lat = this.selectedMarker.lat;
     this.lng = this.selectedMarker.lng;
-    this.selectedMarker.animation = "BOUNCE";
+    //this.selectedMarker.animation = "BOUNCE";
     this.clicked = true;
     //this.panning = false;
+    //this.agmInfo.open();
   }
 
   asCrowMapMarker(marker:GoogleMapMarker): CrowMapMarker {
@@ -92,8 +105,8 @@ export class MapComponent implements OnInit {
   }
 
   filterData() {
-    let stringArray:string[][] = [['crow_material', this.form.controls.crow_material.value],
-                                ['digital_collection', this.form.controls.digital_collection.value],
+    let stringArray:string[][] = [['crow_material_val', this.form.controls.crow_material_val.value],
+                                ['digital_collection_val', this.form.controls.digital_collection_val.value],
                                 ['continent', this.form.controls.Continent.value],
                                 ['countries', this.form.controls.Countries.value]];
     this.mapSupport.getFilterData(stringArray);
@@ -104,9 +117,13 @@ export class MapComponent implements OnInit {
   }
 
   getSiteTexts() {
-    this.apiService.getSiteTextByLocation('MAP_CONTEXT').subscribe((data) => {
+    this.apiService.getSiteTextByLocation('MAP_CON').subscribe((data) => {
       this.siteText = data["content"];
     });
+  }
+
+  getExternalURL(url:string):string {
+    return url.startsWith("http") ? url : "".concat("https://", url);
   }
 
 }

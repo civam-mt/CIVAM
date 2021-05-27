@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, MapData, SiteText
+from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, NewsTag, MapData, Explore
 from guardian.admin import GuardedModelAdmin
 from adminsortable2.admin import SortableAdminMixin
 
@@ -61,10 +61,16 @@ class NarrativeInline(admin.TabularInline):
     model = Narrative
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
 
+class PorIInline(admin.TabularInline):
+    model = PersonOrInstitute.related_collections.through
+    verbose_name = "Related person"
+    verbose_name_plural = "Related people"
+
 # Can create Collections and Items and Poris directly
 class CollectionAdmin(SortableAdminMixin, DefaultAdmin):
     list_display = ('title', 'created_by')
     search_fields = ['title','creator__name','keywords__word']
+    inlines = [PorIInline]
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection', 'cataloged')
@@ -84,13 +90,25 @@ class PorIAdmin(DefaultAdmin):
 class KeywordAdmin(DefaultAdmin):
     search_fields = ['word']
 
+class NewsTagAdmin(DefaultAdmin):
+    search_fields = ['word']
+
+class NewsArticleAdmin(DefaultAdmin):
+    model = NewsArticle
 class MapDataAdmin(DefaultAdmin):
     model = MapData
+
+class ExploreAdmin(DefaultAdmin):
+    model = Explore
+    list_display = ('name', 'background_image')
 
 # Register admin models    
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Item, ItemAdmin)
 admin.site.register(PersonOrInstitute, PorIAdmin)
 admin.site.register(Keyword, KeywordAdmin)
+admin.site.register(NewsTag, NewsTagAdmin)
 admin.site.register(MapData, MapDataAdmin)
 admin.site.register(SiteText)
+admin.site.register(NewsArticle, NewsArticleAdmin)
+admin.site.register(Explore, ExploreAdmin)

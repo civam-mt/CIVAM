@@ -34,6 +34,13 @@ export class GoogleMapMarker implements Comparable {
         return this._getElement(str);
     }
 
+    public getContentBounded(content:string, bound:number = 512):string {
+        let readmore:string = " ...";
+        
+        let str:any = content.replace(new RegExp(/([<]((\s|.)*?)[>])/gm), '');
+        return  content.length <= bound ? content : str.substring(0,bound).concat(readmore);
+    }
+
     _getElement(str: string): any {
         switch (str.toLowerCase()) {
             case "clickable":
@@ -57,6 +64,38 @@ export class GoogleMapMarker implements Comparable {
             default:
                 return null;
         }
+    }
+
+    hasElement(str:string): boolean {
+        return this._hasElement(str);
+    }
+
+    _hasElement(str:string): boolean {
+        switch (str.toLowerCase()) {
+            case "crow_material":
+            case "digital_collection":
+            case "replied_to_contact":
+            case "name":
+            case "obj_photo":
+            case "street":
+            case "city":
+            case "province":
+            case "countries":
+            case "continent":
+            case "code":
+            case "url":
+            case "notes":
+            case "cover_image":
+            case "cityprovincecountry":
+            case "history":
+                return this._has(str);
+            default:
+                return false;
+        }
+    }
+
+    private _has(elem:string):boolean {
+        return this.getElement(elem) != '';
     }
 
     filter(args: string[][]): boolean {
@@ -121,8 +160,10 @@ export class CrowMapMarker extends GoogleMapMarker {
     url: string;
     code: string;
     notes: string;
+    history: string;
+    cover_image: string;
 
-    static boolFilters: string[][] = [['crow_material', 'Crow Material'], ['digital_collection', 'Digital Collection']];
+    static boolFilters: string[][] = [['crow_material_val', 'Crow Material'], ['digital_collection_val', 'Digital Collection']];
     static dropDownFilters: Array<[string, string[]]> = new Array<[string, string[]]>(['Continent', ['North America', 'South America', 'Europe',
         'Africa', 'Asia', 'Antartica', 'Oceania']]);
 
@@ -140,7 +181,7 @@ export class CrowMapMarker extends GoogleMapMarker {
         continent: string,
         code: string,
         url: string,
-        svg: string, notes:string) {
+        svg: string, notes:string, history:string, cov_img: string) {
         super(lat, lng, name + ': ' + province + ', ' + country, 'Label To Be Filled Later', 'ID To Be Filled Later');
         this.crow_material = crow_material;
         this.digital_collection = digital;
@@ -155,6 +196,8 @@ export class CrowMapMarker extends GoogleMapMarker {
         this.code = code;
         this.url = url;
         this.notes = notes;
+        this.history = history;
+        this.cover_image = cov_img;
         try {
             this.customImgUrl = new SVGIcon(SVGMap[svg], 20, 20);
         }
@@ -187,11 +230,14 @@ export class CrowMapMarker extends GoogleMapMarker {
     }
 
     getElement(str: string): any {
-        let ret: any;
         switch (str.toLowerCase()) {
             case "crow_material":
-                return this.crow_material;
+                return this._nameValue('Crow Material', this.crow_material);
             case "digital_collection":
+                return this._nameValue('Digital', this.digital_collection);
+            case "crow_material_val":
+                return this.crow_material;
+            case "digital_collection_val":
                 return this.digital_collection;
             case "replied_to_contact":
                 return this.replied_to_contact;
@@ -215,11 +261,48 @@ export class CrowMapMarker extends GoogleMapMarker {
                 return this.url;
             case "notes":
                 return this.notes;
+            case "cover_image":
+                return this.cover_image;
             case "cityprovincecountry":
                 return this.cityProvinceCountry();
+            case "history":
+                return this.history;
             default:
                 return super.getElement(str);
         }
+    }
+
+    hasElement(str:string): boolean {
+        switch (str.toLowerCase()) {
+            case "crow_material":
+            case "digital_collection":
+            case "replied_to_contact":
+            case "name":
+            case "obj_photo":
+            case "street":
+            case "city":
+            case "province":
+            case "countries":
+            case "continent":
+            case "code":
+            case "url":
+            case "notes":
+            case "cover_image":
+            case "cityprovincecountry":
+            case "history":
+                return this._hasCrowElement(str);
+            default:
+                return super.hasElement(str);
+        }
+    }
+
+    private _nameValue(str:string, bool:boolean):string {
+        var tf = bool ? 'Yes' : 'No';
+        return '<div>' + str + '<br>' + tf + '</div>';
+    }
+
+    private _hasCrowElement(elem:string):boolean {
+        return (this.getElement(elem) != '') || (super.getElement(elem));
     }
 
 

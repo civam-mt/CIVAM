@@ -1,96 +1,238 @@
 <!-- 3/15/2021   -   Mark Wolgin - Removed Summary field -->
 <!-- 3/25/2021   -   Tim Mazzarelli - Removed whitespace and created dropdown-->
-<div *ngIf="collection">
-    <div *ngIf="collection.title" class="jumbotron container-fluid text-center text-md-center">
+
+<div *ngIf="collection" class="top-content layer-lg"
+     style="background: url({{API_URL}}/media/{{backgroundURL}}) no-repeat fixed;">
+    <div class="quote">
         <h1 class="title">{{collection.title}}</h1>
     </div>
-    <mat-accordion>
-        <div class="outline">
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-description class="cInformation"> Collection Information </mat-panel-description>
-                </mat-expansion-panel-header>
-                <div *ngIf="collection.description">
-                    <p><strong>Description</strong></p>
-                    <p>{{collection.description}}</p>
+</div>
+
+<div class="collection-container">
+    <!--Grid column-->
+    <ul class="collection-button-column">
+        <li class="nav-item cbc1  top-button">
+            <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'coll'}"
+               href="{{currentPageUrl}}#coll">Gallery</a>
+        </li>
+        <li class="nav-item cbc2">
+            <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'list'}"
+               href="{{currentPageUrl}}#list">List</a>
+        </li>
+        <li class="nav-item cbc3">
+            <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'attr'}"
+               href="{{currentPageUrl}}#attr">Collection Information</a>
+        </li>
+        <li class="nav-item cbc4">
+            <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'back'}" href="/collections">Back to
+                Collections</a>
+        </li>
+    </ul>
+
+    <div class="collection-content-panel">
+        <div class="tab-content pt-0">
+            <div *ngIf="currentSubPage=='coll'">
+                <div class="selectionGrid">
+                    <div class="left">
+                        <mat-form-field class="theme-filter">
+                            <mat-label>Filter by Keyword</mat-label>
+                            <mat-select multiple [placeholder]="'Filter by Keyword'" [(ngModel)]="selectedKeywords"
+					(selectionChange)="onKeywordFilterSelect($event.value)">
+                                <div *ngFor="let keyword of itemKeywords">
+                                    <mat-option [value]="keyword.id">{{keyword.name}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="right">
+                        <mat-form-field class="dropdown">
+                            <mat-label>Number of items to display</mat-label>
+                            <mat-select (selectionChange)="changePageSize($event)">
+                                <mat-option [value]="9">9</mat-option>
+                                <mat-option [value]="12">12</mat-option>
+                                <mat-option [value]="15">15</mat-option>
+                                <mat-option [value]="18">18</mat-option>
+                                <mat-option [value]="21">21</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
-                <div *ngIf="collection.provenance">
-                    <p><strong>Provenance</strong></p>
-                    <p>{{collection.provenance}}</p>
-                </div>
-                <div *ngIf="collection.citation">
-                    <p><strong>Citation</strong></p>
-                    <p>{{collection.citation}}</p>
-                </div>
-                <div *ngIf="collection.historical_note">
-                    <p><strong>Historical Note</strong></p>
-                    <p>{{collection.historical_note}}</p>
-                </div>
-                <div *ngIf="collection.access_notes_or_rights_and_reproduction">
-                    <p><strong>Access Notes or Rights and Reproduction</strong></p>
-                    <p>{{collection.access_notes_or_rights_and_reproduction}}</p>
-                </div>
-                <div *ngIf="collection.geographical_location">
-                    <p><strong>Geographical Location</strong></p>
-                    <p>{{collection.geographical_location}}</p>
-                </div>
-                <div *ngIf="keywords" class="kwords">
-                    <div *ngIf="keywords.length > 0">
-                        <p><strong>Keyword(s)</strong></p>
-                        <div *ngFor="let keyword of keywords; let last = last;" class="kwords">
-                            <div *ngIf="!last">
-                                <p>{{keyword.name}}, &nbsp;</p>
-                            </div>
-                            <div *ngIf="last">
-                                <p>{{keyword.name}}</p>
-                            </div>
+                <div *ngIf="items" class="row justify-content-center container-fluid">
+                    <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="col-md-4">
+                        <div *ngIf="item">
+                            <a href="/items/{{item.id}}">
+                                <div *ngIf="!item.cover_image">
+                                    <button class="coverImage" style="background-color:black">
+                                        {{item.name}}
+                                    </button>
+                                </div>
+                                <div *ngIf="item.cover_image">
+                                    <button class="coverImage"
+                                            style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
+                                        {{item.name}}
+                                    </button>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <br>
-                <div *ngIf="creators" class ="creators">
-                    <div *ngIf="creators.length > 0">
-                        <p><strong>Creator(s)</strong></p>
-                        <div *ngFor="let creator of creators">
-                            <p> <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0"
-                                    style="color:black; font-weight:500"> {{creator.name}} </a> </p>
-                        </div>
+                <div [ngSwitch]="pageSize">
+                    <div *ngSwitchCase=9>
+                        <jw-pagination class="pagination" [pageSize]="9" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=12>
+                        <jw-pagination class="pagination" [pageSize]="12" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=15>
+                        <jw-pagination class="pagination" [pageSize]="15" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=18>
+                        <jw-pagination class="pagination" [pageSize]="18" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=21>
+                        <jw-pagination class="pagination" [pageSize]="21" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
                     </div>
                 </div>
-                <div *ngIf="originals">
-                    <div *ngIf="originals.length > 0">
-                        <p><strong>Location of Originals</strong></p>
-                        <div *ngFor="let original of originals">
-                            <p> <a [routerLink]="['/pori', original.id]" class="btn btn-outline-info my-2 my-sm-0"
-                                    style="color:black; font-weight:500"> {{original.name}} </a> </p>
-                        </div>
-                    </div>
-                </div>
-            </mat-expansion-panel>
+            </div>
         </div>
-    </mat-accordion>
-</div>
 
-<div class="theme-filter">
-    <ng-multiselect-dropdown
-        [placeholder]="'Filter by Keyword'"
-        [settings]="dropdownSettings"
-        [data]="itemKeywords"
-        [(ngModel)]="selectedKeywords"
-        (onSelect)="onKeywordFilterSelect()"
-        (onSelectAll)="onKeywordFilterSelect()"
-        (onDeSelect)="onKeywordFilterSelect()"
-        (onDeSelectAll)="onKeywordFilterSelect()"
-    >
-    </ng-multiselect-dropdown>
-</div>
-
-<div class="container" section="individual-collection">
-    <div *ngIf="items" class="row justify-content-center container-fluid">
-        <div *ngFor="let item of items; let indexOfelement=index" class="col-md-4">
-            <div *ngIf="item">
-                <app-card [cover_image]="item.cover_image" [title]="item.name" [id]="item.id" [number]="indexOfelement"
-                    [route]=router_route> </app-card>
+        <div *ngIf="currentSubPage=='list'">
+            <div class="selectionGrid">
+                <div class="left">
+                    <mat-form-field class="theme-filter">
+                        <mat-label>Filter by Keyword</mat-label>
+                        <mat-select multiple [placeholder]="'Filter by Keyword'" [(ngModel)]="selectedKeywords"
+				    (selectionChange)="onKeywordFilterSelect($event.value)">
+                            <div *ngFor="let keyword of itemKeywords">
+                                <mat-option [value]="keyword.id">{{keyword.name}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="right">
+                    <mat-form-field class="dropdown">
+                        <mat-label>Number of items to display</mat-label>
+                        <mat-select (selectionChange)="changePageSize($event)">
+                            <mat-option [value]="9">9</mat-option>
+                            <mat-option [value]="12">12</mat-option>
+                            <mat-option [value]="15">15</mat-option>
+                            <mat-option [value]="18">18</mat-option>
+                            <mat-option [value]="21">21</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="items" class="compactItems">
+                <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="buttonContainer">
+                    <div *ngIf="item" class="itemObject">
+                        <div *ngIf="item.cover_image">
+                            <a href="/items/{{item.id}}">
+                                <button class="compactButton"
+					style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
+                                    {{item.name}}
+                                </button>
+                            </a>
+                        </div>
+                        <div *ngIf="!item.cover_image">
+                            <a href="/items/{{item.id}}">
+                                <button class="compactButton" 
+					style="background: url(../../assets/images/black.png) no-repeat fixed;">
+                                    {{item.name}}
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div [ngSwitch]="pageSize">
+                    <div *ngSwitchCase=9>
+                        <jw-pagination class="pagination" [pageSize]="9" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=12>
+                        <jw-pagination class="pagination" [pageSize]="12" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=15>
+                        <jw-pagination class="pagination" [pageSize]="15" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=18>
+                        <jw-pagination class="pagination" [pageSize]="18" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                    <div *ngSwitchCase=21>
+                        <jw-pagination class="pagination" [pageSize]="21" [items]="items"
+				       (changePage)="onChangePage($event)">
+                        </jw-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="currentSubPage=='attr'">
+            <div *ngIf="collection.description">
+                <p><strong>Description</strong></p>
+                <p>{{collection.description}}</p>
+            </div>
+            <div *ngIf="collection.provenance">
+                <p><strong>Provenance</strong></p>
+                <p>{{collection.provenance}}</p>
+            </div>
+            <div *ngIf="collection.citation">
+                <p><strong>Citation</strong></p>
+                <p>{{collection.citation}}</p>
+            </div>
+            <div *ngIf="collection.historical_note">
+                <p><strong>Historical Note</strong></p>
+                <p>{{collection.historical_note}}</p>
+            </div>
+            <div *ngIf="collection.access_notes_or_rights_and_reproduction">
+                <p><strong>Access Notes or Rights and Reproduction</strong></p>
+                <p>{{collection.access_notes_or_rights_and_reproduction}}</p>
+            </div>
+            <div *ngIf="collection.geographical_location">
+                <p><strong>Geographical Location</strong></p>
+                <p>{{collection.geographical_location}}</p>
+            </div>
+            <div *ngIf="keywords" class="kwords">
+                <div *ngIf="keywords.length > 0">
+                    <p><strong>Keyword(s)</strong></p>
+                    <div *ngFor="let keyword of keywords; let last = last;" class="kwords">
+                        <div *ngIf="!last">
+                            <p>{{keyword.name}}, &nbsp;</p>
+                        </div>
+                        <div *ngIf="last">
+                            <p>{{keyword.name}}</p>
+                        </div>
+                    </div>
+		</div>
+	    </div>
+            <div *ngIf="collection.location_of_originals">
+		<p><strong>Location of Originals</strong></p>
+		<p>{{collection.location_of_originals}}</p>		    
+		<br>
+	    </div>
+	    <div *ngIf="creators" class="creators">
+                <div *ngIf="creators.length > 0">
+		    <p><strong>Creator(s)</strong></p>
+		    <div *ngFor="let creator of creators">
+                        <p> <a [routerLink]="['/pori', creator.id]" class="btn btn-outline-info my-2 my-sm-0"
+                               style="color:black; font-weight:500"> {{creator.name}} </a> </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

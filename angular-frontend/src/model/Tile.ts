@@ -6,9 +6,9 @@ export interface Tile {
 }
 
 export interface NewsTile extends Tile {
-        
+    style: {};
 }
 
 export interface MapTile extends Tile {
-    
+    style: {};
 }

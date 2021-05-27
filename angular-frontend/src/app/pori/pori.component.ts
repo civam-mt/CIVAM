@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-pori',
@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 export class PoriComponent implements OnInit {
   API_URL = environment.apiUrl;
   pori;
+  b_route = '/collections';
 
   constructor(private route: ActivatedRoute, private api: ApiService) {}
 

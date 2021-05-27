@@ -1,86 +1,106 @@
-<div class="jumbotron container-fluid text-center text-md-center">
-    <h1 class="title">About</h1>
-</div>
-
-
-<div class="container bg-translucent border-primary">
-    <p class="about-description">
-        {{ siteTexts['ABOUT'] }}
-    </p>
-</div>
-
-<div>
-    <mat-tab-group class="border-primary" animationDuration="0ms" dynamicHeight mat-align-tabs="center" mat-stretch-tabs
-        id="button_group">
-        <mat-tab label="Our Mission">
-            <div class="card container bg-translucent border-primary block-margin">
-                <div class="card-body">
-                    <div [innerHTML]="siteTexts['MISSION']"></div>
-                </div>
+<div class="layers">
+    <div *ngIf="siteTexts">
+        <div class="top-content layer-sm background-img">
+            <div class="title">
+                All About CIVAM
             </div>
-        </mat-tab>
-        <mat-tab label="Origins">
-            <div class="card container bg-translucent border-primary block-margin">
-                <div class="card-body">
-                    <div [innerHTML]="siteTexts['ORIGINS']"></div>
-                </div>
+        </div>
+        <div class="layer-sm flex-box">
+            <div class="context">
+                    {{ siteTexts['ABOUT'] }}
             </div>
-        </mat-tab>
-        <mat-tab label="People">
-            <div class="card container bg-translucent border-primary block-margin">
-                <div class="card-body">
-                    <!-- Peggy White Wellknown Buffalo -->
-                    <div class="row container">
-                        <div style="display: block;" class="col-lg-4 const-img" id="peggy-image">
-                            <img src="../../assets/images/White Wellknown Buffalo Peggy.jpg" class="const-img rounded float-left">
-                        </div>
-                        <div class="col-lg-7">
-                            <h4 class="people-names">Peggy White Wellknown Buffalo</h4>
-                            <div [innerHTML]="siteTexts['PEOPLE1']"></div>
-                        </div>
+        </div>
+        <div class="about-container">
+            <ul class="item-button-column">
+                <li class="nav-item ibc1  top-button">
+                    <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'mission'}"
+                        href="{{currentPageUrl}}#mission">Our Mission</a>
+                </li>
+                <li class="nav-item ibc2">
+                    <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'origin'}"
+                        href="{{currentPageUrl}}#origin">Origins</a>
+                </li>
+                <li class="nav-item ibc3">
+                    <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'people'}"
+                        href="{{currentPageUrl}}#people">People</a>
+                </li>
+                <li class="nav-item ibc4">
+                    <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'contact'}"
+                        href="{{currentPageUrl}}#contact">Contact Us</a>
+                </li>
+            </ul>
+            <div class="about-content-panel">
+                <!-- Our Mission -->
+                <div *ngIf="currentSubPage == allowedSubPage[0]" class="">
+                    <div class="">
+                        <div [innerHTML]="siteTexts['MISSION']"></div>
                     </div>
+                </div>
 
-                    <!-- Susie Kelly -->
-                    <div class="row container">
-                        <div class="col-lg-4 const-img" id="suzie-image">
-                            <img src="../../assets/images/Kelly, Suzy.jpg" class="const-img rounded float-left">
-                        </div>
-                        <div class="col-lg-7">
-                            <h4 class="people-names">Susie Kelly</h4>
-                            <div [innerHTML]="siteTexts['PEOPLE2']"></div>
-                        </div>
+                <!-- Origins -->
+                <div *ngIf="currentSubPage == allowedSubPage[1]" class="">
+                    <div class="">
+                        <div [innerHTML]="siteTexts['ORIGINS']"></div>
                     </div>
+                </div>
 
-                    <!-- Cindy Ott -->
-                    <div class="row container">
-                        <div class="col-lg-4 const-img" id="cindy-image">
-                            <img src="../../assets/images/ott/ott_2019.jpg" class="const-img rounded float-left">
+                <!-- People -->
+                <div *ngIf="currentSubPage == allowedSubPage[2]" class="">
+                    <div class="">
+                        <!-- Peggy White Wellknown Buffalo -->
+                        <div class="row container">
+                            <div style="display: block;" class="col-lg-4 const-img" id="peggy-image">
+                                <img src="../../assets/images/White Wellknown Buffalo Peggy.jpg"
+                                    class="const-img rounded float-left">
+                            </div>
+                            <div class="col-lg-7">
+                                <h4 class="people-names">Peggy White Wellknown Buffalo</h4>
+                                <div [innerHTML]="siteTexts['PEOPLE1']"></div>
+                            </div>
                         </div>
-                        <div class="col-lg-7">
-                            <h4 class="people-names">Cindy Ott</h4>
-                            <div [innerHTML]="siteTexts['PEOPLE3']"></div>
-                        </div>
-                    </div>
 
-                    <!-- University of Delaware Students -->
-                    <div class="row container">
-                        <div class="col-lg-4 const-img" id="ud-image">
+                        <!-- Susie Kelly -->
+                        <div class="row container upper-spacer">
+                            <div class="col-lg-4 const-img" id="suzie-image">
+                                <img src="../../assets/images/Kelly, Suzy.jpg" class="const-img rounded float-left">
+                            </div>
+                            <div class="col-lg-7">
+                                <h4 class="people-names">Susie Kelly</h4>
+                                <div [innerHTML]="siteTexts['PEOPLE2']"></div>
+                            </div>
+                        </div>
+
+                        <!-- Cindy Ott -->
+                        <div class="row container upper-spacer">
+                            <div class="col-lg-4 const-img" id="cindy-image">
+                                <img src="../../assets/images/ott/ott_2019.jpg" class="const-img rounded float-left">
+                            </div>
+                            <div class="col-lg-7">
+                                <h4 class="people-names">Cindy Ott</h4>
+                                <div [innerHTML]="siteTexts['PEOPLE3']"></div>
+                            </div>
+                        </div>
+
+                        <!-- University of Delaware Students -->
+                        <div class="row container upper-spacer">
+                            <div class="col-lg-4 const-img" id="ud-image">
                                 <img src="../../assets/images/udel/udel.png" class="const-img rounded float-left">
-                        </div>
-                        <div class="col-lg-7">
-                            <h4 class="people-names">University of Delaware Students</h4>
-                            <div [innerHTML]="siteTexts['PEOPLE4']"></div>
+                            </div>
+                            <div class="col-lg-7">
+                                <h4 class="people-names">University of Delaware Students</h4>
+                                <div [innerHTML]="siteTexts['PEOPLE4']"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </mat-tab>
-        <mat-tab label="Resources & Contact Information">
-            <div class="card container bg-translucent border-primary block-margin">
-                <div class="card-body">
-                    <div [innerHTML]="siteTexts['CONTACT']"></div>
+
+                <!-- Contact -->
+                <div *ngIf="currentSubPage == allowedSubPage[3]" class="">
+                    <div class="">
+                        <div [innerHTML]="siteTexts['CONTACT']"></div>
+                    </div>
                 </div>
             </div>
-        </mat-tab>
-    </mat-tab-group>
+        </div>
+    </div>
 </div>

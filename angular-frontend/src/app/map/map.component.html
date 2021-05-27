@@ -1,71 +1,136 @@
-<div class="jumbotron container-fluid text-center text-md-center">
-   <h1 class="title">Crow Collections Around the World</h1>
-</div>
-<div [innerHTML]="siteText">
-   
-</div>
-<div>
-   <form class="filter" [formGroup]="form" (ngSubmit)="filterData()">
-      <div class="filter-item-1 filter-item">
-         <section class="">
-            <span class="">
-               <ul>
-                  <li *ngFor="let selectFilter of boolFilters">
-                     <mat-checkbox class="example-margin" [formControlName]="selectFilter[0]">
-                        {{selectFilter[1]}}
-                     </mat-checkbox>
-                  </li>
-               </ul>
-            </span>
-         </section>
+<div class="layers">
+   <div class="top-content background-img layer-lg">
+      <div class="top-title">
+         Crow Collections Around the World
       </div>
-
-      <div class="filter-item-2 filter-item" [attr.grid-column]="i + 1"
-         *ngFor="let selectDropDown of dropDownFilters; let i = index">
-         <section>
-            <mat-form-field appearance="fill">
-               <mat-label>{{selectDropDown[0]}}</mat-label>
-               <mat-select [formControlName]="selectDropDown[0]" multiple>
-                  <mat-option *ngFor="let element of selectDropDown[1]" [value]="element">
-                     {{element}}
-                  </mat-option>
-               </mat-select>
-            </mat-form-field>
-         </section>
-      </div>
-      <div class="filter-item-3 filter-item">
-         <button type="button" class="btn btn-light " style="background-color: #F1FAEE;" (click)="filterData()"
-            style="margin-left:1%;">Search</button>
-      </div>
-   </form>
-</div>
-<div class="mapPage">
-
-   <div class="map" *ngIf="map_loaded">
-      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [usePanning]="panning" class="accordion">
-         <div *ngFor='let marker of mapMarkers'>
-            <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title" [label]=""
-               (markerClick)="showMarker(marker.title)" [animation]="marker.animation"
-               [iconUrl]="marker.customImgUrl.icon"></agm-marker>
-         </div>
-      </agm-map>
-
-      <mat-accordion>
-         <mat-expansion-panel [expanded]="clicked" hideToggle style="padding-bottom:0%;" [ngClass]="isClickable()">
-            <div *ngIf="clicked" class="afterClick">
-               <mat-grid-list cols="6" rowHeight="75px" class="card" style="width:100%">
-                  <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
-                     [style.background]="tile.color">
-                     <div>
-                        {{selectedMarker.getElement(tile.text)}}
-                     </div>
-                  </mat-grid-tile>
-               </mat-grid-list>
-            </div>
-         </mat-expansion-panel>
-      </mat-accordion>
    </div>
-</div>
-<div>
-   Map icons CC-0 from <a href='http://www.sjjb.co.uk/mapicons/'>SJJB Management</a>
+   <div class="context-content layer-sm">
+      <div [innerHTML]="siteText"></div>
+   </div>
+   <div class="">
+      <form class="filter" [formGroup]="form" (ngSubmit)="filterData()">
+         <div class="filter-item-1 filter-item">
+            <section class="">
+               <span class="">
+                  <ul>
+                     <li *ngFor="let selectFilter of boolFilters">
+                        <mat-checkbox class="example-margin" [formControlName]="selectFilter[0]">
+                           {{selectFilter[1]}}
+                        </mat-checkbox>
+                     </li>
+                  </ul>
+               </span>
+            </section>
+         </div>
+
+         <div class="filter-item-2 filter-item" [attr.grid-column]="i + 1"
+            *ngFor="let selectDropDown of dropDownFilters; let i = index">
+            <section>
+               <mat-form-field appearance="fill">
+                  <mat-label>{{selectDropDown[0]}}</mat-label>
+                  <mat-select [formControlName]="selectDropDown[0]" multiple>
+                     <mat-option *ngFor="let element of selectDropDown[1]" [value]="element">
+                        {{element}}
+                     </mat-option>
+                  </mat-select>
+               </mat-form-field>
+            </section>
+         </div>
+         <div class="filter-item-3 filter-item">
+            <button type="button" class="btn btn-light " style="background-color: #F1FAEE;" (click)="filterData()"
+               style="margin-left:1%;">Search</button>
+         </div>
+      </form>
+   </div>
+   <div class="layer-lg-ub">
+
+      <div class="mapPage">
+
+         <div class="map" *ngIf="map_loaded">
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [usePanning]="panning" class="accordion">
+               <div *ngFor='let marker of mapMarkers'>
+                  <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title" [label]=""
+                     (markerClick)="showMarker(marker.title)" [animation]="marker.animation"
+                     [iconUrl]="marker.customImgUrl.icon">
+                     <agm-info-window [disableAutoPan]="true">
+                        <div *ngIf="selectedMarker" class="info">
+                           <div *ngIf="clicked" class="afterClick">
+                              <mat-grid-list cols="15" rowHeight="2rem" class="card" style="width:max(100%, 400px)">
+                                 <!--     Image Based Entry     -->
+                                 <div *ngIf="selectedMarker.hasElement('cover_image')">
+                                    <mat-grid-tile *ngFor="let tile of imgTile" [colspan]="tile.cols" [rowspan]="tile.rows"
+                                    [style.background]="tile.color" [ngStyle]="tile.style">
+                                       <div *ngIf="tile.text != 'cover_image' && tile.text != 'name' && tile.text != 'url'" 
+                                          [innerHTML]="selectedMarker.getContentBounded(selectedMarker.getElement(tile.text))">
+                                       </div>
+                                       <div *ngIf="tile.text == 'name'" class="info-title"   
+                                          [innerHTML]="selectedMarker.getElement(tile.text)"> 
+                                       </div>
+                                       <div *ngIf="tile.text == 'url'">
+                                          <a href="{{this.getExternalURL(selectedMarker.getElement(tile.text))}}">{{selectedMarker.getElement(tile.text)}}</a>
+                                          <!-- <a href="https://{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a> -->
+                                       </div>
+                                       <div *ngIf="tile.text == 'cover_image'">
+                                          <img src="{{API_URL}}/media/{{selectedMarker.getElement(tile.text)}}"
+                                             alt="Random slide" class="image" [class]="'matt-grid-opt-'+tile.text">
+                                       </div>
+                                    </mat-grid-tile>
+                                 </div>
+
+                                 <!--     Text Only Entry     -->
+                                 <div *ngIf="!selectedMarker.hasElement('cover_image')">
+                                    <mat-grid-tile *ngFor="let tile of txtTile" [colspan]="tile.cols" [rowspan]="tile.rows"
+                                    [style.background]="tile.color" [ngStyle]="tile.style">
+                                       <div *ngIf="tile.text != 'cover_image' && tile.text != 'name' && tile.text != 'url'" 
+                                          [innerHTML]="selectedMarker.getContentBounded(selectedMarker.getElement(tile.text))">
+                                       </div>
+                                       <div *ngIf="tile.text == 'name'" class="info-title" 
+                                          [innerHTML]="selectedMarker.getElement(tile.text)">
+                                       </div>
+                                       <div *ngIf="tile.text == 'url'">
+                                          <a href="https://{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
+                                       </div>
+                                    </mat-grid-tile>
+                                 </div>
+                              </mat-grid-list>
+                           </div>
+                        </div>
+                     </agm-info-window>
+                  </agm-marker>
+               </div>
+
+            </agm-map>
+         </div>
+      </div>
+   </div>
+   <div class="layer-sm-lock disclamer">
+      <div class="map-icon-credit">
+         Map icons CC-0 from <a href='http://www.sjjb.co.uk/mapicons/'>SJJB Management</a>
+      </div>
+   </div>
+   <!-- <div style="height:1000px">
+      <div style="display:grid;  grid-template-columns: auto; column-gap: 1%; grid-template-rows: auto; row-gap: 1%;">
+         <div style="grid-column-start: 1; grid-column-end: 5; grid-row-start: 1; grid-row-end: 5;">
+            IMG
+         </div>
+         <div style="grid-column-start: 5; grid-column-end: 15; grid-row-start: 1; grid-row-end: 3;">
+            Title
+         </div>
+         <div style="grid-column-start: 5; grid-column-end: 15; grid-row-start: 3; grid-row-end: 4;">
+            addr
+         </div>
+         <div style="grid-column-start: 5; grid-column-end: 15; grid-row-start: 4; grid-row-end: 5;">
+            url
+         </div>
+         <div style="grid-column-start: 1; grid-column-end: 12; grid-row-start: 5; grid-row-end: 9;">
+            notes
+         </div>
+         <div style="grid-column-start: 12; grid-column-end: 15; grid-row-start: 5; grid-row-end: 7;">
+            Crow
+         </div>
+         <div style="grid-column-start: 12; grid-column-end: 15; grid-row-start: 7; grid-row-end: 9;">
+            Digi
+         </div>
+      </div>
+   </div> -->
 </div>
