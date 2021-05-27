@@ -233,9 +233,7 @@ p{
 .layers {
     .layer-lg {
         width: 100%;
-        height: 70vh;
-        max-height: 800px;
-        min-height: 500px;
+        height: 45vh;
         //margin-top: 3vh;
         padding-top: 2.5%;
         padding-left: 5%;
@@ -276,7 +274,7 @@ p{
 
     .top-content {
         margin-top:3vh;
-        padding-top: min(15%, 40vh);
+        padding-top: 8%;
         overflow: visible;
         background-position: top;
         background-size: cover;
