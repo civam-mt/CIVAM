@@ -33,6 +33,7 @@ class PersonOrInstitute(models.Model):
     cover_image = models.ImageField(upload_to="cover_images/pori/", blank=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     contact = models.CharField(max_length=255, blank=True, null=True)
+    related_collections = models.ManyToManyField('Collection', blank=True, related_name="related_people")
 
     private_notes = models.TextField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="PorI_created")
@@ -104,7 +105,7 @@ class Collection(models.Model):
     
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="collection_keywords")
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_creators")
-    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="collection_locations")
+    location_of_originals = models.TextField(blank=True)
 
 
     background_image = models.ImageField(upload_to="background_images/collection/",blank=True)
@@ -138,7 +139,6 @@ class Item(models.Model):
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name="items", blank=True)
     culture_or_community = models.CharField(max_length=127, null=True, blank=True)
     other_forms = models.TextField(blank=True, null=True)
-    digital_heritage_item = models.CharField(max_length=127, null=True, blank=True)
     date_of_creation = models.CharField(max_length=127, null=True, blank=True)
     physical_details = models.TextField(blank=True, null=True)
     access_notes_or_rights_and_reproduction = models.TextField(blank=True, null=True)
@@ -152,7 +152,9 @@ class Item(models.Model):
 
     keywords = models.ManyToManyField(Keyword, blank=True, related_name="item_keywords")
     creator = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_creators")
-    location_of_originals = models.ManyToManyField(PersonOrInstitute, blank=True, related_name="item_locations")    
+    location_of_originals = models.TextField(blank=True)
+
+    changers = models.ManyToManyField(User, blank=True, related_name="changeable_items")
 
     is_cataloged = models.IntegerField(default=0, blank=True, null=True, help_text="1: Cataloged, 0: Uncataloged", choices=((1,"Cataloged"),(0,"Uncataloged")))
     private_cataloger = models.CharField(max_length=511, null=True, blank=True)
@@ -324,7 +326,7 @@ class SiteText(models.Model):
         return self.location
 
 class NewsArticle(models.Model):
-    title = models.CharField("Title", max_length=255)
+    title = models.CharField("Article Title", max_length=255)
     cover_image = models.ImageField("Cover Image", upload_to="cover_images/articles/", blank=True)
     publish_on = models.DateTimeField("When to publish the article")
     content = models.TextField("Article Text")

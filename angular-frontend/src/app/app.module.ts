@@ -110,7 +110,7 @@ import { TermsConditionsComponent } from './terms-conditions/terms-conditions.co
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'replace',
-      protocol:1,
+      protocol:2,
       hostAndPath: environment.apiUrlWithOutProt + '/api/mapdata/cache/js'
     })
   ],

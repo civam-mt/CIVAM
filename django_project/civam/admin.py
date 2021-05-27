@@ -12,13 +12,26 @@ class DefaultAdmin(GuardedModelAdmin):
     readonly_fields = ('created_by', 'created_on', 'modified_by', 'modified_on')
 
 
-    '''
+    
     # User have permission to change objects that they own
     def has_change_permission(self, request, obj=None):
-        if obj is not None and obj.created_by and not request.user.is_superuser and obj.created_by != request.user:
-            return False
-        return True
-    '''
+        if obj is None:
+            return True
+        if not obj.created_by:
+            return True
+        if request.user.is_superuser:
+            return True
+        if obj.created_by == request.user:
+            return True
+        #if obj.changes.contains(request.user):
+        #if request.user in obj.changers:
+        if Item.objects.get(name=obj.name) in request.user.changeable_items.all():
+            return True
+        return False
+        # if obj is not None and obj.created_by and not request.user.is_superuser and obj.created_by != request.user:
+        #     return False
+        # return True
+    
 
     # Sets created_by and modified_by fields
     def save_model(self, request, instance, form, change):
@@ -48,10 +61,16 @@ class NarrativeInline(admin.TabularInline):
     model = Narrative
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
 
+class PorIInline(admin.TabularInline):
+    model = PersonOrInstitute.related_collections.through
+    verbose_name = "Related person"
+    verbose_name_plural = "Related people"
+
 # Can create Collections and Items and Poris directly
 class CollectionAdmin(SortableAdminMixin, DefaultAdmin):
     list_display = ('title', 'created_by')
     search_fields = ['title','creator__name','keywords__word']
+    inlines = [PorIInline]
 
 class ItemAdmin(DefaultAdmin):
     list_display = ('name', 'collection', 'cataloged')

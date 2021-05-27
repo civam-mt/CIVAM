@@ -163,14 +163,6 @@
                             </div>
                             <br>
                         </div>
-                        <div *ngIf="item.digital_heritage_item">
-                            <div>
-                                <p><strong>Digital Heritage Item</strong></p>
-                                <a>{{item.digital_heritage_item}}
-                                </a>
-                            </div>
-                            <br>
-                        </div>
                         <div *ngIf="item.date_of_creation">
                             <div>
                                 <p><strong>Date of Creation</strong></p>
@@ -254,14 +246,10 @@
                             </div>
                             <br>
                         </div>
-                        <div *ngIf="originals && originals.length > 0">
+                        <div *ngIf="item.location_of_originals">
                             <div>
-                                <p><strong>Location of Originals</strong></p>
-                                <div *ngFor="let original of originals">
-                                    <a [routerLink]="['/pori', original.id]">
-                                        {{original.name}}
-                                    </a>
-                                </div>
+                                <p><strong>Location of Originals</strong>
+                                    <br>{{item.location_of_originals}}</p>
                             </div>
                             <br>
                         </div>

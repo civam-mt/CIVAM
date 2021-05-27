@@ -89,7 +89,7 @@ def add_narrative(request):
 		)
 
 		# email generation
-		admin_email = ["civam-mt@gmail.com"]
+		admin_email = ["civam.mt@gmail.com"]
 		subject = "[AUTOMATED] Narrative Post Submitted: "
 		message = "New Narrative posted on Item <" + str(item) + ">\n\nNarrative author: " + body['author'] + "\nNarrative text: " + body['narrative'] + "\nUser IP: " + request.META['REMOTE_ADDR'] + "\nUser agent: " + request.META['HTTP_USER_AGENT'] + "\n"
 
@@ -155,7 +155,6 @@ def searchResult(request):
 			'collection': item.collection.id,
 			'culture_or_community': item.culture_or_community,
 			'other_forms': item.other_forms,
-			'digital_heritage_item':item.digital_heritage_item,
 			'date_of_creation':item.date_of_creation,
 			'physical_details':item.physical_details,
 			'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
@@ -169,7 +168,7 @@ def searchResult(request):
 
 			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
 			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
-			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
+			"location_of_originals":item.location_of_originals
 		}
 		item_list.append(new_item)
 	context = {"items":item_list}
@@ -213,7 +212,8 @@ def collection(request, collection_id):
 	'geographical_location':collection.geographical_location,
 	"keywords": [{"id":x.id,"name":str(x)} for x in list(collection.keywords.all())],
 	"creator": [{"id":x.id,"name":str(x)} for x in list(collection.creator.all())],
-	"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(collection.location_of_originals.all())]
+    "location_of_originals":collection.location_of_originals,
+	#"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(collection.location_of_originals.all())]
 	}
     return JsonResponse(context, safe=False)
 
@@ -230,7 +230,6 @@ def all_items(request):
 			'collection': item.collection.id,
 			'culture_or_community': item.culture_or_community,
 			'other_forms': item.other_forms,
-			'digital_heritage_item':item.digital_heritage_item,
 			'date_of_creation':item.date_of_creation,
 			'physical_details':item.physical_details,
 			'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
@@ -242,8 +241,9 @@ def all_items(request):
 			'citation':item.citation,
 			'historical_note':item.historical_note,
 			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
-			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],	
-			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
+			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
+            "location_of_originals":item.location_of_originals
+			#"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
 		}
 		item_list.append(new_item)
 	context = {"items":item_list}
@@ -292,6 +292,7 @@ def get_pori(request, pori_id):
 		"culture": pori.culture,
 		"dates": pori.dates,
 		"description":pori.description,
+        "related_collections": [{"id":x.id,"title":str(x)} for x in list(pori.related_collections.all())],
 		"historical_note":pori.historical_note,
 		"isPerson":pori.isPerson,
 		"cover_image": pori.cover_image.name,
@@ -324,7 +325,6 @@ def get_by_keyword(request, keyword):
 			'collection': item.collection.id,
 			'culture_or_community': item.culture_or_community,
 			'other_forms': item.other_forms,
-			'digital_heritage_item':item.digital_heritage_item,
 			'date_of_creation':item.date_of_creation,
 			'physical_details':item.physical_details,
 			'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
@@ -337,7 +337,7 @@ def get_by_keyword(request, keyword):
 			'historical_note':item.historical_note,
 			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
 			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
-			"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())]
+            "location_of_originals":item.location_of_originals
 		}
 		item_list.append(new_item)
 	context = {"items":item_list}
@@ -381,7 +381,6 @@ def item_solo(request, item_id):
 	'collection': item.collection.id,
 	'culture_or_community': item.culture_or_community,
 	'other_forms': item.other_forms,
-	'digital_heritage_item':item.digital_heritage_item,
 	'date_of_creation':item.date_of_creation,
 	'physical_details':item.physical_details,
 	'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
@@ -394,7 +393,7 @@ def item_solo(request, item_id):
 	'place_create': item.place_created, 
 	"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
 	"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
-	"location_of_originals": [{"id":x.id,"name":str(x)} for x in list(item.location_of_originals.all())],
+    "location_of_originals":item.location_of_originals,
     'narratives': list(narratives.values()),
     'images': list(image.values()),
     'videos': vids
@@ -617,7 +616,7 @@ def insert_bulk_map_data(request, map_api):
 
 ## Google Maps JS Cache
 def get_current_map(request, detail):
-	file_name = 'google_cache/google_map.js'
+	file_name = 'home/ubuntu/CISC475_D5/django_project/google_cache/google_map.js'
 	http_prefix = request.headers.HTTP_PREFIX
 	url_root = ''
 	if http_prefix == 'HTTP_':
