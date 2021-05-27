@@ -10,16 +10,15 @@
 
     <div class="push-inline" *ngIf="width < WIDTH_LIM">
         <span class="navbar-brand"><a href="https://www.thecenterpole.org/"><img
-        src="../../assets/images/crow_large.png" class="destrech-img"></a></span>
+                    src="../../assets/images/crow_large.png" class="destrech-img"></a></span>
         <ul class="navbar-nav nav-container-left nav-container-col nav-container-col-left-fix-stuf-ext ">
-            <a class="nav-item" routerLink='home' data-toggle="collapse"
-            data-target=".navbar-collapse.show">
-            <li class="nav-item nav-title">
-                <h3>Crow Indian Virtual Archive and Museum</h3>
-            </li>
-            <li class="nav-item nav-subtitle">
-                <h5>Apsáalooke ammaaiiláxiio</h5>
-            </li>
+            <a class="nav-item" routerLink='home' data-toggle="collapse" data-target=".navbar-collapse.show">
+                <li class="nav-item nav-title">
+                    <h3>Crow Indian Virtual Archive and Museum</h3>
+                </li>
+                <li class="nav-item nav-subtitle">
+                    <h5>Apsáalooke ammaaiiláxiio</h5>
+                </li>
             </a>
         </ul>
     </div>
@@ -32,20 +31,19 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="push-inline" *ngIf="width >= WIDTH_LIM">
             <span class="navbar-brand"><a href="https://www.thecenterpole.org/"><img
-            src="../../assets/images/crow_large.png" class="destrech-img"></a></span>
+                        src="../../assets/images/crow_large.png" class="destrech-img"></a></span>
             <ul class="navbar-nav nav-container-left nav-container-col nav-container-col-left-fix-stuff">
-                <a class="nav-item" routerLink='home' data-toggle="collapse"
-                data-target=".navbar-collapse.show">
-                <li class="nav-item nav-title">
-                    <h3>Crow Indian Virtual Archive and Museum</h3>
-                </li>
-                <li class="nav-item nav-subtitle">
-                    <h5>Apsáalooke ammaaiiláxiio</h5>
-                </li>
+                <a class="nav-item" routerLink='home' data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <li class="nav-item nav-title">
+                        <h3>Crow Indian Virtual Archive and Museum</h3>
+                    </li>
+                    <li class="nav-item nav-subtitle">
+                        <h5>Apsáalooke ammaaiiláxiio</h5>
+                    </li>
                 </a>
             </ul>
         </div>
-        
+
         <ul class="navbar-nav nav-container-right ">
             <!-- Navbar Brand Image (shown on the right) -->
 
@@ -94,29 +92,50 @@
                     </div>
                 </div> -->
             </li>
-            
-            <li class="dropdown show nav-item">
 
-                <a class="nav-link dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true"><img src="../../assets/images/m-glass.png"
-                        class="search-icon"></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                    
-                    <form class="form-inline my-2 my-sm-0" (ngSubmit)="onSubmit()">
-                        <mat-form-field mat-autocomplete-snap appearance="none">
-                            <input type="search" placeholder="Search" aria-label="Search" matInput id="searchBox"
-                                name="query" class="form-control mr-sm-2" [formControl]="myControl"
-                                [matAutocomplete]="auto">
-                        </mat-form-field>
-                        <mat-autocomplete #auto="matAutocomplete">
-                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                {{option}}
-                            </mat-option>
-                        </mat-autocomplete>
-                        <button class="btn btn-warning my-2 my-sm-2" id="search-button" type="submit">Search</button>
-                    </form>
+            <li class="dropdown show nav-item">
+                <div *ngIf="width >= WIDTH_LIM">
+                    <a class="nav-link dropdown-toggle" href="" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><img
+                            src="../../assets/images/m-glass.png" class="search-icon"></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+
+                        <form class="form-inline my-2 my-sm-0" (ngSubmit)="onSubmit()">
+                            <mat-form-field mat-autocomplete-snap appearance="none">
+                                <input type="search" placeholder="Search" aria-label="Search" matInput id="searchBox"
+                                    name="query" class="form-control mr-sm-2" [formControl]="myControl"
+                                    [matAutocomplete]="auto">
+                            </mat-form-field>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <button class="btn btn-warning my-2 my-sm-2" id="search-button"
+                                type="submit">Search</button>
+                        </form>
+
+                    </div>
+                </div>
+                <div *ngIf="width < WIDTH_LIM">
+
+                        <form class="form-inline my-2 my-sm-0" (ngSubmit)="onSubmit()">
+                            <mat-form-field mat-autocomplete-snap appearance="none">
+                                <input type="search" placeholder="Search" aria-label="Search" matInput id="searchBox"
+                                    name="query" class="form-control mr-sm-2" [formControl]="myControl"
+                                    [matAutocomplete]="auto">
+                            </mat-form-field>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <button class="btn btn-warning my-2 my-sm-2" id="search-button"
+                                type="submit">Search</button>
+                        </form>
 
                 </div>
+
 
             </li>
         </ul>
