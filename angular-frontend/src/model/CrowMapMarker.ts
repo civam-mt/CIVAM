@@ -163,7 +163,7 @@ export class CrowMapMarker extends GoogleMapMarker {
     history: string;
     cover_image: string;
 
-    static boolFilters: string[][] = [['crow_material', 'Crow Material'], ['digital_collection', 'Digital Collection']];
+    static boolFilters: string[][] = [['crow_material_val', 'Crow Material'], ['digital_collection_val', 'Digital Collection']];
     static dropDownFilters: Array<[string, string[]]> = new Array<[string, string[]]>(['Continent', ['North America', 'South America', 'Europe',
         'Africa', 'Asia', 'Antartica', 'Oceania']]);
 
@@ -235,6 +235,10 @@ export class CrowMapMarker extends GoogleMapMarker {
                 return this._nameValue('Crow Material', this.crow_material);
             case "digital_collection":
                 return this._nameValue('Digital', this.digital_collection);
+            case "crow_material_val":
+                return this.crow_material;
+            case "digital_collection_val":
+                return this.digital_collection;
             case "replied_to_contact":
                 return this.replied_to_contact;
             case "name":

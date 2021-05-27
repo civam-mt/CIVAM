@@ -70,8 +70,8 @@ export class MapComponent implements OnInit {
     this.mapSupport.getMapData();
 
     this.form = this.formBuilder.group({
-      crow_material: ['', Validators.nullValidator],
-      digital_collection: ['', Validators.nullValidator],
+      crow_material_val: ['', Validators.nullValidator],
+      digital_collection_val: ['', Validators.nullValidator],
       Continent: ['', Validators.nullValidator],
       Countries: ['', Validators.nullValidator],
     })
@@ -105,8 +105,8 @@ export class MapComponent implements OnInit {
   }
 
   filterData() {
-    let stringArray:string[][] = [['crow_material', this.form.controls.crow_material.value],
-                                ['digital_collection', this.form.controls.digital_collection.value],
+    let stringArray:string[][] = [['crow_material_val', this.form.controls.crow_material_val.value],
+                                ['digital_collection_val', this.form.controls.digital_collection_val.value],
                                 ['continent', this.form.controls.Continent.value],
                                 ['countries', this.form.controls.Countries.value]];
     this.mapSupport.getFilterData(stringArray);
