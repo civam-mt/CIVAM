@@ -41,16 +41,7 @@
 
                     <!--Panel 1-->
                     <div *ngIf="currentSubPage == 'item'">
-                        
-                       
-                    
-                        <div *ngIf="item.description">
-                            <div>
-                                <p><strong>Description</strong></p>
-                                <a>{{item.description}}</a>
-                            </div>
-                            <br>
-                        </div>
+
                         <div class="item-grid-top-right">
                             <div *ngIf="videos">
                                 <div *ngFor="let video of videos">
@@ -97,12 +88,65 @@
 
                             </div>
                         </div>
+                        <div *ngIf="item.description">
+                            <div>
+                                <p><strong>Description</strong></p>
+                                <a>{{item.description}}</a>
+                            </div>
+                            <br>
+                        </div>
 
                     </div>
                     <!--/.Panel 1-->
 
                     <!--Panel 2-->
                     <div *ngIf="currentSubPage == 'attr'">
+                        <div class="item-grid-top-right">
+                            <div *ngIf="videos">
+                                <div *ngFor="let video of videos">
+                                    <div style="padding:56.25% 0 0 0;position:relative;">
+                                        <iframe [src]="video | safeUrl"
+                                            style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                            frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                    </div>
+                                    <script src="https://player.vimeo.com/api/player.js">
+                                    </script>
+                                    <br>
+
+                                </div>
+
+                                <div *ngIf="images">
+                                    <div *ngIf="images.length < 2; else elseBlock">
+                                        <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
+                                            <ng-template ngbSlide *ngFor="let image of images">
+                                                <div class="picsum-img-wrapper">
+                                                    <img (click)="toggleModal()"
+                                                        src="{{API_URL}}/media/{{image.content}}" alt="Random slide"
+                                                        class="image">
+                                                    <app-modal [ngClass]="showHideModal()" [item]="this"
+                                                        [API_URL]="API_URL" [image]="image"></app-modal>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-carousel>
+                                    </div>
+                                    <ng-template #elseBlock>
+                                        <ngb-carousel [showNavigationArrows]="showNavigationArrows"
+                                            [showNavigationIndicators]="showNavigationIndicators">
+                                            <ng-template ngbSlide *ngFor="let image of images">
+                                                <div class="picsum-img-wrapper">
+                                                    <img (click)="toggleModal()"
+                                                        src="{{API_URL}}/media/{{image.content}}" alt="Random slide"
+                                                        class="image">
+                                                    <app-modal [ngClass]="showHideModal()" [item]="this"
+                                                        [API_URL]="API_URL" [image]="image"></app-modal>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-carousel>
+                                    </ng-template>
+                                </div>
+
+                            </div>
+                        </div>
                         <div *ngIf="item.culture_or_community">
                             <div>
                                 <p><strong>Culture or Community</strong></p>
@@ -232,6 +276,52 @@
 
                     <!--Panel 3-->
                     <div *ngIf="currentSubPage == 'narr'">
+                        <div class="item-grid-top-right">
+                            <div *ngIf="videos">
+                                <div *ngFor="let video of videos">
+                                    <div style="padding:56.25% 0 0 0;position:relative;">
+                                        <iframe [src]="video | safeUrl"
+                                            style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                            frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                    </div>
+                                    <script src="https://player.vimeo.com/api/player.js">
+                                    </script>
+                                    <br>
+
+                                </div>
+
+                                <div *ngIf="images">
+                                    <div *ngIf="images.length < 2; else elseBlock">
+                                        <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
+                                            <ng-template ngbSlide *ngFor="let image of images">
+                                                <div class="picsum-img-wrapper">
+                                                    <img (click)="toggleModal()"
+                                                        src="{{API_URL}}/media/{{image.content}}" alt="Random slide"
+                                                        class="image">
+                                                    <app-modal [ngClass]="showHideModal()" [item]="this"
+                                                        [API_URL]="API_URL" [image]="image"></app-modal>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-carousel>
+                                    </div>
+                                    <ng-template #elseBlock>
+                                        <ngb-carousel [showNavigationArrows]="showNavigationArrows"
+                                            [showNavigationIndicators]="showNavigationIndicators">
+                                            <ng-template ngbSlide *ngFor="let image of images">
+                                                <div class="picsum-img-wrapper">
+                                                    <img (click)="toggleModal()"
+                                                        src="{{API_URL}}/media/{{image.content}}" alt="Random slide"
+                                                        class="image">
+                                                    <app-modal [ngClass]="showHideModal()" [item]="this"
+                                                        [API_URL]="API_URL" [image]="image"></app-modal>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-carousel>
+                                    </ng-template>
+                                </div>
+
+                            </div>
+                        </div>
                         <div class="item-grid-bottom">
                             <div *ngIf="narratives">
                                 <div id="body">
