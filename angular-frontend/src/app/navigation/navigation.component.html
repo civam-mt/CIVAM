@@ -8,6 +8,21 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <div class="push-inline" *ngIf="width < WIDTH_LIM">
+        <span class="navbar-brand"><a href="https://www.thecenterpole.org/"><img
+        src="../../assets/images/crow_large.png" class="destrech-img"></a></span>
+        <ul class="navbar-nav nav-container-left nav-container-col nav-container-col-left-fix-stuf-ext ">
+            <a class="nav-item" routerLink='home' data-toggle="collapse"
+            data-target=".navbar-collapse.show">
+            <li class="nav-item nav-title">
+                <h3>Crow Indian Virtual Archive and Museum</h3>
+            </li>
+            <li class="nav-item nav-subtitle">
+                <h5>Apsáalooke ammaaiiláxiio</h5>
+            </li>
+            </a>
+        </ul>
+    </div>
     <!-- this following div contains all components that collapse when the collapsable menu button is clicked
             NOTE: the below two classes in the comment are essential to have the collapsable menu collapse when
             a user clicks on a link:
@@ -15,16 +30,16 @@
                         2.) data-target=".navbar-collapse.show"
      -->
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="push-inline">
+        <div class="push-inline" *ngIf="width >= WIDTH_LIM">
             <span class="navbar-brand"><a href="https://www.thecenterpole.org/"><img
             src="../../assets/images/crow_large.png" class="destrech-img"></a></span>
             <ul class="navbar-nav nav-container-left nav-container-col nav-container-col-left-fix-stuff">
                 <a class="nav-item" routerLink='home' data-toggle="collapse"
                 data-target=".navbar-collapse.show">
-                <li class="nav-item title">
+                <li class="nav-item nav-title">
                     <h3>Crow Indian Virtual Archive and Museum</h3>
                 </li>
-                <li class="nav-item subtitle">
+                <li class="nav-item nav-subtitle">
                     <h5>Apsáalooke ammaaiiláxiio</h5>
                 </li>
                 </a>
