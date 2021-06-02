@@ -9,14 +9,14 @@
         </div>
     </div>
     <!-- Home Page Main Content Below Here -->
-    <div *ngIf="collection" id="home-collection-div" class="collection-container">
+    <div id="home-collection-div" class="collection-container">
         <!-- If larger then 1000px -->
         <div *ngIf="this.innerWidth > this.smallWindow"
             class="home-collection-grid layer-unbounded collection-grid-col">
             <div class="collection-grid-left colleciton-text-gray">
                 <div class="collection-img-container">
                     <div class="collection-img-boarderless">
-                        <img *ngIf="collection.cover_image" class="collection-img"
+                        <img class="collection-img"
                             src="../../assets/images/home_coll.PNG">
                     </div>
                     <p class="collection-img-text-img-left">
@@ -41,7 +41,7 @@
             <div class="collection-grid-top">
                 <div class="collection-img-container">
                     <div class="collection-img-boarderless">
-                        <img *ngIf="collection.cover_image" class="collection-img"
+                        <img class="collection-img"
                             src="../../assets/images/home_coll.PNG">
                     </div>
                     <p class="collection-img-text-img-left">
