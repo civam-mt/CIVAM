@@ -109,9 +109,7 @@ import { TermsConditionsComponent } from './terms-conditions/terms-conditions.co
     JwPaginationModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'replace',
-      protocol:2,
-      hostAndPath: environment.apiUrlWithOutProt + '/api/mapdata/cache/js'
+    	apiKey: 'AIzaSyBdzQliIx3SHhnFwX_YvxmoYcZJk9-2tQE'
     })
   ],
    
