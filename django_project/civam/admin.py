@@ -68,12 +68,25 @@ class PorIInline(admin.TabularInline):
 
 # Can create Collections and Items and Poris directly
 class CollectionAdmin(SortableAdminMixin, DefaultAdmin):
-    list_display = ('title', 'created_by')
+    list_display = (
+        'title', 'created_by', 'modified_by','modified_on'
+    )
+    list_filter = [
+        'modified_on', 'modified_by'
+    ]
     search_fields = ['title','creator__name','keywords__word']
     inlines = [PorIInline]
 
 class ItemAdmin(DefaultAdmin):
-    list_display = ('name', 'collection', 'cataloged')
+    list_display = (
+        'name', 'collection', 'cataloged', 'modified_by',
+        'modified_on'
+    )
+    list_filter = [
+        'modified_on', 'modified_by', 'collection',
+        'is_cataloged'
+    ]
+
     inlines = [ImageInline, VideoInline, NarrativeInline]
     search_fields = ['name','collection__title','culture_or_community','creator__name','date_of_creation','place_created','catalog_number','keywords__word']
 
