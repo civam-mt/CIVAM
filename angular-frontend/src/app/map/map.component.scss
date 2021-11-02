@@ -170,6 +170,7 @@ $gray-l1: #1e1e1ecf;
 
   .info-title {
     font-size: 1vw;
+    text-shadow: 1px 1px #000000;
   }
 
   .info-url {
@@ -193,7 +194,7 @@ $gray-l1: #1e1e1ecf;
 }
 
 .barrier-img {
-  background: url('../../assets/images/background-field.jpg') no-repeat fixed;;
+  background: url('../../assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;;
 }
 
 
@@ -292,32 +293,29 @@ img {
   }
 
   .top-content {
-      @media (min-width:1500px) {
-          padding-top: min(10%, 30vh);
-      }
-      @media (max-width:1500px) {
-          padding-top: min(20%, 30vh);
-      }
-      margin-top: 3vh;
-      overflow: visible;
-      background-position: top;
-      background-size: cover;
-      background-attachment: scroll;
-      font-size: xxx-large;
-      font-weight: bold;
-      text-align: center;
-      color: #000;
-      background-color: #0000000a;
-      background-blend-mode: darken;
-      font-weight: bolder;
-      font-size: 3vw;
-      color: whitesmoke;
-  
-      
-      .top-title {
-          
-      }
-  }
+    @media (min-width:1500px) {
+        padding-top: min(10%, 30vh);
+    }
+    @media (max-width:1500px) {
+        padding-top: min(20%, 30vh);
+    }
+    overflow: visible;
+    background-position: top;
+    background-size: cover;
+    background-attachment: scroll;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+    background-color: #0000000a;
+    background-blend-mode: darken;
+    font-weight: bolder;
+    color: whitesmoke;    
+    font-size:xx-large;
+    text-shadow: 1px 1px #000000;   
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
 
   
   .context-content {

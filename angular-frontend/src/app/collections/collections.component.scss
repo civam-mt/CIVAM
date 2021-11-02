@@ -76,26 +76,27 @@ $gold: #bf9b30;
 }
 
 .top-content {
-    @media(min-width:1500px) {
+    @media (min-width:1500px) {
         padding-top: min(10%, 30vh);
     }
-    @media(max-width:1500px) {
+    @media (max-width:1500px) {
         padding-top: min(20%, 30vh);
     }
-    background: url('../../assets/images/background-field.jpg') no-repeat fixed;
+    background: url('../../assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;;
     margin-top: 3vh;
     overflow: visible;
-    background-size: 100% 100%;
+    background-position: top;
+    background-size: cover;
     background-attachment: scroll;
-    object-fit: contain;
-    font-size: xxx-large;
     font-weight: bold;
     text-align: center;
     color: #000;
+    background-color: #0000000a;
     background-blend-mode: darken;
     font-weight: bolder;
-    font-size: 3vw;
-
+    color: whitesmoke;    
+    font-size:xx-large;
+    text-shadow: 1px 1px #000000;   
 }
 
 .collection-grid-col {
