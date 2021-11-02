@@ -24,7 +24,7 @@ $gray-l1: #1e1e1ecf;
 }
 
 .barrier-img {
-    background: url('../../assets/images/background-field.jpg') no-repeat fixed;;
+    background: url('../../assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;;
 }
 
 .btn-outline-warning {
@@ -169,10 +169,12 @@ img {
         
         .quote {
             font-style: italic;
+            text-shadow: 1px 1px #000000;
         }
         
         .speaker {
             font-size:xx-large;
+            text-shadow: 1px 1px #000000;
         }
     }
 
