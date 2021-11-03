@@ -3,6 +3,7 @@ $light-brown: #a67c00;      // active element
 $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
 $darkless-brown: #77510d; 
+$green: #478631;
 
 .card-title {
     text-align: center;
@@ -87,7 +88,7 @@ $darkless-brown: #77510d;
 
 .nav-item-selected{
     text-decoration-style: none;
-    color: $darkless-brown !important;
+    color: $green !important;
     text-decoration: none;
 }
 
