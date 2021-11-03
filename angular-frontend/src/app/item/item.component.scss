@@ -7,6 +7,7 @@ $darkless-brown: #77510d;
 $light-brown: #a67c00;      // active element
 $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
+$green: #478631;
 
 $gold-l1: #FDF6CD;
 $gold-l2: #FEFCEE;
@@ -93,7 +94,7 @@ $gold-l2: #FEFCEE;
 }
 .nav-item-selected{
     text-decoration-style: none;
-    color: $darkless-brown !important;
+    color: $green !important;
     text-decoration: none;
 }
 .nav-link{
