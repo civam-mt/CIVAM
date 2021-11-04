@@ -8,7 +8,7 @@ $light-brown: #a67c00;      // active element
 $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
 $green: #478631;
-
+$red: #C7161C;
 $gold-l1: #FDF6CD;
 $gold-l2: #FEFCEE;
 
@@ -84,7 +84,7 @@ $gold-l2: #FEFCEE;
 .nav-item:hover{
     //background-color: #dbd7d0;
     text-decoration-style: none;
-    color: $light-brown !important;
+    color: $red !important;
     list-style: none;
     text-decoration: none;
     border-top: 1px solid rgb(197, 196, 196);
@@ -102,7 +102,7 @@ $gold-l2: #FEFCEE;
     text-decoration: none;
 }
 .nav-link:hover{
-    color: $light-brown !important;
+    color: $red !important;
     text-decoration: none;
 }
 

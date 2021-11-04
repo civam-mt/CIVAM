@@ -4,6 +4,7 @@ $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
 $darkless-brown: #77510d; 
 $green: #478631;
+$red: #C7161C;
 
 .card-title {
     text-align: center;
@@ -80,7 +81,7 @@ $green: #478631;
 .nav-item:hover{
     //background-color: #dbd7d0;
     text-decoration-style: none;
-    color: $light-brown !important;
+    color: $red !important;
     list-style: none;
     text-decoration: none;
     border-top: 1px solid rgb(197, 196, 196);
@@ -97,7 +98,7 @@ $green: #478631;
     text-decoration: none;
 }
 .nav-link:hover{
-    color: $light-brown !important;
+    color: $red !important;
     text-decoration: none;
 }
 
