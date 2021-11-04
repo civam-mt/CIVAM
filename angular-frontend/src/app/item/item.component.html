@@ -14,19 +14,15 @@
         <div class="collection-container">
             <!--Grid column-->
             <ul class="item-button-column">
-                <li class="nav-item ibc1  top-button">
-                    <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'item'}"
-                        href="{{currentPageUrl}}#item">Item</a>
-                </li>
-                <li class="nav-item ibc2">
+                <li class="nav-item ibc1 top-button">
                     <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'attr'}"
                         href="{{currentPageUrl}}#attr">Item Information</a>
                 </li>
-                <li class="nav-item ibc3">
+                <li class="nav-item ibc2">
                     <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'narr'}"
                         href="{{currentPageUrl}}#narr">Narratives</a>
                 </li>
-                <li class="nav-item ibc4">
+                <li class="nav-item ibc3">
                     <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'coll'}"
                         href="collections/{{item.collection}}">Back to Collection</a>
                 </li>
@@ -40,8 +36,7 @@
                 <div class="tab-content pt-0">
 
                     <!--Panel 1-->
-                    <div *ngIf="currentSubPage == 'item'">
-
+                    <div *ngIf="currentSubPage == 'attr'">
                         <div class="item-grid-top-right">
                             <div *ngIf="videos">
                                 <div *ngFor="let video of videos">
@@ -94,58 +89,6 @@
                                 <a>{{item.description}}</a>
                             </div>
                             <br>
-                        </div>
-
-                    </div>
-                    <!--/.Panel 1-->
-
-                    <!--Panel 2-->
-                    <div *ngIf="currentSubPage == 'attr'">
-                        <div class="item-grid-top-right">
-                            <div *ngIf="videos">
-                                <div *ngFor="let video of videos">
-                                    <div style="padding:56.25% 0 0 0;position:relative;">
-                                        <iframe [src]="video | safeUrl"
-                                            style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                                            frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                                    </div>
-                                    <script src="https://player.vimeo.com/api/player.js">
-                                    </script>
-                                    <br>
-
-                                </div>
-
-                                <div *ngIf="images">
-                                    <div *ngIf="images.length < 2; else elseBlock">
-                                        <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
-                                            <ng-template ngbSlide *ngFor="let image of images">
-                                                <div class="picsum-img-wrapper">
-                                                    <img (click)="toggleModal()"
-                                                        src="{{API_URL}}/media/{{image.content}}" alt="Random slide"
-                                                        class="image">
-                                                    <app-modal [ngClass]="showHideModal()" [item]="this"
-                                                        [API_URL]="API_URL" [image]="image"></app-modal>
-                                                </div>
-                                            </ng-template>
-                                        </ngb-carousel>
-                                    </div>
-                                    <ng-template #elseBlock>
-                                        <ngb-carousel [showNavigationArrows]="showNavigationArrows"
-                                            [showNavigationIndicators]="showNavigationIndicators">
-                                            <ng-template ngbSlide *ngFor="let image of images">
-                                                <div class="picsum-img-wrapper">
-                                                    <img (click)="toggleModal()"
-                                                        src="{{API_URL}}/media/{{image.content}}" alt="Random slide"
-                                                        class="image">
-                                                    <app-modal [ngClass]="showHideModal()" [item]="this"
-                                                        [API_URL]="API_URL" [image]="image"></app-modal>
-                                                </div>
-                                            </ng-template>
-                                        </ngb-carousel>
-                                    </ng-template>
-                                </div>
-
-                            </div>
                         </div>
                         <div *ngIf="item.culture_or_community">
                             <div>
@@ -272,9 +215,9 @@
                         </div>
 
                     </div>
-                    <!--/.Panel 2-->
+                    <!--/.Panel 1-->
 
-                    <!--Panel 3-->
+                    <!--Panel 2-->
                     <div *ngIf="currentSubPage == 'narr'">
                         <div class="item-grid-top-right">
                             <div *ngIf="videos">
@@ -373,7 +316,7 @@
                         </div>
 
                     </div>
-                    <!--/.Panel 3-->
+                    <!--/.Panel 2-->
 
 
                 </div>
