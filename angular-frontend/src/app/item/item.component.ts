@@ -48,7 +48,7 @@ export class ItemComponent implements OnInit {
   
   currentSubPage:string;
   currentPageUrl:string = '';
-  allowedSubPage:string[] = ['item', 'attr', 'narr'];
+  allowedSubPage:string[] = ['attr', 'narr'];
   constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder,) { }
 
   ngOnInit() {
