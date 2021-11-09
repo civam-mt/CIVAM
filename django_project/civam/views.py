@@ -107,6 +107,9 @@ def new_item(request, collection_id):
             for image in request.FILES.getlist('images'):
                 image_instance = Image(item=item_instance,content=image)
                 image_instance.save()
+            for audio_track in request.FILES.getlist('audio_tracks'):
+                audio_track_instance = AudioTrack(item=item_instance, content=audio_track)
+                audio_track_instance.save()
             if video_form.is_valid():
                 link = video_form.cleaned_data['link']
                 video_instance = Video(link=link, item=item_instance)
@@ -116,7 +119,12 @@ def new_item(request, collection_id):
     item_form = ItemForm(prefix = 'item')
     image_form = ImageForm(prefix = 'image')
     video_form = VideoForm(prefix = 'video')
-    context = {'item_form': item_form, 'image_form': image_form, 'video_form': video_form, 'collection': collection}
+    audio_track_form = AudioTrackForm(prefix='audio_track')
+    context = {
+        'item_form': item_form, 'image_form': image_form,
+        'video_form': video_form, 'collection': collection,
+        'audio_track_form': audio_track_form
+    }
     return render(request, 'civam/new_item.html', context)
 
 

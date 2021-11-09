@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, NewsTag, MapData, Explore
+from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, \
+    NewsTag, MapData, Explore, AudioTrack
 from guardian.admin import GuardedModelAdmin
 from adminsortable2.admin import SortableAdminMixin
 
@@ -54,6 +55,9 @@ class ItemInline(admin.TabularInline):
 class ImageInline(admin.TabularInline):
     model = Image
 
+class AudioTrackInline(admin.TabularInline):
+    model = AudioTrack
+
 class VideoInline(admin.TabularInline):
     model = Video
 
@@ -87,7 +91,7 @@ class ItemAdmin(DefaultAdmin):
         'is_cataloged'
     ]
 
-    inlines = [ImageInline, VideoInline, NarrativeInline]
+    inlines = [ImageInline, AudioTrackInline, VideoInline, NarrativeInline]
     search_fields = ['name','collection__title','culture_or_community','creator__name','date_of_creation','place_created','catalog_number','keywords__word']
 
     def cataloged(self, obj):
