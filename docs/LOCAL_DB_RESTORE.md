@@ -30,9 +30,10 @@ sudo cp db_backup_10_24_2021 /var/lib/postgresql
 3. Restart Postgresql: `sudo service postgresql restart`  
 4. Change to postgres user: `sudo -i -u postgres`    
 5. Log into database: `psql`    
-6. Drop current Django DB (django_db): `DROP DATABASE django_db` (WARNING: THIS WILL CAUSE DATA LOSS FROM DROPPING THE DB)    
-7. Make new Django DB (django_db): `CREATE DATABASE django_db`    
-8. Reload db with: `psql <<Db_name>> < <<db_restore_script_file>>`    
+6. Drop current Django DB (django_db): `DROP DATABASE django_db;` (WARNING: THIS WILL CAUSE DATA LOSS FROM DROPPING THE DB)    
+7. Make new Django DB (django_db): `CREATE DATABASE django_db;`
+8. Log out of DB: `exit`    
+9. Reload db with: `psql <<Db_name>> < <<db_restore_script_file>>`    
 
 Example:  
 
@@ -42,10 +43,10 @@ psql django_db < db_backup_10_24_2021
 
 This will open up psql and recreate all data and relationships within the DB (Tables, Indexes, Sequences, PK/FK, etc in the DB).  
 
-9. Exit out of postgres user: `exit`    
-10. From `CIVAM/django_project/civam/migrations` run: `rm !(__init__.py)` (Ignore error: 'cannot remove pycache: Is a directory warning')    
-11. From `CIVAM/django_project` run to make new data show up on site: `python3 manage.py makemigrations` then run: `python3 managy.py migrate`    
-12. Run local instructions to set up site and check if new items are there:
+10. Exit out of postgres user: `exit`    
+11. From `CIVAM/django_project/civam/migrations` run: `rm !(__init__.py)` (Ignore error: 'cannot remove pycache: Is a directory warning')    
+12. From `CIVAM/django_project` run to make new data show up on site: `python3 manage.py makemigrations` then run: `python3 manage.py migrate`    
+13. Run local instructions to set up site and check if new items are there:
 
 
 ```
