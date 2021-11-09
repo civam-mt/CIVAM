@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# ADD CRON HEADER HERE!!!!
+# AWS CRON HEADER
+# NOTE: This config must be added to the root user's crontab since
+# it requires elevated privileges.
+# DESC: Runs every 2 days at Midnight to backup Postgresql data
+# 00 12 */2 * * /bin/bash /home/ubuntu/CISC475_D5/utils/backupDBScript.sh
 
 # This script is used for creating a backup file to regenerate 
 # the database in case of a database failure.
