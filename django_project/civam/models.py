@@ -163,7 +163,6 @@ class Item(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_modified")
     modified_on = models.DateTimeField(auto_now=True)
-    audio = models.FileField(upload_to="audio/", default="")
 
     def __str__(self):
         return self.name
@@ -182,6 +181,18 @@ class Image(models.Model):
 
     def __str__(self):
         return "Image: {}".format(self.item.name)
+
+
+# Audio of an Item
+# content is the path to the image
+# Has an item that it belongs to
+class AudioTrack(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="audiotracks")
+    content = models.FileField(upload_to=image_upload_path)
+
+    def __str__(self):
+        return "Audio Track: {}".format(self.item.name)
+
 
 # A Video of an Item (link to external streaming service)
 # Has an Item that it belongs to
