@@ -80,6 +80,19 @@
                                         </ngb-carousel>
                                     </ng-template>
                                 </div>
+                              <div *ngIf="msaapPlaylist.length > 0" id="audio-container">
+                                <ngx-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle"
+                                                  [autoPlay]="false"
+                                                  [displayPlaylist]="msaapDisplayPlayList"
+                                                  [displayVolumeControls]="msaapDisplayVolumeControls"
+                                                  [displayRepeatControls]="msaapDisplayRepeatControls"
+                                                  [disablePositionSlider]="msaapDisablePositionSlider"
+                                                  [displayArtist]="msaapDisplayArtist"
+                                                  [displayDuration]="msaapDisplayDuration"
+                                                  [expanded]="false">
+
+                                </ngx-audio-player>
+                              </div>
 
                             </div>
                         </div>
