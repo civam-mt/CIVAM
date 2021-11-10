@@ -365,6 +365,10 @@ def item_solo(request, item_id):
 		image = Image.objects.filter(item_id=item_id)
 	except Image.DoesNotExist:
 		image = None
+	try :
+		audio_track = AudioTrack.objects.filter(item_id=item_id)
+	except AudioTrack.DoesNotExist:
+		audio_track = None
 	# TODO: Display videos
 	try :
 		video = Video.objects.filter(item_id=item_id)
@@ -396,7 +400,8 @@ def item_solo(request, item_id):
     "location_of_originals":item.location_of_originals,
     'narratives': list(narratives.values()),
     'images': list(image.values()),
-    'videos': vids
+    'videos': vids,
+    'audio_tracks': list(audio_track.values())
     }
 	return JsonResponse(context, safe=False)
 

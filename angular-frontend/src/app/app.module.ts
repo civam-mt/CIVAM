@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
 import { SafePipe } from './Safepipe.pipe';
 
 // Module imports
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module'
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -55,14 +55,15 @@ import { UsernameService } from './auth/username.service';
 import { environment } from 'src/environments/environment';
 import { FooterComponent } from './footer/footer.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
+import {NgxAudioPlayerModule} from 'ngx-audio-player';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
-// import {ModalModule} from './_modal'; 
+// import {ModalModule} from './_modal';
 
 @NgModule({
   declarations: [
- 
+
     AppComponent,
     HomeComponent,
     AboutComponent,
@@ -107,16 +108,17 @@ import { TermsConditionsComponent } from './terms-conditions/terms-conditions.co
     MatTabsModule,
     FlexLayoutModule,
     JwPaginationModule,
+    NgxAudioPlayerModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
     	apiKey: 'AIzaSyBdzQliIx3SHhnFwX_YvxmoYcZJk9-2tQE'
     })
   ],
-   
+
 
 
   exports: [
-   
+
     AboutComponent,
     SafePipe
   ],
