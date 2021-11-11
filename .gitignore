@@ -13,7 +13,6 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
-./django_project/static/
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
@@ -23,7 +22,6 @@ media
 # Byte-compiled / optimized / DLL files
 *.py[cod]
 *$py.class
-django_project/civam/migrations/[0-9]*.py
 # C extensions
 *.so
 
@@ -194,3 +192,6 @@ typings/
 
 # emacs backup files
 *~
+
+# idea files
+**/.idea/
