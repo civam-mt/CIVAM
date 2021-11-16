@@ -57,6 +57,7 @@ class ImageInline(admin.TabularInline):
 
 class AudioTrackInline(admin.TabularInline):
     model = AudioTrack
+    verbose_name_plural = "AUDIO TRACKS - upload videos here to extract and store audio only"
 
 class VideoInline(admin.TabularInline):
     model = Video

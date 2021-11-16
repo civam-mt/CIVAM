@@ -7,14 +7,19 @@
 ##  4/1/2021    -   Josh Davis
 ##      - Add additional site text location field options
 ##
+import logging
+import os
 
 from colorfield.fields import ColorField
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.db.models.fields.files import FieldFile
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.db.models.functions import Lower
+import moviepy.editor as mp
 
+logger = logging.getLogger(__name__)
 
 # Civam models are defined here
 # Some models have created_by, created_on, modified_by, and modified_on fields
@@ -192,6 +197,31 @@ class AudioTrack(models.Model):
 
     def __str__(self):
         return "Audio Track: {}".format(self.item.name)
+
+    def save(self, **kwargs):
+        """
+        We override the superclass' 'save' method, to handle tricky extraction
+        of audio from video files and to enforce a uniform audio format for
+        all files.
+        """
+        # save initial element, this is required for conversion
+        super(AudioTrack, self).save()
+        file_path = self.content.path
+        file_name = os.path.splitext(self.content.name)[0]
+        new_file_name_full_path = os.path.splitext(file_path)[0] + ".mp3"
+        # noinspection PyBroadException
+        try:
+            # extract audio from video file, write to given file path
+            audio_clip = mp.AudioFileClip(file_path)
+            audio_clip.write_audiofile(new_file_name_full_path)
+            # instantiate new 'FieldFile', this becomes content of this item
+            self.content = FieldFile(field=self.content, instance=None, name=file_name+".mp3")
+            # call superclass save again to update this item
+            super(AudioTrack, self).save(update_fields=['content'])
+            # remove video file
+            os.remove(file_path)
+        except Exception:
+            logger.error("Could not convert '" + file_name + "' to mp3 format.")
 
 
 # A Video of an Item (link to external streaming service)
