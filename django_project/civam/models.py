@@ -162,6 +162,7 @@ class Item(models.Model):
     changers = models.ManyToManyField(User, blank=True, related_name="changeable_items")
 
     is_cataloged = models.IntegerField(default=0, blank=True, null=True, help_text="1: Cataloged, 0: Uncataloged", choices=((1,"Cataloged"),(0,"Uncataloged")))
+    is_public = models.IntegerField(default=1, blank=True, null=True, help_text="1: Available To Public, 0: Hidden From Public", choices=((1,"Available To Public"),(0,"Hidden From Public")))
     private_cataloger = models.CharField(max_length=511, null=True, blank=True)
     private_catalog_date = models.DateTimeField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_created")
