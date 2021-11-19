@@ -84,12 +84,12 @@ class CollectionAdmin(SortableAdminMixin, DefaultAdmin):
 
 class ItemAdmin(DefaultAdmin):
     list_display = (
-        'name', 'collection', 'cataloged', 'modified_by',
+        'name', 'collection', 'cataloged', 'public', 'modified_by',
         'modified_on'
     )
     list_filter = [
         'modified_on', 'modified_by', 'collection',
-        'is_cataloged'
+        'is_cataloged', 'is_public'
     ]
 
     inlines = [ImageInline, AudioTrackInline, VideoInline, NarrativeInline]
@@ -101,6 +101,13 @@ class ItemAdmin(DefaultAdmin):
     cataloged.boolean = True
     cataloged.admin_order_field = '-is_cataloged'
     cataloged.short_description = 'Is Cataloged?'
+
+    def public(self, obj):
+        return obj.is_public == 1
+
+    public.boolean = True
+    public.admin_order_field = '-is_public'
+    public.short_description = 'Is Public?'
 
 class PorIAdmin(DefaultAdmin):
     search_fields = ['name']
