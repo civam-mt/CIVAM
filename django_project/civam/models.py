@@ -208,20 +208,23 @@ class AudioTrack(models.Model):
         super(AudioTrack, self).save()
         file_path = self.content.path
         file_name = os.path.splitext(self.content.name)[0]
+        extension = os.path.splitext(self.content.name)[1]
         new_file_name_full_path = os.path.splitext(file_path)[0] + ".mp3"
-        # noinspection PyBroadException
-        try:
-            # extract audio from video file, write to given file path
-            audio_clip = mp.AudioFileClip(file_path)
-            audio_clip.write_audiofile(new_file_name_full_path)
-            # instantiate new 'FieldFile', this becomes content of this item
-            self.content = FieldFile(field=self.content, instance=None, name=file_name+".mp3")
-            # call superclass save again to update this item
-            super(AudioTrack, self).save(update_fields=['content'])
-            # remove video file
-            os.remove(file_path)
-        except Exception:
-            logger.error("Could not convert '" + file_name + "' to mp3 format.")
+        # no need to convert media
+        if extension != '.mp3':
+            # noinspection PyBroadException
+            try:
+                # extract audio from video file, write to given file path
+                audio_clip = mp.AudioFileClip(file_path)
+                audio_clip.write_audiofile(new_file_name_full_path)
+                # instantiate new 'FieldFile', this becomes content of this item
+                self.content = FieldFile(field=self.content, instance=None, name=file_name+".mp3")
+                # call superclass save again to update this item
+                super(AudioTrack, self).save(update_fields=['content'])
+                # remove video file
+                os.remove(file_path)
+            except Exception:
+                logger.error("Could not convert '" + file_name + "' to mp3 format.")
 
 
 # A Video of an Item (link to external streaming service)
