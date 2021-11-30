@@ -67,8 +67,7 @@
                                           [innerHTML]="selectedMarker.getElement(tile.text)"> 
                                        </div>
                                        <div *ngIf="tile.text == 'url'">
-                                          <a href="{{this.getExternalURL(selectedMarker.getElement(tile.text))}}">{{selectedMarker.getElement(tile.text)}}</a>
-                                          <!-- <a href="https://{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a> -->
+                                          <a href="{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
                                        </div>
                                        <div *ngIf="tile.text == 'cover_image'">
                                           <img src="{{API_URL}}/media/{{selectedMarker.getElement(tile.text)}}"
@@ -88,7 +87,7 @@
                                           [innerHTML]="selectedMarker.getElement(tile.text)">
                                        </div>
                                        <div *ngIf="tile.text == 'url'">
-                                          <a href="https://{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
+                                          <a href="{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
                                        </div>
                                     </mat-grid-tile>
                                  </div>

@@ -121,10 +121,4 @@ export class MapComponent implements OnInit {
       this.siteText = data["content"];
     });
   }
-
-  getExternalURL(url:string):string {
-    return url.startsWith("http") ? url : "".concat("https://", url);
-  }
-
 }
-
