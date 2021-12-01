@@ -25,7 +25,7 @@
 DB_NAME=django_db
 BACKUP_DEST=/home/ubuntu/db-backups/DBFullBackups
 FILE_SRC=/var/lib/postgresql
-FILE_NAME=db_backup_$(date +%d-%m-%Y_%H-%M-%S).sql
+FILE_NAME=db_backup_$(date +%Y-%m-%d_%H-%M-%S).sql
 FILE_LOC=$FILE_SRC/$FILE_NAME
 
 postgresql_status=$(service postgresql status | grep "Active: inactive");
