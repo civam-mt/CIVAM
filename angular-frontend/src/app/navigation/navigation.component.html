@@ -93,13 +93,8 @@
                 </div> -->
             </li>
 
-            <li class="dropdown show nav-item">
-                <div *ngIf="width >= WIDTH_LIM">
-                    <a class="nav-link dropdown-toggle" href="" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><img
-                            src="../../assets/images/m-glass.png" class="search-icon"></a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-
+            <li class="nav-item">
+                <div *ngIf="width >= WIDTH_LIM"> 
                         <form class="form-inline my-2 my-sm-0" (ngSubmit)="onSubmit()">
                             <mat-form-field mat-autocomplete-snap appearance="none">
                                 <input type="search" placeholder="Search" aria-label="Search" matInput id="searchBox"
@@ -114,11 +109,8 @@
                             <button class="btn btn-warning my-2 my-sm-2" id="search-button"
                                 type="submit">Search</button>
                         </form>
-
-                    </div>
                 </div>
                 <div *ngIf="width < WIDTH_LIM">
-
                         <form class="form-inline my-2 my-sm-0" (ngSubmit)="onSubmit()">
                             <mat-form-field mat-autocomplete-snap appearance="none">
                                 <input type="search" placeholder="Search" aria-label="Search" matInput id="searchBox"
@@ -135,8 +127,6 @@
                         </form>
 
                 </div>
-
-
             </li>
         </ul>
     </div>
