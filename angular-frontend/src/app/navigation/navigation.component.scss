@@ -24,6 +24,7 @@ a {
     .navbar-expand-custom .navbar-nav .nav-link {
         padding-right: .5rem;
         padding-left: .5rem;
+        padding-top: 1.3rem;
     }
     .navbar-expand-custom .navbar-collapse {
         display: flex!important;
@@ -133,7 +134,6 @@ a {
 // this is a bootstrap class, so any changes need to have the !important tag on the end
 .dropdown-item {
     color: $gold;
-    
 }
 
 
@@ -188,7 +188,6 @@ a.dropdown-item.active {
 
 button#search-button {
     margin-top: 0px !important;
-
     display: inline-block !important;
     background-color: $light-brown;
     border-color: $dark-brown;
