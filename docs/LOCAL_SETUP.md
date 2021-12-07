@@ -16,7 +16,12 @@ Note that [General Setup](#General-Setup), [Front-End Specific Setup](#Front-End
 4. `sudo reboot`
 5. install dependencies:
     ```bash
-    sudo apt install git nodejs npm curl python3-pip python-dev libpq-dev     postgresql postgresql-contrib
+    sudo apt install git curl python3-pip python-dev libpq-dev postgresql postgresql-contrib
+    ```
+6. install latest version of nodejs and npm:
+    ```bash
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+    sudo apt-get install -y nodejs
     ```
 
 ## Front-End Specific Setup
@@ -24,11 +29,11 @@ Note that [General Setup](#General-Setup), [Front-End Specific Setup](#Front-End
 2. install angular-cli: `sudo npm install -g @angular/cli`
 3. install nvm version manager: `wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash`
 4. Open a new terminal, you must do this in order to proceed.
-5. install project version: `nvm install 12.14` - this can be verified with `ng -v`
+5. install project version: `nvm install 12.20` - this can be verified with `ng -v`
 6. set up a directory and clone your fork of the repo
 7. cd into `CIVAM/angular-frontend`
 8. install all dependencies: `npm install --legacy-peer-deps`
-9. one more: `npm install jwt-decode --save`
+9. few more: `npm install jwt-decode ngx-audio-player --save`
 
 
 ## Back-end Specific Setup
