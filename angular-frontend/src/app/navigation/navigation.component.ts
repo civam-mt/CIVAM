@@ -23,7 +23,7 @@ export class NavigationComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   width:number;
-  WIDTH_LIM:number = 1200;
+  WIDTH_LIM:number = 1450;
 
 
 
