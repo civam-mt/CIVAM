@@ -1,34 +1,85 @@
 # CIVAM
+
 ## Description
-* Django Version: 3.1.7
-* Python Version: 3.6.8
-* Angular Version: 11.2.5
 
 A Django website with an Angular frontend serving as a virtual archive and museum showcasing Crow Indian cultural items.
 
-### General Instructions
-* All python commands should be run in in the *django_project* folder.
-* All ng commands should be run in the *angular-frontend* folder. Individual site components are within */src/app/*
+## Table of Contents
+- [CIVAM](#civam)
+  - [Description](#description)
+  - [Table of Contents](#table-of-contents)
+  - [General Instructions](#general-instructions)
+  - [Local Environment Setup](#local-environment-setup)
+    - [git](#git)
+    - [Angular / Django Local Setup and Deployment](#angular--django-local-setup-and-deployment)
+  - [Version Control Strategy](#version-control-strategy)
+    - [Updating a Feature Branch](#updating-a-feature-branch)
+    - [Commit Strategy](#commit-strategy)
+  - [Production Deployment Instructions](#production-deployment-instructions)
+  - [Various Data Backup and Restore Procedures](#various-data-backup-and-restore-procedures)
+    - [BACKING UP AWS DATABASE CONTENT](#backing-up-aws-database-content)
+    - [SETTING UP LOCAL DATABASE WITH CONTENT](#setting-up-local-database-with-content)
+  - [Resources](#resources)
+    - [Google Map Information and Data Flow](#google-map-information-and-data-flow)
+    - [RClone Media Backup](#rclone-media-backup)
+    - [Restarting the AWS Server](#restarting-the-aws-server)
+    - [CIVAM Google Drive Folder](#civam-google-drive-folder)
+
+## General Instructions
+* All python commands should be run in in the `django_project` folder.
+* All ng commands should be run in the `angular-frontend` folder.
 * You must install all required packages and modules before you can run the site locally.
 * This project is designed to work well with Linux or WSL. If you are running MacOS, consider loading an Ubuntu VM or dual-boot to Linux. Nobody has worked on this project using MacOS to our knowledge becuase the setup is tricky.
-* VSCode is a great editor to use for the project!
 
-# Local Git Setup
+## Local Environment Setup
+
+### git
 * After cloning the repository, edit .git/info/exclude
-* Add the following 
+* Add the following to this file:
+
 ```
-django_project/civam/migrations/ 
 django_project/project/settings.py 
 django_project/dump.json 
 django_project/civam/package-lock.json
 ```
-* After setting everything else up, if you run `git status` and see any of the above files, run `git update-index --assume-unchanged [<file> ...]` for each file. 
-* These files will be modified for local development, but should not be changed on the server unless absolutely necessary. 
 
-## Some Helpful Git Commands
-### Rebasing Instructions
-* Be sure to add and commmit all changes to your branch.
-* Do the following where originbranch is the branch you want to rebase onto and featurebranch is the branch with your changes.
+* After setting everything else up, if you run `git status` and see any of the above files, run `git update-index --assume-unchanged [<file> ...]` for each file. 
+* These files will be modified for local development, but should not be changed on the server unless absolutely necessary.
+
+### Angular / Django Local Setup and Deployment
+See instructions [here](docs/LOCAL_SETUP.md).
+
+## Version Control Strategy
+
+For submitting patches and additions, this project uses the "fork-and-pull" Git workflow.
+
+ 1. **Fork** the repo on GitHub
+ 2. **Clone** the project to your own machine from YOUR fork on github. `git clone <url from your fork>` then 
+ change into the new directory.
+ 3. **Set Upstream** do `git remote add upstream <url from upstream fork>`
+ 4. **Make new branch** for YOUR code submission; do `git checkout -b <whatever you want to name this branch>`
+ 5. **Commit** changes to your *new* branch,  with descriptive message containing issue number
+ 6. **Push** your work back up to your fork `git push -u origin <your branch name>`
+ 7. **On Github** Submit a **Pull request** so that the group can review your changes
+
+NOTE: Be sure to rebase your feature branch on latest changes from "upstream"
+before making a pull request!
+
+**All conflicts should be resolved locally, then rebased and pushed to github.**
+
+To sync your `master` branch before starting to code, do:
+ 1. `git checkout master`
+ 2. `git fetch --all`
+ 3. `git pull upstream master`
+ 4. `git push` - this syncs your fork on github.
+ 5. Start on #4 above to begin a new contribution.
+
+[Here is a great cheatsheet for git/github.](https://education.github.com/git-cheat-sheet-education.pdf)
+
+[Here is another article that describes this exact workflow, in more detail.](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/)
+
+### Updating a Feature Branch
+
 ```
 git fetch
 git checkout <originbranch>
@@ -36,257 +87,58 @@ git pull
 git checkout <featurebranch>
 git rebase <originbranch>
 ```
+
 * If there are any merge conficts: fix them, add, and commit changes.
-* Then run the following
-```
-git rebase --continue
-```
-* Repeat this with any other merge conflicts keeping in mind that this is applying each one of your commits to the originbranch one at a time. 
-* When finished with all merge conflicts push your changes (Make sure you are on your feature branch).
-```
-git push
-```
-### To get a deleted file back
-* First find the last commit that edited that file and note the first few characters in the hash.
-```
-git log -- <filename>
-```
-* Then checkout that file from one commit before the last change (your deletion).
-```
-git checkout <deletion commit hash>~1 -- <filename>
-```
-### To revert changes to a file
-* First find the commit you wish to revert to and note the first few characters in the hash.
-* The following will get commits that edited the file.
-```
-git log -- <filename>
-```
-* Then checkout from the commit with the version of the file you want.
-```
-git checkout <desired version commit hash> <filename>
-```
+* Follow prompts from git.
 
-# To Run Site Locally
-* `cd django_project`
-* `sudo service postgresql start` 
-* `python3 manage.py runserver`
-* `cd ../angular-frontend`
-* `ng build`
-* `ng serve`
-* Backend: http://127.0.0.1:8000/admin
-* Frontend: http://127.0.0.1:4200/
+### Commit Strategy
 
-### Alternative method for macos and linux
-To start, `./run.sh`
-To Stop, `./stop.sh`
+**Consider: one issue == one commit == one pull request.**
 
-## Deployment Instructions
-* Might need to run `npm rebuild` if deploying on a different OS than currently compiled node_modules
-* `ng build --prod`
-* `ng add @jefiozie/ngx-aws-deploy`
-* TODO: Karl fill in whatever you need to
+This strategy (atomicity) ensures that changes can be traced back to discussions about them.
 
+Read [this](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html) article to learn about how to rebase your commit history and keep it clean.
 
-# Starting Place For Working on the Project - Initial Steps
-## Backend Project Setup
-### Install Required Programs for Django: Python and Postgresql
-* `cd django_project`
-* `sudo apt update`
-* `sudo apt-get install python3-pip python-dev libpq-dev postgresql postgresql-contrib`
+Pull requests that do not meet this standard should not be merged.
 
-### Postgresql Setup
-* `sudo service postgresql start` 
-* `sudo su - postgres` Opens a postgres terminal
-* `psql` Opens a postgres database terminal
-* `CREATE DATABASE django_db;`
-* `CREATE USER django_user WITH PASSWORD 'password';`
-* `ALTER ROLE django_user SET client_encoding TO 'utf8';`
-* `ALTER ROLE django_user SET default_transaction_isolation TO 'read committed';`
-* `ALTER ROLE django_user SET timezone TO 'UTC';`
-* `GRANT ALL PRIVILEGES ON DATABASE django_db TO django_user;`
-* `\c django_db`
-* `CREATE EXTENSION pg_trgm;`
-* `SET pg_trgm.similarity_threshold = .2;`
-* `\q`
-* `exit`
+## Production Deployment Instructions
+1. Navigate to `CISC475` directory on server.
+2. Stash any modified files on server: `git stash`
+3. Pull latest changes from your repo: `git pull`
+4. Pop stashed files: `git stash pop`
+5. If there are changes in Angular:
+    1. `cd  ~/CISC475_D5/angular-frontend`
+    2. `ng build --prod`
+    3. Then copy generated files: `sudo cp -r /home/ubuntu/CISC475_D5/angular-frontend/dist/angular-frontend/* /var/www/html/`
+ 1. If there are changes to tables in django:
+    1. `cd ~/CISC475_D5/django_project`
+    2. Prepare migration files: `python3 manage.py makemigrations`
+    3. Migrate table changes to postgres: `python3 manage.py migrate`
+    4. Restart apache: `sudo service apache2 restart`
 
-### Python Requirements
-* `cd project`
-* `pip3 install -r requirements.txt`
-* Some people may have trouble installing Pillow from `requirements.txt`. Try this command instead: `sudo apt install libjpeg8-dev zlib1g-dev`
+## Various Data Backup and Restore Procedures
 
-### Allow Outside Hosts
-* `vim settings.py`
-* Find ALLOWED_HOSTS and fill it in with all the urls that the site will be referenced as (IP address, url, etc.)
-* Put this line at the bottom: `STATIC_ROOT = os.path.join('~/CIVAM/django_project', 'static/')`
-* Click esc and :wq to exit
-* Our group found that adding `'*'` to ALLOWED_HOSTS was necessary to run in development mode locally (do not add this on the server code)
+### BACKING UP AWS DATABASE CONTENT
 
-### Migrate Models
-* `cd ..`
-* `python3 manage.py makemigrations`
-* `python3 manage.py migrate`
+[This](docs/AWS_DB_BACKUP_AND_RESTORE.md) document explains how to back up the database content only (no media).
 
-### Create Superuser for Admin Portal
-* `python3 manage.py createsuperuser`
+### SETTING UP LOCAL DATABASE WITH CONTENT
 
-### Run Project
-* `python3 manage.py runserver`
-* Navigate to http://127.0.0.1:8000/admin to view the admin portal
-
----
-
-## Frontend Project Setup
-### Install NodeJS (npm) and Angular (ng) dependencies
-* `cd angular-frontend`
-* Install NodeJS
-   * For Ubuntu or WSL https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/ 
-* Put npm PATH in manually: `usr/bin/npm`
-   * Option 1: Add the alias to your .bash_profile
-   * Option 2: Put it in your Environment Variables under System Properties
-* `sudo npm install -g @angular/cli`
-* (Here is the Angular docs for reference: https://angular.io/cli)
-* `cd angular-frontend`
-* `npm install`
-* `npm install jwt-decode --save`
-
-### Build project
-* `ng build`
-* `ng serve --host 0.0.0.0`
-* Navigate to http://127.0.0.1:4200/ to view the frontend site
-
-# To Run Site Locally
-* `cd django_project`
-* `sudo service postgresql start` 
-* `python3 manage.py runserver`
-* `cd ../angular-frontend`
-* `ng build`
-* `ng serve`
-* Backend: http://127.0.0.1:8000/admin
-* Frontend: http://127.0.0.1:4200/
-* If you encounter errors where your locally served website does not update as changes are made in the code (without re-serving), run `ng serve --poll=2000` during the steps above
-* An easier way to load the frontend and backend site locally is to run `./run.sh` in the CISC475_D5 directory. It will take care of everything for you.
-* When running the front and backend of the project locally with a copy of the database, the collection images will show up as black squares. Don't fear though as this is normal. The URL for the images changes since you will be running on localhost. If you want to see how things react with actual images, you can go to the django admin site http://127.0.0.1:8000/admin and create your own user and add some test collection data.
-
----
+[Here](docs/LOCAL_DB_RESTORE.md) is how you can set up your local environment with data from the site.
 
 ## Resources
-From the CIVAM Google Drive Folder (get access from Cindy Ott)
-* Website Information Folder: https://drive.google.com/drive/u/1/folders/1kLZumZYjkP4IBg42w1kuQPbsW9XPwnIJ?ths=true
 
----
+### Google Map Information and Data Flow
 
-## Some Helpful Git Commands
-### Rebasing Instructions
-* Be sure to add and commmit all changes to your branch.
-* Do the following where originbranch is the branch you want to rebase onto and featurebranch is the branch with your changes.
-```
-git fetch
-git checkout <originbranch>
-git pull
-git checkout <featurebranch>
-git rebase <originbranch>
-```
-* If there are any merge conficts: fix them, add, and commit changes.
-* Then run the following
-```
-git rebase --continue
-```
-* Repeat this with any other merge conflicts keeping in mind that this is applying each one of your commits to the originbranch one at a time. 
-* When finished with all merge conflicts push your changes (Make sure you are on your feature branch).
-```
-git push
-```
-### To get a deleted file back
-* First find the last commit that edited that file and note the first few characters in the hash.
-```
-git log -- <filename>
-```
-* Then checkout that file from one commit before the last change (your deletion).
-```
-git checkout <deletion commit hash>~1 -- <filename>
-```
-### To revert changes to a file
-* First find the commit you wish to revert to and note the first few characters in the hash.
-* The following will get commits that edited the file.
-```
-git log -- <filename>
-```
-* Then checkout from the commit with the version of the file you want.
-```
-git checkout <desired version commit hash> <filename>
-```
+[This](docs/map_info.md) document details the nuances of the Google map that is used in the CIVAM site.
 
----
+### RClone Media Backup
 
-# Backend Development & Cleaning Instructions
-## Reset Civam Migrations: Recreates Postgresql Tables (THIS WILL DELETE ALL CIVAM OBJECTS IN THE DATABASE)
-### Delete all files in civam/migrations/ execpt for __init__.py
-* `cd django_project/civam/migrations`
-* Make SURE you are in the right directory before running the command below
-* `rm !(__init__.py)`
+[This](docs/rclone_instructions.md) document details the RClone media backup procedure.
 
-#### Clean up postgresql database
-* `sudo service postgresql start`
-* `sudo -i -u postgres`
-* `psql`
-* `\c django_db`
-* `select 'drop table if exists "' || tablename || '" cascade;' from pg_tables where tablename like 'civam%';`
-* Copy queries resturned from above command, paste, and run
-* `delete from django_migrations where app='civam';`
-* `\q`
-* `exit`
+### Restarting the AWS Server
 
-### Migrate
-* `cd ../..`
-* `python3 manage.py makemigrations`
-* `python3 manage.py migrate`
+In case you need it, [here](docs/RESTART_INSTANCE.md) are details about restarting the AWS server.
 
-### General Advice
-* Always run postgresql service before migrating or running django
-* Any errors that mention port5432 or errors in python installation directories are likely caused by postgresql service not being run
-* If you get this warning: “Your global Angular CLI version (#.#.#) is greater than your local version (#.#.#). The local Angular CLI version is used” then run: `npm install --save-dev @angular/cli@latest`
-* If you have problems with migrations locally, follow the Backend Dev & Cleaning Instructions
-* To stop the frontend's process, run `ps -ef | grep "ng serve"`, find the PID of the process, and run `kill <PID>`.
-* To stop the backend's process, run `ps auxw | grep runserver`, find the PID of the process, and run `kill <PID>`.
-* The following migration files are not needed for local development and need to be deleted in order to run the site locally:
-```
-django_project/civam/migrations/0006_auto_20200528_1202.py
-django_project/civam/migrations/0007_collection_dates.py 
-```
-
----
-
-## Deployment Instructions and Running on the AWS Server
-
-**NOTE: Our group recorded videos of our deployment process on the AWS server. Check out the videos in the CIVAM Google Drive before attempting. Link: https://drive.google.com/drive/u/1/folders/1kLZumZYjkP4IBg42w1kuQPbsW9XPwnIJ?ths=true.**
-
-* During your first deployment, point the project to your copy of the repository and remove ours.
-
-* Log in, then `cd CISC475_D5`
-* Make a copy of the database and store in `db_backups` folder on the server. See video or text commands listed below:
-
-### Back up the database
-* Create a directory to store the database backups on the server (outside of the CISC475_D5 directory): `mkdir db-backups`
-* `cd CISC475_D5/django_project/`
-* `python3 manage.py dumpdata > database-backup-1.json` (you can name the `.json` file whatever you want)
-* Move `database-backup-1.json` to `db-backups` directory so it doesn't exist in the project
-* `mv database-backup-1.json ../../` and then `mv database-backup-1.json db-backups`
-
-* Run `git stash` to make sure that you can pull any new changes
-* Run `git pull` to make sure that all the new changes are stored
-* Run `git stash pop` to get back uncommited files during normal operations of the website (from `civam-env`)
-* Go into the angular folder with `cd angular-frontend`
-* Run `ng build --prod` to get the updated angular files
-* Run `sudo cp -r /home/ubuntu/CISC475_D5/angular-frontend/dist/angular-frontend/* /var/www/html/` to move the updated angular files into the frontend html folder
-* Go back to the CISC475_D5 folder and run `source civam-env/bin/activate` so that you’ll be able to run the django commands correctly
-* Run `python3 manage.py makemigrations` and `python3 manage.py migrate`. If these don’t work you make have to follow the steps to reset the postgres tables (THIS WILL DELETE ALL ITEMS SO ONLY DO IT IF YOU’VE CHECKED EVERYTHING ELSE)
-* Django is served in production by apache using the wsgi module to allow apache to understand python code
-* Django and WSGI configuration located at `/etc/apache2/sites-available/django-le-ssl.conf` and `/home/ubuntu/CISC475_D5/django_project/project/wsgi.py`
-* In order to start and stop the django backend, you must start and stop apache which uses the commands: `sudo service apache2 start` and `sudo service apache2 stop` respectively
-* Go to civam-mt.org/home to make sure that collections are loading
-
----
-# TODO: Tasks Cindy Would Like Done on Website (for a future group)
-* Feature Requests: https://docs.google.com/document/d/1X3J5giA5EF_k_V2p0yzFEicePp5NafyklIJ6-EjWne0/edit 
-* Be sure to meet with Cindy and discuss requirements before starting
+### CIVAM Google Drive Folder
+Website Information Folder: https://drive.google.com/drive/u/1/folders/1kLZumZYjkP4IBg42w1kuQPbsW9XPwnIJ?ths=true
