@@ -38,6 +38,8 @@ $gold-l2: #FEFCEE;
 }
 
 .item-button-column{
+    position: sticky;
+    top: min(125px,10rem);
     display: grid;
     row-gap: 1vh;
     width: auto;

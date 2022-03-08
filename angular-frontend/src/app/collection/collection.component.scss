@@ -39,6 +39,8 @@ $red: #C7161C;
 }
 
 .collection-button-column{
+    position: sticky;
+    top: min(125px,10rem);
     display: grid;
     row-gap: 1vh;
     width: auto;
