@@ -1,5 +1,6 @@
 h3 {
     font-weight: bold;
+    margin-top:2rem;
 }
 
 $dark-brown: #553c0f;       // selected element
@@ -77,7 +78,7 @@ $gold-l2: #FEFCEE;
     grid-column: 3;
 }
 .nav-item{
-    //background-color: #553c0f;
+    width:101%;
     text-decoration-style: none;
     color: black;
     list-style: none;
@@ -140,7 +141,6 @@ $gold-l2: #FEFCEE;
 
 .image { 
     height: 400px; 
-    margin-bottom: 2rem;
 }
 
 .image:hover {

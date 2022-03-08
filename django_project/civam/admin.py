@@ -64,6 +64,7 @@ class VideoInline(admin.TabularInline):
 
 class NarrativeInline(admin.TabularInline):
     model = Narrative
+    verbose_name_plural = "Narratives and Comments"
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
 
 class PorIInline(admin.TabularInline):

@@ -20,7 +20,7 @@
                 </li>
                 <li class="nav-item ibc2">
                     <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'narr'}"
-                        href="{{currentPageUrl}}#narr">Narratives</a>
+                        href="{{currentPageUrl}}#narr">Narratives & Comments</a>
                 </li>
                 <li class="nav-item ibc3">
                     <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'coll'}"
@@ -301,8 +301,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="narrative">Narrative</label>
-                                                    <textarea placeholder="Your narrative" rows="3" type="text"
+                                                    <label for="narrative">Narrative or Comment</label>
+                                                    <textarea placeholder="Your narrative or comment" rows="3" type="text"
                                                         formControlName="narrative" class="form-control"
                                                         [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.narrative.errors }"></textarea>
                                                     <div *ngIf="submitted && narrativeForm.controls.narrative.errors"
