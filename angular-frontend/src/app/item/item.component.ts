@@ -102,6 +102,7 @@ export class ItemComponent implements OnInit {
         return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
         })
       this.msaapPlaylist = this.buildPlaylist(this.item.audio_tracks);
+      this.msaapPlaylist = this.buildPlaylist(this.item.video_to_audios);
     });
   }
 
@@ -131,6 +132,7 @@ export class ItemComponent implements OnInit {
   getTrackName(filename:string) {
     return filename.split('\\').pop().split('/').pop();
   }
+  
 
   toggleModal() {
     if (this.showModal) {

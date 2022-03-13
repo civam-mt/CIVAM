@@ -79,6 +79,9 @@ class AudioTrackForm(forms.Form):
 class VideoForm(forms.Form):
     link = forms.URLField(required=False)
 
+class VideoToAudioForm(forms.Form):
+    content = forms.FileField(required=False)
+    link = forms.URLField(required=False)
     
 class CollectionGroupForm(ModelForm):
     class Meta:

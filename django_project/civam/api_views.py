@@ -369,6 +369,10 @@ def item_solo(request, item_id):
 		audio_track = AudioTrack.objects.filter(item_id=item_id)
 	except AudioTrack.DoesNotExist:
 		audio_track = None
+	try:
+		video_to_audio = VideoToAudio.objects.filter(item_id=item_id)
+	except VideoToAudio.DoesNotExist:
+		video_to_audio = None
 	# TODO: Display videos
 	try :
 		video = Video.objects.filter(item_id=item_id)
@@ -401,7 +405,8 @@ def item_solo(request, item_id):
     'narratives': list(narratives.values()),
     'images': list(image.values()),
     'videos': vids,
-    'audio_tracks': list(audio_track.values())
+    'audio_tracks': list(audio_track.values()),
+	'video_to_audios': list(video_to_audio.values())
     }
 	return JsonResponse(context, safe=False)
 
