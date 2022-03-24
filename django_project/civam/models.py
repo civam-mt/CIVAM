@@ -18,6 +18,8 @@ from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.db.models.functions import Lower
 import moviepy.editor as mp
+from vimeo_downloader import Vimeo
+from django.core.files import File
 
 logger = logging.getLogger(__name__)
 
@@ -195,7 +197,7 @@ class Image(models.Model):
 class AudioTrack(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="audiotracks")
     content = models.FileField(upload_to=image_upload_path)
-
+    
     def __str__(self):
         return "Audio Track: {}".format(self.item.name)
 
@@ -227,7 +229,6 @@ class AudioTrack(models.Model):
             except Exception:
                 logger.error("Could not convert '" + file_name + "' to mp3 format.")
 
-
 # A Video of an Item (link to external streaming service)
 # Has an Item that it belongs to
 class Video(models.Model):
@@ -238,6 +239,53 @@ class Video(models.Model):
 
     def __str__(self):
         return "Video: {}".format(self.item.name)
+
+class VideoToAudio(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="videotoaudios")
+    link = models.URLField()
+    content = models.FileField(upload_to="mp4_to_mp3/",blank=True)
+
+    def __str__(self):
+        return "Video to Audio Track: {}".format(self.item.name)
+    
+    def save(self, **kwargs):
+        """
+        We override the superclass' 'save' method, to handle tricky extraction
+        of audio from video files and to enforce a uniform audio format for
+        all files.
+        """
+        # save initial element, this is required for conversion
+        super(VideoToAudio, self).save()
+        link = self.link
+        end_of_path = link.split(".com/")[1]
+        extension = link.split("://")[0]
+        new_name_of_file = end_of_path + ".mp3"
+        # if URL starts with https do this:
+        if extension == 'https':
+            # noinspection PyBroadException
+            try:
+                # Make link variable
+                video = Vimeo(link)
+                #video streams
+                s = video.streams
+                # Pick best stream
+                best_stream=s[-1]
+                #download video and place in directory
+                best_stream.download(download_directory='/home/ubuntu/CISC475_D5/django_project/media/mp4_to_mp3',filename=end_of_path + ".mp4")
+                # extract audio from video file, write to given file path
+                audio_clip = mp.AudioFileClip("/home/ubuntu/CISC475_D5/django_project/media/mp4_to_mp3/" + end_of_path + ".mp4")
+                audio_clip.write_audiofile("/home/ubuntu/CISC475_D5/django_project/media/mp4_to_mp3/" + new_name_of_file)
+                # instantiate new 'FieldFile', this becomes content of this item
+                self.content = FieldFile(field=self.content, instance=None, name="mp4_to_mp3/"+new_name_of_file)
+                
+                # call superclass save again to update this item
+                super(VideoToAudio, self).save(update_fields=['content'])
+                # remove video file
+                os.remove("/home/ubuntu/CISC475_D5/django_project/media/mp4_to_mp3/" + end_of_path + ".mp4")
+            except Exception:
+                logger.error("Could not convert '" + file_name + "' to mp3 format.")
+
+
 
 
 #Narrative, Used for each item. Kind of like a backend only story for now. 
