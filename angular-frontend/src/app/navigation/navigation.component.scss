@@ -28,6 +28,7 @@ a {
     }
     .navbar-expand-custom .navbar-collapse {
         display: flex!important;
+
     }
     .navbar-expand-custom .navbar-toggler {
         display: none;
@@ -165,6 +166,7 @@ a.dropdown-item.active {
     color: $gold;
     font-size: large;
     padding-left: 2vw;
+    width: fit-content;
 }
 
 .nav-link:hover {

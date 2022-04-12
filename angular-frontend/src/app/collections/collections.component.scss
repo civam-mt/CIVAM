@@ -143,7 +143,7 @@ $gold: #bf9b30;
         }
 
         p {
-            text-align: center;
+            text-align: justify;
             font-size: large;
         }
 
@@ -194,9 +194,9 @@ $gold: #bf9b30;
         }
 
         .collection-img {
-            width: 90%;
+            width: 100%;
             height: auto;
-            max-height: 50vh;
+            max-height: 100vh;
             object-fit: cover;
         }
 

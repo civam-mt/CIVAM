@@ -13,3 +13,4 @@ akismet==1.1
 django-colorfield==0.4.1
 django-admin-sortable2==0.7.8
 moviepy==1.0.3
+vimeo_downloader==0.3.3

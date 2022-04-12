@@ -112,14 +112,15 @@ $gold: #bf9b30;
     font-weight: bold;
     padding-bottom:5%;
 }
-
-.exploreButton:hover span{
-    display: none;
+.hidden {
+    display:none;
 }
-
-
-.exploreButton:hover::after{
-    content: "Explore Topic" !important;
+.exploreButton:hover span{
+    top: 50%;
+}
+.exploreButton:hover .hidden {
+    display: block;
+    margin-bottom:0;
 }
 
 .exploreButton:hover{
