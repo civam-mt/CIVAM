@@ -55,12 +55,12 @@ class ItemInline(admin.TabularInline):
 class ImageInline(admin.TabularInline):
     model = Image
 
+class VideoInline(admin.TabularInline):
+    model = Video
+
 class AudioTrackInline(admin.TabularInline):
     model = AudioTrack
     verbose_name_plural = "AUDIO TRACKS - upload videos here to extract and store audio only"
-
-class VideoInline(admin.TabularInline):
-    model = Video
 
 class VideoToAudioInLine(admin.TabularInline):
     model = VideoToAudio
@@ -97,7 +97,7 @@ class ItemAdmin(DefaultAdmin):
         'is_cataloged', 'is_public'
     ]
 
-    inlines = [ImageInline, AudioTrackInline, VideoInline,VideoToAudioInLine, NarrativeInline]
+    inlines = [ImageInline, VideoInline, AudioTrackInline, VideoToAudioInLine, NarrativeInline]
     search_fields = ['name','collection__title','culture_or_community','creator__name','date_of_creation','place_created','catalog_number','keywords__word']
 
     def cataloged(self, obj):
