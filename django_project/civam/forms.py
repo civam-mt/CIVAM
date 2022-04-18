@@ -71,10 +71,6 @@ class ImageForm(forms.Form):
     content = forms.ImageField(required=False)
 
 
-class AudioTrackForm(forms.Form):
-    content = forms.FileField(required=False)
-
-
 # Displayed on same page as ItemForm
 class VideoForm(forms.Form):
     link = forms.URLField(required=False)
