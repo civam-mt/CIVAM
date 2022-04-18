@@ -208,7 +208,9 @@ button#search-button:hover {
     position:fixed;
     z-index:9000 !important;
 }
-
+#map-link{
+    padding-right: 1rem;
+}
 #searchBox{
     background-color: rgb(241, 237, 233) !important;
 }
