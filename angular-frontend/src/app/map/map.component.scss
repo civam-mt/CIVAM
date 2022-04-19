@@ -112,7 +112,11 @@ $gray-l1: #1e1e1ecf;
   grid-column: 4;
   grid-row: 1;
 }
-
+.filter-item-4 {
+  width: fit-content;
+  grid-column: 4/6;
+  grid-row: 1;
+}
 #title {
     font-size: 2em;
 }
