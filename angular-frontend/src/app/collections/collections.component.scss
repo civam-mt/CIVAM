@@ -7,12 +7,12 @@ $gold: #bf9b30;
 
 
 .even {
-    background-color: #FDF6CD;
+    background-color: #e3f4fb;
 
 }
 
 .odd {
-    background-color: #FEF9DC;
+    background-color: #d4efff;;
 }
 
 .collection-container {
@@ -235,9 +235,9 @@ $gold: #bf9b30;
 
         .collection-btn {
             margin-top: 1vh;
-            background-color: green; /* Green */
+            background-color: #f7d417; 
             border: none;
-            color: white;
+            color: black;
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
@@ -252,7 +252,18 @@ $gold: #bf9b30;
 }
 
 @media(max-width: 1500px) {
+
+    .even {
+        background-color: #e3f4fb;
+    
+    }
+    
+    .odd {
+        background-color: #d4efff;;
+    }
+
     .collection-collection-grid {
+       
         display: grid;
         padding-left: min(15%, 300px);
         padding-right: min(15%, 300px);
@@ -337,9 +348,9 @@ $gold: #bf9b30;
 
         .collection-btn {
             margin-top: 1vh;
-            background-color: green; /* Green */
+            background-color: #f7d417; /* Green */
             border: none;
-            color: white;
+            color: black;
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
@@ -354,6 +365,7 @@ $gold: #bf9b30;
 }
 
 .colAdd{
+    background-color: #e3f4fb;
     text-align: center;
     font-size: xx-large;
     padding-top: 5% !important;
