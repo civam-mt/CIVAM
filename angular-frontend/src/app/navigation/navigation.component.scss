@@ -193,16 +193,17 @@ a.dropdown-item.active {
 }
 
 button#search-button {
+    color: black;
     margin-top: 0px !important;
     display: inline-block !important;
-    background-color: $light-brown;
-    border-color: $dark-brown;
+    background-color: #9cd3f5 ;
+    border-color: #32b6eb;
 }
 
 button#search-button:hover {
     display: inline-block !important;
     margin-top: 0px !important;
-    background-color: $gold;
+    background-color: #32b6eb;
 }
 .cdk-overlay-container{
     position:fixed;
