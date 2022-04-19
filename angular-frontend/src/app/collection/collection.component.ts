@@ -70,7 +70,7 @@ export class CollectionComponent implements OnInit {
   getCollectionByCollectionID(collectionID: string, keywordIds: string[]) {
     this.api.getCollectionByCollectionID(collectionID, keywordIds).subscribe((data) => {
       this.collection = data;
-      this.items = this.collection["item_list"];
+      this.items = this.collection["item_list"].sort((a,b) => { if (a.name > b.name) return 1; else return -1 });
       this.keywords = this.collection["keywords"];
       this.creators = this.collection["creator"];
       this.backgroundURL = this.collection["cover_image"];
