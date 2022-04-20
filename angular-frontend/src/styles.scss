@@ -38,6 +38,9 @@ div {
 
 // Use this class for consistent title styles
 .title {
+    @media (max-width:586px) {
+        font-size: 2rem;
+    }
     font-weight: bold;
     font-size: 3.5rem;
 }
