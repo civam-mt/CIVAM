@@ -53,7 +53,7 @@ export class SearchResultComponent implements OnInit {
 
   getItems(query: string) {
     this.api.getSearch(query).subscribe((data) => {
-      this.items = data["items"];
+      this.items = data["items"].sort((a,b) => { if (a.name > b.name) return 1; else return -1 });;
     });
   }
 

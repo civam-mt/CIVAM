@@ -112,7 +112,11 @@ $gray-l1: #1e1e1ecf;
   grid-column: 4;
   grid-row: 1;
 }
-
+.filter-item-4 {
+  width: fit-content;
+  grid-column: 4/6;
+  grid-row: 1;
+}
 #title {
     font-size: 2em;
 }
@@ -228,14 +232,12 @@ img {
 
 .layers {
   .layer-lg {
-      width: 100%;
-      height: max(70vh, 100%);
-      max-height: 800px;
-      min-height: 500px;
-      //margin-top: 3vh;
-      padding-top: 2.5%;
-      padding-left: 5%;
-      padding-right:5%;
+    width: 100%;
+    height: 30vh !important;
+    // margin-top: 3vh;
+    padding-top: 2.5%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
   .layer-lg-ub {
@@ -262,11 +264,12 @@ img {
 
   .layer-sm {
       width: 100%;
-      height: 30vh;
+      //height: 30vh;
       max-height: 300px;
-      min-height: 200px;
+      //min-height: 200px;
       //margin-top: 3vh;
       padding-top: 2.5%;
+      padding-bottom: 2.5%;
       padding-left: 5%;
       padding-right:5%;
   }
@@ -293,12 +296,10 @@ img {
   }
 
   .top-content {
-    @media (min-width:1500px) {
-        padding-top: min(10%, 30vh);
+    @media (max-width:500px) {
+        padding-top: min(20%,30vh);
     }
-    @media (max-width:1500px) {
-        padding-top: min(20%, 30vh);
-    }
+    margin-top: 3vh;
     overflow: visible;
     background-position: top;
     background-size: cover;

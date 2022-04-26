@@ -6,13 +6,15 @@ $crow-red: rgb(231, 28, 44);
 $theme-color: #f7d417;      // theme color
 $lighter-yellow: #ffffb7;   // dropdown color (lighter version of theme)
 
+$breakpoint:1150px;
+$reduceTitle:1325px;
 a {
     text-decoration-style: none;
     background-color: transparent;
 }
 
 
-@media (min-width: 1450px){
+@media (min-width: $breakpoint){
     .navbar-expand-custom {
         flex-direction: row;
         flex-wrap: nowrap;
@@ -64,12 +66,13 @@ a {
 }
  
 .hide-when-big {
-    @media (max-width: 1450px) {display: none;}
-    @media (min-width: 1450px) {display: inherit;}
+    @media (max-width: $breakpoint) {display: none;}
+    @media (min-width: $breakpoint) {display: inherit;}
 }
 
 .push-inline {
     display: inherit;
+    margin-inline: auto;
     // float: right;
     // text-align: right;
 }
@@ -78,7 +81,7 @@ a {
     color: black;
     text-decoration: none;
 
-    @media(min-width: 1450px) {
+    @media(min-width: $breakpoint) {
         .title h3{
             // font-weight: bold;
             // font-size: xx-large;
@@ -91,8 +94,9 @@ a {
     }
     
     
-    @media(max-width: 1450px) {
+    @media(max-width: $reduceTitle) {
         .nav-title h3{
+            margin-top: 10px;
             font-weight: bold;
             font-size: large;
         }
@@ -189,22 +193,25 @@ a.dropdown-item.active {
 }
 
 button#search-button {
+    color: black;
     margin-top: 0px !important;
     display: inline-block !important;
-    background-color: $light-brown;
-    border-color: $dark-brown;
+    background-color: #9cd3f5 ;
+    border-color: #32b6eb;
 }
 
 button#search-button:hover {
     display: inline-block !important;
     margin-top: 0px !important;
-    background-color: $gold;
+    background-color: #32b6eb;
 }
 .cdk-overlay-container{
     position:fixed;
     z-index:9000 !important;
 }
-
+#map-link{
+    padding-right: 1rem;
+}
 #searchBox{
     background-color: rgb(241, 237, 233) !important;
 }
