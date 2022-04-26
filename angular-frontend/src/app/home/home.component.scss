@@ -149,13 +149,13 @@ img {
         }
         @media (max-width:689px) {
             padding-top: min(20%, 30vh);
-            font-size: xx-large;
+            font-size: 2rem;
         }
         @media (max-width:500px) {
             padding-top: min(30%,30vh);
         }
         @media (max-width:500px) and (max-height:1000px) {
-            font-size: x-large;
+            font-size: 1.5rem;
         } 
         @media (max-width:400px) {
             font-size: 1.5rem;
@@ -169,7 +169,7 @@ img {
         background-position: top;
         background-size: cover;
         background-attachment: scroll;
-        font-size: xxx-large;
+        font-size: 3rem;
         font-weight: bold;
         text-align: center;
         color: #000;
