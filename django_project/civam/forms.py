@@ -78,6 +78,9 @@ class VideoForm(forms.Form):
 class VideoToAudioForm(forms.Form):
     content = forms.FileField(required=False)
     link = forms.URLField(required=False)
+
+class PdfForm(forms.Form):
+    content = forms.FileField(required=False)
     
 class CollectionGroupForm(ModelForm):
     class Meta:

@@ -35,6 +35,7 @@ export class ItemComponent implements OnInit {
   itemID;
   images;
   rawVideos;
+  pdfs;
   videos;
   keywords;
   creators;
@@ -93,6 +94,7 @@ export class ItemComponent implements OnInit {
         this.backgroundUrl = result["cover_image"];
       });
       this.images = this.item["images"];
+      this.pdfs = this.item["pdfs"];
       this.narratives = this.item["narratives"];
       this.rawVideos = this.item["videos"];
       this.keywords = this.item["keywords"];

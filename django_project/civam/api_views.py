@@ -366,6 +366,10 @@ def item_solo(request, item_id):
 	except Image.DoesNotExist:
 		image = None
 	try:
+		pdf = Pdf.objects.filter(item_id=item_id)
+	except Pdf.DoesNotExist:
+		pdf = None
+	try:
 		video_to_audio = VideoToAudio.objects.filter(item_id=item_id)
 	except VideoToAudio.DoesNotExist:
 		video_to_audio = None
@@ -400,6 +404,7 @@ def item_solo(request, item_id):
     "location_of_originals":item.location_of_originals,
     'narratives': list(narratives.values()),
     'images': list(image.values()),
+	'pdfs': list(pdf.values()),
     'videos': vids,
 	'video_to_audios': list(video_to_audio.values())
     }
