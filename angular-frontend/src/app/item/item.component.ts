@@ -101,7 +101,6 @@ export class ItemComponent implements OnInit {
       this.videos = this.rawVideos.map(function(video) {
         return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
         })
-      this.msaapPlaylist = this.buildPlaylist(this.item.audio_tracks);
       this.msaapPlaylist = this.buildPlaylist(this.item.video_to_audios);
     });
   }

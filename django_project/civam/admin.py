@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, \
-    NewsTag, MapData, Explore, AudioTrack,VideoToAudio
+    NewsTag, MapData, Explore, VideoToAudio
 from guardian.admin import GuardedModelAdmin
 from adminsortable2.admin import SortableAdminMixin
 
@@ -58,13 +58,9 @@ class ImageInline(admin.TabularInline):
 class VideoInline(admin.TabularInline):
     model = Video
 
-class AudioTrackInline(admin.TabularInline):
-    model = AudioTrack
-    verbose_name_plural = "AUDIO TRACKS - upload videos here to extract and store audio only"
-
 class VideoToAudioInLine(admin.TabularInline):
     model = VideoToAudio
-    verbose_name_plural ='AUDIO TRACKS - place a URL link to extract mp4 and turn into a audio file'
+    verbose_name_plural ='AUDIO TRACKS - place a URL link to extract mp4 and turn into a audio file OR place an exact file path'
 
 class NarrativeInline(admin.TabularInline):
     model = Narrative
@@ -97,7 +93,7 @@ class ItemAdmin(DefaultAdmin):
         'is_cataloged', 'is_public'
     ]
 
-    inlines = [ImageInline, VideoInline, AudioTrackInline, VideoToAudioInLine, NarrativeInline]
+    inlines = [ImageInline, VideoInline,VideoToAudioInLine, NarrativeInline]
     search_fields = ['name','collection__title','culture_or_community','creator__name','date_of_creation','place_created','catalog_number','keywords__word']
 
     def cataloged(self, obj):
