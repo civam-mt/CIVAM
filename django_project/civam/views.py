@@ -107,6 +107,9 @@ def new_item(request, collection_id):
             for image in request.FILES.getlist('images'):
                 image_instance = Image(item=item_instance,content=image)
                 image_instance.save()
+            for pdf in request.FILES.getlist('pdfs'):
+                pdf_instance = Pdf(item=item_instance, content=pdf)
+                pdf_instance.save()
             for video_to_audio in request.FILES.getlist('video_to_audios'):
                 video_to_audio_instance = VideoToAudio(item=item_instance, content=video_to_audio)
                 video_to_audio_instance.save()
@@ -118,11 +121,15 @@ def new_item(request, collection_id):
     #regular GET
     item_form = ItemForm(prefix = 'item')
     image_form = ImageForm(prefix = 'image')
+    pdf_form = PdfForm(prefix='pdf')
     video_form = VideoForm(prefix = 'video')
     video_to_audio_form = VideoToAudioForm(prefix='video_to_audio')
     context = {
-        'item_form': item_form, 'image_form': image_form,
-        'video_form': video_form, 'collection': collection,
+        'item_form': item_form, 
+        'image_form': image_form,
+        'pdf_form': pdf_form,
+        'video_form': video_form, 
+        'collection': collection,
         'video_to_audio_form': video_to_audio_form
     }
     return render(request, 'civam/new_item.html', context)

@@ -203,6 +203,13 @@ class Video(models.Model):
     def __str__(self):
         return "Video: {}".format(self.item.name)
 
+class Pdf(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="pdfs")
+    content = models.FileField(upload_to=image_upload_path)
+
+    def __str__(self):
+        return "Pdf: {}".format(self.item.name)
+
 class VideoToAudio(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="videotoaudios")
     link = models.URLField(blank=True)

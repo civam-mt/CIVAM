@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, \
+from .models import Collection, Item, Image, Pdf, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, \
     NewsTag, MapData, Explore, VideoToAudio
 from guardian.admin import GuardedModelAdmin
 from adminsortable2.admin import SortableAdminMixin
@@ -55,6 +55,10 @@ class ItemInline(admin.TabularInline):
 class ImageInline(admin.TabularInline):
     model = Image
 
+class PDFInline(admin.TabularInline):
+    model = Pdf
+    verbose_name_plural = "PDF FILES - UPLOAD HERE"
+
 class VideoInline(admin.TabularInline):
     model = Video
 
@@ -93,7 +97,7 @@ class ItemAdmin(DefaultAdmin):
         'is_cataloged', 'is_public'
     ]
 
-    inlines = [ImageInline, VideoInline,VideoToAudioInLine, NarrativeInline]
+    inlines = [ImageInline, PDFInline, VideoInline,VideoToAudioInLine, NarrativeInline]
     search_fields = ['name','collection__title','culture_or_community','creator__name','date_of_creation','place_created','catalog_number','keywords__word']
 
     def cataloged(self, obj):
