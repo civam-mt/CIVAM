@@ -64,7 +64,7 @@ class VideoInline(admin.TabularInline):
 
 class VideoToAudioInLine(admin.TabularInline):
     model = VideoToAudio
-    verbose_name_plural ='AUDIO TRACKS - place a URL link to extract mp4 and turn into a audio file OR place an exact file path'
+    verbose_name_plural ='AUDIO TRACKS - place a URL link to extract mp4 and turn into an audio file OR upload a file from your computer'
 
 class NarrativeInline(admin.TabularInline):
     model = Narrative
