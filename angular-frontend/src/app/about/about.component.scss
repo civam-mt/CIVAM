@@ -282,11 +282,12 @@ strong {
     .layer-sm {
         width: 100%;
         height: 30vh !important;
+        max-height: 300px !important;
         min-height: 200px !important;
         //margin-top: 3vh;
-        padding-top: 2.5%;
-        padding-left: 5%;
-        padding-right:5%;
+        padding-top: 2.5% !important;
+        padding-left: 5% !important;
+        padding-right:5% !important;
     }
 
     .layer-unbounded {
@@ -299,7 +300,9 @@ strong {
         padding-right:5%;
     }
 
-  .top-content {        
+  .top-content {
+        margin-top: min(8vh, 100px) !important;
+        
         overflow: visible;
         background-position: top !important;
         background-size: cover !important;
@@ -327,8 +330,11 @@ strong {
         }
     }
     .top-content {
-        @media (max-width:500px) {
-            padding-top: min(20%,30vh);
+        @media (min-width:1500px) {
+            padding-top: min(10%, 30vh);
+        }
+        @media (max-width:1500px) {
+            padding-top: min(20%, 30vh);
         }
         margin-top: 3vh;
         overflow: visible;
