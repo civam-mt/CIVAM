@@ -111,7 +111,7 @@ import {NgxAudioPlayerModule} from 'ngx-audio-player';
     NgxAudioPlayerModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
-    	apiKey: 'AIzaSyBdzQliIx3SHhnFwX_YvxmoYcZJk9-2tQE'
+    	apiKey: 'AIzaSyCKsC8YlYs6bkPacj3Sd_Jf2SAvMWGJMy8'
     })
   ],
 
