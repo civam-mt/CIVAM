@@ -394,6 +394,7 @@ class SiteText(models.Model):
         ('PEOPLE2','About: People: Bio 2'),
         ('PEOPLE3','About: People: Bio 3'),
         ('PEOPLE4','About: People: Bio 4'),
+        ('PEOPLE5','About: People: Bio 5'),
         ('CONTACT','About: Resources & Contact Information'),
         ('MAP_CON', 'Map: Context for the Map, and How to use it'),
         ('HOME_MAP', 'Home: Simple context about the map'),

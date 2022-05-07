@@ -23,7 +23,7 @@ export class AboutComponent implements OnInit {
   public currentPageUrl:string;
   public allowedSubPage:string[] = ['mission', 'origin', 'people', 'contact'];
   public siteTextIDs = ['ABOUT', 'MISSION', 'ORIGINS', 'PEOPLE1',
-                        'PEOPLE2', 'PEOPLE3', 'PEOPLE4', 'CONTACT'];
+                        'PEOPLE2', 'PEOPLE3', 'PEOPLE4', 'PEOPLE5', 'CONTACT'];
   public siteTexts = {};
   
   ngOnInit(): void {
