@@ -51,6 +51,25 @@
 
                                 </div>
 
+                                <div *ngIf="pdfs.length > 0" id="pdf-container">
+                                    <pdf-viewer
+                                        [src]="pdfSrc"
+                                        [original-size]="false"
+                                        [show-all]="true"
+                                        [fit-to-page]="true"
+                                        [zoom]="1"
+                                        [zoom-scale]="'page-width'"
+                                        [stick-to-page]="false"
+                                        [render-text]="true"
+                                        [external-link-target]="'blank'"
+                                        [autoresize]="true"
+                                        [show-borders]="false"
+                                        style="width: 100%; height: 600px;"
+                                        >
+                                    </pdf-viewer>
+                                </div>
+
+
                                 <div *ngIf="images">
                                     <div *ngIf="images.length < 2; else elseBlock">
                                         <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
