@@ -22,7 +22,7 @@ from django.db.models.functions import Lower
 import moviepy.editor as mp
 from vimeo_downloader import Vimeo
 from django.core.files import File
-
+from django.template.defaultfilters import linebreaks
 logger = logging.getLogger(__name__)
 
 # Civam models are defined here
@@ -394,6 +394,7 @@ class SiteText(models.Model):
         ('PEOPLE2','About: People: Bio 2'),
         ('PEOPLE3','About: People: Bio 3'),
         ('PEOPLE4','About: People: Bio 4'),
+        ('PEOPLE5','About: People: Bio 5'),
         ('CONTACT','About: Resources & Contact Information'),
         ('MAP_CON', 'Map: Context for the Map, and How to use it'),
         ('HOME_MAP', 'Home: Simple context about the map'),
@@ -405,6 +406,13 @@ class SiteText(models.Model):
     content = models.TextField()
     location = models.CharField('Location of text on site', max_length=8, choices=DATA_LOCATIONS, default='ABOUT', unique=True)
 
+    def save(self, **kwargs):
+        # We save a new content field with linebreaks
+        super(SiteText, self).save()
+        self.content = linebreaks(self.content)
+        super(SiteText,self).save(update_fields=['content'])
+
+    # print(content)
     def __str__(self):
         return self.location
 
