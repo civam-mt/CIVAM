@@ -56,6 +56,7 @@ import { environment } from 'src/environments/environment';
 import { FooterComponent } from './footer/footer.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import {NgxAudioPlayerModule} from 'ngx-audio-player';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 // TODO: Fix this so it's functional
 // import { ModalServiceModule } from 'modal-service';
@@ -109,6 +110,7 @@ import {NgxAudioPlayerModule} from 'ngx-audio-player';
     FlexLayoutModule,
     JwPaginationModule,
     NgxAudioPlayerModule,
+    PdfViewerModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({
     	apiKey: 'AIzaSyCKsC8YlYs6bkPacj3Sd_Jf2SAvMWGJMy8'

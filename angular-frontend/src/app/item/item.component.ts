@@ -47,6 +47,10 @@ export class ItemComponent implements OnInit {
   showNavigationIndicators = true;
   showModal: boolean = false; 
 
+  // pdf vars
+  pdfSrc;
+  pdf_link: string;
+
   // Audio Player vars
   msaapDisplayTitle = true;
   msaapDisplayPlayList = true;
@@ -104,7 +108,15 @@ export class ItemComponent implements OnInit {
         return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
         })
       this.msaapPlaylist = this.buildPlaylist(this.item.video_to_audios);
+      this.pdfSrc = this.buildPdf(this.item.pdfs);
     });
+  }
+
+  buildPdf(content:Array<any>) {
+    content.forEach(e => {
+      this.pdf_link = this.API_URL + '/media/' + e.content;
+    });
+    return this.pdf_link;
   }
 
   /**
