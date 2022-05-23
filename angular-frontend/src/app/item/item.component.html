@@ -118,55 +118,49 @@
                         <div *ngIf="item.description">
                             <div>
                                 <p><strong>Description</strong></p>
-                                <a>{{item.description}}</a>
+                                <p [innerText]="item.description"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.culture_or_community">
                             <div>
                                 <p><strong>Culture or Community</strong></p>
-                                <a>{{item.culture_or_community}}
-                                </a>
+                                <p [innerText]="item.culture_or_community"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.other_forms">
                             <div>
                                 <p><strong>Other Forms</strong></p>
-                                <a>{{item.other_forms}}
-                                </a>
+                                <p [innerText]="item.other_forms"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.date_of_creation">
                             <div>
                                 <p><strong>Date of Creation</strong></p>
-                                <a>{{item.date_of_creation}}
-                                </a>
+                                <p [innerText]="item.date_of_creation"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.physical_details">
                             <div>
                                 <p><strong>Physical Details</strong></p>
-                                <a>{{item.physical_details}}
-                                </a>
+                                <p [innerText]="item.physical_details"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.access_notes_or_rights_and_reproduction">
                             <div>
                                 <p><strong>Access Notes or Rights and Reproduction</strong></p>
-                                <a>{{item.access_notes_or_rights_and_reproduction}}
-                                </a>
+                                <p [innerText]="item.access_notes_or_rights_and_reproduction"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.catalog_number">
                             <div>
                                 <p><strong>Catalog Number</strong></p>
-                                <a>{{item.catalog_number}}
-                                </a>
+                                <p [innerText]="item.catalog_number"></p>
                             </div>
                             <br>
                         </div>
@@ -182,31 +176,28 @@
                         <div *ngIf="item.provenance">
                             <div>
                                 <p><strong>Provenance</strong></p>
-                                <a>{{item.provenance}}</a>
+                                <p [innerText]="item.provenance"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.citation">
                             <div>
                                 <p><strong>Citation</strong></p>
-                                <a>{{item.citation}}
-                                </a>
+                                <p [innerText]="item.citation"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.historical_note">
                             <div>
                                 <p><strong>Historical Note</strong></p>
-                                <a>{{item.historical_note}}
-                                </a>
+                                <p [innerText]="item.historical_note"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.place_created">
                             <div>
                                 <p><strong>Place Created</strong></p>
-                                <a>{{item.place_created}}
-                                </a>
+                                <p [innerText]="item.place_created"></p>
                             </div>
                             <br>
                         </div>
@@ -223,8 +214,8 @@
                         </div>
                         <div *ngIf="item.location_of_originals">
                             <div>
-                                <p><strong>Location of Originals</strong>
-                                    <br>{{item.location_of_originals}}</p>
+                                <p><strong>Location of Originals</strong></p>
+                                    <p [innerText]="item.location_of_originals"></p>
                             </div>
                             <br>
                         </div>
