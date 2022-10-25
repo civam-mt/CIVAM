@@ -86,8 +86,7 @@ $gray-l1: #1e1e1ecf;
 }
 
 .filter {
-  display: grid;
-  grid-gap: 5%;
+  display: flex;
   justify-content: space-evenly;
   justify-items: center;
   align-content: space-evenly;
@@ -95,7 +94,7 @@ $gray-l1: #1e1e1ecf;
 }
 
 .filter-item {
-  padding:5%;
+  padding: 10px;
 }
 
 .filter-item-1 {

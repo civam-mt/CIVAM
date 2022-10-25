@@ -90,6 +90,9 @@ h3 {
     @media (max-width: 1000px) {
         grid-template-columns: 20% 60% 20%;
     }
+    @media (max-width: 600px) {
+	display: flex;
+    }
     column-gap: 2.5%;
     min-height: 400px;
 }
