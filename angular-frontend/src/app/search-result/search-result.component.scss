@@ -17,9 +17,15 @@ $darkless-brown: #77510d;
     padding-top: 2.5%;
     color: #000;
     background-color: #fff3;
-    display: grid;
+    display: flex;
     grid-template-columns: 15% 65% 15%;
     column-gap: 2.5%;
+}
+
+@media screen and (max-width: 780px) {
+    .searchContainer {
+	display: flex;
+    }
 }
 
 .search-button-column{

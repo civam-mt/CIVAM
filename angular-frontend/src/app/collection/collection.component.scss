@@ -34,6 +34,8 @@ $darkless-brown: #77510d;
     display: grid;
     grid-template-columns: 15% 65% 15%;
     column-gap: 2.5%;
+    display: flex;
+    justify-content: center;
 }
 
 .collection-button-column{
