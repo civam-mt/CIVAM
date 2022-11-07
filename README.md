@@ -73,7 +73,7 @@ For submitting patches and additions, this project uses the "fork-and-pull" Git 
 NOTE: Be sure to rebase your feature branch on latest changes from "upstream"
 before making a pull request!
 
-### Development Strategies and Tools
+# Development Strategies and Tools
 
 ## Installing VS Code on the Virtual Machine
 
@@ -84,7 +84,7 @@ To install Visual Studio Code for our Xubuntu virtual machine, simply run the fo
 
 Beginning development on CIVAM can feel overwhelming at times. Here are some guidelines on the structure of the project, explanations for what different components do, and coding tips. There will also be examples included within each sub-folder describing issues that should be addressed in the appropriate directory.
 
-# Structure
+### Structure
 
 * **angular_frontend**: This directory primarily holds the **app** components (data structures or other commonly used components in web development like footers, cards, or navigation elements). It also holds **assets** like images and svgs. other than this, angular_frontend is also used to house **models** and **themes**.
   * **apps**: Changes in the folder will have to do with adding brand new components that will be reused often through out the project. **EX**. "Create a deep search box with a drop down menu with filtered options based on what text is entered into the search."
