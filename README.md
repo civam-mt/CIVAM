@@ -175,7 +175,14 @@ From the CIVAM Google Drive Folder (get access from Cindy Ott)
 * Website Information Folder: https://drive.google.com/drive/u/1/folders/1kLZumZYjkP4IBg42w1kuQPbsW9XPwnIJ?ths=true
 
 ---
+## Section on Installing WSL (Windows Sub Linux)
+* Open Windows Powershell / Command Prompt
 
+``wsl --install``
+* This by default installs Ubuntu, to use a different distribution do ```wsl --install -d <DISTRO NAME>```
+* To run WSL, simply open Command Prompt or Powershell and type ```wsl```
+* This enters the Linux shell on your computer, to which you can then navigate to your projects directory
+---
 ## Some Helpful Git Commands
 ### Rebasing Instructions
 * Be sure to add and commmit all changes to your branch.
