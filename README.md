@@ -73,6 +73,34 @@ For submitting patches and additions, this project uses the "fork-and-pull" Git 
 NOTE: Be sure to rebase your feature branch on latest changes from "upstream"
 before making a pull request!
 
+### Development Strategies and Tools
+
+## Installing VS Code on the Virtual Machine
+
+To install Visual Studio Code for our Xubuntu virtual machine, simply run the following command:
+`sudo snap install --classic code`
+
+## Development Strategies
+
+Beginning development on CIVAM can feel overwhelming at times. Here are some guidelines on the structure of the project, explanations for what different components do, and coding tips. There will also be examples included within each sub-folder describing issues that should be addressed in the appropriate directory.
+
+# Structure
+
+* **angular_frontend**: This directory primarily holds the **app** components (data structures or other commonly used components in web development like footers, cards, or navigation elements). It also holds **assets** like images and svgs. other than this, angular_frontend is also used to house **models** and **themes**.
+  * **apps**: Changes in the folder will have to do with adding brand new components that will be reused often through out the project. **EX**. "Create a deep search box with a drop down menu with filtered options based on what text is entered into the search."
+  * **assets**: Here, we would add any resources that are to be displayed on the site. **EX**. ""Update the CIVAM logo."
+  * **models**: Again, this will be big classes that are used broadly throughout the page. Think of the map since it appears on multiple pages, but with slight variations. **EX**. "Make locations selectable on the map."
+  * **themes**: These will not often be changed, CSS styling.
+* **django_backend**: This folder is where we have found that most changes occer. Within this folder there are two main things that are key to understand and those would be the **templates** folder and the various ***.py** files found directly within django_backend.
+  * **templates**: While the syntax for the html files within the folder may be confusing, you can think of them as simple layouts / outlines of what the page will look like. The premise of HTML remains, but all of the content has been abstracted into the various *.py files. You can think of each of these files as an element that can be reused throughout pages and as suchm you will often be creating new files as well as editing existing ones in this folder. **EX**. "Create a form template that we can use for various surverys."
+    * **TIP**: A lot of developers who aren't familiar with angular or django may be very intimidated by these html files. I would recommend the following steps as a work around as you become more familiar with the code base and use of these tools.
+      1. Find the html file in templates folder that you would like to edit.
+      2. When you find a line of this format: `{{someText.someProperty}}`, use ctrl+f to search the project for a mention of 'someText'.
+      3. Investigate the python files (**views** will very likely be where changes are required, but not always) that reference that class/object.
+      4. Use the context of surrounding code to make changes.
+* **docs**: This one is pretty self explanatory. Any documentation can be stored here.
+* **utils**: Scripts and other helpers that don't belong in any other directories can go here.
+
 **All conflicts should be resolved locally, then rebased and pushed to github.**
 
 To sync your `master` branch before starting to code, do:
