@@ -10,15 +10,20 @@ Note that [General Setup](#General-Setup), [Front-End Specific Setup](#Front-End
 **DO NOT BLINDLY RUN THESE COMMANDS - IF YOU DON'T KNOW WHAT SOMETHING DOES, GOOGLE IT**
 
 ## General Setup
+**Steps 4-7 are for installing VBox guest additions and are optional. This will give you access to quality of life changes such as full-screen display, host-to-guest copy paste, and more.**
 1. download virtualbox for your OS
-2. install xubuntu (20.04.3)
-3. install guest additions, run your corresponding VBox guest additions script/executable. **This step is optional**, but will get you things like full-screen display, host-to-guest copy paste, and more.
-4. `sudo reboot`
-5. install dependencies:
+2. install xubuntu (20.04.3) (this will be a torrent file, you can download these types of files in a client such as qBittorrent)
+3. open virtualbox and create a new virtual machine, using the downloaded file as the ISO image  
+4. in the virtualbox window, select Devices -> Insert Guest Additions CD Image
+5. open the virtual machine's file explorer, and select the CD "VBox_GAs"
+6. find the VBoxLinuxAdditions.run file, right click it, and select "Open Terminal Here"
+7. `sudo VBoxLinuxAdditions.run`
+8. `sudo reboot`
+9. install dependencies:
     ```bash
     sudo apt install git curl python3-pip python-dev libpq-dev postgresql postgresql-contrib
     ```
-6. install latest version of nodejs and npm:
+10. install latest version of nodejs and npm:
     ```bash
     curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     sudo apt-get install -y nodejs
