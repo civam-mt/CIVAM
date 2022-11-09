@@ -3,6 +3,7 @@
 ## Description
 
 A Django website with an Angular frontend serving as a virtual archive and museum showcasing Crow Indian cultural items.
+URL: https://civam-mt.org/home
 
 ## Table of Contents
 - [CIVAM](#civam)
@@ -163,6 +164,10 @@ Pull requests that do not meet this standard should not be merged.
 [Here](docs/LOCAL_DB_RESTORE.md) is how you can set up your local environment with data from the site.
 
 ## Resources
+
+### Admin Site
+
+[This](https://civam-mt.org:8000/admin/) webpage holds the actual content displayed on CIVAM. Credentials are on the google drive.
 
 ### Google Map Information and Data Flow
 
