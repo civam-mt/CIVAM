@@ -70,10 +70,17 @@ class RegistrationForm(ModelForm):
 class ImageForm(forms.Form):
     content = forms.ImageField(required=False)
 
+
 # Displayed on same page as ItemForm
 class VideoForm(forms.Form):
     link = forms.URLField(required=False)
 
+class VideoToAudioForm(forms.Form):
+    content = forms.FileField(required=False)
+    link = forms.URLField(required=False)
+
+class PdfForm(forms.Form):
+    content = forms.FileField(required=False)
     
 class CollectionGroupForm(ModelForm):
     class Meta:

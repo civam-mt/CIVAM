@@ -2,7 +2,7 @@
 <!-- 3/25/21    -   Tim Mazzarelli  - Item will now display collection name-->
 <div class="layers">
     <div *ngIf="item">
-        <div class="top-content layer-lg" style="background: url({{API_URL}}/media/{{backgroundUrl}}) no-repeat fixed;">
+        <div class="top-content layer-lg">
             <div class="quote">
                 {{item.name}}
             </div>
@@ -14,19 +14,15 @@
         <div class="collection-container">
             <!--Grid column-->
             <ul class="item-button-column">
-                <li class="nav-item ibc1  top-button">
-                    <a class="nav-link active" [ngClass]="{'nav-item-selected' :currentSubPage == 'item'}"
-                        href="{{currentPageUrl}}#item">Item</a>
-                </li>
-                <li class="nav-item ibc2">
+                <li class="nav-item ibc1 top-button">
                     <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'attr'}"
                         href="{{currentPageUrl}}#attr">Item Information</a>
                 </li>
-                <li class="nav-item ibc3">
+                <li class="nav-item ibc2">
                     <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'narr'}"
-                        href="{{currentPageUrl}}#narr">Narratives</a>
+                        href="{{currentPageUrl}}#narr">Narratives & Comments</a>
                 </li>
-                <li class="nav-item ibc4">
+                <li class="nav-item ibc3">
                     <a class="nav-link" [ngClass]="{'nav-item-selected' :currentSubPage == 'coll'}"
                         href="collections/{{item.collection}}">Back to Collection</a>
                 </li>
@@ -40,66 +36,6 @@
                 <div class="tab-content pt-0">
 
                     <!--Panel 1-->
-                    <div *ngIf="currentSubPage == 'item'">
-
-                        <div class="item-grid-top-right">
-                            <div *ngIf="videos">
-                                <div *ngFor="let video of videos">
-                                    <div style="padding:56.25% 0 0 0;position:relative;">
-                                        <iframe [src]="video | safeUrl"
-                                            style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                                            frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                                    </div>
-                                    <script src="https://player.vimeo.com/api/player.js">
-                                    </script>
-                                    <br>
-
-                                </div>
-
-                                <div *ngIf="images">
-                                    <div *ngIf="images.length < 2; else elseBlock">
-                                        <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
-                                            <ng-template ngbSlide *ngFor="let image of images">
-                                                <div class="picsum-img-wrapper">
-                                                    <img (click)="toggleModal()"
-                                                        src="{{API_URL}}/media/{{image.content}}" alt="Random slide"
-                                                        class="image">
-                                                    <app-modal [ngClass]="showHideModal()" [item]="this"
-                                                        [API_URL]="API_URL" [image]="image"></app-modal>
-                                                </div>
-                                            </ng-template>
-                                        </ngb-carousel>
-                                    </div>
-                                    <ng-template #elseBlock>
-                                        <ngb-carousel [showNavigationArrows]="showNavigationArrows"
-                                            [showNavigationIndicators]="showNavigationIndicators">
-                                            <ng-template ngbSlide *ngFor="let image of images">
-                                                <div class="picsum-img-wrapper">
-                                                    <img (click)="toggleModal()"
-                                                        src="{{API_URL}}/media/{{image.content}}" alt="Random slide"
-                                                        class="image">
-                                                    <app-modal [ngClass]="showHideModal()" [item]="this"
-                                                        [API_URL]="API_URL" [image]="image"></app-modal>
-                                                </div>
-                                            </ng-template>
-                                        </ngb-carousel>
-                                    </ng-template>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div *ngIf="item.description">
-                            <div>
-                                <p><strong>Description</strong></p>
-                                <a>{{item.description}}</a>
-                            </div>
-                            <br>
-                        </div>
-
-                    </div>
-                    <!--/.Panel 1-->
-
-                    <!--Panel 2-->
                     <div *ngIf="currentSubPage == 'attr'">
                         <div class="item-grid-top-right">
                             <div *ngIf="videos">
@@ -115,6 +51,25 @@
 
                                 </div>
 
+                                <div *ngIf="pdfs.length > 0" id="pdf-container">
+                                    <pdf-viewer
+                                        [src]="pdfSrc"
+                                        [original-size]="false"
+                                        [show-all]="true"
+                                        [fit-to-page]="true"
+                                        [zoom]="1"
+                                        [zoom-scale]="'page-width'"
+                                        [stick-to-page]="false"
+                                        [render-text]="true"
+                                        [external-link-target]="'blank'"
+                                        [autoresize]="true"
+                                        [show-borders]="false"
+                                        style="width: 100%; height: 600px;"
+                                        >
+                                    </pdf-viewer>
+                                </div>
+
+
                                 <div *ngIf="images">
                                     <div *ngIf="images.length < 2; else elseBlock">
                                         <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
@@ -144,54 +99,68 @@
                                         </ngb-carousel>
                                     </ng-template>
                                 </div>
+                              <div *ngIf="msaapPlaylist.length > 0" id="audio-container">
+                                <ngx-audio-player [playlist]="msaapPlaylist" [displayTitle]="msaapDisplayTitle"
+                                                  [autoPlay]="false"
+                                                  [displayPlaylist]="msaapDisplayPlayList"
+                                                  [displayVolumeControls]="msaapDisplayVolumeControls"
+                                                  [displayRepeatControls]="msaapDisplayRepeatControls"
+                                                  [disablePositionSlider]="msaapDisablePositionSlider"
+                                                  [displayArtist]="msaapDisplayArtist"
+                                                  [displayDuration]="msaapDisplayDuration"
+                                                  [expanded]="false">
+
+                                </ngx-audio-player>
+                              </div>
 
                             </div>
+                        </div>
+                        <div *ngIf="item.description">
+                            <div>
+                                <p><strong>Description</strong></p>
+                                <p [innerText]="item.description"></p>
+                            </div>
+                            <br>
                         </div>
                         <div *ngIf="item.culture_or_community">
                             <div>
                                 <p><strong>Culture or Community</strong></p>
-                                <a>{{item.culture_or_community}}
-                                </a>
+                                <p [innerText]="item.culture_or_community"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.other_forms">
                             <div>
                                 <p><strong>Other Forms</strong></p>
-                                <a>{{item.other_forms}}
-                                </a>
+                                <p [innerText]="item.other_forms"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.date_of_creation">
                             <div>
                                 <p><strong>Date of Creation</strong></p>
-                                <a>{{item.date_of_creation}}
-                                </a>
+                                <p [innerText]="item.date_of_creation"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.physical_details">
                             <div>
                                 <p><strong>Physical Details</strong></p>
-                                <a>{{item.physical_details}}
-                                </a>
+                                <p [innerText]="item.physical_details"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.access_notes_or_rights_and_reproduction">
                             <div>
                                 <p><strong>Access Notes or Rights and Reproduction</strong></p>
-                                <a>{{item.access_notes_or_rights_and_reproduction}}
-                                </a>
+                                <p [innerText]="item.access_notes_or_rights_and_reproduction"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.catalog_number">
                             <div>
                                 <p><strong>Catalog Number</strong></p>
-                                <a>{{item.catalog_number}}
-                                </a>
+                                <p [innerText]="item.catalog_number"></p>
                             </div>
                             <br>
                         </div>
@@ -207,31 +176,28 @@
                         <div *ngIf="item.provenance">
                             <div>
                                 <p><strong>Provenance</strong></p>
-                                <a>{{item.provenance}}</a>
+                                <p [innerText]="item.provenance"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.citation">
                             <div>
                                 <p><strong>Citation</strong></p>
-                                <a>{{item.citation}}
-                                </a>
+                                <p [innerText]="item.citation"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.historical_note">
                             <div>
                                 <p><strong>Historical Note</strong></p>
-                                <a>{{item.historical_note}}
-                                </a>
+                                <p [innerText]="item.historical_note"></p>
                             </div>
                             <br>
                         </div>
                         <div *ngIf="item.place_created">
                             <div>
                                 <p><strong>Place Created</strong></p>
-                                <a>{{item.place_created}}
-                                </a>
+                                <p [innerText]="item.place_created"></p>
                             </div>
                             <br>
                         </div>
@@ -248,8 +214,8 @@
                         </div>
                         <div *ngIf="item.location_of_originals">
                             <div>
-                                <p><strong>Location of Originals</strong>
-                                    <br>{{item.location_of_originals}}</p>
+                                <p><strong>Location of Originals</strong></p>
+                                    <p [innerText]="item.location_of_originals"></p>
                             </div>
                             <br>
                         </div>
@@ -272,9 +238,9 @@
                         </div>
 
                     </div>
-                    <!--/.Panel 2-->
+                    <!--/.Panel 1-->
 
-                    <!--Panel 3-->
+                    <!--Panel 2-->
                     <div *ngIf="currentSubPage == 'narr'">
                         <div class="item-grid-top-right">
                             <div *ngIf="videos">
@@ -345,8 +311,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="narrative">Narrative</label>
-                                                    <textarea placeholder="Your narrative" rows="3" type="text"
+                                                    <label for="narrative">Narrative or Comment</label>
+                                                    <textarea placeholder="Your narrative or comment" rows="3" type="text"
                                                         formControlName="narrative" class="form-control"
                                                         [ngClass]="{ 'is-invalid': submitted && narrativeForm.controls.narrative.errors }"></textarea>
                                                     <div *ngIf="submitted && narrativeForm.controls.narrative.errors"
@@ -373,7 +339,7 @@
                         </div>
 
                     </div>
-                    <!--/.Panel 3-->
+                    <!--/.Panel 2-->
 
 
                 </div>

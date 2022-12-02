@@ -7,12 +7,12 @@ $gold: #bf9b30;
 
 
 .even {
-    background-color: #FDF6CD;
+    background-color: #e3f4fb;
 
 }
 
 .odd {
-    background-color: #FEF9DC;
+    background-color: #d4efff;;
 }
 
 .collection-container {
@@ -76,26 +76,27 @@ $gold: #bf9b30;
 }
 
 .top-content {
-    @media(min-width:1500px) {
+    @media (min-width:1500px) {
         padding-top: min(10%, 30vh);
     }
-    @media(max-width:1500px) {
+    @media (max-width:1500px) {
         padding-top: min(20%, 30vh);
     }
-    background: url('../../assets/images/background-field.jpg') no-repeat fixed;
+    background: url('../../assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;;
     margin-top: 3vh;
     overflow: visible;
-    background-size: 100% 100%;
+    background-position: top;
+    background-size: cover;
     background-attachment: scroll;
-    object-fit: contain;
-    font-size: xxx-large;
     font-weight: bold;
     text-align: center;
     color: #000;
+    background-color: #0000000a;
     background-blend-mode: darken;
     font-weight: bolder;
-    font-size: 3vw;
-
+    color: whitesmoke;    
+    font-size:xx-large;
+    text-shadow: 1px 1px #000000;   
 }
 
 .collection-grid-col {
@@ -142,7 +143,7 @@ $gold: #bf9b30;
         }
 
         p {
-            text-align: center;
+            text-align: justify;
             font-size: large;
         }
 
@@ -193,9 +194,9 @@ $gold: #bf9b30;
         }
 
         .collection-img {
-            width: 90%;
+            width: 100%;
             height: auto;
-            max-height: 50vh;
+            max-height: 100vh;
             object-fit: cover;
         }
 
@@ -234,9 +235,9 @@ $gold: #bf9b30;
 
         .collection-btn {
             margin-top: 1vh;
-            background-color: green; /* Green */
+            background-color: #f7d417; 
             border: none;
-            color: white;
+            color: black;
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
@@ -251,7 +252,18 @@ $gold: #bf9b30;
 }
 
 @media(max-width: 1500px) {
+
+    .even {
+        background-color: #e3f4fb;
+    
+    }
+    
+    .odd {
+        background-color: #d4efff;;
+    }
+
     .collection-collection-grid {
+       
         display: grid;
         padding-left: min(15%, 300px);
         padding-right: min(15%, 300px);
@@ -261,7 +273,7 @@ $gold: #bf9b30;
         }
 
         p {
-            text-align: center;
+            text-align: justify;
             font-size: small;
         }
 
@@ -336,9 +348,9 @@ $gold: #bf9b30;
 
         .collection-btn {
             margin-top: 1vh;
-            background-color: green; /* Green */
+            background-color: #f7d417; /* Green */
             border: none;
-            color: white;
+            color: black;
             padding: 15px 32px;
             text-align: center;
             text-decoration: none;
@@ -353,6 +365,7 @@ $gold: #bf9b30;
 }
 
 .colAdd{
+    background-color: #e3f4fb;
     text-align: center;
     font-size: xx-large;
     padding-top: 5% !important;

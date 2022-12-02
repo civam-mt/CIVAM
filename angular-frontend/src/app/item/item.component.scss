@@ -1,5 +1,6 @@
 h3 {
     font-weight: bold;
+    margin-top:2rem;
 }
 
 $dark-brown: #553c0f;       // selected element
@@ -7,16 +8,28 @@ $darkless-brown: #77510d;
 $light-brown: #a67c00;      // active element
 $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
-
+$green: #478631;
+$red: #C7161C;
 $gold-l1: #FDF6CD;
 $gold-l2: #FEFCEE;
+
+.layers{
+    background-color: #e3f4fb;
+}
+#audio-container {
+  padding: 10px;
+}
+
+#pdf-container {
+    padding: 20px;
+}
 
 .modalOff {
     display: none; 
 }
 
-.background-img {
-    background: url('../../assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;
+.picsum-img-wrapper {
+    text-align: center;
 }
 .collection-container {
     //margin-bottom: 2.5%;
@@ -32,6 +45,8 @@ $gold-l2: #FEFCEE;
 }
 
 .item-button-column{
+    position: sticky;
+    top: min(125px,10rem);
     display: grid;
     row-gap: 1vh;
     width: auto;
@@ -72,7 +87,7 @@ $gold-l2: #FEFCEE;
     grid-column: 3;
 }
 .nav-item{
-    //background-color: #553c0f;
+    width:101%;
     text-decoration-style: none;
     color: black;
     list-style: none;
@@ -83,7 +98,7 @@ $gold-l2: #FEFCEE;
 .nav-item:hover{
     //background-color: #dbd7d0;
     text-decoration-style: none;
-    color: $light-brown !important;
+    color: $red !important;
     list-style: none;
     text-decoration: none;
     border-top: 1px solid rgb(197, 196, 196);
@@ -93,7 +108,7 @@ $gold-l2: #FEFCEE;
 }
 .nav-item-selected{
     text-decoration-style: none;
-    color: $darkless-brown !important;
+    color: $green !important;
     text-decoration: none;
 }
 .nav-link{
@@ -101,7 +116,7 @@ $gold-l2: #FEFCEE;
     text-decoration: none;
 }
 .nav-link:hover{
-    color: $light-brown !important;
+    color: $red !important;
     text-decoration: none;
 }
 
@@ -133,8 +148,7 @@ $gold-l2: #FEFCEE;
     }
 }
 
-.image {
-    width: 400px; 
+.image { 
     height: 400px; 
 }
 
@@ -233,7 +247,6 @@ p{
 .layers {
     .layer-lg {
         width: 100%;
-        height: 45vh;
         //margin-top: 3vh;
         padding-top: 2.5%;
         padding-left: 5%;

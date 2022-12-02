@@ -3,6 +3,8 @@ $light-brown: #a67c00;      // active element
 $gold: #bf9b30;             // hover element
 $lighter-gold: #ffd400;
 $darkless-brown: #77510d; 
+$green: #478631;
+$red: #C7161C;
 
 .card-title {
     text-align: center;
@@ -10,7 +12,7 @@ $darkless-brown: #77510d;
 
 .top-content {
     margin-top:3vh;
-    padding-top: min(15%, 40vh);
+    padding-top: 18vh;
     overflow: visible;
     background-position: top !important;
     background-size: cover !important;
@@ -37,6 +39,8 @@ $darkless-brown: #77510d;
 }
 
 .collection-button-column{
+    position: sticky;
+    top: min(125px,10rem);
     display: grid;
     row-gap: 1vh;
     width: auto;
@@ -79,7 +83,7 @@ $darkless-brown: #77510d;
 .nav-item:hover{
     //background-color: #dbd7d0;
     text-decoration-style: none;
-    color: $light-brown !important;
+    color: $red !important;
     list-style: none;
     text-decoration: none;
     border-top: 1px solid rgb(197, 196, 196);
@@ -87,7 +91,7 @@ $darkless-brown: #77510d;
 
 .nav-item-selected{
     text-decoration-style: none;
-    color: $darkless-brown !important;
+    color: $green !important;
     text-decoration: none;
 }
 
@@ -96,7 +100,7 @@ $darkless-brown: #77510d;
     text-decoration: none;
 }
 .nav-link:hover{
-    color: $light-brown !important;
+    color: $red !important;
     text-decoration: none;
 }
 
@@ -108,7 +112,6 @@ $darkless-brown: #77510d;
 
 .layer-lg {
     width: 100%;
-    height: 45vh;
     //margin-top: 3vh;
     padding-left: 5%;
     padding-right:5%;
@@ -259,7 +262,8 @@ $darkless-brown: #77510d;
     font-size: large;
     background-size: 8vh 6vw !important;
     font-size: large;
-    text-align:center;
+    text-align:left;
+    padding-left:6rem;
 }
 
 

@@ -5,7 +5,7 @@ consistent build environments and simple instructions to get everything up
 and running for anyone. I've included version numbers where I think they 
 may be helpful in the future.
 
-Note that [General Setup](#General-Setup), [Front-End Specific Setup](#Front-End-Specific-Setup), and [Back-end Specific Setup](Back-end-Specific-Setup) sections should be completed sequentially, and only should only have to be done once. Then, you can reference the [Local Deployment](#Local-Deployment) section whenever you need to deploy the site locally.
+Note that [General Setup](#General-Setup), [Front-End Specific Setup](#Front-End-Specific-Setup), and [Back-end Specific Setup](#Back-End-Specific-Setup) sections should be completed sequentially, and only should only have to be done once. Then, you can reference the [Local Deployment](#Local-Deployment) section whenever you need to deploy the site locally.
 
 **DO NOT BLINDLY RUN THESE COMMANDS - IF YOU DON'T KNOW WHAT SOMETHING DOES, GOOGLE IT**
 
@@ -29,14 +29,15 @@ Note that [General Setup](#General-Setup), [Front-End Specific Setup](#Front-End
 2. install angular-cli: `sudo npm install -g @angular/cli`
 3. install nvm version manager: `wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash`
 4. Open a new terminal, you must do this in order to proceed.
-5. install project version: `nvm install 12.20` - this can be verified with `ng -v`
+5. install project version: `nvm install 12.20` - this can be verified with `ng --version`
 6. set up a directory and clone your fork of the repo
 7. cd into `CIVAM/angular-frontend`
 8. install all dependencies: `npm install --legacy-peer-deps`
 9. few more: `npm install jwt-decode ngx-audio-player --save`
+10. `npm install jwt-decode ng2-pdf-viewer@^7.0.0 --save`
 
 
-## Back-end Specific Setup
+## Back-End Specific Setup
 1. cd into `django_project`
 2. start postgresql service and switch user to `postgres`, then open postgres terminal (`psql`): 
     ```bash

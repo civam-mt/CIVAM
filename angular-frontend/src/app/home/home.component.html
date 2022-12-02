@@ -9,15 +9,15 @@
         </div>
     </div>
     <!-- Home Page Main Content Below Here -->
-    <div *ngIf="collection" id="home-collection-div" class="collection-container">
+    <div id="home-collection-div" class="collection-container">
         <!-- If larger then 1000px -->
         <div *ngIf="this.innerWidth > this.smallWindow"
             class="home-collection-grid layer-unbounded collection-grid-col">
             <div class="collection-grid-left colleciton-text-gray">
                 <div class="collection-img-container">
                     <div class="collection-img-boarderless">
-                        <img *ngIf="collection.cover_image" class="collection-img"
-                            src="{{API_URL}}/media/{{collection.cover_image}}">
+                        <img class="collection-img"
+                            src="../../assets/images/home_coll.PNG">
                     </div>
                     <p class="collection-img-text-img-left">
                         <!-- Over Image Text -->
@@ -41,8 +41,8 @@
             <div class="collection-grid-top">
                 <div class="collection-img-container">
                     <div class="collection-img-boarderless">
-                        <img *ngIf="collection.cover_image" class="collection-img"
-                            src="{{API_URL}}/media/{{collection.cover_image}}">
+                        <img class="collection-img"
+                            src="../../assets/images/home_coll.PNG">
                     </div>
                     <p class="collection-img-text-img-left">
                         <!-- Over Image Text -->
@@ -81,7 +81,7 @@
             <div class="collection-grid-right colleciton-text-gray">
                 <div class="collection-img-container">
                     <div class="collection-img-boarderless">
-                        <img class="collection-img" src="../../assets/images/doctoring_on_open_range.JPG">
+                        <img class="collection-img" src="../../assets/images/home_map.png">
                     </div>
                     <p class="collection-img-text-img-right">
                         <!-- Over Text -->
@@ -94,7 +94,7 @@
             <div class="collection-grid-top">
                 <div class="collection-img-container">
                     <div class="collection-img-boarderless">
-                        <img class="collection-img" src="../../assets/images/doctoring_on_open_range.JPG">
+                        <img class="collection-img" src="../../assets/images/home_map.png">
                     </div>
                     <p class="collection-img-text-img-right">
                         <!-- Over Text -->
@@ -121,7 +121,7 @@
             <div class="collection-grid-left colleciton-text-gray">
                 <div class="collection-img-container">
                     <div class="collection-img-boarderless">
-                        <img class="collection-img" src="../../assets/images/montana.png">
+                        <img class="collection-img" src="../../assets/images/home_explore.png">
                     </div>
                     <p class="collection-img-text-img-right">
                         <!-- Over Text -->
@@ -145,7 +145,7 @@
             <div class="collection-grid-top">
                 <div class="collection-img-container">
                     <div class="collection-img-boarderless">
-                        <img class="collection-img" src="../../assets/images/montana.png">
+                        <img class="collection-img" src="../../assets/images/home_explore.png">
                     </div>
                     <p class="collection-img-text-img-right">
                         <!-- Over Text -->
