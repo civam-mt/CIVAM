@@ -6,6 +6,7 @@ import { ApiService } from '../services/api.service';
 import { Router} from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { url } from 'inspector';
+import {Track} from 'ngx-audio-player';
 
 // 3/25/21  - Tim Mazzarelli  - Added api call to get item's collection name
 
@@ -34,6 +35,7 @@ export class ItemComponent implements OnInit {
   itemID;
   images;
   rawVideos;
+  pdfs;
   videos;
   keywords;
   creators;
@@ -45,10 +47,23 @@ export class ItemComponent implements OnInit {
   showNavigationIndicators = true;
   showModal: boolean = false; 
 
-  
+  // pdf vars
+  pdfSrc;
+  pdf_link: string;
+
+  // Audio Player vars
+  msaapDisplayTitle = true;
+  msaapDisplayPlayList = true;
+  msaapDisplayVolumeControls = true;
+  msaapDisplayRepeatControls = true;
+  msaapDisplayArtist = false;
+  msaapDisplayDuration = false;
+  msaapDisablePositionSlider = false;
+  msaapPlaylist;
+
   currentSubPage:string;
   currentPageUrl:string = '';
-  allowedSubPage:string[] = ['item', 'attr', 'narr'];
+  allowedSubPage:string[] = ['attr', 'narr'];
   constructor(private route: ActivatedRoute, private api: ApiService, private formBuilder: FormBuilder,) { }
 
   ngOnInit() {
@@ -83,6 +98,7 @@ export class ItemComponent implements OnInit {
         this.backgroundUrl = result["cover_image"];
       });
       this.images = this.item["images"];
+      this.pdfs = this.item["pdfs"];
       this.narratives = this.item["narratives"];
       this.rawVideos = this.item["videos"];
       this.keywords = this.item["keywords"];
@@ -91,8 +107,46 @@ export class ItemComponent implements OnInit {
       this.videos = this.rawVideos.map(function(video) {
         return "https://player.vimeo.com/video/".concat(video.slice(video.lastIndexOf('/') + 1));
         })
+      this.msaapPlaylist = this.buildPlaylist(this.item.video_to_audios);
+      this.pdfSrc = this.buildPdf(this.item.pdfs);
     });
   }
+
+  buildPdf(content:Array<any>) {
+    content.forEach(e => {
+      this.pdf_link = this.API_URL + '/media/' + e.content;
+    });
+    return this.pdf_link;
+  }
+
+  /**
+   * Builds a playlist for the audio player.
+   * @param content audio track array from database object
+   * @return ngx Track array
+   */
+  buildPlaylist(content:Array<any>) {
+    const tracks: Track[] = [];
+    content.forEach(e => {
+      const track = new Track();
+      track.title = this.getTrackName(e.content);
+      track.link = this.API_URL + '/media/' + e.content;
+      tracks.push(track);
+    });
+    return tracks;
+  }
+
+  /**
+   * Extracts a filename (now called a track name) from a full
+   * file path. Supports windows and unix file paths. Returns filename
+   * AND extension, i.e. 'my_awesome_file.mp3'.
+   * @param filename full path to file
+   * @return only filename with extension
+   */
+  getTrackName(filename:string) {
+    return filename.split('\\').pop().split('/').pop();
+  }
+  
+
   toggleModal() {
     if (this.showModal) {
       this.showModal = false; 

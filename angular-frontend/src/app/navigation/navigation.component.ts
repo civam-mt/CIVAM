@@ -23,7 +23,7 @@ export class NavigationComponent implements OnInit {
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   width:number;
-  WIDTH_LIM:number = 1200;
+  WIDTH_LIM:number = 1150;
 
 
 
@@ -46,7 +46,11 @@ export class NavigationComponent implements OnInit {
 
   onSubmit() {
     //this.router.navigate(['/search-result']);
-
+    if (this.width < this.WIDTH_LIM){
+      var button = document.getElementsByClassName("navbar-toggler")[0] as HTMLElement;
+      if (button.getAttribute("aria-expanded") == "true")
+        button.click();
+    }
     this.router.navigate(['/search-result', { 'data': this.myControl.value }]);
   }
 

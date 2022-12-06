@@ -1,7 +1,7 @@
 <div class="layers">
    <div class="top-content background-img layer-lg">
-      <div class="top-title">
-         Crow Collections Around the World
+      <div class="title">
+         Map of Crow Collections Around the World
       </div>
    </div>
    <div class="context-content layer-sm">
@@ -40,6 +40,10 @@
             <button type="button" class="btn btn-light " style="background-color: #F1FAEE;" (click)="filterData()"
                style="margin-left:1%;">Search</button>
          </div>
+         <div class="filter-item-4 filter-item">
+            <button type="reset" class="btn btn-light " style="background-color: #F1FAEE;"
+               style="margin-left:1%;">Clear</button>
+         </div>
       </form>
    </div>
    <div class="layer-lg-ub">
@@ -67,8 +71,7 @@
                                           [innerHTML]="selectedMarker.getElement(tile.text)"> 
                                        </div>
                                        <div *ngIf="tile.text == 'url'">
-                                          <a href="{{this.getExternalURL(selectedMarker.getElement(tile.text))}}">{{selectedMarker.getElement(tile.text)}}</a>
-                                          <!-- <a href="https://{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a> -->
+                                          <a href="{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
                                        </div>
                                        <div *ngIf="tile.text == 'cover_image'">
                                           <img src="{{API_URL}}/media/{{selectedMarker.getElement(tile.text)}}"
@@ -88,7 +91,7 @@
                                           [innerHTML]="selectedMarker.getElement(tile.text)">
                                        </div>
                                        <div *ngIf="tile.text == 'url'">
-                                          <a href="https://{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
+                                          <a href="{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
                                        </div>
                                     </mat-grid-tile>
                                  </div>

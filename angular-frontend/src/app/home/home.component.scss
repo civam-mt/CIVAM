@@ -24,7 +24,7 @@ $gray-l1: #1e1e1ecf;
 }
 
 .barrier-img {
-    background: url('../../assets/images/background-field.jpg') no-repeat fixed;;
+    background: url('../../assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;;
 }
 
 .btn-outline-warning {
@@ -79,11 +79,11 @@ img {
 }
 
 #home-collection-div {
-    background-color: $gold-l2 !important;
+    background-color: #e3f4fb;
 }
 
 #map-collection-div {
-    background-color: $gold-l2 !important;
+    background-color: #e3f4fb;
 }
 
 
@@ -156,23 +156,25 @@ img {
         background-position: top;
         background-size: cover;
         background-attachment: scroll;
-        font-size: xxx-large;
+        font-size: 3rem;
         font-weight: bold;
         text-align: center;
         color: #000;
         background-color: #0000000a;
         background-blend-mode: darken;
         font-weight: bolder;
-        font-size: 3vw;
+        font-size: 3.5rem;
         color: whitesmoke;
     
         
         .quote {
             font-style: italic;
+            text-shadow: 1px 1px #000000;
         }
         
         .speaker {
             font-size:xx-large;
+            text-shadow: 1px 1px #000000;
         }
     }
 
@@ -189,7 +191,7 @@ img {
         //padding-bottom:2.5%;
         padding-bottom:4%;
         color: #000;
-        background-color: #fff3;
+        background-color: #e3f4fb;
     }
 
     .collection-grid-col {
@@ -310,9 +312,9 @@ img {
 
             .collection-btn {
                 margin-top: 1vh;
-                background-color: $gold; /* Green */
+                background-color: #9cd3f5; /* Green */
                 border: none;
-                color: white;
+                color: black;
                 padding: 15px 32px;
                 text-align: center;
                 text-decoration: none;
@@ -395,9 +397,9 @@ img {
 
             .collection-btn {
                 margin-top: 1vh;
-                background-color: $gold; /* Green */
+                background-color: #9cd3f5;
                 border: none;
-                color: white;
+                color: black;
                 padding: 15px 32px;
                 text-align: center;
                 text-decoration: none;

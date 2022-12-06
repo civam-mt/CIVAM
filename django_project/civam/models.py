@@ -7,14 +7,23 @@
 ##  4/1/2021    -   Josh Davis
 ##      - Add additional site text location field options
 ##
+from http.client import LineTooLong
+import logging
+import os
+from pprint import pformat
 
 from colorfield.fields import ColorField
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.db.models.fields.files import FieldFile
 from django_countries.fields import CountryField
 from django.utils.translation import gettext_lazy as _
 from django.db.models.functions import Lower
-
+import moviepy.editor as mp
+from vimeo_downloader import Vimeo
+from django.core.files import File
+from django.template.defaultfilters import linebreaks
+logger = logging.getLogger(__name__)
 
 # Civam models are defined here
 # Some models have created_by, created_on, modified_by, and modified_on fields
@@ -157,6 +166,7 @@ class Item(models.Model):
     changers = models.ManyToManyField(User, blank=True, related_name="changeable_items")
 
     is_cataloged = models.IntegerField(default=0, blank=True, null=True, help_text="1: Cataloged, 0: Uncataloged", choices=((1,"Cataloged"),(0,"Uncataloged")))
+    is_public = models.IntegerField(default=1, blank=True, null=True, help_text="1: Available To Public, 0: Hidden From Public", choices=((1,"Available To Public"),(0,"Hidden From Public")))
     private_cataloger = models.CharField(max_length=511, null=True, blank=True)
     private_catalog_date = models.DateTimeField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="items_created")
@@ -193,6 +203,79 @@ class Video(models.Model):
     def __str__(self):
         return "Video: {}".format(self.item.name)
 
+class Pdf(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="pdfs")
+    content = models.FileField(upload_to=image_upload_path)
+
+    def __str__(self):
+        return "Pdf: {}".format(self.item.name)
+
+class VideoToAudio(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="videotoaudios")
+    link = models.URLField(blank=True)
+    content = models.FileField(upload_to="mp4_to_mp3/",blank=True)
+
+    def __str__(self):
+        return "Video to Audio Track: {}".format(self.item.name)
+    
+    def save(self, **kwargs):
+        """
+        We override the superclass' 'save' method, to handle tricky extraction
+        of audio from video files and to enforce a uniform audio format for
+        all files.
+        """
+        # save initial element, this is required for conversion
+        super(VideoToAudio, self).save()
+        link = self.link
+        len_link = len(link)
+        
+        if (len_link == 0 ):
+            file_path = self.content.path
+            file_name = os.path.splitext(self.content.name)[0]
+            extension = os.path.splitext(self.content.name)[1]
+            new_file_name_full_path = os.path.splitext(file_path)[0] + ".mp3"
+
+            if extension != '.mp3':
+
+                try:
+                     # extract audio from video file, write to given file path
+                    audio_clip = mp.AudioFileClip(file_path)
+                    audio_clip.write_audiofile(new_file_name_full_path)
+                    # instantiate new 'FieldFile', this becomes content of this item
+                    self.content = FieldFile(field=self.content, instance=None, name=file_name+".mp3")
+                    # call superclass save again to update this item
+                    super(VideoToAudio, self).save(update_fields=['content'])
+                    # remove video file
+                    os.remove(file_path)
+                except Exception:
+                    logger.error("Could not convert '" + file_name + "' to mp3 format.")
+        else:
+            end_of_path = link.split(".com/")[1]
+            extension = link.split("://")[0]
+            new_name_of_file = end_of_path + ".mp3"
+
+            if extension == 'https':
+            # noinspection PyBroadException
+                try:
+                    # Make link variable
+                    video = Vimeo(link)
+                    #video streams
+                    s = video.streams
+                    # Pick best stream
+                    best_stream=s[-1]
+                    #download video and place in directory
+                    best_stream.download(download_directory='/home/ubuntu/CISC475_D5/django_project/media/mp4_to_mp3',filename=end_of_path + ".mp4")
+                    # extract audio from video file, write to given file path
+                    audio_clip = mp.AudioFileClip("/home/ubuntu/CISC475_D5/django_project/media/mp4_to_mp3/" + end_of_path + ".mp4")
+                    audio_clip.write_audiofile("/home/ubuntu/CISC475_D5/django_project/media/mp4_to_mp3/" + new_name_of_file)
+                    # instantiate new 'FieldFile', this becomes content of this item
+                    self.content = FieldFile(field=self.content, instance=None, name="mp4_to_mp3/"+new_name_of_file)
+                    # call superclass save again to update this item
+                    super(VideoToAudio, self).save(update_fields=['content'])
+                    # remove video file
+                    os.remove("/home/ubuntu/CISC475_D5/django_project/media/mp4_to_mp3/" + end_of_path + ".mp4")
+                except Exception:
+                    logger.error("Could not convert '" + new_name_of_file + "' to mp3 format.")
 
 #Narrative, Used for each item. Kind of like a backend only story for now. 
 class Narrative(models.Model):
@@ -311,6 +394,7 @@ class SiteText(models.Model):
         ('PEOPLE2','About: People: Bio 2'),
         ('PEOPLE3','About: People: Bio 3'),
         ('PEOPLE4','About: People: Bio 4'),
+        ('PEOPLE5','About: People: Bio 5'),
         ('CONTACT','About: Resources & Contact Information'),
         ('MAP_CON', 'Map: Context for the Map, and How to use it'),
         ('HOME_MAP', 'Home: Simple context about the map'),
@@ -322,6 +406,13 @@ class SiteText(models.Model):
     content = models.TextField()
     location = models.CharField('Location of text on site', max_length=8, choices=DATA_LOCATIONS, default='ABOUT', unique=True)
 
+    def save(self, **kwargs):
+        # We save a new content field with linebreaks
+        super(SiteText, self).save()
+        self.content = linebreaks(self.content)
+        super(SiteText,self).save(update_fields=['content'])
+
+    # print(content)
     def __str__(self):
         return self.location
 

@@ -1,8 +1,9 @@
 $dark-brown: #553c0f;       // selected element
 $darkless-brown: #77510d; 
 $light-brown: #a67c00;      // active element
-$gold: #bf9b30;             // hover element
+$red: #C7161C;             // hover element
 $lighter-gold: #ffd400;
+$green: #478631;
 
 $gold-l1: #FDF6CD;
 $gold-l2: #FEFCEE;
@@ -95,6 +96,8 @@ h3 {
 }
 
 .item-button-column{
+    position: sticky;
+    top: min(125px,10rem);
     display: grid;
     row-gap: 1vh;
     width: auto;
@@ -140,9 +143,9 @@ h3 {
     
 }
 .nav-item:hover{
-    //background-color: #dbd7d0;
+    //background-color: $red;
     text-decoration-style: none;
-    color: $light-brown !important;
+    color: $red !important;
     list-style: none;
     text-decoration: none;
     border-top: 1px solid $border-off-gray;
@@ -151,8 +154,9 @@ h3 {
     border-top: none !important;
 }
 .nav-item-selected{
+    //background-color: #67af49;
     text-decoration-style: none;
-    color: $darkless-brown !important;
+    color: $green !important;
     text-decoration: none;
     font-weight:bold;
 }
@@ -161,7 +165,7 @@ h3 {
     text-decoration: none;
 }
 .nav-link:hover{
-    color: $light-brown !important;
+    color: $red !important;
     text-decoration: none;
 }
 
@@ -251,6 +255,7 @@ strong {
 }
 
 .layers {
+    background-color: #e3f4fb;
     .layer-lg {
         width: 100%;
         height: 70vh;
@@ -296,7 +301,7 @@ strong {
         padding-right:5%;
     }
 
-    .top-content {
+  .top-content {
         margin-top: min(8vh, 100px) !important;
         
         overflow: visible;
@@ -308,7 +313,6 @@ strong {
         text-align: center;
         color: #000;
         background-color: #fff3 !important;
-        background-blend-mode: lighten !important;
         
         
         
@@ -326,6 +330,32 @@ strong {
             text-decoration: none;
         }
     }
+    .top-content {
+        @media (min-width:1500px) {
+            padding-top: min(10%, 30vh);
+        }
+        @media (max-width:1500px) {
+            padding-top: min(20%, 30vh);
+        }
+        margin-top: 3vh;
+        overflow: visible;
+        background-position: top;
+        background-size: cover;
+        background-attachment: scroll;
+        font-weight: bold;
+        text-align: center;
+        color: #000;
+        background-color: #0000000a;
+        background-blend-mode: darken;
+        font-weight: bolder;
+        color: whitesmoke;    
+        font-size:xx-large;
+        text-shadow: 1px 1px #000000;   
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+
     .title {
         color:whitesmoke;
         font-weight: bold;

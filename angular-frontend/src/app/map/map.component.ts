@@ -35,9 +35,9 @@ export class MapComponent implements OnInit {
   ];
   public siteText:string;
 
-  public lat = 0;
-  public lng = 0;
-  public zoom = 2;
+  public lat = 45;
+  public lng = -40;
+  public zoom = 3.4;
   public panelOpenState = false;
   public panning = true;
   public map_loaded:boolean = true;
@@ -121,10 +121,4 @@ export class MapComponent implements OnInit {
       this.siteText = data["content"];
     });
   }
-
-  getExternalURL(url:string):string {
-    return url.startsWith("http") ? url : "".concat("https://", url);
-  }
-
 }
-

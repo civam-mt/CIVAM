@@ -41,10 +41,13 @@ DEBUG = False
 
 #TODO: MAKE IT SO THIS TOGGLE IS AUTOMATED FOR DEV/PROD
 ALLOWED_HOSTS = ['civam-mt.org', 'http://maps.googleapis.com/', 'https://maps.googleapis.com/']
-#ALLOWED_HOSTS = ['198.211.99.20', 'localhost:8000', '127.0.0.1', 'civam-mt.org','localhost:4200', "*"]
 # STATIC_ROOT = os.path.join('~/CISC475_D5/django_project', 'static/')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+# UNCOMMENT FOLLOWING 2 LINES FOR LOCAL DEVELOPMENT ONLY!!!!
+#ALLOWED_HOSTS = ['198.211.99.20', 'localhost:8000', '127.0.0.1', 'civam-mt.org','localhost:4200', "*"]
+#STATIC_ROOT = os.path.join('~/CIVAM/django_project', 'static/')
 
 # Local Development SMPT Server
 # Command to launch: python -m smtpd -n -c DebuggingServer localhost:1025

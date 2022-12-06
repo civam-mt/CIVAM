@@ -7,9 +7,10 @@
         <div *ngFor="let explore of explores; let indexOfelement = index" class="exploreItemFlex">
             <div *ngIf="explore" class="exploreItem">
                 <a href="/search-result;data={{explore.name}}" style="text-align:center;">
+                    
                     <button class="exploreButton"
                         style="background: url({{API_URL}}/media/{{explore.background_image}}) no-repeat fixed;">
-                        <span>{{explore.name}} </span>
+                        <span><p class="hidden">Explore</p>{{explore.name}}</span>
                     </button>
                 </a>
             </div>

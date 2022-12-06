@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Collection, Item, Image, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, NewsTag, MapData, Explore
+from .models import Collection, Item, Image, Pdf, Video, Keyword, PersonOrInstitute, Narrative, SiteText, NewsArticle, \
+    NewsTag, MapData, Explore, VideoToAudio
 from guardian.admin import GuardedModelAdmin
 from adminsortable2.admin import SortableAdminMixin
 
@@ -54,11 +55,20 @@ class ItemInline(admin.TabularInline):
 class ImageInline(admin.TabularInline):
     model = Image
 
+class PDFInline(admin.TabularInline):
+    model = Pdf
+    verbose_name_plural = "PDF FILES - UPLOAD HERE"
+
 class VideoInline(admin.TabularInline):
     model = Video
 
+class VideoToAudioInLine(admin.TabularInline):
+    model = VideoToAudio
+    verbose_name_plural ='AUDIO TRACKS - place a URL link to extract mp4 and turn into an audio file OR upload a file from your computer'
+
 class NarrativeInline(admin.TabularInline):
     model = Narrative
+    verbose_name_plural = "Narratives and Comments"
     exclude = ['created_by', 'created_on', 'modified_by', 'modified_on',]
 
 class PorIInline(admin.TabularInline):
@@ -68,13 +78,26 @@ class PorIInline(admin.TabularInline):
 
 # Can create Collections and Items and Poris directly
 class CollectionAdmin(SortableAdminMixin, DefaultAdmin):
-    list_display = ('title', 'created_by')
+    list_display = (
+        'title', 'created_by', 'modified_by','modified_on'
+    )
+    list_filter = [
+        'modified_on', 'modified_by'
+    ]
     search_fields = ['title','creator__name','keywords__word']
     inlines = [PorIInline]
 
 class ItemAdmin(DefaultAdmin):
-    list_display = ('name', 'collection', 'cataloged')
-    inlines = [ImageInline, VideoInline, NarrativeInline]
+    list_display = (
+        'name', 'collection', 'cataloged', 'public', 'modified_by',
+        'modified_on'
+    )
+    list_filter = [
+        'modified_on', 'modified_by', 'collection',
+        'is_cataloged', 'is_public'
+    ]
+
+    inlines = [ImageInline, PDFInline, VideoInline,VideoToAudioInLine, NarrativeInline]
     search_fields = ['name','collection__title','culture_or_community','creator__name','date_of_creation','place_created','catalog_number','keywords__word']
 
     def cataloged(self, obj):
@@ -83,6 +106,13 @@ class ItemAdmin(DefaultAdmin):
     cataloged.boolean = True
     cataloged.admin_order_field = '-is_cataloged'
     cataloged.short_description = 'Is Cataloged?'
+
+    def public(self, obj):
+        return obj.is_public == 1
+
+    public.boolean = True
+    public.admin_order_field = '-is_public'
+    public.short_description = 'Is Public?'
 
 class PorIAdmin(DefaultAdmin):
     search_fields = ['name']

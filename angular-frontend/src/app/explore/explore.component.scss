@@ -1,6 +1,6 @@
 $gold: #bf9b30;  
 .barrier-img {
-    background: url('../../assets/images/background-field.jpg') no-repeat fixed;
+    background: url('../../assets/images/background-bill-yellowtail-cropped.jpg') no-repeat fixed;;
 }
 
 .layer-lg {
@@ -56,32 +56,26 @@ $gold: #bf9b30;
 }
 
 .top-content {
-    @media(min-width:1500px) {
+    @media (min-width:1500px) {
         padding-top: min(10%, 30vh);
     }
-    @media(max-width:1500px) {
+    @media (max-width:1500px) {
         padding-top: min(20%, 30vh);
     }
     margin-top: 3vh;
     overflow: visible;
-    background-position: center;
+    background-position: top;
     background-size: cover;
     background-attachment: scroll;
-    font-size: xxx-large;
     font-weight: bold;
     text-align: center;
     color: #000;
     background-color: #0000000a;
     background-blend-mode: darken;
     font-weight: bolder;
-    font-size: 3vw;
-    color: whitesmoke;
-
-    
-    .title {
-        font-size: inherit;   
-    }
-
+    color: whitesmoke;    
+    font-size:xx-large;
+    text-shadow: 1px 1px #000000;   
 }
 
 .exploreFlex{
@@ -118,14 +112,15 @@ $gold: #bf9b30;
     font-weight: bold;
     padding-bottom:5%;
 }
-
-.exploreButton:hover span{
-    display: none;
+.hidden {
+    display:none;
 }
-
-
-.exploreButton:hover::after{
-    content: "Explore Topic" !important;
+.exploreButton:hover span{
+    top: 50%;
+}
+.exploreButton:hover .hidden {
+    display: block;
+    margin-bottom:0;
 }
 
 .exploreButton:hover{

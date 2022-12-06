@@ -20,7 +20,7 @@ export class ExploreComponent implements OnInit{
 
     getExplores(){
       this.api.getAllExplores().subscribe((data)=> {
-        this.explores = data['explores'];
+        this.explores = data['explores'].sort((a,b) => { if (a.name > b.name) return 1; else return -1 });
       });
     }
 }

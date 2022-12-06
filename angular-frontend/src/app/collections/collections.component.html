@@ -45,23 +45,43 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="this.innerWidth <= this.smallWindow"
-            class="collection-collection-grid layer-unbounded collection-grid-row">
+        <div *ngIf="this.innerWidth <= this.smallWindow">
             <div *ngFor="let collection of collections; let indexOfelement=index">
-                <div class="collection-grid-top">
-                    <div class="collection-img-container">
-                        <div class="collection-img-borderless">
-                            <img *ngIf="collection.cover_image" class="collection-img"
-                                src="{{API_URL}}/media/{{collection.cover_image}}">
+                <div *ngIf="collection && indexOfelement % 2 == 0"
+                    class="collection-collection-grid layer-unbounded collection-grid-row even">
+                    <div class="collection-grid-top">
+                        <div class="collection-img-container">
+                            <div class="collection-img-borderless">
+                                <img *ngIf="collection.cover_image" class="collection-img"
+                                    src="{{API_URL}}/media/{{collection.cover_image}}">
+                            </div>
                         </div>
                     </div>
+                    <div class="collection-grid-bottom">
+                        <h1 class="collection-title">{{collection.title}}</h1>
+                        <p class="collection-description">{{collection.description}}</p>
+                        <a [routerLink]="collection.id"><button type="button" class="collection-btn">
+                                See Collection
+                            </button></a>
+                    </div>
                 </div>
-                <div class="collection-grid-bottom">
-                    <h1 class="collection-title">{{collection.title}}</h1>
-                    <p class="collection-description">{{collection.description}}</p>
-                    <a [routerLink]="collection.id"><button type="button" class="collection-btn">
-                            See Collection
-                        </button></a>
+                <div *ngIf="collection && indexOfelement % 2 != 0"
+                    class="collection-collection-grid layer-unbounded collection-grid-row odd">
+                    <div class="collection-grid-top">
+                        <div class="collection-img-container">
+                            <div class="collection-img-borderless">
+                                <img *ngIf="collection.cover_image" class="collection-img"
+                                    src="{{API_URL}}/media/{{collection.cover_image}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-grid-bottom">
+                        <h1 class="collection-title">{{collection.title}}</h1>
+                        <p class="collection-description">{{collection.description}}</p>
+                        <a [routerLink]="collection.id"><button type="button" class="collection-btn">
+                                See Collection
+                            </button></a>
+                    </div>
                 </div>
             </div>
         </div>
