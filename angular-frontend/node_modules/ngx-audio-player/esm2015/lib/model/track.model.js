@@ -1,0 +1,8 @@
+export class Track {
+    constructor() {
+        this.toString = () => {
+            return `Track (index: ${this.index}, title: ${this.title})`;
+        };
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidHJhY2subW9kZWwuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZ3gtYXVkaW8tcGxheWVyL3NyYy9saWIvbW9kZWwvdHJhY2subW9kZWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxPQUFPLEtBQUs7SUFBbEI7UUFRUyxhQUFRLEdBQUcsR0FBVyxFQUFFO1lBQzdCLE9BQU8saUJBQWlCLElBQUksQ0FBQyxLQUFLLFlBQVksSUFBSSxDQUFDLEtBQUssR0FBRyxDQUFDO1FBQzlELENBQUMsQ0FBQTtJQUNILENBQUM7Q0FBQSIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBUcmFjayB7XG4gIGluZGV4PzogbnVtYmVyO1xuICBsaW5rOiBzdHJpbmc7XG4gIHRpdGxlOiBzdHJpbmc7XG4gIHN0YXJ0T2Zmc2V0PzogbnVtYmVyO1xuICBlbmRPZmZzZXQ/OiBudW1iZXI7XG4gIGR1cmF0aW9uPzogbnVtYmVyO1xuICBhcnRpc3Q/OiBzdHJpbmc7XG4gIHB1YmxpYyB0b1N0cmluZyA9ICgpOiBzdHJpbmcgPT4ge1xuICAgIHJldHVybiBgVHJhY2sgKGluZGV4OiAke3RoaXMuaW5kZXh9LCB0aXRsZTogJHt0aGlzLnRpdGxlfSlgO1xuICB9XG59XG4iXX0=

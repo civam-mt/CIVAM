@@ -4,6 +4,11 @@
 
 django_project/media
 
+### Other ###
+django_project/project/settings.py 
+django_project/dump.json 
+django_project/civam/package-lock.json
+
 ### Django ###
 *.log
 *.pot

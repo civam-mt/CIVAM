@@ -1,0 +1,6 @@
+/*
+ * Public API Surface of jw-pagination
+ */
+export * from './lib/jw-pagination.component';
+export * from './lib/jw-pagination.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2p3LWFuZ3VsYXItcGFnaW5hdGlvbi8iLCJzb3VyY2VzIjpbInB1YmxpYy1hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxjQUFjLCtCQUErQixDQUFDO0FBQzlDLGNBQWMsNEJBQTRCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIGp3LXBhZ2luYXRpb25cbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9qdy1wYWdpbmF0aW9uLmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9qdy1wYWdpbmF0aW9uLm1vZHVsZSc7XG4iXX0=

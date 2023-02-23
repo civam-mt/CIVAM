@@ -1,0 +1,7 @@
+/*
+ * Public API Surface of ngx-audio-player
+ */
+export * from './lib/component/ngx-audio-player/ngx-audio-player.component';
+export * from './lib/ngx-audio-player.module';
+export * from './lib/model/track.model';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25neC1hdWRpby1wbGF5ZXIvc3JjL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxjQUFjLDZEQUE2RCxDQUFDO0FBQzVFLGNBQWMsK0JBQStCLENBQUM7QUFDOUMsY0FBYyx5QkFBeUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2Ygbmd4LWF1ZGlvLXBsYXllclxuICovXG5cbmV4cG9ydCAqIGZyb20gJy4vbGliL2NvbXBvbmVudC9uZ3gtYXVkaW8tcGxheWVyL25neC1hdWRpby1wbGF5ZXIuY29tcG9uZW50JztcbmV4cG9ydCAqIGZyb20gJy4vbGliL25neC1hdWRpby1wbGF5ZXIubW9kdWxlJztcbmV4cG9ydCAqIGZyb20gJy4vbGliL21vZGVsL3RyYWNrLm1vZGVsJztcbiJdfQ==
