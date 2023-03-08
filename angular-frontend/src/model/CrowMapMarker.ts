@@ -232,9 +232,9 @@ export class CrowMapMarker extends GoogleMapMarker {
     getElement(str: string): any {
         switch (str.toLowerCase()) {
             case "crow_material":
-                return this._nameValue('Crow Material', this.crow_material);
+                return this._nameValue(this.crow_material);
             case "digital_collection":
-                return this._nameValue('Digital', this.digital_collection);
+                return this._nameValue(this.digital_collection);
             case "crow_material_val":
                 return this.crow_material;
             case "digital_collection_val":
@@ -296,9 +296,9 @@ export class CrowMapMarker extends GoogleMapMarker {
         }
     }
 
-    private _nameValue(str:string, bool:boolean):string {
+    private _nameValue(bool:boolean):string {
         var tf = bool ? 'Yes' : 'No';
-        return '<div>' + str + '<br>' + tf + '</div>';
+        return tf;
     }
 
     private _hasCrowElement(elem:string):boolean {

@@ -21,6 +21,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AgmCoreModule } from '@agm/core';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { JwPaginationModule } from 'jw-angular-pagination';
+import { AgmMarkerClustererModule } from '@agm/markerclusterer';
 
 
 // Component imports
@@ -112,6 +113,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     NgxAudioPlayerModule,
     PdfViewerModule,
     NgMultiSelectDropDownModule.forRoot(),
+    AgmMarkerClustererModule,
     AgmCoreModule.forRoot({
     	apiKey: 'AIzaSyCKsC8YlYs6bkPacj3Sd_Jf2SAvMWGJMy8'
     })

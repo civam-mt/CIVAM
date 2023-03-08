@@ -16,6 +16,20 @@ This document is to provide a clear explanation of the map on the CIVAM website.
   [here](https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key). **The
   map on CIVAM will not function if there is not a valid API key.** 
 
+## Running the Map on the Local Environment
+To keep our website secure, the API key used on the CIVAM website only accepts requests from CIVAM's domain. If you want to see the
+map on the local environment for testing, you will need to create a temporary API key.
+1. Log into the CIVAM google account (login info is found on the CIVAM Google Drive's Account Credentials document).
+2. Go to the Google Developers Console (https://console.cloud.google.com).
+3. Navigate to APIs & Services window.
+4. Open the Credentials tab. 
+    - You should see an existing key called 'Website API', this is the API key used on the CIVAM website.
+5. Click the Create Credentials button, and then select API key.
+6. On your local environment, go to the CIVAM/angular-frontend/src/app directory and open the file `app.module.ts`.
+7. Go down to imports and change the apiKey field under `AgmCoreModule.forRoot` to your new API key. 
+    - **Before you push any changes on to the repository, make sure to change the apiKey field back to the 'Website API' key.**
+8. When you are finished, delete the temporary API key.
+
 ## Changing Default View of Map
 * To change where the map is centered, we use the `lat`, `lng`, and `zoom` variables found in
   `map.component.ts`. 
@@ -42,5 +56,4 @@ This document is to provide a clear explanation of the map on the CIVAM website.
   * There is Crow tribe material at the institution
   * The institution physically has said material, or there is only pictures (CIVAM is a Digital
     Collection)
-
 
