@@ -32,7 +32,8 @@ Note that [General Setup](#General-Setup), [Front-End Specific Setup](#Front-End
 ## Front-End Specific Setup
 1. install npm: `sudo npm install -g npm@latest`
 2. install angular-cli: `sudo npm install -g @angular/cli`
-3. install nvm version manager: `wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash`
+3. install nvm version manager: `wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash`
+    (If you already have nvm installed, make sure you have version 1.1.8 or later. If not, npm may throw incompatibility errors.)
 4. Open a new terminal, you must do this in order to proceed.
 5. install project version: `nvm install 12.20` - this can be verified with `ng --version`
 6. set up a directory and clone your fork of the repo
