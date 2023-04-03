@@ -57,7 +57,8 @@ export class MapComponent implements OnInit {
         this.mapMarkers.forEach( (e:CrowMapMarker) => {
           if (!data.has(e.country)) data.set(e.country, e.country);
         });
-        this.dropDownFilters = CrowMapMarker.dropDownFilters.concat([["Countries", Array.from(data.keys())]]);
+        //this.dropDownFilters = CrowMapMarker.dropDownFilters.concat([["Countries", Array.from(data.keys())]]);
+	this.dropDownFilters = [["Countries", Array.from(data.keys())]]
         }
       })
   }
@@ -118,6 +119,10 @@ export class MapComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+  }
+
+  clearFilterData(){
+   this.mapSupport.clearFilterData();	
   }
 
   getSiteTexts() {
