@@ -9,7 +9,7 @@
       <div [innerHTML]="siteText"></div>
    </div>
    <div class="">
-      <form class="filter" [formGroup]="form" (ngSubmit)="filterData()">
+      <form class="filter" [formGroup]="form">
          <div class="filter-item-1 filter-item">
             <section class="">
                <span class="">
@@ -24,7 +24,7 @@
             </section>
          </div>
 
-         <div class="filter-item-2 filter-item" [attr.grid-column]="i + 1"
+         <div class="filter-item-2 filter-item" [attr.grid-column]="0"
             *ngFor="let selectDropDown of dropDownFilters; let i = index">
             <section>
                <mat-form-field appearance="fill">
@@ -36,15 +36,15 @@
                   </mat-select>
                </mat-form-field>
             </section>
-         </div>
+	 </div>        
          <div class="filter-item-3 filter-item">
             <button type="button" class="btn btn-light " style="background-color: #F1FAEE;" (click)="filterData()"
                style="margin-left:1%;">Search</button>
          </div>
-         <div class="filter-item-4 filter-item">
-            <button type="reset" class="btn btn-light " style="background-color: #F1FAEE;"
+	<div class="filter-item-4 filter item">
+            <button type="reset" class="btn btn-light " style="background-color: #F1FAEE;" (click)="clearFilterData()"
                style="margin-left:1%;">Clear</button>
-         </div>
+	</div>
       </form>
    </div>
    <div class="layer-lg-ub">

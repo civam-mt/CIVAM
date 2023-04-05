@@ -11,6 +11,7 @@ import { ApiService } from './api.service';
 export class MapSupportService {
 
   private _mapElementsMaster: BehaviorSubject<Array<GoogleMapMarker>> = new BehaviorSubject<Array<GoogleMapMarker>>(null);
+  originalMapElements: Array<GoogleMapMarker> = new Array<GoogleMapMarker>(null);
   mapElements: BehaviorSubject<Array<GoogleMapMarker>> = new BehaviorSubject<Array<GoogleMapMarker>>(null);
   mapElementsLoaded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -40,7 +41,7 @@ export class MapSupportService {
               element['url'], element['svg'], element['notes'], element['history'], element['cover_image']));
           });
           this._mapElementsMaster.next(cmm);
-
+          this.originalMapElements = cmm;
           this._updateSiteFacingData(cmm);
         });
     }
@@ -57,6 +58,7 @@ export class MapSupportService {
     this._updateSiteFacingData(this._mapElementsMaster.getValue().sort(sort));
   }
 
+  
   getFilterData(args:string[][]):void {
     let filterArray: Array<GoogleMapMarker> = new Array<GoogleMapMarker>();
     this._mapElementsMaster.getValue().forEach(element => {
@@ -65,7 +67,11 @@ export class MapSupportService {
       }
     });
     this._updateSiteFacingData(filterArray)
-    console.log(filterArray);
+  }
+
+  //changes the filtered array back to the original
+  clearFilterData(): void {
+    this._updateSiteFacingData(this.originalMapElements);
   }
 }
 
