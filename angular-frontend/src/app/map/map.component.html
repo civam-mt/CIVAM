@@ -1,3 +1,4 @@
+
 <div class="layers">
    <div class="top-content background-img layer-lg">
       <div class="title">
@@ -8,7 +9,7 @@
       <div [innerHTML]="siteText"></div>
    </div>
    <div class="">
-      <form class="filter" [formGroup]="form" (ngSubmit)="filterData()">
+      <form class="filter" [formGroup]="form">
          <div class="filter-item-1 filter-item">
             <section class="">
                <span class="">
@@ -23,7 +24,7 @@
             </section>
          </div>
 
-         <div class="filter-item-2 filter-item" [attr.grid-column]="i + 1"
+         <div class="filter-item-2 filter-item" [attr.grid-column]="0"
             *ngFor="let selectDropDown of dropDownFilters; let i = index">
             <section>
                <mat-form-field appearance="fill">
@@ -35,15 +36,15 @@
                   </mat-select>
                </mat-form-field>
             </section>
-         </div>
+	 </div>        
          <div class="filter-item-3 filter-item">
             <button type="button" class="btn btn-light " style="background-color: #F1FAEE;" (click)="filterData()"
                style="margin-left:1%;">Search</button>
          </div>
-         <div class="filter-item-4 filter-item">
-            <button type="reset" class="btn btn-light " style="background-color: #F1FAEE;"
+	<div class="filter-item-4 filter item">
+            <button type="reset" class="btn btn-light " style="background-color: #F1FAEE;" (click)="clearFilterData()"
                style="margin-left:1%;">Clear</button>
-         </div>
+	</div>
       </form>
    </div>
    <div class="layer-lg-ub">
@@ -51,57 +52,36 @@
       <div class="mapPage">
 
          <div class="map" *ngIf="map_loaded">
-            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [usePanning]="panning" class="accordion">
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [usePanning]="panning" (mapClick)="close_window()" class="accordion">
+		<agm-marker-cluster>
                <div *ngFor='let marker of mapMarkers'>
                   <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title" [label]=""
-                     (markerClick)="showMarker(marker.title)" [animation]="marker.animation"
+                     (markerClick)="showMarker(marker.title, infoWindow)" [animation]="marker.animation"
                      [iconUrl]="marker.customImgUrl.icon">
-                     <agm-info-window [disableAutoPan]="true">
-                        <div *ngIf="selectedMarker" class="info">
-                           <div *ngIf="clicked" class="afterClick">
-                              <mat-grid-list cols="15" rowHeight="2rem" class="card" style="width:max(100%, 400px)">
-                                 <!--     Image Based Entry     -->
-                                 <div *ngIf="selectedMarker.hasElement('cover_image')">
-                                    <mat-grid-tile *ngFor="let tile of imgTile" [colspan]="tile.cols" [rowspan]="tile.rows"
-                                    [style.background]="tile.color" [ngStyle]="tile.style">
-                                       <div *ngIf="tile.text != 'cover_image' && tile.text != 'name' && tile.text != 'url'" 
-                                          [innerHTML]="selectedMarker.getContentBounded(selectedMarker.getElement(tile.text))">
-                                       </div>
-                                       <div *ngIf="tile.text == 'name'" class="info-title"   
-                                          [innerHTML]="selectedMarker.getElement(tile.text)"> 
-                                       </div>
-                                       <div *ngIf="tile.text == 'url'">
-                                          <a href="{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
-                                       </div>
-                                       <div *ngIf="tile.text == 'cover_image'">
-                                          <img src="{{API_URL}}/media/{{selectedMarker.getElement(tile.text)}}"
-                                             alt="Random slide" class="image" [class]="'matt-grid-opt-'+tile.text">
-                                       </div>
-                                    </mat-grid-tile>
-                                 </div>
-
-                                 <!--     Text Only Entry     -->
-                                 <div *ngIf="!selectedMarker.hasElement('cover_image')">
-                                    <mat-grid-tile *ngFor="let tile of txtTile" [colspan]="tile.cols" [rowspan]="tile.rows"
-                                    [style.background]="tile.color" [ngStyle]="tile.style">
-                                       <div *ngIf="tile.text != 'cover_image' && tile.text != 'name' && tile.text != 'url'" 
-                                          [innerHTML]="selectedMarker.getContentBounded(selectedMarker.getElement(tile.text))">
-                                       </div>
-                                       <div *ngIf="tile.text == 'name'" class="info-title" 
-                                          [innerHTML]="selectedMarker.getElement(tile.text)">
-                                       </div>
-                                       <div *ngIf="tile.text == 'url'">
-                                          <a href="{{selectedMarker.getElement(tile.text)}}">{{selectedMarker.getElement(tile.text)}}</a>
-                                       </div>
-                                    </mat-grid-tile>
-                                 </div>
-                              </mat-grid-list>
-                           </div>
-                        </div>
+                     <agm-info-window [maxWidth]=1000 #infoWindow>
+			<div *ngIf="clicked" class="afterClick">
+                            <div *ngIf="selectedMarker" class="info">
+                              <div id="content">
+    				<a href="{{selectedMarker.getElement('url')}}"><h5>{{selectedMarker.getElement('name')}}</h5></a>
+				   <h6>{{selectedMarker.getElement('cityProvinceCountry')}}</h6><br>
+				   <p>{{selectedMarker.getElement('history')}}</p>
+			           <mat-grid-list cols="2" rowHeight="15px">
+				      <mat-grid-tile *ngFor="let tile of txtTile" [colspan]="tile.cols" [rowspan]="tile.rows">
+				         <div *ngIf="tile.text == 'crow_material'">
+				            Crow Material: {{selectedMarker.getElement(tile.text)}}
+				         </div>
+				         <div *ngIf="tile.text == 'digital_collection'">
+				            Digital Collection: {{selectedMarker.getElement(tile.text)}}
+				         </div>
+				      </mat-grid-tile>
+				   </mat-grid-list>
+                              </div> 
+                            </div>
+			</div>
                      </agm-info-window>
                   </agm-marker>
                </div>
-
+		</agm-marker-cluster>
             </agm-map>
          </div>
       </div>

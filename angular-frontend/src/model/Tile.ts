@@ -9,6 +9,8 @@ export interface NewsTile extends Tile {
     style: {};
 }
 
-export interface MapTile extends Tile {
-    style: {};
+export interface MapTile {
+    cols: number;
+    rows: number;
+    text: string;
 }

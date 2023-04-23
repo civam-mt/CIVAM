@@ -17,21 +17,16 @@ import { AgmInfoWindow } from '@agm/core';
 export class MapComponent implements OnInit {
   API_URL = environment.apiUrl;
   imgTile: MapTile[] = [
-    {text: 'cover_image', cols: 5, rows: 4, color: '', style: ''},
-    {text: 'name', cols: 10, rows: 2, color: '', style: ''},
-    {text: 'cityProvinceCountry', cols: 10, rows: 1, color: '', style: ''},
-    {text: 'url', cols: 10, rows: 1, color: '', style: { 'border-bottom': '#c5c4c4 solid 1px'}},
-    {text: 'history', cols: 12, rows: 5, color: '', style: { 'border-right': '#c5c4c4 solid 1px'}},
-    {text: 'crow_material', cols: 3, rows: 3, color: '', style: {'text-align':'right'}},
-    {text: 'digital_collection', cols: 3, rows: 2, color: '', style: {'text-align':'right'}},
+    {text: 'cover_image', cols: 4, rows: 4},    
+    {text: 'name', cols: 4, rows: 2},
+    {text: 'cityProvinceCountry', cols: 4, rows: 1},
+    {text: 'history', cols: 4, rows: 3},
+    {text: 'crow_material', cols: 2, rows: 1},
+    {text: 'digital_collection', cols: 2, rows: 1}
   ];
   txtTile: MapTile[] = [
-    {text: 'name', cols: 15, rows: 2, color: '', style: ''},
-    {text: 'cityProvinceCountry', cols: 15, rows: 1, color: '', style: ''},
-    {text: 'url', cols: 15, rows: 1, color: '', style: { 'border-bottom': '#c5c4c4 solid 1px'}},
-    {text: 'history', cols: 12, rows: 5, color: '', style: { 'border-right': '#c5c4c4 solid 1px'}},
-    {text: 'crow_material', cols: 3, rows: 3, color: '', style: {'text-align':'right'}},
-    {text: 'digital_collection', cols: 3, rows: 2, color: '', style: {'text-align':'right'}},
+    {text: 'crow_material', cols: 1, rows: 1},
+    {text: 'digital_collection', cols: 1, rows: 1},
   ];
   public siteText:string;
 
@@ -48,6 +43,7 @@ export class MapComponent implements OnInit {
   public selectedMarker:GoogleMapMarker;
   public mapMarkers:Array<GoogleMapMarker>; 
   public toOpen:boolean = true;
+  public previous_info_window = null;
 
 
   constructor(httpClient: HttpClient, private mapSupport:MapSupportService, private formBuilder:FormBuilder, private apiService:ApiService) {
@@ -61,7 +57,8 @@ export class MapComponent implements OnInit {
         this.mapMarkers.forEach( (e:CrowMapMarker) => {
           if (!data.has(e.country)) data.set(e.country, e.country);
         });
-        this.dropDownFilters = CrowMapMarker.dropDownFilters.concat([["Countries", Array.from(data.keys())]]);
+        //this.dropDownFilters = CrowMapMarker.dropDownFilters.concat([["Countries", Array.from(data.keys())]]);
+	this.dropDownFilters = [["Countries", Array.from(data.keys())]]
         }
       })
   }
@@ -79,19 +76,27 @@ export class MapComponent implements OnInit {
     this.getSiteTexts();
    }
 
-  showMarker(title:string){
-    // This allows us to bounce the last selected marker without nulling a value
-    if (this.selectedMarker != null) this.selectedMarker.animation = "";
-    //this.panning = true;
+  //Called when the map is clicked. closes any open info windows.
+  //TODO: Make it so that when a map cluster icon is clicked, any open info windows close.
+  close_window(){
+    if (this.previous_info_window != null){
+       this.previous_info_window.close()
+    }
+  }
+
+  //This function handles showing the marker's info window. The "clicked" field is what gets passed back to the html file for the agm-info-window tag  
+  showMarker(title:string, infoWindow: any){
     this.selectedMarker = this.mapSupport.getSelectedMarkerFromTitle(title);
-    this.zoom = 10;
-    //this.zoom = 17;
-    this.lat = this.selectedMarker.lat;
-    this.lng = this.selectedMarker.lng;
-    //this.selectedMarker.animation = "BOUNCE";
     this.clicked = true;
-    //this.panning = false;
-    //this.agmInfo.open();
+    
+    //This makes it so that if you click a new marker while having an info window open for another marker, the info window for the previous window closes.   
+    if(this.previous_info_window == null){
+      this.previous_info_window = infoWindow
+    }
+    else{
+      this.previous_info_window.close()
+      this.previous_info_window = infoWindow;    
+    }
   }
 
   asCrowMapMarker(marker:GoogleMapMarker): CrowMapMarker {
@@ -114,6 +119,10 @@ export class MapComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+  }
+
+  clearFilterData(){
+   this.mapSupport.clearFilterData();	
   }
 
   getSiteTexts() {
