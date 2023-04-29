@@ -35,7 +35,7 @@ Note that [General Setup](#General-Setup), [Front-End Specific Setup](#Front-End
 3. install nvm version manager: `wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash`
     (If you already have nvm installed, make sure you have version 1.1.8 or later. If not, npm may throw incompatibility errors.)
 4. Open a new terminal, you must do this in order to proceed.
-5. install project version: `nvm install 12.20` - this can be verified with `ng --version`
+5. install and use project version: `nvm install 14.20.1` then `nvm use 14.20.1` - this can be verified with `ng --version` (should have Node: 14.20.1 and Angular CLI: 11.2.14)
 6. set up a directory and clone your fork of the repo
 7. cd into `CIVAM/angular-frontend`
 8. install all dependencies: `npm install --legacy-peer-deps`
