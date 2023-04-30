@@ -36,7 +36,7 @@
                 <div *ngIf="items" class="row justify-content-center container-fluid">
                     <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="col-md-4">
                         <div *ngIf="item">
-                            <a href="/items/{{item.item}}">
+                            <a href="/{{item.link_val}}/{{item.item}}">
                                 <div *ngIf="!item.cover_image">
                                     <button class="coverImage" style="background-color:black">
                                         {{item.name}}
@@ -101,8 +101,9 @@
             <div *ngIf="items" class="compactItems">
                 <div *ngFor="let item of pageOfItems; let indexOfelement=index" class="buttonContainer">
                     <div *ngIf="item" class="itemObject">
+                        <!--need to reclassify (item) to a more general class to include all pages-->
                         <div *ngIf="item.cover_image">
-                            <a href="/items/{{item.item}}">
+                            <a href="/{{item.link_val}}/{{item.item}}">
                                 <button class="compactButton"
                                     style="background: url({{API_URL}}/media/{{item.cover_image}}) no-repeat fixed;">
                                     {{item.name}}
@@ -110,7 +111,7 @@
                             </a>
                         </div>
                         <div *ngIf="!item.cover_image">
-                            <a href="/items/{{item.item}}">
+                            <a href="/{{item.link_val}}/{{item.item}}">
                                 <button class="compactButton"
                                     style="background: url(../../assets/images/black.png) no-repeat fixed;">
                                     {{item.name}}
