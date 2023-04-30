@@ -135,9 +135,12 @@ def search_keyword(request):
 	return JsonResponse({'keywords': keyword_list}, safe=False)
 
 
-def searchResult(request):
+def searchResult(request): #EXPAND TO OTHER OBJECTS
+	#review how django is organized to see what objects are called/see if they have any common properties
 	query = request.GET.get('data', None)
 	item_list = []
+	collection_list = []
+	poi_list = []
 	#matches if query is contained in any keywords of Items
 	matched_keywords = Keyword.objects.filter(word__iexact=query)
 	#matches if query is contained in name of items
@@ -151,26 +154,29 @@ def searchResult(request):
 			'item': item.id,
 			'cover_image': item.cover_image.name,
 			'name': item.name,
-			'description': item.description,
-			'collection': item.collection.id,
-			'culture_or_community': item.culture_or_community,
-			'other_forms': item.other_forms,
-			'date_of_creation':item.date_of_creation,
-			'physical_details':item.physical_details,
-			'access_notes_or_rights_and_reproduction':item.access_notes_or_rights_and_reproduction,
-			'catalog_number':item.catalog_number,
-			'external_link':item.external_link,
-			'provenance':item.provenance,
-			#'notes':item.notes,
-			"place_created":item.place_created,
-			'citation':item.citation,
-			'historical_note':item.historical_note,
-
-			"keywords": [{"id":x.id,"name":str(x)} for x in list(item.keywords.all())],
-			"creator": [{"id":x.id,"name":str(x)} for x in list(item.creator.all())],
-			"location_of_originals":item.location_of_originals
+			'link_val': 'items',
 		}
 		item_list.append(new_item)
+
+	collections = Collection.objects.filter(title__icontains=query)
+	for collection in collections:
+		new_collection = {
+			'item': collection.id,
+			'cover_image': collection.cover_image.name,
+			'name': collection.title,
+			'link_val': 'collections',
+		}
+		collection_list.append(new_collection)
+	pois = PersonOrInstitute.objects.filter(name__icontains=query)
+	for poi in pois:
+		new_poi = {
+			'item': poi.id,
+			'cover_image': poi.cover_image.name,
+			'name': poi.name,
+			'link_val': 'pori',
+		}
+		poi_list.append(new_poi)
+	item_list = item_list + collection_list + poi_list
 	context = {"items":item_list}
 	return JsonResponse(context, safe=False)
 
