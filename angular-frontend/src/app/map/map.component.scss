@@ -19,7 +19,8 @@ $gray-l1: #1e1e1ecf;
   height: 100%;
   margin: 0 auto;
   display: flex;
-  background-color: #eeeeeec4;
+  background-color: #e3f4fb;
+  //background-color: #eeeeeec4;
 }
 
 .gm-style {
@@ -31,12 +32,12 @@ $gray-l1: #1e1e1ecf;
 }
 
 .map {
-  width: 100%;
-  min-height: 30vh;
-  height: 50vh;
+  width: 90%;
+  max-height: 90vh;
+  height: 70vh;
   float: right;
   margin: 0 auto;
-  margin-right: 0.5%;
+  //margin-right: 0.5%;
 
   agm-map {
       height: 100%;
